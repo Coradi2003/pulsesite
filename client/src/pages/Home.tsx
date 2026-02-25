@@ -116,7 +116,7 @@ export default function Home() {
               <a href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!" className="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-whatsapp"></i> WhatsApp
               </a>
-              <a href="#cta" className="btn btn-primary">
+              <a href="#cta" className="btn btn-primary btn-nav">
                 Quero meu site
               </a>
             </div>
@@ -619,14 +619,29 @@ export default function Home() {
         }
 
         .landing-page .btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 0 40px var(--purple-glow), 0 8px 32px rgba(138,43,226,0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 0 40px var(--purple-glow), 0 8px 32px rgba(138,43,226,0.5);
+        }
+
+        /* Botão do topo (navbar) — menor no mobile */
+        .landing-page .btn-nav {
+        padding: 10px 18px;
+        font-size: 0.92rem;
+        border-radius: 12px;
+        }
+
+        @media (max-width: 600px) {
+        .landing-page .btn-nav {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        border-radius: 12px;
+        }
         }
 
         .landing-page .btn-secondary {
-          background: transparent;
-          color: var(--white);
-          border: 1.5px solid var(--border);
+        background: transparent;
+        color: var(--white);
+        border: 1.5px solid var(--border);
         }
 
         .landing-page .btn-secondary:hover {
