@@ -448,7 +448,7 @@ export default function Home() {
                 </li>
                 <li>
                   <i className="fab fa-instagram"></i>
-                  <a href="#" target="_blank" rel="noopener noreferrer">@pulsefuturo</a>
+                  <a href="https://instagram.com/pulsefuturo" target="_blank" rel="noopener noreferrer">@pulsefuturo</a>
                 </li>
               </ul>
             </div>
@@ -618,16 +618,7 @@ export default function Home() {
           box-shadow: 0 0 24px var(--purple-glow), 0 4px 20px rgba(138,43,226,0.35);
         }
 
-        .landing-page .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0 40px var(--purple-glow), 0 8px 32px rgba(138,43,226,0.5);
-        }
-
-        /* Botão do topo (navbar) — menor no mobile */
-        .landing-page .btn-nav {
-        padding: 10px 18px;
-        font-size: 0.92rem;
-        border-radius: 12px;
+Morder-radius: 12px;
         }
 
         @media (max-width: 600px) {
