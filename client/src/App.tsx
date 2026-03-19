@@ -6,33 +6,39 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
-
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <Toaster />
-          <Router />
+          <div className="relative min-h-screen overflow-hidden">
+            {/* Vídeo de fundo do site inteiro */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="fixed inset-0 -z-20 h-full w-full object-cover"
+            >
+              <source src="/fundo-roxo.mp4" type="video/mp4" />
+            </video>
+
+            {/* Camada escura por cima do vídeo para destacar o conteúdo */}
+            <div className="fixed inset-0 -z-10 bg-black/45" />
+
+            <Toaster />
+            <Router />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
