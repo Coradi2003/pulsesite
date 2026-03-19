@@ -9,8 +9,8 @@ import Home from "./pages/Home";
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
+      <Route path="/" component={Home} />
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -21,20 +21,22 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <div className="relative min-h-screen overflow-hidden">
-            {/* Vídeo de fundo do site inteiro */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="fixed inset-0 -z-20 h-full w-full object-cover"
-            >
-              <source src="/fundo-roxo.mp4" type="video/mp4" />
-            </video>
+          <div className="relative min-h-screen">
+            <div className="fixed inset-0 -z-30 overflow-hidden">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="h-full w-full object-cover"
+              >
+                <source src="/fundo-roxo.mp4" type="video/mp4" />
+              </video>
+            </div>
 
-            {/* Camada escura por cima do vídeo para destacar o conteúdo */}
-            <div className="fixed inset-0 -z-10 bg-black/45" />
+            <div className="fixed inset-0 -z-20 bg-black/40" />
+            <div className="fixed inset-0 -z-10 bg-gradient-to-br from-violet-950/30 via-fuchsia-900/20 to-purple-950/30" />
 
             <Toaster />
             <Router />
