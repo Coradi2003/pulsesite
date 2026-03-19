@@ -29,14 +29,14 @@ function App() {
                 loop
                 playsInline
                 preload="auto"
-                className="h-full w-full object-cover scale-105 blur-[1.5px]"
+                className="h-full w-full object-cover scale-110 blur-[1px] md:scale-100 md:blur-0"
               >
                 <source src="/fundo-roxo.mp4" type="video/mp4" />
               </video>
             </div>
 
-            <div className="fixed inset-0 -z-20 bg-black/55" />
-            <div className="fixed inset-0 -z-10 bg-gradient-to-br from-violet-950/40 via-fuchsia-900/25 to-purple-950/40" />
+            <div className="fixed inset-0 -z-20 bg-black/45 md:bg-black/35" />
+            <div className="fixed inset-0 -z-10 bg-gradient-to-br from-violet-950/35 via-fuchsia-900/20 to-purple-950/35" />
 
             <Toaster />
             <Router />
