@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -17,26 +18,47 @@ function Router() {
 }
 
 function App() {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <div className="relative min-h-screen">
-            <div className="fixed inset-0 -z-30 overflow-hidden">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                className="h-full w-full object-cover scale-110 blur-[1px] md:scale-100 md:blur-0"
-              >
-                <source src="/fundo-roxo.mp4" type="video/mp4" />
-              </video>
-            </div>
+            {/* Imagem base de fundo */}
+            <div
+              className="fixed inset-0 -z-30 bg-center bg-cover bg-no-repeat"
+              style={{ backgroundImage: "url('/fundo-roxo-poster.jpg')" }}
+            />
 
-            <div className="fixed inset-0 -z-20 bg-black/45 md:bg-black/35" />
-            <div className="fixed inset-0 -z-10 bg-gradient-to-br from-violet-950/35 via-fuchsia-900/20 to-purple-950/35" />
+            {/* Vídeo entra depois */}
+            {showVideo && (
+              <div className="fixed inset-0 -z-20 overflow-hidden">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="/fundo-roxo-poster.jpg"
+                  className="h-full w-full object-cover md:scale-100 scale-105"
+                >
+                  <source src="/fundo-roxo.mp4" type="video/mp4" />
+                </video>
+              </div>
+            )}
+
+            {/* Overlay */}
+            <div className="fixed inset-0 -z-10 bg-black/50 md:bg-black/40" />
+            <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-violet-950/35 via-fuchsia-900/20 to-purple-950/35" />
 
             <Toaster />
             <Router />
