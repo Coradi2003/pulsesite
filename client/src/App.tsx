@@ -21,6 +21,10 @@ function App() {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+
+    if (!isMobile) return;
+
     const timer = setTimeout(() => {
       setShowVideo(true);
     }, 400);
@@ -33,15 +37,13 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <div className="relative min-h-screen">
-            {/* Imagem base de fundo */}
             <div
               className="fixed inset-0 -z-30 bg-center bg-cover bg-no-repeat"
               style={{ backgroundImage: "url('/fundo-roxo-poster.jpg')" }}
             />
 
-            {/* Vídeo entra depois */}
             {showVideo && (
-              <div className="fixed inset-0 -z-20 overflow-hidden">
+              <div className="fixed inset-0 -z-20 overflow-hidden md:hidden">
                 <video
                   autoPlay
                   muted
@@ -49,14 +51,13 @@ function App() {
                   playsInline
                   preload="metadata"
                   poster="/fundo-roxo-poster.jpg"
-                  className="h-full w-full object-cover md:scale-100 scale-105"
+                  className="h-full w-full object-cover scale-105"
                 >
                   <source src="/fundo-roxo.mp4" type="video/mp4" />
                 </video>
               </div>
             )}
 
-            {/* Overlay */}
             <div className="fixed inset-0 -z-10 bg-black/50 md:bg-black/40" />
             <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-violet-950/35 via-fuchsia-900/20 to-purple-950/35" />
 
