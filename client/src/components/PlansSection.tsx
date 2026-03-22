@@ -62,8 +62,6 @@ const plans = [
 export default function PlansSection() {
   return (
     <section className="section nps-master" id="planos">
-      <div className="nps-bg-aura"></div>
-      
       <div className="container">
         <div className="nps-header reveal">
           <div className="nps-kicker">🚀 Criação de Sites</div>
@@ -81,50 +79,46 @@ export default function PlansSection() {
                 plan.isPopular ? 'nps-popular' : ''
               }`}
             >
-              <div className="nps-card-inner">
-                {plan.isPopular && <div className="nps-popular-flag">Mais Escolhido</div>}
-                
-                <div className="nps-top">
-                  <div className="nps-icon">{plan.icon}</div>
-                  <div className="nps-name-row">
-                    <h3 className="nps-name">{plan.name}</h3>
-                    <span className="nps-badge">{plan.badge}</span>
-                  </div>
-                  <p className="nps-desc">{plan.description}</p>
+              {plan.isPopular && <div className="nps-popular-flag">Mais Escolhido</div>}
+
+              <div className="nps-top">
+                <div className="nps-icon-wrapper">{plan.icon}</div>
+                <div className="nps-name-row">
+                  <h3 className="nps-name">{plan.name}</h3>
+                  <span className="nps-badge">{plan.badge}</span>
                 </div>
-                
-                <div className="nps-price-box">
-                  <span className="nps-currency">R$</span>
-                  <span className="nps-price">{plan.price}</span>
-                  <span className="nps-billing">/único</span>
-                </div>
-
-                <div className="nps-divider"></div>
-
-                <ul className="nps-features">
-                  {plan.features.map((feature, i) => (
-                    <li key={i}>
-                      <span className="nps-check-icon">✔️</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="nps-target-box">
-                  {plan.target}
-                </div>
-
-                <a
-                  href={`https://wa.me/5541984606633?text=Ol%C3%A1!%20Gostaria%20de%20come%C3%A7ar%20meu%20projeto%20com%20o%20plano%20${encodeURIComponent(
-                    plan.name
-                  )}.%20Podemos%20conversar?`}
-                  className={`nps-btn ${plan.isPopular ? 'nps-btn-primary' : 'nps-btn-secondary'}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Quero começar agora
-                </a>
+                <p className="nps-desc">{plan.description}</p>
               </div>
+
+              <div className="nps-price-box">
+                <span className="nps-currency">R$</span>
+                <span className="nps-price">{plan.price}</span>
+                <span className="nps-billing">/único</span>
+              </div>
+
+              <ul className="nps-features">
+                {plan.features.map((feature, i) => (
+                  <li key={i}>
+                    <i className="fas fa-check nps-check-icon"></i>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="nps-target-box">
+                {plan.target}
+              </div>
+
+              <a
+                href={`https://wa.me/5541984606633?text=Ol%C3%A1!%20Gostaria%20de%20come%C3%A7ar%20meu%20projeto%20com%20o%20plano%20${encodeURIComponent(
+                  plan.name
+                )}.%20Podemos%20conversar?`}
+                className={`nps-btn ${plan.isPopular ? 'nps-btn-primary' : 'nps-btn-secondary'}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quero começar agora
+              </a>
             </div>
           ))}
         </div>
@@ -132,32 +126,19 @@ export default function PlansSection() {
 
       <style>{`
         /* ====================================================
-           NPS (New Plans Section) - IMPACTFUL DESIGN
+           NPS (New Plans Section) - BUG-FREE & ELEGANT
            ==================================================== */
            
         .nps-master {
           position: relative;
           padding: 120px 0;
-          background: transparent;
-          overflow: hidden;
-        }
-
-        .nps-bg-aura {
-          position: absolute;
-          top: -100px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100vw;
-          height: 800px;
-          background: radial-gradient(ellipse at top, rgba(138, 43, 226, 0.15) 0%, transparent 60%);
-          pointer-events: none;
-          z-index: 0;
+          background: transparent; /* No absolute backgrounds that break the grid */
         }
 
         .nps-master .container {
           position: relative;
           z-index: 2;
-          max-width: 1280px;
+          max-width: 1240px;
           margin: 0 auto;
           padding: 0 24px;
         }
@@ -170,117 +151,116 @@ export default function PlansSection() {
         .nps-kicker {
           display: inline-block;
           font-weight: 800;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           color: #B56BFF;
           text-transform: uppercase;
-          letter-spacing: 0.2em;
-          margin-bottom: 16px;
-          padding: 8px 16px;
-          background: rgba(138, 43, 226, 0.1);
-          border: 1px solid rgba(138, 43, 226, 0.2);
+          letter-spacing: 0.25em;
+          margin-bottom: 20px;
+          padding: 6px 16px;
+          background: rgba(138, 43, 226, 0.12);
           border-radius: 100px;
-          box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
         }
 
         .nps-title {
           font-family: var(--font-main);
           font-size: clamp(2.5rem, 5vw, 4rem);
-          font-weight: 900;
+          font-weight: 800;
           color: #fff;
           margin-bottom: 20px;
-          letter-spacing: -0.04em;
+          letter-spacing: -0.03em;
           line-height: 1.1;
         }
 
         .nps-subtitle {
-          font-size: 1.15rem;
-          color: #A1A1AA;
+          font-size: 1.1rem;
+          color: rgba(255, 255, 255, 0.65);
           max-width: 640px;
           margin: 0 auto;
           line-height: 1.6;
         }
 
-        /* GRID IMPLACÁVEL */
+        /* FLEXBOX para máxima estabilidade no Mobile/Desktop */
         .nps-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 32px;
+          display: flex;
+          justify-content: center;
           align-items: stretch;
+          gap: 28px;
         }
 
-        /* CARDS MODERNOS COM BORDAS GRADIENTES (via wrapper e pseudo) */
         .nps-card {
+          flex: 1;
           position: relative;
+          background: rgba(15, 12, 22, 0.65); /* Violeta profundo transparente para encaixar na LandingPage */
+          backdrop-filter: blur(24px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 28px;
-          padding: 1px; /* Espaço para o gradiente da borda */
-          background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
+          padding: 48px 36px 40px; /* Mais recheio interno */
           display: flex;
           flex-direction: column;
-          box-shadow: 0 24px 50px rgba(0,0,0,0.3);
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .nps-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 32px 60px rgba(0,0,0,0.4);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.35);
         }
 
-        .nps-card-inner {
-          background: #09090C; /* Preto absoluto e encorpado */
-          border-radius: 27px;
-          padding: 48px 40px;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          position: relative;
-          overflow: hidden;
-        }
-
-        /* O DESTAQUE: Trazendo muito impacto visual pro plano intermediário */
         .nps-popular {
-          background: linear-gradient(135deg, #B56BFF 0%, #EC4899 100%);
-          box-shadow: 0 30px 60px rgba(138,43,226,0.3);
-          transform: translateY(-16px);
+          background: rgba(22, 14, 34, 0.7); /* Ligeiramente mais aceso */
+          border: 1px solid rgba(168, 85, 247, 0.3);
+          box-shadow: 0 20px 60px rgba(168, 85, 247, 0.15);
+          transform: translateY(-12px);
           z-index: 10;
         }
 
         .nps-popular:hover {
-          transform: translateY(-24px);
-          box-shadow: 0 40px 80px rgba(138,43,226,0.4);
+          transform: translateY(-16px);
+          border-color: rgba(168, 85, 247, 0.5);
+          box-shadow: 0 30px 80px rgba(168, 85, 247, 0.25);
         }
 
-        .nps-popular .nps-card-inner {
-          /* Um fundo levemente roxo/escuro por dentro, pra manter a leitura perfeita mas impactante */
-          background: linear-gradient(180deg, rgba(30,20,45,1) 0%, #09090C 40%);
-        }
-
+        /* SELO CORRIGIDO - OVERFLOW HIDDEN DESTROYED IT BEFORE */
         .nps-popular-flag {
           position: absolute;
-          top: 0;
+          top: -16px;
           left: 50%;
-          transform: translate(-50%, -50%);
-          background: linear-gradient(90deg, #9D3FFF, #EC4899);
+          transform: translateX(-50%);
+          background: linear-gradient(90deg, #A855F7, #EC4899);
           color: #fff;
           font-weight: 800;
           font-size: 0.75rem;
           text-transform: uppercase;
           letter-spacing: 0.15em;
           padding: 8px 18px;
-          border-radius: 20px;
-          box-shadow: 0 8px 20px rgba(236,72,153,0.4);
+          border-radius: 100px;
+          box-shadow: 0 8px 20px rgba(236,72,153,0.35);
           white-space: nowrap;
-          z-index: 5;
+          z-index: 5; /* O card não esconde mais isso! */
         }
 
-        /* CONTEÚDO TOP */
         .nps-top {
-          margin-bottom: 24px;
+          margin-bottom: 8px;
         }
 
-        .nps-icon {
-          font-size: 2.5rem;
+        .nps-icon-wrapper {
+          font-size: 2rem;
           margin-bottom: 24px;
-          filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+          width: 56px;
+          height: 56px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 16px;
+          box-shadow: inset 0 2px 10px rgba(255,255,255,0.05);
+        }
+
+        .nps-popular .nps-icon-wrapper {
+          background: rgba(168, 85, 247, 0.15);
+          border-color: rgba(168, 85, 247, 0.3);
+          box-shadow: inset 0 2px 10px rgba(168,85,247,0.2);
         }
 
         .nps-name-row {
@@ -293,7 +273,7 @@ export default function PlansSection() {
 
         .nps-name {
           font-family: var(--font-main);
-          font-size: 1.8rem;
+          font-size: 1.6rem;
           font-weight: 800;
           color: #fff;
           letter-spacing: -0.02em;
@@ -306,72 +286,66 @@ export default function PlansSection() {
           letter-spacing: 0.1em;
           padding: 4px 10px;
           background: rgba(255,255,255,0.1);
-          color: #E4E4E7;
+          color: rgba(255, 255, 255, 0.85);
           border-radius: 6px;
-          border: 1px solid rgba(255,255,255,0.15);
         }
 
         .nps-popular .nps-badge {
           background: rgba(236,72,153,0.15);
           color: #F9A8D4;
-          border-color: rgba(236,72,153,0.3);
         }
 
         .nps-desc {
-          color: #A1A1AA;
-          font-size: 1.05rem;
+          color: rgba(255, 255, 255, 0.65);
+          font-size: 0.95rem;
           line-height: 1.6;
-          min-height: 48px;
+          min-height: 48px; /* Traz estabilidade */
         }
 
-        /* PREÇO MONSTRUOSO */
+        /* PREÇO ELEGANTE */
         .nps-price-box {
           display: flex;
-          align-items: flex-start;
+          align-items: baseline;
+          padding: 24px 0 32px;
           margin-bottom: 32px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Linha divisória limpa aqui */
         }
 
         .nps-currency {
-          font-size: 1.4rem;
-          font-weight: 700;
-          color: #A1A1AA;
-          margin-top: 8px;
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.5);
           margin-right: 6px;
+        }
+
+        .nps-popular .nps-currency {
+          color: #B56BFF;
         }
 
         .nps-price {
           font-family: var(--font-main);
-          font-size: 4.2rem;
-          font-weight: 900;
+          font-size: 3.6rem;
+          font-weight: 800;
           color: #fff;
           line-height: 1;
           letter-spacing: -0.05em;
         }
 
         .nps-billing {
-          align-self: flex-end;
           font-size: 0.9rem;
-          color: #71717A;
+          color: rgba(255, 255, 255, 0.4);
           font-weight: 600;
-          margin-bottom: 8px;
-          margin-left: 4px;
+          margin-left: 6px;
         }
 
-        .nps-divider {
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-          margin-bottom: 32px;
-        }
-
-        /* FEATURES */
+        /* FEATURES COM ICONE BONITO */
         .nps-features {
           list-style: none;
           display: flex;
           flex-direction: column;
-          gap: 18px;
-          flex-grow: 1;
-          margin-bottom: 40px;
+          gap: 16px;
+          flex-grow: 1; /* Estica para empurrar os botões */
+          margin-bottom: 32px;
         }
 
         .nps-features li {
@@ -379,87 +353,87 @@ export default function PlansSection() {
           align-items: flex-start;
           gap: 14px;
           font-size: 0.95rem;
-          color: #E4E4E7;
+          color: rgba(255, 255, 255, 0.85);
           line-height: 1.5;
         }
 
         .nps-check-icon {
+          color: #B56BFF; /* FontAwesome Check Elegante */
           font-size: 0.9rem;
-          margin-top: 2px;
-          flex-shrink: 0;
+          margin-top: 3px;
         }
 
-        /* BOX AVISO INFERIOR (O Kicker do Plano) */
+        /* TARGET BOX: Limpa, sem traços de borda confusos, fundo integrado */
         .nps-target-box {
-          background: rgba(255,255,255,0.03);
-          border: 1px dashed rgba(255,255,255,0.15);
-          padding: 16px 20px;
-          border-radius: 14px;
+          margin-top: auto;
+          margin-bottom: 24px;
+          padding: 16px;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.05); /* Sólido ultra-fino em vez de dashed */
           font-size: 0.9rem;
           font-weight: 600;
-          color: #D4D4D8;
-          margin-bottom: 32px;
+          color: rgba(255, 255, 255, 0.85);
           line-height: 1.5;
         }
 
         .nps-popular .nps-target-box {
-          background: rgba(236,72,153,0.05);
-          border-color: rgba(236,72,153,0.25);
+          background: rgba(168, 85, 247, 0.08); /* Fundo roxo suave */
+          border-color: rgba(168, 85, 247, 0.15);
           color: #fff;
         }
 
-        /* BOTÕES DE IMPACTO MÁXIMO */
+        /* BOTÕES SIMPLESMENTE PODEROSOS E SÓLIDOS */
         .nps-btn {
           display: flex;
           justify-content: center;
           align-items: center;
           width: 100%;
-          padding: 20px 24px;
-          border-radius: 14px;
+          padding: 18px 24px;
+          border-radius: 12px;
           font-family: var(--font-main);
           font-weight: 800;
-          font-size: 1.1rem;
-          letter-spacing: 0.02em;
+          font-size: 1.05rem;
+          letter-spacing: 0.04em;
           text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
           text-transform: uppercase;
         }
 
         .nps-btn-primary {
-          background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+          background: #A855F7; /* Roxão sólido seguro que não briga com outras cores */
           color: #fff;
-          box-shadow: 0 8px 24px rgba(236,72,153,0.3), inset 0 1px 1px rgba(255,255,255,0.4);
+          box-shadow: 0 4px 16px rgba(168,85,247,0.4);
           border: none;
         }
 
         .nps-btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 12px 32px rgba(236,72,153,0.5), inset 0 1px 1px rgba(255,255,255,0.5);
-          filter: brightness(1.1);
+          background: #B56BFF;
+          box-shadow: 0 8px 24px rgba(168,85,247,0.5);
         }
 
         .nps-btn-secondary {
-          background: rgba(255,255,255,0.05);
+          background: rgba(255,255,255,0.06);
           color: #fff;
-          border: 1px solid rgba(255,255,255,0.15);
+          border: 1px solid rgba(255,255,255,0.1);
         }
 
         .nps-btn-secondary:hover {
           background: rgba(255,255,255,0.1);
-          border-color: rgba(255,255,255,0.3);
           transform: translateY(-2px);
+          border-color: rgba(255,255,255,0.25);
         }
 
 
         /* ====================================================
-           MOBILE BUG-FREE E IMPACTANTE
+           MOBILE PERFEITO
            ==================================================== */
         @media (max-width: 1100px) {
           .nps-grid {
-            grid-template-columns: 1fr;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 40px;
+            flex-direction: column;
+            align-items: center;
+            gap: 48px; /* Mais espaço pra caixa popular flutuar sua badge no topo */
           }
           
           .nps-popular {
@@ -478,30 +452,18 @@ export default function PlansSection() {
             font-size: 2.8rem;
           }
 
-          .nps-card-inner {
+          .nps-card {
+            width: 100%;
+            max-width: 440px;
             padding: 40px 32px;
           }
 
           .nps-popular-flag {
-            position: relative;
-            top: 0;
-            left: 0;
-            transform: none;
-            display: inline-block;
-            margin-bottom: 24px;
-            align-self: flex-start;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .nps-price {
-            font-size: 3.5rem;
-          }
-          .nps-card-inner {
-            padding: 32px 24px;
-          }
-          .nps-name {
-            font-size: 1.6rem;
+            /* No celular, mantemos absoluto se houver espaço, ou tornamos em bloco caso não */
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
           }
         }
       `}</style>
