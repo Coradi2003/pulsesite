@@ -61,409 +61,500 @@ const plans = [
 
 export default function PlansSection() {
   return (
-    <section className="section nps-master" id="planos">
-      <div className="container">
-        <div className="nps-header reveal">
-          <div className="nps-kicker">🚀 Criação de Sites</div>
-          <h2 className="nps-title">Planos Pulse Futuro</h2>
-          <p className="nps-subtitle">
-            Estruturas sob medida para o tamanho da sua ambição. Transparência total e pagamento único.
+    <section className="plans-section" id="planos">
+      <div className="plans-bg-orb orb-1" />
+      <div className="plans-bg-orb orb-2" />
+      <div className="plans-grid-overlay" />
+
+      <div className="plans-container">
+        <div className="plans-header reveal">
+          <span className="plans-kicker">🚀 ESTRATÉGIA DIGITAL</span>
+
+          <h2 className="plans-title">
+            Planos Pulse <span>Futuro</span>
+          </h2>
+
+          <p className="plans-subtitle">
+            Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a estrutura perfeita para o momento do seu negócio.
           </p>
         </div>
 
-        <div className="nps-grid">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`nps-card reveal delay-${index + 1} ${
-                plan.isPopular ? 'nps-popular' : ''
-              }`}
+        <div className="plans-cards">
+          {plans.map((plan, i) => (
+            <article
+              key={i}
+              className={`plan-card reveal delay-${i + 1} ${plan.isPopular ? 'popular' : ''}`}
             >
-              {plan.isPopular && <div className="nps-popular-flag">Mais Escolhido</div>}
+              {plan.isPopular && (
+                <div className="plan-badge">Mais escolhido</div>
+              )}
 
-              <div className="nps-top">
-                <div className="nps-icon-wrapper">{plan.icon}</div>
-                <div className="nps-name-row">
-                  <h3 className="nps-name">{plan.name}</h3>
-                  <span className="nps-badge">{plan.badge}</span>
+              <div className="plan-top">
+                <div className="plan-label-line">
+                  <span className="plan-icon">{plan.icon}</span>
+                  <span className="plan-name">{plan.name}</span>
+                  <span className="plan-mini-tag">{plan.badge}</span>
                 </div>
-                <p className="nps-desc">{plan.description}</p>
+
+                <p className="plan-description">{plan.description}</p>
               </div>
 
-              <div className="nps-price-box">
-                <span className="nps-currency">R$</span>
-                <span className="nps-price">{plan.price}</span>
-                <span className="nps-billing">/único</span>
+              <div className="plan-price-box">
+                <div className="plan-price-row">
+                  <span className="currency">R$</span>
+                  <strong>{plan.price}</strong>
+                </div>
+                <small>Pagamento Único</small>
               </div>
 
-              <ul className="nps-features">
-                {plan.features.map((feature, i) => (
-                  <li key={i}>
-                    <i className="fas fa-check nps-check-icon"></i>
+              <ul className="plan-features">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx}>
+                    <span className="check"><i className="fas fa-check"></i></span>
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
-
-              <div className="nps-target-box">
+              
+              <div className="plan-target-callout">
                 {plan.target}
               </div>
 
               <a
-                href={`https://wa.me/5541984606633?text=Ol%C3%A1!%20Gostaria%20de%20come%C3%A7ar%20meu%20projeto%20com%20o%20plano%20${encodeURIComponent(
-                  plan.name
-                )}.%20Podemos%20conversar?`}
-                className={`nps-btn ${plan.isPopular ? 'nps-btn-primary' : 'nps-btn-secondary'}`}
+                href={`https://wa.me/5541984606633?text=${encodeURIComponent(
+                  `Olá! Quero saber mais sobre o plano ${plan.name}.`
+                )}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
+                className={`plan-button ${plan.isPopular ? 'popular-btn' : ''}`}
               >
-                Quero começar agora
+                QUERO COMEÇAR AGORA
               </a>
-            </div>
+            </article>
           ))}
         </div>
       </div>
 
       <style>{`
-        /* ====================================================
-           NPS (New Plans Section) - BUG-FREE & ELEGANT
-           ==================================================== */
-           
-        .nps-master {
+        .plans-section {
           position: relative;
-          padding: 120px 0;
-          background: transparent; /* No absolute backgrounds that break the grid */
+          overflow: hidden;
+          padding: 140px 0 120px;
+          background:
+            radial-gradient(circle at top center, rgba(168, 85, 247, 0.14), transparent 32%),
+            linear-gradient(180deg, transparent 0%, rgba(11, 2, 19, 0.4) 45%, transparent 100%);
         }
 
-        .nps-master .container {
+        .plans-container {
           position: relative;
           z-index: 2;
+          width: 100%;
           max-width: 1240px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
-        .nps-header {
+        .plans-grid-overlay {
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(168, 85, 247, 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(168, 85, 247, 0.07) 1px, transparent 1px);
+          background-size: 64px 64px;
+          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.08));
+          -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.08));
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .plans-bg-orb {
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(80px);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .orb-1 {
+          top: -100px;
+          left: -100px;
+          width: 320px;
+          height: 320px;
+          background: rgba(139, 92, 246, 0.18);
+        }
+
+        .orb-2 {
+          right: -120px;
+          bottom: -80px;
+          width: 360px;
+          height: 360px;
+          background: rgba(192, 132, 252, 0.12);
+        }
+
+        .plans-header {
+          max-width: 900px;
+          margin: 0 auto 64px;
           text-align: center;
-          margin-bottom: 72px;
         }
 
-        .nps-kicker {
+        .plans-kicker {
           display: inline-block;
-          font-weight: 800;
-          font-size: 0.85rem;
-          color: #B56BFF;
+          margin-bottom: 16px;
+          color: #c084fc;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          letter-spacing: 0.25em;
-          margin-bottom: 20px;
-          padding: 6px 16px;
-          background: rgba(138, 43, 226, 0.12);
+          background: rgba(192, 132, 252, 0.1);
+          padding: 6px 14px;
           border-radius: 100px;
+          border: 1px solid rgba(192, 132, 252, 0.2);
         }
 
-        .nps-title {
+        .plans-title {
+          margin: 0;
           font-family: var(--font-main);
-          font-size: clamp(2.5rem, 5vw, 4rem);
+          font-size: clamp(2.3rem, 4vw, 4.2rem);
+          line-height: 1.02;
           font-weight: 800;
-          color: #fff;
-          margin-bottom: 20px;
-          letter-spacing: -0.03em;
-          line-height: 1.1;
+          letter-spacing: -0.04em;
+          color: #ffffff;
         }
 
-        .nps-subtitle {
-          font-size: 1.1rem;
-          color: rgba(255, 255, 255, 0.65);
-          max-width: 640px;
-          margin: 0 auto;
-          line-height: 1.6;
+        .plans-title span {
+          background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 50%, #7c3aed 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
         }
 
-        /* FLEXBOX para máxima estabilidade no Mobile/Desktop */
-        .nps-grid {
-          display: flex;
-          justify-content: center;
-          align-items: stretch;
+        .plans-subtitle {
+          margin: 20px auto 0;
+          max-width: 680px;
+          color: rgba(255, 255, 255, 0.72);
+          font-size: 1.06rem;
+          line-height: 1.75;
+        }
+
+        .plans-cards {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 28px;
+          align-items: stretch;
         }
 
-        .nps-card {
-          flex: 1;
+        .plan-card {
           position: relative;
-          background: rgba(15, 12, 22, 0.65); /* Violeta profundo transparente para encaixar na LandingPage */
-          backdrop-filter: blur(24px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 28px;
-          padding: 48px 36px 40px; /* Mais recheio interno */
           display: flex;
           flex-direction: column;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          min-height: 100%;
+          padding: 36px 32px 32px;
+          border-radius: 28px;
+          background:
+            linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%),
+            rgba(10, 8, 18, 0.86);
+          border: 1px solid rgba(255, 255, 255, 0.09);
+          box-shadow:
+            0 10px 40px rgba(0, 0, 0, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(24px);
+          -webkit-backdrop-filter: blur(24px);
+          transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .nps-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-        }
-
-        .nps-popular {
-          background: rgba(22, 14, 34, 0.7); /* Ligeiramente mais aceso */
-          border: 1px solid rgba(168, 85, 247, 0.3);
-          box-shadow: 0 20px 60px rgba(168, 85, 247, 0.15);
-          transform: translateY(-12px);
-          z-index: 10;
-        }
-
-        .nps-popular:hover {
-          transform: translateY(-16px);
-          border-color: rgba(168, 85, 247, 0.5);
-          box-shadow: 0 30px 80px rgba(168, 85, 247, 0.25);
-        }
-
-        /* SELO CORRIGIDO - OVERFLOW HIDDEN DESTROYED IT BEFORE */
-        .nps-popular-flag {
+        .plan-card::before {
+          content: "";
           position: absolute;
-          top: -16px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: linear-gradient(90deg, #A855F7, #EC4899);
+          inset: 0;
+          border-radius: inherit;
+          padding: 1px;
+          background: linear-gradient(
+            180deg,
+            rgba(255,255,255,0.14),
+            rgba(168,85,247,0.10),
+            rgba(255,255,255,0.04)
+          );
+          -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          opacity: 0.9;
+        }
+
+        .plan-card:hover {
+          transform: translateY(-8px);
+          border-color: rgba(192, 132, 252, 0.3);
+          box-shadow:
+            0 22px 60px rgba(0, 0, 0, 0.45),
+            0 0 30px rgba(168, 85, 247, 0.10);
+        }
+
+        .plan-card.popular {
+          transform: translateY(-12px) scale(1.02);
+          background:
+            linear-gradient(180deg, rgba(168,85,247,0.10) 0%, rgba(255,255,255,0.03) 100%),
+            rgba(11, 8, 20, 0.95);
+          border-color: rgba(168, 85, 247, 0.55);
+          box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.48),
+            0 0 45px rgba(168, 85, 247, 0.16);
+          z-index: 2;
+        }
+
+        .plan-card.popular::after {
+          content: "";
+          position: absolute;
+          inset: -1px;
+          border-radius: 28px;
+          background: linear-gradient(135deg, rgba(168,85,247,0.24), rgba(192,132,252,0.06));
+          z-index: -1;
+          filter: blur(20px);
+        }
+
+        .plan-card.popular:hover {
+          transform: translateY(-16px) scale(1.02);
+        }
+
+        .plan-badge {
+          position: absolute;
+          top: 18px;
+          right: 18px;
+          padding: 8px 14px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
           color: #fff;
+          font-size: 11px;
           font-weight: 800;
-          font-size: 0.75rem;
+          letter-spacing: 0.03em;
+          box-shadow: 0 10px 25px rgba(168, 85, 247, 0.35);
           text-transform: uppercase;
-          letter-spacing: 0.15em;
-          padding: 8px 18px;
-          border-radius: 100px;
-          box-shadow: 0 8px 20px rgba(236,72,153,0.35);
-          white-space: nowrap;
-          z-index: 5; /* O card não esconde mais isso! */
         }
 
-        .nps-top {
-          margin-bottom: 8px;
-        }
-
-        .nps-icon-wrapper {
-          font-size: 2rem;
+        .plan-top {
           margin-bottom: 24px;
-          width: 56px;
-          height: 56px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 16px;
-          box-shadow: inset 0 2px 10px rgba(255,255,255,0.05);
+          padding-right: 0;
+        }
+        
+        .popular .plan-top {
+          padding-right: 110px; /* space for badge */
         }
 
-        .nps-popular .nps-icon-wrapper {
-          background: rgba(168, 85, 247, 0.15);
-          border-color: rgba(168, 85, 247, 0.3);
-          box-shadow: inset 0 2px 10px rgba(168,85,247,0.2);
-        }
-
-        .nps-name-row {
+        .plan-label-line {
           display: flex;
           align-items: center;
-          gap: 12px;
-          margin-bottom: 12px;
+          gap: 10px;
           flex-wrap: wrap;
+          margin-bottom: 12px;
         }
 
-        .nps-name {
+        .plan-icon {
+          font-size: 1.4rem;
+        }
+
+        .plan-name {
           font-family: var(--font-main);
-          font-size: 1.6rem;
+          color: #ffffff;
+          font-size: 1.45rem;
           font-weight: 800;
-          color: #fff;
           letter-spacing: -0.02em;
         }
 
-        .nps-badge {
-          font-size: 0.7rem;
+        .plan-mini-tag {
+          padding: 4px 10px;
+          border-radius: 999px;
+          background: rgba(168, 85, 247, 0.14);
+          border: 1px solid rgba(192, 132, 252, 0.22);
+          color: #d8b4fe;
+          font-size: 10px;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
-          padding: 4px 10px;
-          background: rgba(255,255,255,0.1);
-          color: rgba(255, 255, 255, 0.85);
-          border-radius: 6px;
+          letter-spacing: 0.06em;
         }
 
-        .nps-popular .nps-badge {
-          background: rgba(236,72,153,0.15);
-          color: #F9A8D4;
-        }
-
-        .nps-desc {
+        .plan-description {
+          margin: 0;
           color: rgba(255, 255, 255, 0.65);
           font-size: 0.95rem;
           line-height: 1.6;
-          min-height: 48px; /* Traz estabilidade */
+          min-height: 48px;
         }
 
-        /* PREÇO ELEGANTE */
-        .nps-price-box {
-          display: flex;
-          align-items: baseline;
-          padding: 24px 0 32px;
+        .plan-price-box {
           margin-bottom: 32px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Linha divisória limpa aqui */
+          padding: 20px 24px;
+          border-radius: 20px;
+          background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+          border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .nps-currency {
-          font-size: 1.3rem;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.5);
-          margin-right: 6px;
-        }
-
-        .nps-popular .nps-currency {
-          color: #B56BFF;
-        }
-
-        .nps-price {
-          font-family: var(--font-main);
-          font-size: 3.6rem;
-          font-weight: 800;
-          color: #fff;
+        .plan-price-row {
+          display: flex;
+          align-items: flex-end;
+          gap: 6px;
           line-height: 1;
-          letter-spacing: -0.05em;
         }
 
-        .nps-billing {
-          font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.4);
+        .currency {
+          color: rgba(255,255,255,0.6);
+          font-size: 1.25rem;
           font-weight: 600;
-          margin-left: 6px;
+          margin-bottom: 6px;
+        }
+        
+        .popular .currency {
+          color: #c084fc;
         }
 
-        /* FEATURES COM ICONE BONITO */
-        .nps-features {
+        .plan-price-row strong {
+          font-family: var(--font-main);
+          color: #ffffff;
+          font-size: clamp(2.6rem, 4vw, 3.4rem);
+          font-weight: 800;
+          letter-spacing: -0.04em;
+        }
+
+        .plan-price-box small {
+          display: inline-block;
+          margin-top: 10px;
+          color: rgba(255, 255, 255, 0.4);
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .plan-features {
           list-style: none;
+          padding: 0;
+          margin: 0 0 32px;
           display: flex;
           flex-direction: column;
           gap: 16px;
-          flex-grow: 1; /* Estica para empurrar os botões */
-          margin-bottom: 32px;
+          flex: 1;
         }
 
-        .nps-features li {
+        .plan-features li {
           display: flex;
           align-items: flex-start;
           gap: 14px;
-          font-size: 0.95rem;
           color: rgba(255, 255, 255, 0.85);
+          font-size: 0.95rem;
           line-height: 1.5;
         }
 
-        .nps-check-icon {
-          color: #B56BFF; /* FontAwesome Check Elegante */
-          font-size: 0.9rem;
-          margin-top: 3px;
+        .check {
+          flex: 0 0 auto;
+          width: 22px;
+          height: 22px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 999px;
+          background: rgba(168, 85, 247, 0.16);
+          border: 1px solid rgba(192, 132, 252, 0.18);
+          color: #d8b4fe;
+          font-size: 10px;
+          margin-top: 1px;
         }
 
-        /* TARGET BOX: Limpa, sem traços de borda confusos, fundo integrado */
-        .nps-target-box {
+        .plan-target-callout {
           margin-top: auto;
           margin-bottom: 24px;
           padding: 16px;
           border-radius: 12px;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.05); /* Sólido ultra-fino em vez de dashed */
+          background: rgba(168, 85, 247, 0.05);
+          border: 1px solid rgba(168, 85, 247, 0.15);
+          color: #F3E8FF;
           font-size: 0.9rem;
           font-weight: 600;
-          color: rgba(255, 255, 255, 0.85);
-          line-height: 1.5;
+          line-height: 1.4;
         }
 
-        .nps-popular .nps-target-box {
-          background: rgba(168, 85, 247, 0.08); /* Fundo roxo suave */
-          border-color: rgba(168, 85, 247, 0.15);
-          color: #fff;
-        }
-
-        /* BOTÕES SIMPLESMENTE PODEROSOS E SÓLIDOS */
-        .nps-btn {
-          display: flex;
-          justify-content: center;
+        .plan-button {
+          display: inline-flex;
           align-items: center;
+          justify-content: center;
+          min-height: 56px;
           width: 100%;
-          padding: 18px 24px;
-          border-radius: 12px;
-          font-family: var(--font-main);
-          font-weight: 800;
-          font-size: 1.05rem;
-          letter-spacing: 0.04em;
-          text-decoration: none;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-          text-transform: uppercase;
-        }
-
-        .nps-btn-primary {
-          background: #A855F7; /* Roxão sólido seguro que não briga com outras cores */
-          color: #fff;
-          box-shadow: 0 4px 16px rgba(168,85,247,0.4);
-          border: none;
-        }
-
-        .nps-btn-primary:hover {
-          transform: translateY(-2px);
-          background: #B56BFF;
-          box-shadow: 0 8px 24px rgba(168,85,247,0.5);
-        }
-
-        .nps-btn-secondary {
-          background: rgba(255,255,255,0.06);
-          color: #fff;
+          border-radius: 14px;
+          padding: 16px 24px;
+          background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,255,255,0.1);
+          color: #fff;
+          text-decoration: none;
+          font-weight: 800;
+          font-size: 1rem;
+          letter-spacing: 0.02em;
+          transition: all 0.25s ease;
         }
 
-        .nps-btn-secondary:hover {
+        .plan-button:hover {
           background: rgba(255,255,255,0.1);
           transform: translateY(-2px);
           border-color: rgba(255,255,255,0.25);
         }
 
+        .popular-btn {
+          background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+          border: none;
+          box-shadow: 0 14px 30px rgba(168, 85, 247, 0.25);
+        }
 
-        /* ====================================================
-           MOBILE PERFEITO
-           ==================================================== */
+        .popular-btn:hover {
+          background: linear-gradient(135deg, #b56bff 0%, #e859a8 100%);
+          transform: translateY(-2px);
+          box-shadow: 0 18px 36px rgba(168, 85, 247, 0.35);
+        }
+
         @media (max-width: 1100px) {
-          .nps-grid {
-            flex-direction: column;
-            align-items: center;
-            gap: 48px; /* Mais espaço pra caixa popular flutuar sua badge no topo */
-          }
-          
-          .nps-popular {
-            transform: translateY(0);
+          .plans-cards {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 32px;
           }
 
-          .nps-popular:hover {
-            transform: translateY(-4px);
+          .plan-card.popular {
+            transform: none;
           }
 
-          .nps-master {
-            padding: 80px 0;
+          .plan-card,
+          .plan-card:hover {
+            transform: none;
           }
 
-          .nps-title {
+          .plans-section {
+            padding: 100px 0;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .plans-title {
             font-size: 2.8rem;
           }
 
-          .nps-card {
-            width: 100%;
-            max-width: 440px;
-            padding: 40px 32px;
+          .plan-card {
+            padding: 32px 24px 28px;
+            border-radius: 24px;
           }
 
-          .nps-popular-flag {
-            /* No celular, mantemos absoluto se houver espaço, ou tornamos em bloco caso não */
-            position: absolute;
-            top: -16px;
-            left: 50%;
-            transform: translateX(-50%);
+          .popular .plan-top {
+            padding-right: 0;
+          }
+
+          .plan-badge {
+            position: relative;
+            top: 0;
+            right: 0;
+            display: inline-flex;
+            margin-bottom: 20px;
+            align-self: flex-start;
+          }
+
+          .plan-price-row strong {
+            font-size: 3rem;
           }
         }
       `}</style>
