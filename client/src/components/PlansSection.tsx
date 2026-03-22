@@ -14,7 +14,6 @@ const plans = [
       'Manutenção gratuita por 30 dias',
     ],
     isPopular: false,
-    buttonClass: 'btn btn-secondary',
   },
   {
     name: 'Pulse Pro',
@@ -30,7 +29,6 @@ const plans = [
       'Suporte e manutenção expandidos (6 meses)',
     ],
     isPopular: true,
-    buttonClass: 'btn btn-primary',
   },
   {
     name: 'Pulse Elite',
@@ -41,13 +39,12 @@ const plans = [
       'Animações modernas e interativas',
       'Tracking avançado (Pixel, Analytics, Tags)',
       'Estrutura pronta para campanhas de Ads',
-      '1 ano de domínio (.com.br) exclusivo',
+      '1 ano de domínio exclusivo',
       'Hospedagem de altíssima performance',
       'Suporte prioritário (VIP) 24h',
       'Manutenção completa durante 1 ano',
     ],
     isPopular: false,
-    buttonClass: 'btn btn-secondary',
   },
 ];
 
@@ -58,10 +55,10 @@ export default function PlansSection() {
         <div className="text-center reveal">
           <span className="section-tag">Investimento</span>
           <h2 className="section-title">
-            Escolha o <span>Plano Ideal</span>
+            Planos sob <span>Medida</span>
           </h2>
           <p className="section-subtitle" style={{ maxWidth: '600px', margin: '0 auto' }}>
-            Transparência total. Sem mensalidades surpresas. Um investimento único para transformar o posicionamento digital da sua empresa.
+            Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a estrutura perfeita para o momento do seu negócio.
           </p>
         </div>
 
@@ -73,11 +70,12 @@ export default function PlansSection() {
                 plan.isPopular ? 'plano-popular' : ''
               }`}
             >
-              {plan.isPopular && <div className="plano-badge">Mais Escolhido</div>}
-              
               <div className="plano-header">
+                {plan.isPopular && <div className="plano-badge">Mais Escolhido</div>}
+                
                 <h3 className="plano-name">{plan.name}</h3>
                 <p className="plano-desc">{plan.description}</p>
+                
                 <div className="plano-price-wrapper">
                   <span className="plano-currency">R$</span>
                   <span className="plano-price">{plan.price}</span>
@@ -103,10 +101,9 @@ export default function PlansSection() {
                   href={`https://wa.me/5541984606633?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20plano%20${encodeURIComponent(
                     plan.name
                   )}.%20Podemos%20conversar?`}
-                  className={`${plan.buttonClass} w-full text-center justify-center`}
+                  className={`plano-btn ${plan.isPopular ? 'plano-btn-primary' : 'plano-btn-secondary'}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ width: '100%' }}
                 >
                   Quero este plano
                 </a>
@@ -128,128 +125,124 @@ export default function PlansSection() {
           justify-content: center;
           align-items: stretch;
           gap: 32px;
-          margin-top: 60px;
+          margin-top: 64px;
         }
 
         .plano-card {
           flex: 1;
           min-width: 320px;
           max-width: 380px;
-          background: rgba(19, 19, 28, 0.4);
-          border: 1px solid rgba(255, 255, 255, 0.04);
-          border-radius: 24px;
-          padding: 48px 40px 40px;
+          background: rgba(15, 15, 20, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 20px;
+          padding: 44px 36px;
           transition: var(--transition);
           position: relative;
-          backdrop-filter: blur(20px);
+          backdrop-filter: blur(24px);
           display: flex;
           flex-direction: column;
+          text-align: left;
         }
 
         .plano-card:hover {
-          background: rgba(19, 19, 28, 0.7);
-          border-color: rgba(138, 43, 226, 0.2);
-          transform: translateY(-8px);
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(138, 43, 226, 0.08);
+          background: rgba(19, 19, 28, 0.6);
+          border-color: rgba(255, 255, 255, 0.12);
+          transform: translateY(-4px);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
         }
 
+        /* Destaque suave e elegante para o plano Pro */
         .plano-popular {
-          background: linear-gradient(180deg, rgba(24, 24, 34, 0.8) 0%, rgba(15, 15, 20, 0.9) 100%);
-          border: 1px solid rgba(138, 43, 226, 0.4);
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 60px rgba(138, 43, 226, 0.15);
-          transform: scale(1.05);
+          background: linear-gradient(180deg, rgba(22, 22, 32, 0.7) 0%, rgba(13, 13, 18, 0.8) 100%);
+          border: 1px solid rgba(138, 43, 226, 0.35);
+          box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4), inset 0 0 40px rgba(138, 43, 226, 0.05);
+          transform: scale(1.02);
           z-index: 2;
         }
         
         .plano-popular:hover {
-          transform: scale(1.05) translateY(-8px);
-          border-color: var(--purple-bright);
-          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 80px rgba(138, 43, 226, 0.25);
-        }
-
-        .plano-badge {
-          position: absolute;
-          top: -16px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
-          color: white;
-          font-size: 0.75rem;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          padding: 8px 24px;
-          border-radius: 100px;
-          box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
-          white-space: nowrap;
-          z-index: 2;
+          transform: scale(1.02) translateY(-4px);
+          border-color: rgba(138, 43, 226, 0.6);
+          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(138, 43, 226, 0.08);
         }
 
         .plano-header {
-          text-align: center;
+          position: relative;
+        }
+
+        /* Badge inserido NO FLUXO do card, sem sobrepor nada */
+        .plano-badge {
+          display: inline-block;
+          background: rgba(138, 43, 226, 0.15);
+          color: var(--purple-light);
+          border: 1px solid rgba(138, 43, 226, 0.3);
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          padding: 6px 14px;
+          border-radius: 6px;
+          margin-bottom: 24px;
         }
 
         .plano-name {
           font-family: var(--font-main);
-          font-size: 1.5rem;
-          font-weight: 800;
+          font-size: 1.4rem;
+          font-weight: 700;
           color: var(--white);
-          margin-bottom: 12px;
-          letter-spacing: 0.02em;
+          margin-bottom: 10px;
+          letter-spacing: 0.01em;
         }
 
         .plano-desc {
           font-size: 0.9rem;
           color: var(--gray-mid);
-          line-height: 1.6;
+          line-height: 1.55;
           min-height: 48px;
         }
 
         .plano-price-wrapper {
-          margin-top: 28px;
+          margin-top: 24px;
           display: flex;
-          align-items: flex-end;
-          justify-content: center;
+          align-items: baseline;
           gap: 6px;
         }
 
         .plano-currency {
           font-size: 1.1rem;
           font-weight: 600;
-          color: var(--gray-light);
-          margin-bottom: 6px;
+          color: var(--gray-mid);
         }
 
+        /* Preço menor e mais elegante (antes 3.5rem, agora 2.6rem) */
         .plano-price {
           font-family: var(--font-main);
-          font-size: 3.5rem;
-          font-weight: 900;
+          font-size: 2.6rem;
+          font-weight: 800;
           color: var(--white);
           line-height: 1;
-          letter-spacing: -0.04em;
-          text-shadow: 0 0 30px rgba(255,255,255,0.1);
+          letter-spacing: -0.03em;
         }
 
         .plano-billing {
           font-size: 0.85rem;
           color: var(--gray-mid);
-          margin-bottom: 8px;
           font-weight: 500;
         }
 
         .plano-popular .plano-price {
           color: #fff;
-          text-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
         }
 
+        /* Linha divisória fina e sutil */
         .plano-divider {
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-          margin: 36px 0;
+          background: rgba(255, 255, 255, 0.08);
+          margin: 32px 0;
         }
         
         .plano-popular .plano-divider {
-          background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.3), transparent);
+          background: rgba(138, 43, 226, 0.2);
         }
 
         .plano-features {
@@ -274,8 +267,7 @@ export default function PlansSection() {
           width: 20px;
           height: 20px;
           border-radius: 50%;
-          background: rgba(138, 43, 226, 0.1);
-          border: 1px solid rgba(138, 43, 226, 0.2);
+          background: rgba(255, 255, 255, 0.05);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -283,27 +275,77 @@ export default function PlansSection() {
           margin-top: 2px;
         }
 
+        .plano-popular .plano-icon-wrap {
+          background: rgba(138, 43, 226, 0.15);
+        }
+
         .plano-features li i {
+          color: var(--gray-light);
+          font-size: 0.6rem;
+        }
+
+        .plano-popular .plano-features li i {
           color: var(--purple-light);
-          font-size: 0.65rem;
         }
 
         .plano-footer {
           margin-top: auto;
           display: flex;
+          width: 100%;
+        }
+
+        /* Estilização exclusiva e premium para os botões dos cards */
+        .plano-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          padding: 16px 24px;
+          border-radius: 12px;
+          font-family: var(--font-main);
+          font-weight: 600;
+          font-size: 0.95rem;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .plano-btn-primary {
+          background: var(--purple-bright);
+          color: #ffffff;
+          box-shadow: 0 4px 20px rgba(138, 43, 226, 0.3);
+          border: 1px solid transparent;
+        }
+
+        .plano-btn-primary:hover {
+          background: #a955ff;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(138, 43, 226, 0.45);
+        }
+
+        .plano-btn-secondary {
+          background: rgba(255, 255, 255, 0.03);
+          color: var(--white);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .plano-btn-secondary:hover {
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.25);
+          transform: translateY(-2px);
         }
 
         @media (max-width: 1024px) {
           .planos-wrapper {
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 32px;
           }
 
           .plano-card {
             width: 100%;
             max-width: 440px;
-            padding: 44px 32px 36px;
+            padding: 40px 32px;
           }
 
           .plano-popular {
@@ -311,7 +353,7 @@ export default function PlansSection() {
           }
           
           .plano-popular:hover {
-            transform: scale(1) translateY(-6px);
+            transform: scale(1) translateY(-4px);
           }
         }
       `}</style>
