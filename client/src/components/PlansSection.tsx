@@ -4,7 +4,7 @@ const plans = [
   {
     name: 'Pulse Start',
     price: 'R$ 350',
-    subtitle: 'Entrada rápida e profissional no mundo digital',
+    subtitle: 'Entrada rápida e profissional no mundo digital.',
     intro: 'Inclui:',
     features: [
       'Site institucional moderno e responsivo',
@@ -20,7 +20,7 @@ const plans = [
   {
     name: 'Pulse Pro',
     price: 'R$ 650',
-    subtitle: 'A estrutura ideal para converter visitantes em clientes',
+    subtitle: 'A estrutura ideal para converter visitantes em clientes.',
     intro: 'Inclui todos os itens do plano Start, mais:',
     features: [
       'Design estratégico e 100% personalizado',
@@ -37,7 +37,7 @@ const plans = [
   {
     name: 'Pulse Elite',
     price: 'R$ 1.200',
-    subtitle: 'Máxima performance e autoridade para o seu negócio',
+    subtitle: 'Máxima performance e autoridade para o seu negócio.',
     intro: 'Inclui todos os itens do plano Pro, mais:',
     features: [
       'Design premium com foco total em vendas',
@@ -55,38 +55,42 @@ const plans = [
 
 export default function PlansSection() {
   return (
-    <section className="plans-section" id="planos">
-      <div className="plans-container">
-        <div className="plans-header">
-          <span className="plans-kicker">INVESTIMENTO</span>
-          <h2 className="plans-title">
+    <section className="pulse-plans-section" id="planos">
+      <div className="pulse-plans-shell">
+        <div className="pulse-plans-header">
+          <span className="pulse-plans-kicker">INVESTIMENTO</span>
+
+          <h2 className="pulse-plans-title">
             Planos sob <span>Medida</span>
           </h2>
-          <p className="plans-subtitle">
-            Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a estrutura
-            perfeita para o momento do seu negócio.
+
+          <p className="pulse-plans-subtitle">
+            Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a
+            estrutura perfeita para o momento do seu negócio.
           </p>
         </div>
 
-        <div className="plans-grid">
+        <div className="pulse-plans-grid">
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`plan-card ${plan.isFeatured ? 'featured' : ''}`}
+              className={`pulse-plan-card ${plan.isFeatured ? 'is-featured' : ''}`}
             >
-              {plan.isFeatured && <div className="featured-badge">Mais escolhido</div>}
+              {plan.isFeatured && (
+                <div className="pulse-featured-badge">Mais escolhido</div>
+              )}
 
-              <div className="plan-top">
-                <h3 className="plan-name">{plan.name}</h3>
-                <p className="plan-price">{plan.price}</p>
-                <p className="plan-subtitle">{plan.subtitle}</p>
-                <p className="plan-intro">{plan.intro}</p>
+              <div className="pulse-plan-top">
+                <h3 className="pulse-plan-name">{plan.name}</h3>
+                <p className="pulse-plan-price">{plan.price}</p>
+                <p className="pulse-plan-subtitle">{plan.subtitle}</p>
+                <p className="pulse-plan-intro">{plan.intro}</p>
               </div>
 
-              <ul className="plan-features">
+              <ul className="pulse-plan-features">
                 {plan.features.map((feature) => (
                   <li key={feature}>
-                    <span className="bullet" />
+                    <span className="pulse-plan-bullet" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -98,7 +102,9 @@ export default function PlansSection() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`plan-button ${plan.isFeatured ? 'featured-button' : ''}`}
+                className={`pulse-plan-button ${
+                  plan.isFeatured ? 'is-featured-button' : ''
+                }`}
               >
                 {plan.buttonText}
               </a>
@@ -108,25 +114,24 @@ export default function PlansSection() {
       </div>
 
       <style>{`
-        .plans-section {
+        .pulse-plans-section {
           position: relative;
           padding: 170px 0 110px;
+          z-index: 1;
         }
 
-        .plans-container {
-          width: 100%;
-          max-width: 1280px;
+        .pulse-plans-shell {
+          width: min(1180px, calc(100% - 32px));
           margin: 0 auto;
-          padding: 0 24px;
         }
 
-        .plans-header {
+        .pulse-plans-header {
           text-align: center;
           max-width: 860px;
           margin: 0 auto 72px;
         }
 
-        .plans-kicker {
+        .pulse-plans-kicker {
           display: inline-block;
           margin-bottom: 14px;
           padding: 7px 14px;
@@ -137,9 +142,10 @@ export default function PlansSection() {
           font-size: 0.78rem;
           font-weight: 800;
           letter-spacing: 0.14em;
+          text-transform: uppercase;
         }
 
-        .plans-title {
+        .pulse-plans-title {
           margin: 0 0 16px;
           color: #fff;
           font-size: clamp(2.4rem, 5vw, 4.4rem);
@@ -148,11 +154,11 @@ export default function PlansSection() {
           letter-spacing: -0.05em;
         }
 
-        .plans-title span {
+        .pulse-plans-title span {
           color: #a855f7;
         }
 
-        .plans-subtitle {
+        .pulse-plans-subtitle {
           margin: 0 auto;
           max-width: 760px;
           color: rgba(255, 255, 255, 0.74);
@@ -160,39 +166,48 @@ export default function PlansSection() {
           line-height: 1.8;
         }
 
-        .plans-grid {
+        .pulse-plans-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 20px;
+          gap: 24px;
+          width: 100%;
+          max-width: 1100px;
+          margin: 0 auto;
           align-items: stretch;
         }
 
-        .plan-card {
+        .pulse-plan-card {
           position: relative;
           display: flex;
           flex-direction: column;
-          min-height: 780px;
-          padding: 28px 28px 30px;
+          padding: 30px 26px 28px;
           background: rgba(14, 10, 22, 0.88);
           border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 0;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+          transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+          min-width: 0;
         }
 
-        .plan-card.featured {
+        .pulse-plan-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(168, 85, 247, 0.25);
+          box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+        }
+
+        .pulse-plan-card.is-featured {
           border-color: rgba(168, 85, 247, 0.48);
           box-shadow:
             0 16px 36px rgba(0, 0, 0, 0.22),
             0 0 0 1px rgba(168, 85, 247, 0.08);
         }
 
-        .featured-badge {
+        .pulse-featured-badge {
           position: absolute;
-          top: 18px;
-          right: 18px;
+          top: 16px;
+          right: 16px;
           background: linear-gradient(90deg, #9333ea, #c084fc);
           color: #fff;
-          font-size: 0.68rem;
+          font-size: 0.66rem;
           font-weight: 900;
           text-transform: uppercase;
           letter-spacing: 0.05em;
@@ -201,45 +216,46 @@ export default function PlansSection() {
           white-space: nowrap;
         }
 
-        .plan-top {
+        .pulse-plan-top {
           margin-bottom: 22px;
-          padding-right: 110px;
+          padding-right: 112px;
         }
 
-        .plan-name {
-          margin: 0 0 18px;
+        .pulse-plan-name {
+          margin: 0 0 14px;
           color: #fff;
-          font-size: 2.1rem;
+          font-size: 1.9rem;
           line-height: 1;
           font-weight: 900;
           letter-spacing: -0.04em;
+          overflow-wrap: anywhere;
         }
 
-        .plan-price {
-          margin: 0 0 14px;
+        .pulse-plan-price {
+          margin: 0 0 12px;
           color: #f5f5f5;
-          font-size: 1.55rem;
-          line-height: 1.1;
+          font-size: 1.7rem;
+          line-height: 1.05;
           font-weight: 800;
         }
 
-        .plan-subtitle {
-          margin: 0 0 28px;
+        .pulse-plan-subtitle {
+          margin: 0 0 18px;
           color: rgba(255, 255, 255, 0.78);
           font-size: 0.98rem;
           line-height: 1.55;
           font-weight: 600;
         }
 
-        .plan-intro {
+        .pulse-plan-intro {
           margin: 0;
           color: #ffffff;
           font-size: 0.98rem;
-          line-height: 1.6;
+          line-height: 1.55;
           font-weight: 700;
         }
 
-        .plan-features {
+        .pulse-plan-features {
           list-style: none;
           padding: 0;
           margin: 0;
@@ -249,16 +265,21 @@ export default function PlansSection() {
           flex: 1;
         }
 
-        .plan-features li {
+        .pulse-plan-features li {
           display: flex;
           align-items: flex-start;
           gap: 12px;
           color: #ffffff;
           font-size: 0.98rem;
           line-height: 1.55;
+          min-width: 0;
         }
 
-        .bullet {
+        .pulse-plan-features li span:last-child {
+          overflow-wrap: anywhere;
+        }
+
+        .pulse-plan-bullet {
           flex: 0 0 auto;
           width: 7px;
           height: 7px;
@@ -267,115 +288,121 @@ export default function PlansSection() {
           transform: rotate(45deg);
         }
 
-        .plan-button {
+        .pulse-plan-button {
           margin-top: 34px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          min-height: 60px;
+          min-height: 58px;
           padding: 16px 22px;
           background: #facc15;
           color: #09090b;
           text-decoration: none;
-          font-size: 1rem;
+          font-size: 0.98rem;
           font-weight: 900;
           letter-spacing: -0.02em;
           border: none;
           clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%, 0 72%);
           transition: transform 0.22s ease, filter 0.22s ease;
+          text-align: center;
         }
 
-        .plan-button:hover {
+        .pulse-plan-button:hover {
           transform: translateY(-2px);
           filter: brightness(1.03);
         }
 
-        .featured-button {
+        .pulse-plan-button.is-featured-button {
           background: linear-gradient(90deg, #9333ea, #c084fc);
           color: #fff;
         }
 
         @media (max-width: 1100px) {
-          .plans-section {
+          .pulse-plans-section {
             padding: 140px 0 90px;
           }
 
-          .plans-grid {
+          .pulse-plans-grid {
             grid-template-columns: 1fr;
-            max-width: 760px;
-            margin: 0 auto;
+            max-width: 500px;
           }
 
-          .plan-card {
-            min-height: unset;
+          .pulse-plan-card {
+            padding: 26px 22px 24px;
+          }
+
+          .pulse-plan-top {
+            padding-right: 112px;
           }
         }
 
         @media (max-width: 768px) {
-          .plans-section {
+          .pulse-plans-section {
             padding: 115px 0 80px;
           }
 
-          .plans-container {
-            padding: 0 16px;
+          .pulse-plans-shell {
+            width: min(100%, calc(100% - 24px));
           }
 
-          .plans-header {
+          .pulse-plans-header {
             margin-bottom: 42px;
           }
 
-          .plans-title {
+          .pulse-plans-title {
             font-size: clamp(2rem, 11vw, 3rem);
           }
 
-          .plans-subtitle {
+          .pulse-plans-subtitle {
             font-size: 0.96rem;
             line-height: 1.7;
           }
 
-          .plans-grid {
+          .pulse-plans-grid {
             gap: 16px;
+            max-width: 100%;
           }
 
-          .plan-card {
+          .pulse-plan-card {
             padding: 22px 18px 22px;
           }
 
-          .featured-badge {
+          .pulse-featured-badge {
             top: 14px;
             right: 14px;
-            font-size: 0.62rem;
+            font-size: 0.6rem;
             padding: 5px 8px;
           }
 
-          .plan-top {
-            padding-right: 92px;
+          .pulse-plan-top {
+            padding-right: 84px;
             margin-bottom: 18px;
           }
 
-          .plan-name {
-            font-size: 1.8rem;
-            margin-bottom: 14px;
+          .pulse-plan-name {
+            font-size: 1.65rem;
+            margin-bottom: 12px;
           }
 
-          .plan-price {
-            font-size: 1.35rem;
+          .pulse-plan-price {
+            font-size: 1.45rem;
             margin-bottom: 10px;
           }
 
-          .plan-subtitle,
-          .plan-intro,
-          .plan-features li {
+          .pulse-plan-subtitle,
+          .pulse-plan-intro,
+          .pulse-plan-features li {
             font-size: 0.94rem;
           }
 
-          .plan-features {
+          .pulse-plan-features {
             gap: 14px;
           }
 
-          .plan-button {
+          .pulse-plan-button {
             min-height: 56px;
-            font-size: 0.95rem;
+            font-size: 0.94rem;
+            margin-top: 26px;
           }
         }
       `}</style>
