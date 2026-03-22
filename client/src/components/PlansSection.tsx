@@ -50,65 +50,61 @@ const plans = [
 
 export default function PlansSection() {
   return (
-    <section className="section planos" id="planos">
+    <section className="section planos-master" id="planos">
+      <div className="planos-bg-glow"></div>
+      
       <div className="container">
         <div className="planos-header reveal">
-          <span className="section-tag planos-tag">Investimento</span>
+          <span className="planos-tag">Estratégia & Execução</span>
           <h2 className="planos-title">
             Planos sob <span>Medida</span>
           </h2>
           <p className="planos-subtitle">
-            Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a estrutura perfeita para o momento do seu negócio.
+            Transparência total. Sem surpresas ou mensalidades ocultas.<br className="hidden-mobile" /> 
+            Escolha a estrutura perfeita para o momento do seu negócio.
           </p>
         </div>
 
-        <div className="planos-wrapper">
+        <div className="planos-grid">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`plano-card reveal delay-${index + 1} ${
-                plan.isPopular ? 'plano-popular' : ''
-              }`}
+              className={`plano-card reveal delay-${index + 1} ${plan.isPopular ? 'popular' : ''}`}
             >
-              <div className="plano-head">
-                <div className="plano-title-row">
+              {plan.isPopular && <div className="popular-badge">Mais Escolhido</div>}
+              
+              <div className="plano-content">
+                <div className="plano-top">
                   <h3 className="plano-name">{plan.name}</h3>
-                  {plan.isPopular && (
-                    <span className="plano-badge">Mais escolhido</span>
-                  )}
+                  <p className="plano-desc">{plan.description}</p>
                 </div>
-                <p className="plano-desc">{plan.description}</p>
                 
-                <div className="plano-price-wrapper">
-                  <span className="plano-currency">R$</span>
-                  <span className="plano-price">{plan.price}</span>
-                  <span className="plano-billing">/único</span>
+                <div className="plano-price-box">
+                  <span className="currency">R$</span>
+                  <span className="price">{plan.price}</span>
                 </div>
-              </div>
+                <div className="plano-billing">Pagamento Único</div>
 
-              <div className="plano-divider"></div>
+                <div className="plano-divider"></div>
 
-              <ul className="plano-features">
-                {plan.features.map((feature, i) => (
-                  <li key={i}>
-                    <div className="plano-check">
-                      <i className="fas fa-check"></i>
-                    </div>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                <ul className="plano-features">
+                  {plan.features.map((feature, i) => (
+                    <li key={i}>
+                      <i className="fas fa-check-circle"></i>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="plano-footer">
                 <a
                   href={`https://wa.me/5541984606633?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20plano%20${encodeURIComponent(
                     plan.name
                   )}.%20Podemos%20conversar?`}
-                  className={`plano-btn ${plan.isPopular ? 'plano-btn-primary' : 'plano-btn-secondary'}`}
+                  className={`btn-plano ${plan.isPopular ? 'btn-plano-primary' : 'btn-plano-secondary'}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Quero meu site
+                  Quero este plano
                 </a>
               </div>
             </div>
@@ -117,310 +113,324 @@ export default function PlansSection() {
       </div>
 
       <style>{`
-        .planos {
+        /* 
+          OVERHAUL IMPACTANTE: 
+          Substituição total do conceito genérico por uma estrutura de Grid/Flex imponente, 
+          uso rigoroso de espaço negativo (breathing room), e bordas de gradiente exclusivas (Linear/Vercel style).
+        */
+        .planos-master {
+          position: relative;
+          padding: 140px 0; /* Huge breathing room */
+          background: transparent;
+        }
+
+        .planos-bg-glow {
+          position: absolute;
+          top: 30%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 800px;
+          height: 800px;
+          background: radial-gradient(circle, rgba(138,43,226,0.08) 0%, transparent 60%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .planos-master .container {
           position: relative;
           z-index: 1;
-          padding: 120px 0 100px !important; /* Mais respiro top/bottom geral */
         }
 
         .planos-header {
           text-align: center;
-          margin-bottom: 80px; /* Distância espetacular até os cards */
+          margin: 0 auto 80px; /* Strong separation from the cards */
         }
 
         .planos-tag {
-          margin-bottom: 24px;
+          display: inline-block;
+          color: #B56BFF;
+          font-weight: 700;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          margin-bottom: 20px;
+          background: rgba(138,43,226,0.1);
+          padding: 6px 16px;
+          border-radius: 100px;
+          border: 1px solid rgba(138,43,226,0.2);
         }
 
         .planos-title {
           font-family: var(--font-main);
-          font-size: clamp(2.2rem, 5vw, 3.2rem);
+          font-size: clamp(2.4rem, 5vw, 3.5rem);
           font-weight: 800;
-          color: var(--white);
-          line-height: 1.1;
+          color: #fff;
           margin-bottom: 24px;
+          line-height: 1.15;
           letter-spacing: -0.02em;
         }
 
         .planos-title span {
-          background: linear-gradient(135deg, var(--purple-light), var(--purple-bright));
+          background: linear-gradient(135deg, #B56BFF, #8A2BE2);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
 
         .planos-subtitle {
-          font-size: 1.1rem;
-          color: rgba(255, 255, 255, 0.65);
-          line-height: 1.7;
-          max-width: 640px;
+          font-size: 1.15rem;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.6;
+          max-width: 680px;
           margin: 0 auto;
         }
 
-        .planos-wrapper {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 32px;
-          align-items: stretch; 
+        .hidden-mobile {
+          display: block;
         }
 
-        /* O estilo premium do card SaaS ($5.000+ feel) */
+        /* 
+          CARD LAYOUT:
+          Using Flex with flex: 1 ensures perfect width sharing without grid overflow bugs.
+        */
+        .planos-grid {
+          display: flex;
+          justify-content: center;
+          align-items: stretch;
+          gap: 32px;
+          flex-wrap: nowrap;
+        }
+
+        /* Gradient Border Hack: we give the card 1px padding and a background. The inner content covers the center. */
         .plano-card {
-          background: rgba(13, 13, 18, 0.35);
-          border: 1px solid rgba(255, 255, 255, 0.04);
+          flex: 1;
+          min-width: 280px;
+          max-width: 380px;
+          background: rgba(255, 255, 255, 0.05); /* very soft grey border */
           border-radius: 24px;
-          padding: 48px 40px;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          position: relative;
-          backdrop-filter: blur(40px); /* vidro translúcido bem escuro e denso */
+          padding: 1px; /* This creates the 1px border visually */
           display: flex;
           flex-direction: column;
-          text-align: left;
+          position: relative;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
         .plano-card:hover {
-          background: rgba(19, 19, 28, 0.5);
-          border-color: rgba(255, 255, 255, 0.08); /* Apenas acende a borda levemente no hover */
           transform: translateY(-8px);
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+          background: rgba(255, 255, 255, 0.15); /* light up the border on hover */
         }
 
-        /* Middle card: sofisticado, sem exagero, glow e borda premium */
-        .plano-popular {
-          background: linear-gradient(180deg, rgba(20, 15, 30, 0.6) 0%, rgba(13, 13, 18, 0.7) 100%);
-          border: 1px solid rgba(138, 43, 226, 0.3);
-          box-shadow: 
-            0 24px 60px rgba(0, 0, 0, 0.4), 
-            inset 0 1px 20px rgba(138, 43, 226, 0.06); /* luz entrando de cima sutil */
-          transform: scale(1.03); /* Elevação natural, elegante */
-          z-index: 2;
-        }
-        
-        .plano-popular:hover {
-          transform: scale(1.03) translateY(-8px);
-          border-color: rgba(138, 43, 226, 0.5);
-          box-shadow: 
-            0 32px 80px rgba(0, 0, 0, 0.5), 
-            inset 0 1px 30px rgba(138, 43, 226, 0.1);
-        }
-
-        .plano-head {
+        .plano-content {
+          background: rgba(14, 14, 20, 0.85); /* Solid dark inside */
+          backdrop-filter: blur(24px);
+          border-radius: 23px; /* Slightly less than outer wrapper to fit inside padding */
+          padding: 48px 40px;
           display: flex;
           flex-direction: column;
+          height: 100%;
         }
 
-        .plano-title-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 12px;
-          flex-wrap: wrap;
-          gap: 12px;
+        /* The masterpiece highlight */
+        .plano-card.popular {
+          background: linear-gradient(135deg, rgba(138,43,226,1), rgba(75,0,130,0.2)); 
+          box-shadow: 0 24px 60px rgba(138,43,226,0.15);
+          transform: translateY(-16px); /* Pop out vertically on desktop */
+          z-index: 2;
+        }
+
+        .plano-card.popular:hover {
+          transform: translateY(-24px);
+          box-shadow: 0 32px 80px rgba(138,43,226,0.25);
+          background: linear-gradient(135deg, #B56BFF, #8A2BE2); 
+        }
+
+        .plano-card.popular .plano-content {
+          background: linear-gradient(180deg, rgba(22, 18, 32, 0.95) 0%, rgba(14, 14, 20, 0.95) 100%);
+        }
+
+        .popular-badge {
+          position: absolute;
+          top: -16px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(90deg, #B56BFF, #8A2BE2);
+          color: #fff;
+          font-size: 0.75rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          padding: 8px 18px;
+          border-radius: 100px;
+          box-shadow: 0 4px 16px rgba(138,43,226,0.4);
+          z-index: 10;
+          white-space: nowrap;
+        }
+
+        .plano-top {
+          min-height: 80px; /* guarantees alignment for the price block */
         }
 
         .plano-name {
           font-family: var(--font-main);
           font-size: 1.5rem;
           font-weight: 700;
-          color: var(--white);
+          color: #fff;
+          margin-bottom: 12px;
           letter-spacing: -0.01em;
-          margin: 0;
-        }
-
-        /* Badge elegante alinhada com título */
-        .plano-badge {
-          background: rgba(138, 43, 226, 0.12);
-          color: #B56BFF;
-          border: 1px solid rgba(138, 43, 226, 0.2);
-          font-size: 0.72rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.12em;
-          padding: 6px 14px;
-          border-radius: 100px;
         }
 
         .plano-desc {
           font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.6);
-          line-height: 1.6;
-          min-height: 48px; /* Mantém base do preço idêntica nos 3 */
+          color: rgba(255, 255, 255, 0.5);
+          line-height: 1.5;
         }
 
-        .plano-price-wrapper {
-          margin-top: 36px; /* Desce um pouco mais o preço dando ar */
+        .plano-price-box {
           display: flex;
-          align-items: flex-start; /* Permite R$ ficar pra cima */
-          gap: 6px;
+          align-items: flex-start;
+          margin-top: 24px;
         }
 
-        .plano-currency {
-          font-size: 1.15rem;
+        .currency {
+          font-size: 1.2rem;
           font-weight: 600;
-          color: rgba(255, 255, 255, 0.45);
-          margin-top: 6px; /* Alinha visualmente no topo no novo formato */
+          color: #B56BFF;
+          margin-top: 6px;
+          margin-right: 6px;
         }
 
-        .plano-price {
+        .price {
           font-family: var(--font-main);
-          font-size: 2.8rem;
-          font-weight: 600; /* Mais limpo. O 600 passa sofisticação contra o 900 agressivo */
-          color: var(--white);
+          font-size: 3.2rem;
+          font-weight: 700;
+          color: #fff;
           line-height: 1;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.04em;
         }
 
         .plano-billing {
-          font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.35);
-          font-weight: 500;
-          align-self: flex-end;
-          margin-bottom: 6px;
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.3);
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          margin-top: 12px;
         }
 
-        /* Separador super refinado usando gradiente esmaecente */
         .plano-divider {
+          width: 100%;
           height: 1px;
-          background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
-          margin: 44px 0;
-        }
-        
-        .plano-popular .plano-divider {
-          background: linear-gradient(90deg, rgba(138, 43, 226, 0.3) 0%, rgba(138, 43, 226, 0) 100%);
+          background: rgba(255,255,255,0.08);
+          margin: 36px 0;
         }
 
         .plano-features {
           list-style: none;
           display: flex;
           flex-direction: column;
-          gap: 18px;
-          margin-bottom: 56px;
-          flex-grow: 1; /* Estende para firmar o botão na base perfeita */
+          gap: 16px;
+          flex-grow: 1;
+          margin-bottom: 48px;
         }
 
         .plano-features li {
           display: flex;
           align-items: flex-start;
-          gap: 16px;
+          gap: 14px;
           font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.75);
-          line-height: 1.55;
-        }
-
-        .plano-check {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.06);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-
-        .plano-popular .plano-check {
-          background: rgba(138, 43, 226, 0.15);
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.5;
         }
 
         .plano-features li i {
-          color: rgba(255, 255, 255, 0.6);
-          font-size: 0.65rem;
+          color: #8A2BE2;
+          font-size: 1rem;
+          margin-top: 3px;
+          filter: drop-shadow(0 0 8px rgba(138,43,226,0.4));
         }
 
-        .plano-popular .plano-features li i {
+        .plano-card.popular .plano-features li i {
           color: #B56BFF;
+          filter: drop-shadow(0 0 12px rgba(181,107,255,0.6));
         }
 
-        .plano-footer {
-          margin-top: auto; 
+        .btn-plano {
           display: flex;
-          width: 100%;
-        }
-
-        /* Botões robustos e de altíssima conversão */
-        .plano-btn {
-          display: flex;
-          align-items: center;
           justify-content: center;
+          align-items: center;
           width: 100%;
           padding: 18px 24px;
-          border-radius: 12px;
+          border-radius: 14px;
           font-family: var(--font-main);
-          font-weight: 600;
-          font-size: 1.05rem; /* Botões mais presentes */
+          font-size: 1.05rem;
+          font-weight: 700;
+          letter-spacing: 0.02em;
           text-decoration: none;
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           cursor: pointer;
         }
 
-        .plano-btn-primary {
-          background: linear-gradient(180deg, var(--purple-bright) 0%, var(--purple-neon) 100%);
-          color: #ffffff;
-          box-shadow: 
-            0 4px 14px rgba(138, 43, 226, 0.2), 
-            inset 0 1px 1px rgba(255, 255, 255, 0.2); /* bisel de luz interno, super premium */
-          border: 1px solid rgba(138, 43, 226, 0.5);
+        .btn-plano-primary {
+          background: linear-gradient(180deg, #9D3FFF 0%, #8A2BE2 100%);
+          color: #fff;
+          box-shadow: 0 4px 16px rgba(138,43,226,0.3), inset 0 1px 1px rgba(255,255,255,0.3);
+          border: 1px solid rgba(138,43,226,0.6);
         }
 
-        .plano-btn-primary:hover {
+        .btn-plano-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 
-            0 8px 24px rgba(138, 43, 226, 0.4), 
-            inset 0 1px 1px rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 24px rgba(138,43,226,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
           filter: brightness(1.1);
         }
 
-        .plano-btn-secondary {
-          background: rgba(255, 255, 255, 0.02);
-          color: var(--white);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+        .btn-plano-secondary {
+          background: rgba(255,255,255,0.03);
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .plano-btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border-color: rgba(255, 255, 255, 0.25);
+        .btn-plano-secondary:hover {
+          background: rgba(255,255,255,0.08);
+          border-color: rgba(255,255,255,0.25);
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
 
-        /* Responsividade CORRIGIDA: Empilha em 1 coluna e usa max-width para controle */
+        /* 
+          MOBILE PERFECTION: 
+          Forcing 1 column, centering, and stripping buggy offsets.
+        */
         @media (max-width: 1024px) {
-          .planos {
-            padding: 80px 0 60px !important;
+          .planos-master {
+            padding: 80px 0;
           }
-
-          .planos-header {
-            margin-bottom: 56px;
-            padding: 0 24px;
-          }
-
-          .planos-title {
-            font-size: 2rem;
-          }
-
-          .planos-wrapper {
-            grid-template-columns: minmax(auto, 420px); /* Ocupa centro até 420px */
-            justify-content: center;
-            gap: 32px;
+          
+          .planos-grid {
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
           }
 
           .plano-card {
-            padding: 44px 32px;
-            width: 100%; /* Adapta fluido até o minmax do grid */
+            width: 100%;
+            max-width: 420px;
           }
 
-          /* Tira o scale() que estoura bordas mobile e usa flat state seguro */
-          .plano-popular {
-            transform: scale(1);
-          }
-          
-          .plano-popular:hover {
-            transform: scale(1) translateY(-4px);
+          .plano-content {
+            padding: 40px 32px;
           }
 
-          .plano-title-row {
-            flex-direction: column;
-            align-items: flex-start;
+          .hidden-mobile {
+            display: none;
+          }
+
+          /* Strip the desktop Y-offset completely to prevent stacking bugs */
+          .plano-card.popular {
+            transform: translateY(0);
+          }
+          .plano-card.popular:hover {
+            transform: translateY(-4px);
           }
         }
       `}</style>
