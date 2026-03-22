@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
+import CustomCursor from "./components/CustomCursor";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
@@ -78,6 +79,7 @@ function App() {
             {/* Glow roxo geral */}
             <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-violet-950/20 via-fuchsia-900/10 to-purple-950/20 md:from-violet-950/30 md:via-fuchsia-900/10 md:to-purple-950/30" />
 
+            <CustomCursor />
             <Toaster />
             <Router />
           </div>
