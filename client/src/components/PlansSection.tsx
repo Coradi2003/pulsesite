@@ -57,9 +57,11 @@ export default function PlansSection() {
       <div className="container">
         <div className="planos-header">
           <span className="planos-kicker">Investimento</span>
+
           <h2 className="planos-title">
             Planos sob <span>Medida</span>
           </h2>
+
           <p className="planos-subtitle">
             Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a
             estrutura perfeita para o momento do seu negócio.
@@ -121,13 +123,13 @@ export default function PlansSection() {
         .planos-ultra {
           position: relative;
           z-index: 1;
-          padding: 170px 0 120px;
+          padding: 190px 0 120px;
         }
 
         .planos-header {
           text-align: center;
           max-width: 860px;
-          margin: 0 auto 72px;
+          margin: 0 auto 96px;
           padding: 0 20px;
         }
 
@@ -149,10 +151,10 @@ export default function PlansSection() {
 
         .planos-title {
           margin: 0 0 18px;
-          font-size: clamp(2.4rem, 5vw, 4rem);
+          font-size: clamp(2.5rem, 5vw, 4.5rem);
           line-height: 0.98;
           font-weight: 800;
-          letter-spacing: -0.04em;
+          letter-spacing: -0.05em;
           color: #ffffff;
         }
 
@@ -171,8 +173,10 @@ export default function PlansSection() {
         .planos-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 28px;
+          gap: 24px;
           align-items: stretch;
+          max-width: 1180px;
+          margin: 0 auto;
         }
 
         .plano-card {
@@ -180,50 +184,53 @@ export default function PlansSection() {
           display: flex;
           flex-direction: column;
           min-height: 100%;
-          padding: 34px 28px 26px;
+          padding: 30px 24px 24px;
           border-radius: 28px;
           background:
             linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
-            rgba(10, 8, 18, 0.72);
+            rgba(10, 8, 18, 0.74);
           border: 1px solid rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(18px);
           box-shadow:
             0 14px 40px rgba(0, 0, 0, 0.22),
             inset 0 1px 0 rgba(255, 255, 255, 0.04);
-          transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+          transition:
+            transform 0.28s ease,
+            border-color 0.28s ease,
+            box-shadow 0.28s ease;
           overflow: hidden;
         }
 
         .plano-card:hover {
-          transform: translateY(-8px);
-          border-color: rgba(255, 255, 255, 0.14);
+          transform: translateY(-6px);
+          border-color: rgba(255, 255, 255, 0.16);
           box-shadow:
-            0 18px 48px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            0 20px 48px rgba(0, 0, 0, 0.28),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .plano-card.popular {
-          transform: translateY(-10px) scale(1.02);
-          border-color: rgba(168, 85, 247, 0.6);
+          border-color: rgba(168, 85, 247, 0.58);
           box-shadow:
             0 20px 54px rgba(0, 0, 0, 0.34),
             0 0 0 1px rgba(168, 85, 247, 0.12),
             0 0 36px rgba(168, 85, 247, 0.14);
+          transform: translateY(0) scale(1.01);
         }
 
         .plano-card.popular:hover {
-          transform: translateY(-14px) scale(1.02);
-          border-color: rgba(168, 85, 247, 0.75);
+          transform: translateY(-6px) scale(1.01);
+          border-color: rgba(168, 85, 247, 0.76);
           box-shadow:
             0 24px 60px rgba(0, 0, 0, 0.36),
             0 0 0 1px rgba(168, 85, 247, 0.18),
-            0 0 44px rgba(168, 85, 247, 0.2);
+            0 0 44px rgba(168, 85, 247, 0.22);
         }
 
         .popular-badge {
           position: absolute;
-          top: 18px;
-          right: 18px;
+          top: 16px;
+          right: 16px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -231,53 +238,55 @@ export default function PlansSection() {
           border-radius: 999px;
           background: linear-gradient(135deg, #9333ea, #c084fc);
           color: #fff;
-          font-size: 0.74rem;
+          font-size: 0.72rem;
           font-weight: 800;
           letter-spacing: 0.04em;
           text-transform: uppercase;
           box-shadow: 0 10px 24px rgba(168, 85, 247, 0.28);
+          white-space: nowrap;
+          z-index: 2;
         }
 
         .plano-top {
-          margin-bottom: 24px;
-          padding-right: 90px;
+          margin-bottom: 18px;
+          padding-right: 110px;
         }
 
         .plano-name {
-          margin: 0 0 12px;
+          margin: 0 0 10px;
           color: #fff;
-          font-size: 2rem;
-          line-height: 1.05;
+          font-size: 1.2rem;
+          line-height: 1.1;
           font-weight: 800;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.02em;
         }
 
         .plano-desc {
           margin: 0;
-          min-height: 52px;
+          min-height: 72px;
           color: rgba(255, 255, 255, 0.72);
-          font-size: 1rem;
-          line-height: 1.6;
+          font-size: 0.92rem;
+          line-height: 1.5;
         }
 
         .plano-price-wrap {
           display: flex;
           align-items: flex-end;
           gap: 8px;
-          margin-bottom: 24px;
+          margin-bottom: 18px;
         }
 
         .plano-currency {
           color: rgba(255, 255, 255, 0.72);
-          font-size: 1.15rem;
+          font-size: 1rem;
           line-height: 1;
           font-weight: 700;
-          transform: translateY(-8px);
+          transform: translateY(-6px);
         }
 
         .plano-price {
           color: #fff;
-          font-size: clamp(3rem, 4vw, 4rem);
+          font-size: clamp(2.6rem, 3.4vw, 3.5rem);
           line-height: 0.9;
           font-weight: 800;
           letter-spacing: -0.05em;
@@ -285,10 +294,10 @@ export default function PlansSection() {
 
         .plano-billing {
           color: rgba(255, 255, 255, 0.68);
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           font-weight: 600;
           line-height: 1.2;
-          margin-bottom: 6px;
+          margin-bottom: 4px;
         }
 
         .plano-divider {
@@ -300,7 +309,7 @@ export default function PlansSection() {
             rgba(255,255,255,0.14),
             rgba(255,255,255,0.04)
           );
-          margin-bottom: 24px;
+          margin-bottom: 18px;
         }
 
         .plano-card.popular .plano-divider {
@@ -318,7 +327,7 @@ export default function PlansSection() {
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 12px;
           flex: 1;
         }
 
@@ -327,7 +336,7 @@ export default function PlansSection() {
           align-items: flex-start;
           gap: 12px;
           color: rgba(255, 255, 255, 0.92);
-          font-size: 1rem;
+          font-size: 0.95rem;
           line-height: 1.5;
         }
 
@@ -342,13 +351,13 @@ export default function PlansSection() {
           background: rgba(168, 85, 247, 0.14);
           border: 1px solid rgba(168, 85, 247, 0.28);
           color: #d8b4fe;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 900;
           margin-top: 1px;
         }
 
         .plano-footer {
-          margin-top: 28px;
+          margin-top: 24px;
         }
 
         .btn-plano {
@@ -358,12 +367,16 @@ export default function PlansSection() {
           align-items: center;
           justify-content: center;
           padding: 16px 22px;
-          border-radius: 16px;
+          border-radius: 18px;
           text-decoration: none;
           font-size: 1rem;
           font-weight: 800;
           letter-spacing: -0.01em;
-          transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+          transition:
+            transform 0.22s ease,
+            box-shadow 0.22s ease,
+            border-color 0.22s ease,
+            background 0.22s ease;
         }
 
         .btn-plano:hover {
@@ -396,13 +409,14 @@ export default function PlansSection() {
 
         @media (max-width: 1100px) {
           .planos-ultra {
-            padding: 140px 0 100px;
+            padding: 150px 0 100px;
           }
 
           .planos-grid {
             grid-template-columns: 1fr;
             max-width: 640px;
             margin: 0 auto;
+            gap: 22px;
           }
 
           .plano-card,
@@ -411,15 +425,27 @@ export default function PlansSection() {
           .plano-card.popular:hover {
             transform: none;
           }
+
+          .plano-card {
+            padding: 28px 22px 22px;
+          }
+
+          .plano-top {
+            padding-right: 110px;
+          }
+
+          .plano-desc {
+            min-height: auto;
+          }
         }
 
         @media (max-width: 768px) {
           .planos-ultra {
-            padding: 110px 0 90px;
+            padding: 118px 0 88px;
           }
 
           .planos-header {
-            margin-bottom: 44px;
+            margin-bottom: 42px;
             padding: 0 14px;
           }
 
@@ -430,91 +456,91 @@ export default function PlansSection() {
           }
 
           .planos-title {
-            font-size: clamp(2rem, 10vw, 2.8rem);
+            font-size: clamp(2rem, 10vw, 2.9rem);
             margin-bottom: 14px;
           }
 
           .planos-subtitle {
-            font-size: 0.98rem;
+            font-size: 0.97rem;
             line-height: 1.7;
           }
 
           .planos-grid {
-            gap: 20px;
+            gap: 18px;
           }
 
           .plano-card {
-            padding: 26px 20px 20px;
+            padding: 24px 18px 18px;
             border-radius: 22px;
           }
 
           .popular-badge {
-            top: 14px;
-            right: 14px;
-            font-size: 0.68rem;
+            top: 12px;
+            right: 12px;
+            font-size: 0.64rem;
             padding: 6px 10px;
           }
 
           .plano-top {
-            margin-bottom: 18px;
-            padding-right: 86px;
+            margin-bottom: 16px;
+            padding-right: 82px;
           }
 
           .plano-name {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 1.7rem;
+            margin-bottom: 8px;
           }
 
           .plano-desc {
-            min-height: auto;
-            font-size: 0.96rem;
+            font-size: 0.94rem;
+            line-height: 1.55;
           }
 
           .plano-price-wrap {
             gap: 6px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
           }
 
           .plano-currency {
-            font-size: 1rem;
-            transform: translateY(-6px);
+            font-size: 0.95rem;
+            transform: translateY(-5px);
           }
 
           .plano-price {
-            font-size: clamp(2.4rem, 11vw, 3rem);
+            font-size: clamp(2.2rem, 11vw, 2.9rem);
           }
 
           .plano-billing {
-            font-size: 0.88rem;
-            margin-bottom: 4px;
+            font-size: 0.84rem;
+            margin-bottom: 3px;
           }
 
           .plano-divider {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
           }
 
           .plano-features {
-            gap: 12px;
+            gap: 11px;
           }
 
           .plano-features li {
-            font-size: 0.96rem;
+            font-size: 0.93rem;
           }
 
           .feature-check {
             width: 20px;
             height: 20px;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
           }
 
           .plano-footer {
-            margin-top: 22px;
+            margin-top: 20px;
           }
 
           .btn-plano {
             min-height: 54px;
-            border-radius: 14px;
-            font-size: 0.98rem;
+            border-radius: 15px;
+            font-size: 0.96rem;
           }
         }
       `}</style>
