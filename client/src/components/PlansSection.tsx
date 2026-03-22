@@ -2,514 +2,506 @@ import React from 'react';
 
 const plans = [
   {
+    icon: '💡',
     name: 'Pulse Start',
+    badge: 'Básico',
     price: '350',
-    description: 'Entrada rápida e profissional no mundo digital.',
+    description: 'Ideal para quem quer entrar no digital rápido.',
     features: [
       'Site institucional moderno e responsivo',
-      'Configuração de botão de WhatsApp',
+      'Botão de WhatsApp integrado',
       '1 ano de domínio (.com.br) incluso',
-      'Hospedagem otimizada configurada',
-      'Entrega expressa (até 5 dias)',
-      'Manutenção gratuita por 30 dias',
+      'Hospedagem otimizada',
+      'Entrega rápida (até 5 dias)',
+      'Manutenção por 30 dias',
     ],
+    target: '👉 Perfeito para autônomos e iniciantes',
     isPopular: false,
   },
   {
+    icon: '⚡',
     name: 'Pulse Pro',
+    badge: 'Intermediário',
     price: '650',
-    description: 'A estrutura ideal para converter visitantes em clientes.',
+    description: 'Mais completo, mais profissional, mais conversão.',
     features: [
-      'Design estratégico e 100% personalizado',
-      'Integração com redes sociais e contatos',
+      'Design estratégico e personalizado',
+      'Integração com redes sociais',
+      'Formulário de contato + WhatsApp',
       'Google Analytics (visitas em tempo real)',
-      'SEO básico (otimização para o Google)',
+      'SEO básico (pra aparecer no Google)',
       '1 ano de domínio (.com.br) incluso',
-      'Hospedagem rápida e segura',
-      'Suporte e manutenção expandidos (6 meses)',
+      'Hospedagem otimizada',
+      'Suporte + manutenção por 6 meses',
     ],
+    target: '👉 Ideal para empresas que querem crescer online',
     isPopular: true,
   },
   {
+    icon: '🔥',
     name: 'Pulse Elite',
+    badge: 'Premium',
     price: '1.200',
-    description: 'Máxima performance e autoridade para o seu negócio.',
+    description: 'Projeto completo focado em gerar clientes.',
     features: [
-      'Design premium com foco total em vendas',
-      'Animações modernas e interativas',
-      'Tracking avançado (Pixel, Analytics, Tags)',
-      'Estrutura pronta para campanhas de Ads',
-      '1 ano de domínio exclusivo',
-      'Hospedagem de altíssima performance',
-      'Suporte prioritário (VIP) 24h',
-      'Manutenção completa durante 1 ano',
+      'Design premium focado em conversão',
+      'Animações modernas e experiência envolvente',
+      'Integração completa (WhatsApp, redes sociais, formulários)',
+      'Google Analytics avançado',
+      'Estrutura otimizada para vendas',
+      '1 ano de domínio (.com.br) incluso',
+      'Hospedagem de alta performance',
+      'Suporte PRIORITÁRIO 24h',
+      'Manutenção durante 1 ano',
     ],
+    target: '👉 Pra quem quer vender todos os dias com o site',
     isPopular: false,
   },
 ];
 
 export default function PlansSection() {
   return (
-    <section className="plans-section" id="planos">
-      <div className="plans-bg-orb orb-1" />
-      <div className="plans-bg-orb orb-2" />
-      <div className="plans-grid-overlay" />
-
-      <div className="plans-container">
-        <div className="plans-header">
-          <span className="plans-kicker">INVESTIMENTO</span>
-
-          <h2 className="plans-title">
-            Planos sob <span>Medida</span>
-          </h2>
-
-          <p className="plans-subtitle">
-            Escolha a estrutura ideal para o seu momento e tenha um site com
-            aparência premium, alta conversão e presença profissional de verdade.
+    <section className="section nps-master" id="planos">
+      <div className="nps-bg-aura"></div>
+      
+      <div className="container">
+        <div className="nps-header reveal">
+          <div className="nps-kicker">🚀 Criação de Sites</div>
+          <h2 className="nps-title">Planos Pulse Futuro</h2>
+          <p className="nps-subtitle">
+            Estruturas sob medida para o tamanho da sua ambição. Transparência total e pagamento único.
           </p>
         </div>
 
-        <div className="plans-cards">
-          {plans.map((plan, i) => (
-            <article
-              key={i}
-              className={`plan-card ${plan.isPopular ? 'popular' : ''}`}
+        <div className="nps-grid">
+          {plans.map((plan, index) => (
+            <div
+              key={index}
+              className={`nps-card reveal delay-${index + 1} ${
+                plan.isPopular ? 'nps-popular' : ''
+              }`}
             >
-              {plan.isPopular && (
-                <div className="plan-badge">Mais escolhido</div>
-              )}
-
-              <div className="plan-top">
-                <div className="plan-label-line">
-                  <span className="plan-name">{plan.name}</span>
-                  {plan.isPopular && <span className="plan-mini-tag">Premium</span>}
+              <div className="nps-card-inner">
+                {plan.isPopular && <div className="nps-popular-flag">Mais Escolhido</div>}
+                
+                <div className="nps-top">
+                  <div className="nps-icon">{plan.icon}</div>
+                  <div className="nps-name-row">
+                    <h3 className="nps-name">{plan.name}</h3>
+                    <span className="nps-badge">{plan.badge}</span>
+                  </div>
+                  <p className="nps-desc">{plan.description}</p>
+                </div>
+                
+                <div className="nps-price-box">
+                  <span className="nps-currency">R$</span>
+                  <span className="nps-price">{plan.price}</span>
+                  <span className="nps-billing">/único</span>
                 </div>
 
-                <p className="plan-description">{plan.description}</p>
-              </div>
+                <div className="nps-divider"></div>
 
-              <div className="plan-price-box">
-                <div className="plan-price-row">
-                  <span className="currency">R$</span>
-                  <strong>{plan.price}</strong>
+                <ul className="nps-features">
+                  {plan.features.map((feature, i) => (
+                    <li key={i}>
+                      <span className="nps-check-icon">✔️</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="nps-target-box">
+                  {plan.target}
                 </div>
-                <small>pagamento único</small>
+
+                <a
+                  href={`https://wa.me/5541984606633?text=Ol%C3%A1!%20Gostaria%20de%20come%C3%A7ar%20meu%20projeto%20com%20o%20plano%20${encodeURIComponent(
+                    plan.name
+                  )}.%20Podemos%20conversar?`}
+                  className={`nps-btn ${plan.isPopular ? 'nps-btn-primary' : 'nps-btn-secondary'}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Quero começar agora
+                </a>
               </div>
-
-              <ul className="plan-features">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx}>
-                    <span className="check">✓</span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={`https://wa.me/5541984606633?text=${encodeURIComponent(
-                  `Olá! Quero saber mais sobre o plano ${plan.name}.`
-                )}`}
-                target="_blank"
-                rel="noreferrer"
-                className={`plan-button ${plan.isPopular ? 'popular-btn' : ''}`}
-              >
-                Quero meu site
-              </a>
-            </article>
+            </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        .plans-section {
+        /* ====================================================
+           NPS (New Plans Section) - IMPACTFUL DESIGN
+           ==================================================== */
+           
+        .nps-master {
           position: relative;
+          padding: 120px 0;
+          background: transparent;
           overflow: hidden;
-          padding: 140px 0 120px;
-          background:
-            radial-gradient(circle at top center, rgba(168, 85, 247, 0.14), transparent 32%),
-            linear-gradient(180deg, #06010d 0%, #0b0213 45%, #07010d 100%);
         }
 
-        .plans-container {
+        .nps-bg-aura {
+          position: absolute;
+          top: -100px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100vw;
+          height: 800px;
+          background: radial-gradient(ellipse at top, rgba(138, 43, 226, 0.15) 0%, transparent 60%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .nps-master .container {
           position: relative;
           z-index: 2;
-          width: 100%;
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
-        .plans-grid-overlay {
-          position: absolute;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(168, 85, 247, 0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(168, 85, 247, 0.07) 1px, transparent 1px);
-          background-size: 64px 64px;
-          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.08));
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        .plans-bg-orb {
-          position: absolute;
-          border-radius: 999px;
-          filter: blur(80px);
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        .orb-1 {
-          top: -100px;
-          left: -100px;
-          width: 320px;
-          height: 320px;
-          background: rgba(139, 92, 246, 0.18);
-        }
-
-        .orb-2 {
-          right: -120px;
-          bottom: -80px;
-          width: 360px;
-          height: 360px;
-          background: rgba(192, 132, 252, 0.12);
-        }
-
-        .plans-header {
-          max-width: 900px;
-          margin: 0 auto 64px;
+        .nps-header {
           text-align: center;
+          margin-bottom: 72px;
         }
 
-        .plans-kicker {
+        .nps-kicker {
           display: inline-block;
+          font-weight: 800;
+          font-size: 0.9rem;
+          color: #B56BFF;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
           margin-bottom: 16px;
-          color: #c084fc;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
+          padding: 8px 16px;
+          background: rgba(138, 43, 226, 0.1);
+          border: 1px solid rgba(138, 43, 226, 0.2);
+          border-radius: 100px;
+          box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
         }
 
-        .plans-title {
-          margin: 0;
-          font-size: clamp(2.3rem, 4vw, 4.2rem);
-          line-height: 1.02;
-          font-weight: 800;
-          letter-spacing: -0.04em;
-          color: #ffffff;
-        }
-
-        .plans-title span {
-          background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 50%, #7c3aed 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-
-        .plans-subtitle {
-          margin: 20px auto 0;
-          max-width: 760px;
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 1.06rem;
-          line-height: 1.75;
-        }
-
-        .plans-cards {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 28px;
-          align-items: stretch;
-        }
-
-        .plan-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          min-height: 100%;
-          padding: 30px 28px 28px;
-          border-radius: 28px;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%),
-            rgba(10, 8, 18, 0.86);
-          border: 1px solid rgba(255, 255, 255, 0.09);
-          box-shadow:
-            0 10px 40px rgba(0, 0, 0, 0.35),
-            inset 0 1px 0 rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        .plan-card::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          padding: 1px;
-          background: linear-gradient(
-            180deg,
-            rgba(255,255,255,0.14),
-            rgba(168,85,247,0.14),
-            rgba(255,255,255,0.04)
-          );
-          -webkit-mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          pointer-events: none;
-          opacity: 0.9;
-        }
-
-        .plan-card:hover {
-          transform: translateY(-10px);
-          border-color: rgba(192, 132, 252, 0.35);
-          box-shadow:
-            0 22px 70px rgba(0, 0, 0, 0.45),
-            0 0 30px rgba(168, 85, 247, 0.10);
-        }
-
-        .plan-card.popular {
-          transform: translateY(-12px) scale(1.02);
-          background:
-            linear-gradient(180deg, rgba(168,85,247,0.10) 0%, rgba(255,255,255,0.03) 100%),
-            rgba(11, 8, 20, 0.95);
-          border-color: rgba(168, 85, 247, 0.55);
-          box-shadow:
-            0 30px 80px rgba(0, 0, 0, 0.48),
-            0 0 45px rgba(168, 85, 247, 0.16);
-        }
-
-        .plan-card.popular::after {
-          content: "";
-          position: absolute;
-          inset: -1px;
-          border-radius: 28px;
-          background: linear-gradient(135deg, rgba(168,85,247,0.24), rgba(192,132,252,0.06));
-          z-index: -1;
-          filter: blur(20px);
-        }
-
-        .plan-badge {
-          position: absolute;
-          top: 18px;
-          right: 18px;
-          padding: 8px 14px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+        .nps-title {
+          font-family: var(--font-main);
+          font-size: clamp(2.5rem, 5vw, 4rem);
+          font-weight: 900;
           color: #fff;
-          font-size: 11px;
-          font-weight: 800;
-          letter-spacing: 0.03em;
-          box-shadow: 0 10px 25px rgba(168, 85, 247, 0.35);
+          margin-bottom: 20px;
+          letter-spacing: -0.04em;
+          line-height: 1.1;
         }
 
-        .plan-top {
-          margin-bottom: 22px;
-          padding-right: 96px;
-        }
-
-        .plan-label-line {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-bottom: 12px;
-        }
-
-        .plan-name {
-          color: #ffffff;
-          font-size: 1.45rem;
-          font-weight: 700;
-          letter-spacing: -0.02em;
-        }
-
-        .plan-mini-tag {
-          padding: 5px 10px;
-          border-radius: 999px;
-          background: rgba(168, 85, 247, 0.14);
-          border: 1px solid rgba(192, 132, 252, 0.22);
-          color: #d8b4fe;
-          font-size: 11px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-        }
-
-        .plan-description {
-          margin: 0;
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 1rem;
-          line-height: 1.65;
-          min-height: 56px;
-        }
-
-        .plan-price-box {
-          margin-bottom: 24px;
-          padding: 18px 18px 16px;
-          border-radius: 20px;
-          background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-          border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .plan-price-row {
-          display: flex;
-          align-items: flex-end;
-          gap: 8px;
-          line-height: 1;
-        }
-
-        .currency {
-          color: rgba(255,255,255,0.92);
-          font-size: 1.2rem;
-          font-weight: 700;
-          margin-bottom: 8px;
-        }
-
-        .plan-price-row strong {
-          color: #ffffff;
-          font-size: clamp(2.6rem, 4vw, 3.6rem);
-          font-weight: 800;
-          letter-spacing: -0.05em;
-        }
-
-        .plan-price-box small {
-          display: inline-block;
-          margin-top: 10px;
-          color: rgba(255, 255, 255, 0.58);
-          font-size: 0.92rem;
-        }
-
-        .plan-features {
-          list-style: none;
-          padding: 0;
-          margin: 0 0 28px;
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-          flex: 1;
-        }
-
-        .plan-features li {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          color: rgba(255, 255, 255, 0.88);
-          font-size: 0.98rem;
+        .nps-subtitle {
+          font-size: 1.15rem;
+          color: #A1A1AA;
+          max-width: 640px;
+          margin: 0 auto;
           line-height: 1.6;
         }
 
-        .check {
-          flex: 0 0 auto;
-          width: 22px;
-          height: 22px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 999px;
-          background: rgba(168, 85, 247, 0.16);
-          border: 1px solid rgba(192, 132, 252, 0.18);
-          color: #d8b4fe;
-          font-size: 13px;
-          font-weight: 700;
-          margin-top: 1px;
+        /* GRID IMPLACÁVEL */
+        .nps-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+          align-items: stretch;
         }
 
-        .plan-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 58px;
-          width: 100%;
-          border-radius: 16px;
-          padding: 16px 22px;
-          background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%);
+        /* CARDS MODERNOS COM BORDAS GRADIENTES (via wrapper e pseudo) */
+        .nps-card {
+          position: relative;
+          border-radius: 28px;
+          padding: 1px; /* Espaço para o gradiente da borda */
+          background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 24px 50px rgba(0,0,0,0.3);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+        }
+
+        .nps-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 32px 60px rgba(0,0,0,0.4);
+        }
+
+        .nps-card-inner {
+          background: #09090C; /* Preto absoluto e encorpado */
+          border-radius: 27px;
+          padding: 48px 40px;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* O DESTAQUE: Trazendo muito impacto visual pro plano intermediário */
+        .nps-popular {
+          background: linear-gradient(135deg, #B56BFF 0%, #EC4899 100%);
+          box-shadow: 0 30px 60px rgba(138,43,226,0.3);
+          transform: translateY(-16px);
+          z-index: 10;
+        }
+
+        .nps-popular:hover {
+          transform: translateY(-24px);
+          box-shadow: 0 40px 80px rgba(138,43,226,0.4);
+        }
+
+        .nps-popular .nps-card-inner {
+          /* Um fundo levemente roxo/escuro por dentro, pra manter a leitura perfeita mas impactante */
+          background: linear-gradient(180deg, rgba(30,20,45,1) 0%, #09090C 40%);
+        }
+
+        .nps-popular-flag {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: linear-gradient(90deg, #9D3FFF, #EC4899);
           color: #fff;
-          text-decoration: none;
           font-weight: 800;
-          font-size: 1rem;
-          letter-spacing: -0.01em;
-          box-shadow: 0 14px 30px rgba(147, 51, 234, 0.28);
-          transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          padding: 8px 18px;
+          border-radius: 20px;
+          box-shadow: 0 8px 20px rgba(236,72,153,0.4);
+          white-space: nowrap;
+          z-index: 5;
         }
 
-        .plan-button:hover {
+        /* CONTEÚDO TOP */
+        .nps-top {
+          margin-bottom: 24px;
+        }
+
+        .nps-icon {
+          font-size: 2.5rem;
+          margin-bottom: 24px;
+          filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+        }
+
+        .nps-name-row {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 12px;
+          flex-wrap: wrap;
+        }
+
+        .nps-name {
+          font-family: var(--font-main);
+          font-size: 1.8rem;
+          font-weight: 800;
+          color: #fff;
+          letter-spacing: -0.02em;
+        }
+
+        .nps-badge {
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          padding: 4px 10px;
+          background: rgba(255,255,255,0.1);
+          color: #E4E4E7;
+          border-radius: 6px;
+          border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .nps-popular .nps-badge {
+          background: rgba(236,72,153,0.15);
+          color: #F9A8D4;
+          border-color: rgba(236,72,153,0.3);
+        }
+
+        .nps-desc {
+          color: #A1A1AA;
+          font-size: 1.05rem;
+          line-height: 1.6;
+          min-height: 48px;
+        }
+
+        /* PREÇO MONSTRUOSO */
+        .nps-price-box {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 32px;
+        }
+
+        .nps-currency {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: #A1A1AA;
+          margin-top: 8px;
+          margin-right: 6px;
+        }
+
+        .nps-price {
+          font-family: var(--font-main);
+          font-size: 4.2rem;
+          font-weight: 900;
+          color: #fff;
+          line-height: 1;
+          letter-spacing: -0.05em;
+        }
+
+        .nps-billing {
+          align-self: flex-end;
+          font-size: 0.9rem;
+          color: #71717A;
+          font-weight: 600;
+          margin-bottom: 8px;
+          margin-left: 4px;
+        }
+
+        .nps-divider {
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+          margin-bottom: 32px;
+        }
+
+        /* FEATURES */
+        .nps-features {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+          flex-grow: 1;
+          margin-bottom: 40px;
+        }
+
+        .nps-features li {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          font-size: 0.95rem;
+          color: #E4E4E7;
+          line-height: 1.5;
+        }
+
+        .nps-check-icon {
+          font-size: 0.9rem;
+          margin-top: 2px;
+          flex-shrink: 0;
+        }
+
+        /* BOX AVISO INFERIOR (O Kicker do Plano) */
+        .nps-target-box {
+          background: rgba(255,255,255,0.03);
+          border: 1px dashed rgba(255,255,255,0.15);
+          padding: 16px 20px;
+          border-radius: 14px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #D4D4D8;
+          margin-bottom: 32px;
+          line-height: 1.5;
+        }
+
+        .nps-popular .nps-target-box {
+          background: rgba(236,72,153,0.05);
+          border-color: rgba(236,72,153,0.25);
+          color: #fff;
+        }
+
+        /* BOTÕES DE IMPACTO MÁXIMO */
+        .nps-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          padding: 20px 24px;
+          border-radius: 14px;
+          font-family: var(--font-main);
+          font-weight: 800;
+          font-size: 1.1rem;
+          letter-spacing: 0.02em;
+          text-decoration: none;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          text-transform: uppercase;
+        }
+
+        .nps-btn-primary {
+          background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+          color: #fff;
+          box-shadow: 0 8px 24px rgba(236,72,153,0.3), inset 0 1px 1px rgba(255,255,255,0.4);
+          border: none;
+        }
+
+        .nps-btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 18px 36px rgba(147, 51, 234, 0.36);
-          opacity: 0.98;
+          box-shadow: 0 12px 32px rgba(236,72,153,0.5), inset 0 1px 1px rgba(255,255,255,0.5);
+          filter: brightness(1.1);
         }
 
-        .popular-btn {
-          background: linear-gradient(135deg, #7c3aed 0%, #a855f7 45%, #d946ef 100%);
-          box-shadow: 0 18px 40px rgba(168, 85, 247, 0.32);
+        .nps-btn-secondary {
+          background: rgba(255,255,255,0.05);
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.15);
         }
 
+        .nps-btn-secondary:hover {
+          background: rgba(255,255,255,0.1);
+          border-color: rgba(255,255,255,0.3);
+          transform: translateY(-2px);
+        }
+
+
+        /* ====================================================
+           MOBILE BUG-FREE E IMPACTANTE
+           ==================================================== */
         @media (max-width: 1100px) {
-          .plans-cards {
+          .nps-grid {
             grid-template-columns: 1fr;
-            gap: 22px;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 40px;
+          }
+          
+          .nps-popular {
+            transform: translateY(0);
           }
 
-          .plan-card.popular {
-            transform: none;
+          .nps-popular:hover {
+            transform: translateY(-4px);
           }
 
-          .plan-card,
-          .plan-card:hover {
-            transform: none;
+          .nps-master {
+            padding: 80px 0;
           }
 
-          .plans-section {
-            padding: 120px 0 90px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .plans-container {
-            padding: 0 18px;
-          }
-
-          .plans-header {
-            margin-bottom: 40px;
-          }
-
-          .plans-subtitle {
-            font-size: 0.98rem;
-            line-height: 1.7;
-          }
-
-          .plan-card {
-            padding: 24px 20px 20px;
-            border-radius: 22px;
-          }
-
-          .plan-top {
-            padding-right: 0;
-          }
-
-          .plan-badge {
-            position: static;
-            display: inline-flex;
-            margin-bottom: 16px;
-          }
-
-          .plan-description {
-            min-height: auto;
-          }
-
-          .plan-price-box {
-            padding: 16px;
-            border-radius: 18px;
-          }
-
-          .plan-price-row strong {
+          .nps-title {
             font-size: 2.8rem;
           }
 
-          .plan-button {
-            min-height: 56px;
-            font-size: 0.98rem;
+          .nps-card-inner {
+            padding: 40px 32px;
+          }
+
+          .nps-popular-flag {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: none;
+            display: inline-block;
+            margin-bottom: 24px;
+            align-self: flex-start;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .nps-price {
+            font-size: 3.5rem;
+          }
+          .nps-card-inner {
+            padding: 32px 24px;
+          }
+          .nps-name {
+            font-size: 1.6rem;
           }
         }
       `}</style>
