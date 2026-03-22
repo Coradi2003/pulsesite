@@ -52,12 +52,12 @@ export default function PlansSection() {
   return (
     <section className="section planos" id="planos">
       <div className="container">
-        <div className="text-center reveal">
-          <span className="section-tag">Investimento</span>
-          <h2 className="section-title">
+        <div className="planos-header reveal">
+          <span className="section-tag planos-tag">Investimento</span>
+          <h2 className="planos-title">
             Planos sob <span>Medida</span>
           </h2>
-          <p className="section-subtitle" style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <p className="planos-subtitle">
             Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a estrutura perfeita para o momento do seu negócio.
           </p>
         </div>
@@ -70,10 +70,13 @@ export default function PlansSection() {
                 plan.isPopular ? 'plano-popular' : ''
               }`}
             >
-              <div className="plano-header">
-                {plan.isPopular && <div className="plano-badge">Mais Escolhido</div>}
-                
-                <h3 className="plano-name">{plan.name}</h3>
+              <div className="plano-head">
+                <div className="plano-title-row">
+                  <h3 className="plano-name">{plan.name}</h3>
+                  {plan.isPopular && (
+                    <span className="plano-badge">Mais escolhido</span>
+                  )}
+                </div>
                 <p className="plano-desc">{plan.description}</p>
                 
                 <div className="plano-price-wrapper">
@@ -88,7 +91,7 @@ export default function PlansSection() {
               <ul className="plano-features">
                 {plan.features.map((feature, i) => (
                   <li key={i}>
-                    <div className="plano-icon-wrap">
+                    <div className="plano-check">
                       <i className="fas fa-check"></i>
                     </div>
                     <span>{feature}</span>
@@ -105,7 +108,7 @@ export default function PlansSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Quero este plano
+                  Quero meu site
                 </a>
               </div>
             </div>
@@ -117,155 +120,197 @@ export default function PlansSection() {
         .planos {
           position: relative;
           z-index: 1;
-          padding-bottom: 60px !important;
+          padding: 120px 0 100px !important; /* Mais respiro top/bottom geral */
+        }
+
+        .planos-header {
+          text-align: center;
+          margin-bottom: 80px; /* Distância espetacular até os cards */
+        }
+
+        .planos-tag {
+          margin-bottom: 24px;
+        }
+
+        .planos-title {
+          font-family: var(--font-main);
+          font-size: clamp(2.2rem, 5vw, 3.2rem);
+          font-weight: 800;
+          color: var(--white);
+          line-height: 1.1;
+          margin-bottom: 24px;
+          letter-spacing: -0.02em;
+        }
+
+        .planos-title span {
+          background: linear-gradient(135deg, var(--purple-light), var(--purple-bright));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .planos-subtitle {
+          font-size: 1.1rem;
+          color: rgba(255, 255, 255, 0.65);
+          line-height: 1.7;
+          max-width: 640px;
+          margin: 0 auto;
         }
 
         .planos-wrapper {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 32px;
-          margin-top: 64px;
-          align-items: stretch; /* Garante mesma altura para todos os cards */
+          align-items: stretch; 
         }
 
+        /* O estilo premium do card SaaS ($5.000+ feel) */
         .plano-card {
-          background: rgba(15, 15, 20, 0.4);
-          border: 1px solid rgba(255, 255, 255, 0.05); /* Borda bem sutil e elegante */
-          border-radius: 20px;
-          padding: 40px 32px;
+          background: rgba(13, 13, 18, 0.35);
+          border: 1px solid rgba(255, 255, 255, 0.04);
+          border-radius: 24px;
+          padding: 48px 40px;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           position: relative;
-          backdrop-filter: blur(24px);
+          backdrop-filter: blur(40px); /* vidro translúcido bem escuro e denso */
           display: flex;
           flex-direction: column;
           text-align: left;
         }
 
         .plano-card:hover {
-          background: rgba(19, 19, 28, 0.6);
-          border-color: rgba(255, 255, 255, 0.1);
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+          background: rgba(19, 19, 28, 0.5);
+          border-color: rgba(255, 255, 255, 0.08); /* Apenas acende a borda levemente no hover */
+          transform: translateY(-8px);
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        /* Destaque sofisticado e menos agressivo para o Pulse Pro */
+        /* Middle card: sofisticado, sem exagero, glow e borda premium */
         .plano-popular {
-          background: linear-gradient(180deg, rgba(22, 22, 32, 0.6) 0%, rgba(13, 13, 18, 0.7) 100%);
-          border: 1px solid rgba(138, 43, 226, 0.25);
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(138, 43, 226, 0.03);
-          transform: scale(1.03);
+          background: linear-gradient(180deg, rgba(20, 15, 30, 0.6) 0%, rgba(13, 13, 18, 0.7) 100%);
+          border: 1px solid rgba(138, 43, 226, 0.3);
+          box-shadow: 
+            0 24px 60px rgba(0, 0, 0, 0.4), 
+            inset 0 1px 20px rgba(138, 43, 226, 0.06); /* luz entrando de cima sutil */
+          transform: scale(1.03); /* Elevação natural, elegante */
           z-index: 2;
         }
         
         .plano-popular:hover {
-          transform: scale(1.03) translateY(-4px);
+          transform: scale(1.03) translateY(-8px);
           border-color: rgba(138, 43, 226, 0.5);
-          box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), inset 0 0 30px rgba(138, 43, 226, 0.06);
+          box-shadow: 
+            0 32px 80px rgba(0, 0, 0, 0.5), 
+            inset 0 1px 30px rgba(138, 43, 226, 0.1);
         }
 
-        .plano-header {
-          position: relative;
+        .plano-head {
           display: flex;
           flex-direction: column;
         }
 
-        /* Badge elegante (agora menor e retangular com border-radius leve, estilo Linear) */
+        .plano-title-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 12px;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .plano-name {
+          font-family: var(--font-main);
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--white);
+          letter-spacing: -0.01em;
+          margin: 0;
+        }
+
+        /* Badge elegante alinhada com título */
         .plano-badge {
-          display: inline-block;
-          align-self: flex-start;
           background: rgba(138, 43, 226, 0.12);
-          color: var(--purple-light);
-          border: 1px solid rgba(138, 43, 226, 0.25);
-          font-size: 0.7rem;
+          color: #B56BFF;
+          border: 1px solid rgba(138, 43, 226, 0.2);
+          font-size: 0.72rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.12em;
-          padding: 6px 12px;
-          border-radius: 4px;
-          margin-bottom: 24px;
+          padding: 6px 14px;
+          border-radius: 100px;
         }
 
-        /* Título do plano MAIOR que o preço */
-        .plano-name {
-          font-family: var(--font-main);
-          font-size: 1.6rem;
-          font-weight: 800;
-          color: var(--white);
-          margin-bottom: 8px;
-          letter-spacing: -0.01em;
-        }
-
-        /* Descrição fixa a altura mínima para alinhar perfeitamente a linha de preço */
         .plano-desc {
-          font-size: 0.9rem;
-          color: var(--gray-mid);
-          line-height: 1.5;
-          min-height: 48px;
+          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.6;
+          min-height: 48px; /* Mantém base do preço idêntica nos 3 */
         }
 
-        /* Preços alinhados perfeitamente pelo topo/base, com tamanho reduzido */
         .plano-price-wrapper {
-          margin-top: 24px;
+          margin-top: 36px; /* Desce um pouco mais o preço dando ar */
           display: flex;
-          align-items: baseline;
+          align-items: flex-start; /* Permite R$ ficar pra cima */
           gap: 6px;
         }
 
         .plano-currency {
-          font-size: 1rem;
+          font-size: 1.15rem;
           font-weight: 600;
-          color: var(--gray-mid);
+          color: rgba(255, 255, 255, 0.45);
+          margin-top: 6px; /* Alinha visualmente no topo no novo formato */
         }
 
         .plano-price {
           font-family: var(--font-main);
-          font-size: 2.2rem;
-          font-weight: 800;
+          font-size: 2.8rem;
+          font-weight: 600; /* Mais limpo. O 600 passa sofisticação contra o 900 agressivo */
           color: var(--white);
           line-height: 1;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.03em;
         }
 
         .plano-billing {
-          font-size: 0.85rem;
-          color: var(--gray-mid);
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.35);
           font-weight: 500;
-          margin-left: 2px;
+          align-self: flex-end;
+          margin-bottom: 6px;
         }
 
+        /* Separador super refinado usando gradiente esmaecente */
         .plano-divider {
           height: 1px;
-          background: rgba(255, 255, 255, 0.05);
-          margin: 32px 0;
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+          margin: 44px 0;
         }
         
         .plano-popular .plano-divider {
-          background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.25), transparent);
+          background: linear-gradient(90deg, rgba(138, 43, 226, 0.3) 0%, rgba(138, 43, 226, 0) 100%);
         }
 
         .plano-features {
           list-style: none;
           display: flex;
           flex-direction: column;
-          gap: 16px;
-          margin-bottom: 40px;
-          flex-grow: 1; /* Preenche o espaço flexível para empurrar o botão */
+          gap: 18px;
+          margin-bottom: 56px;
+          flex-grow: 1; /* Estende para firmar o botão na base perfeita */
         }
 
         .plano-features li {
           display: flex;
           align-items: flex-start;
-          gap: 12px;
-          font-size: 0.88rem;
-          color: var(--gray-light);
-          line-height: 1.5;
+          gap: 16px;
+          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.75);
+          line-height: 1.55;
         }
 
-        .plano-icon-wrap {
-          width: 20px;
-          height: 20px;
+        .plano-check {
+          width: 24px;
+          height: 24px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.04);
+          background: rgba(255, 255, 255, 0.06);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -273,52 +318,56 @@ export default function PlansSection() {
           margin-top: 2px;
         }
 
-        .plano-popular .plano-icon-wrap {
-          background: rgba(138, 43, 226, 0.12);
+        .plano-popular .plano-check {
+          background: rgba(138, 43, 226, 0.15);
         }
 
         .plano-features li i {
-          color: var(--gray-light);
-          font-size: 0.6rem;
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.65rem;
         }
 
         .plano-popular .plano-features li i {
-          color: var(--purple-light);
+          color: #B56BFF;
         }
 
         .plano-footer {
-          margin-top: auto; /* Alinha todos os botões no fundo matematicamente */
+          margin-top: auto; 
           display: flex;
           width: 100%;
         }
 
-        /* Botões extremamente requintados */
+        /* Botões robustos e de altíssima conversão */
         .plano-btn {
           display: flex;
           align-items: center;
           justify-content: center;
           width: 100%;
-          padding: 14px 24px;
-          border-radius: 8px; /* Cantos levemente mais retos para manter aspecto sério */
+          padding: 18px 24px;
+          border-radius: 12px;
           font-family: var(--font-main);
           font-weight: 600;
-          font-size: 0.95rem;
+          font-size: 1.05rem; /* Botões mais presentes */
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           cursor: pointer;
         }
 
         .plano-btn-primary {
-          background: var(--purple-bright);
+          background: linear-gradient(180deg, var(--purple-bright) 0%, var(--purple-neon) 100%);
           color: #ffffff;
-          box-shadow: 0 4px 14px rgba(138, 43, 226, 0.15);
-          border: 1px solid transparent;
+          box-shadow: 
+            0 4px 14px rgba(138, 43, 226, 0.2), 
+            inset 0 1px 1px rgba(255, 255, 255, 0.2); /* bisel de luz interno, super premium */
+          border: 1px solid rgba(138, 43, 226, 0.5);
         }
 
         .plano-btn-primary:hover {
-          background: #a955ff;
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(138, 43, 226, 0.25);
+          box-shadow: 
+            0 8px 24px rgba(138, 43, 226, 0.4), 
+            inset 0 1px 1px rgba(255, 255, 255, 0.3);
+          filter: brightness(1.1);
         }
 
         .plano-btn-secondary {
@@ -329,32 +378,49 @@ export default function PlansSection() {
 
         .plano-btn-secondary:hover {
           background: rgba(255, 255, 255, 0.05);
-          border-color: rgba(255, 255, 255, 0.2);
+          border-color: rgba(255, 255, 255, 0.25);
           transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
+        /* Responsividade CORRIGIDA: Empilha em 1 coluna e usa max-width para controle */
         @media (max-width: 1024px) {
           .planos {
-            padding-bottom: 80px !important;
+            padding: 80px 0 60px !important;
+          }
+
+          .planos-header {
+            margin-bottom: 56px;
+            padding: 0 24px;
+          }
+
+          .planos-title {
+            font-size: 2rem;
           }
 
           .planos-wrapper {
-            grid-template-columns: 1fr;
-            max-width: 440px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: minmax(auto, 420px); /* Ocupa centro até 420px */
+            justify-content: center;
+            gap: 32px;
           }
 
           .plano-card {
-            padding: 40px 32px;
+            padding: 44px 32px;
+            width: 100%; /* Adapta fluido até o minmax do grid */
           }
 
+          /* Tira o scale() que estoura bordas mobile e usa flat state seguro */
           .plano-popular {
             transform: scale(1);
           }
           
           .plano-popular:hover {
             transform: scale(1) translateY(-4px);
+          }
+
+          .plano-title-row {
+            flex-direction: column;
+            align-items: flex-start;
           }
         }
       `}</style>
