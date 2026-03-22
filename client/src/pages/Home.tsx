@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import PlansSection from '../components/PlansSection';
 export default function Home() {
   useEffect(() => {
     const navbar = document.getElementById('navbar');
@@ -411,8 +410,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <PlansSection />
 
       <section className="section" id="autoridade">
         <div className="container">
