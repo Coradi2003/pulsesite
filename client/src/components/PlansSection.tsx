@@ -14,7 +14,6 @@ const plans = [
       'Manutenção gratuita por 30 dias',
     ],
     isPopular: false,
-    btnText: 'Quero meu site',
   },
   {
     name: 'Pulse Pro',
@@ -30,7 +29,6 @@ const plans = [
       'Suporte e manutenção expandidos (6 meses)',
     ],
     isPopular: true,
-    btnText: 'Quero meu site',
   },
   {
     name: 'Pulse Elite',
@@ -47,502 +45,181 @@ const plans = [
       'Manutenção completa durante 1 ano',
     ],
     isPopular: false,
-    btnText: 'Quero meu site',
   },
 ];
 
 export default function PlansSection() {
   return (
-    <section className="section planos-ultra" id="planos">
+    <section className="planos-ultra">
       <div className="container">
         <div className="planos-header">
-          <span className="planos-kicker">Investimento</span>
+          <span className="kicker">INVESTIMENTO</span>
 
-          <h2 className="planos-title">
+          <h2>
             Planos sob <span>Medida</span>
           </h2>
 
-          <p className="planos-subtitle">
-            Transparência total. Sem surpresas ou mensalidades ocultas. Escolha a
-            estrutura perfeita para o momento do seu negócio.
+          <p>
+            Transparência total. Sem surpresas ou mensalidades ocultas.
           </p>
         </div>
 
-        <div className="planos-grid">
-          {plans.map((plan, index) => (
-            <article
-              key={index}
-              className={`plano-card ${plan.isPopular ? 'popular' : ''}`}
-            >
+        <div className="grid">
+          {plans.map((plan, i) => (
+            <div key={i} className={`card ${plan.isPopular ? 'popular' : ''}`}>
+              
               {plan.isPopular && (
-                <div className="popular-badge">Mais escolhido</div>
+                <div className="badge">Mais escolhido</div>
               )}
 
-              <div className="plano-top">
-                <h3 className="plano-name">{plan.name}</h3>
-                <p className="plano-desc">{plan.description}</p>
+              <h3>{plan.name}</h3>
+              <p className="desc">{plan.description}</p>
+
+              <div className="price">
+                <span>R$</span>
+                <strong>{plan.price}</strong>
+                <small>/único</small>
               </div>
 
-              <div className="plano-price-wrap">
-                <span className="plano-currency">R$</span>
-                <span className="plano-price">{plan.price}</span>
-                <span className="plano-billing">/único</span>
-              </div>
-
-              <div className="plano-divider" />
-
-              <ul className="plano-features">
-                {plan.features.map((feature, i) => (
-                  <li key={i}>
-                    <span className="feature-check">✓</span>
-                    <span>{feature}</span>
-                  </li>
+              <ul>
+                {plan.features.map((f, i) => (
+                  <li key={i}>✓ {f}</li>
                 ))}
               </ul>
 
-              <div className="plano-footer">
-                <a
-                  href={`https://wa.me/5541984606633?text=${encodeURIComponent(
-                    `Olá! Quero saber mais sobre o plano ${plan.name}.`
-                  )}`}
-                  className={`btn-plano ${
-                    plan.isPopular ? 'btn-primary' : 'btn-secondary'
-                  }`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {plan.btnText}
-                </a>
-              </div>
-            </article>
+              <a
+                href={`https://wa.me/5541984606633?text=Quero o plano ${plan.name}`}
+                target="_blank"
+                className="btn"
+              >
+                Quero meu site
+              </a>
+            </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        .planos-ultra {
-          position: relative;
-          z-index: 1;
-          padding: 190px 0 120px;
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .planos-ultra {
+        padding: 200px 0 120px;
+      }
+
+      .planos-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .kicker {
+        color: #a855f7;
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+
+      h2 {
+        font-size: 48px;
+        margin: 10px 0;
+        color: #fff;
+      }
+
+      h2 span {
+        color: #a855f7;
+      }
+
+      .planos-header p {
+        color: #aaa;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+
+      .card {
+        background: rgba(20,20,25,0.7);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 36px 28px;
+        position: relative;
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+      }
+
+      .popular {
+        border: 1px solid #a855f7;
+        transform: scale(1.02);
+      }
+
+      .badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #a855f7;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 10px;
+      }
+
+      h3 {
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .desc {
+        color: #aaa;
+        margin-bottom: 20px;
+      }
+
+      .price {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        margin-bottom: 20px;
+      }
+
+      .price strong {
+        font-size: 36px;
+        color: #fff;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+      }
+
+      li {
+        margin-bottom: 10px;
+        color: #ddd;
+      }
+
+      .btn {
+        display: block;
+        text-align: center;
+        padding: 16px;
+        border-radius: 12px;
+        background: linear-gradient(90deg,#9333ea,#c084fc);
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      @media(max-width: 900px){
+        .grid {
+          grid-template-columns: 1fr;
         }
+      }
 
-        .planos-header {
-          text-align: center;
-          max-width: 860px;
-          margin: 0 auto 96px;
-          padding: 0 20px;
-        }
-
-        .planos-kicker {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 8px 16px;
-          margin-bottom: 18px;
-          border-radius: 999px;
-          border: 1px solid rgba(168, 85, 247, 0.35);
-          background: rgba(168, 85, 247, 0.08);
-          color: #c084fc;
-          font-size: 0.82rem;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-        }
-
-        .planos-title {
-          margin: 0 0 18px;
-          font-size: clamp(2.5rem, 5vw, 4.5rem);
-          line-height: 0.98;
-          font-weight: 800;
-          letter-spacing: -0.05em;
-          color: #ffffff;
-        }
-
-        .planos-title span {
-          color: #a855f7;
-        }
-
-        .planos-subtitle {
-          margin: 0 auto;
-          max-width: 760px;
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 1.08rem;
-          line-height: 1.8;
-        }
-
-        .planos-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 24px;
-          align-items: stretch;
-          max-width: 1180px;
-          margin: 0 auto;
-        }
-
-        .plano-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          min-height: 100%;
-          padding: 30px 24px 24px;
-          border-radius: 28px;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
-            rgba(10, 8, 18, 0.74);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(18px);
-          box-shadow:
-            0 14px 40px rgba(0, 0, 0, 0.22),
-            inset 0 1px 0 rgba(255, 255, 255, 0.04);
-          transition:
-            transform 0.28s ease,
-            border-color 0.28s ease,
-            box-shadow 0.28s ease;
-          overflow: hidden;
-        }
-
-        .plano-card:hover {
-          transform: translateY(-6px);
-          border-color: rgba(255, 255, 255, 0.16);
-          box-shadow:
-            0 20px 48px rgba(0, 0, 0, 0.28),
-            inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .plano-card.popular {
-          border-color: rgba(168, 85, 247, 0.58);
-          box-shadow:
-            0 20px 54px rgba(0, 0, 0, 0.34),
-            0 0 0 1px rgba(168, 85, 247, 0.12),
-            0 0 36px rgba(168, 85, 247, 0.14);
-          transform: translateY(0) scale(1.01);
-        }
-
-        .plano-card.popular:hover {
-          transform: translateY(-6px) scale(1.01);
-          border-color: rgba(168, 85, 247, 0.76);
-          box-shadow:
-            0 24px 60px rgba(0, 0, 0, 0.36),
-            0 0 0 1px rgba(168, 85, 247, 0.18),
-            0 0 44px rgba(168, 85, 247, 0.22);
-        }
-
-        .popular-badge {
-          position: absolute;
-          top: 16px;
-          right: 16px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 7px 12px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, #9333ea, #c084fc);
-          color: #fff;
-          font-size: 0.72rem;
-          font-weight: 800;
-          letter-spacing: 0.04em;
-          text-transform: uppercase;
-          box-shadow: 0 10px 24px rgba(168, 85, 247, 0.28);
-          white-space: nowrap;
-          z-index: 2;
-        }
-
-        .plano-top {
-          margin-bottom: 18px;
-          padding-right: 110px;
-        }
-
-        .plano-name {
-          margin: 0 0 10px;
-          color: #fff;
-          font-size: 1.2rem;
-          line-height: 1.1;
-          font-weight: 800;
-          letter-spacing: -0.02em;
-        }
-
-        .plano-desc {
-          margin: 0;
-          min-height: 72px;
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 0.92rem;
-          line-height: 1.5;
-        }
-
-        .plano-price-wrap {
-          display: flex;
-          align-items: flex-end;
-          gap: 8px;
-          margin-bottom: 18px;
-        }
-
-        .plano-currency {
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 1rem;
-          line-height: 1;
-          font-weight: 700;
-          transform: translateY(-6px);
-        }
-
-        .plano-price {
-          color: #fff;
-          font-size: clamp(2.6rem, 3.4vw, 3.5rem);
-          line-height: 0.9;
-          font-weight: 800;
-          letter-spacing: -0.05em;
-        }
-
-        .plano-billing {
-          color: rgba(255, 255, 255, 0.68);
-          font-size: 0.9rem;
-          font-weight: 600;
-          line-height: 1.2;
-          margin-bottom: 4px;
-        }
-
-        .plano-divider {
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(
-            90deg,
-            rgba(255,255,255,0.04),
-            rgba(255,255,255,0.14),
-            rgba(255,255,255,0.04)
-          );
-          margin-bottom: 18px;
-        }
-
-        .plano-card.popular .plano-divider {
-          background: linear-gradient(
-            90deg,
-            rgba(168,85,247,0.08),
-            rgba(168,85,247,0.4),
-            rgba(168,85,247,0.08)
-          );
-        }
-
-        .plano-features {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          flex: 1;
-        }
-
-        .plano-features li {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          color: rgba(255, 255, 255, 0.92);
-          font-size: 0.95rem;
-          line-height: 1.5;
-        }
-
-        .feature-check {
-          flex: 0 0 auto;
-          width: 22px;
-          height: 22px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 999px;
-          background: rgba(168, 85, 247, 0.14);
-          border: 1px solid rgba(168, 85, 247, 0.28);
-          color: #d8b4fe;
-          font-size: 0.82rem;
-          font-weight: 900;
-          margin-top: 1px;
-        }
-
-        .plano-footer {
-          margin-top: 24px;
-        }
-
-        .btn-plano {
-          width: 100%;
-          min-height: 58px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 16px 22px;
-          border-radius: 18px;
-          text-decoration: none;
-          font-size: 1rem;
-          font-weight: 800;
-          letter-spacing: -0.01em;
-          transition:
-            transform 0.22s ease,
-            box-shadow 0.22s ease,
-            border-color 0.22s ease,
-            background 0.22s ease;
-        }
-
-        .btn-plano:hover {
-          transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-          color: #fff;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          background: rgba(255, 255, 255, 0.04);
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-        }
-
-        .btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.08);
-          border-color: rgba(255, 255, 255, 0.22);
-          box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
-        }
-
-        .btn-primary {
-          color: #fff;
-          border: 1px solid rgba(168, 85, 247, 0.52);
-          background: linear-gradient(135deg, #7e22ce, #a855f7 55%, #c084fc);
-          box-shadow: 0 14px 28px rgba(168, 85, 247, 0.28);
-        }
-
-        .btn-primary:hover {
-          box-shadow: 0 18px 34px rgba(168, 85, 247, 0.38);
-        }
-
-        @media (max-width: 1100px) {
-          .planos-ultra {
-            padding: 150px 0 100px;
-          }
-
-          .planos-grid {
-            grid-template-columns: 1fr;
-            max-width: 640px;
-            margin: 0 auto;
-            gap: 22px;
-          }
-
-          .plano-card,
-          .plano-card.popular,
-          .plano-card:hover,
-          .plano-card.popular:hover {
-            transform: none;
-          }
-
-          .plano-card {
-            padding: 28px 22px 22px;
-          }
-
-          .plano-top {
-            padding-right: 110px;
-          }
-
-          .plano-desc {
-            min-height: auto;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .planos-ultra {
-            padding: 118px 0 88px;
-          }
-
-          .planos-header {
-            margin-bottom: 42px;
-            padding: 0 14px;
-          }
-
-          .planos-kicker {
-            margin-bottom: 14px;
-            font-size: 0.74rem;
-            padding: 7px 14px;
-          }
-
-          .planos-title {
-            font-size: clamp(2rem, 10vw, 2.9rem);
-            margin-bottom: 14px;
-          }
-
-          .planos-subtitle {
-            font-size: 0.97rem;
-            line-height: 1.7;
-          }
-
-          .planos-grid {
-            gap: 18px;
-          }
-
-          .plano-card {
-            padding: 24px 18px 18px;
-            border-radius: 22px;
-          }
-
-          .popular-badge {
-            top: 12px;
-            right: 12px;
-            font-size: 0.64rem;
-            padding: 6px 10px;
-          }
-
-          .plano-top {
-            margin-bottom: 16px;
-            padding-right: 82px;
-          }
-
-          .plano-name {
-            font-size: 1.7rem;
-            margin-bottom: 8px;
-          }
-
-          .plano-desc {
-            font-size: 0.94rem;
-            line-height: 1.55;
-          }
-
-          .plano-price-wrap {
-            gap: 6px;
-            margin-bottom: 16px;
-          }
-
-          .plano-currency {
-            font-size: 0.95rem;
-            transform: translateY(-5px);
-          }
-
-          .plano-price {
-            font-size: clamp(2.2rem, 11vw, 2.9rem);
-          }
-
-          .plano-billing {
-            font-size: 0.84rem;
-            margin-bottom: 3px;
-          }
-
-          .plano-divider {
-            margin-bottom: 16px;
-          }
-
-          .plano-features {
-            gap: 11px;
-          }
-
-          .plano-features li {
-            font-size: 0.93rem;
-          }
-
-          .feature-check {
-            width: 20px;
-            height: 20px;
-            font-size: 0.76rem;
-          }
-
-          .plano-footer {
-            margin-top: 20px;
-          }
-
-          .btn-plano {
-            min-height: 54px;
-            border-radius: 15px;
-            font-size: 0.96rem;
-          }
-        }
       `}</style>
     </section>
   );
