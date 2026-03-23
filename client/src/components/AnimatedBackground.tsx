@@ -8,7 +8,7 @@ export default function AnimatedBackground() {
     const ctx = canvas.getContext("2d")!;
 
     let particles: any[] = [];
-    const PARTICLE_COUNT = 80;
+    const PARTICLE_COUNT = 120;
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -19,9 +19,9 @@ export default function AnimatedBackground() {
       particles = Array.from({ length: PARTICLE_COUNT }).map(() => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1.5,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: (Math.random() - 0.5) * 0.4,
       }));
     }
 
@@ -35,9 +35,23 @@ export default function AnimatedBackground() {
         if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
+        // 🔥 glow forte
+        const gradient = ctx.createRadialGradient(
+          p.x,
+          p.y,
+          0,
+          p.x,
+          p.y,
+          p.radius * 6
+        );
+
+        gradient.addColorStop(0, "rgba(168, 85, 247, 1)");
+        gradient.addColorStop(0.3, "rgba(168, 85, 247, 0.6)");
+        gradient.addColorStop(1, "rgba(168, 85, 247, 0)");
+
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(168, 85, 247, 0.8)";
+        ctx.arc(p.x, p.y, p.radius * 4, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
         ctx.fill();
       }
     }
@@ -56,14 +70,13 @@ export default function AnimatedBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Canvas Partículas */}
+    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       <canvas ref={canvasRef} className="absolute inset-0" />
 
-      {/* GRID FUTURISTA */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.08),transparent_70%)]" />
+      {/* glow geral */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.12),transparent_70%)]" />
 
-      {/* ESFERAS 3D (fake com blur) */}
+      {/* esferas */}
       <div className="sphere sphere-1" />
       <div className="sphere sphere-2" />
       <div className="sphere sphere-3" />
