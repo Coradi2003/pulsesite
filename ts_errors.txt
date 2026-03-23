@@ -1,0 +1,8 @@
+client/src/components/ui/input.tsx(2,32): error TS2307: Cannot find module '@/hooks/useComposition' or its corresponding type declarations.
+client/src/components/ui/input.tsx(23,17): error TS7006: Parameter 'e' implicitly has an 'any' type.
+client/src/components/ui/input.tsx(36,25): error TS7006: Parameter 'e' implicitly has an 'any' type.
+client/src/components/ui/input.tsx(40,23): error TS7006: Parameter 'e' implicitly has an 'any' type.
+client/src/components/ui/textarea.tsx(2,32): error TS2307: Cannot find module '@/hooks/useComposition' or its corresponding type declarations.
+client/src/components/ui/textarea.tsx(22,17): error TS7006: Parameter 'e' implicitly has an 'any' type.
+client/src/components/ui/textarea.tsx(36,25): error TS7006: Parameter 'e' implicitly has an 'any' type.
+client/src/components/ui/textarea.tsx(40,23): error TS7006: Parameter 'e' implicitly has an 'any' type.

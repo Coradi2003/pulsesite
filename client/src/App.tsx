@@ -6,6 +6,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CustomCursor from "./components/CustomCursor";
 import AnimatedBackground from "./components/AnimatedBackground";
+import LoadingScreen from "./components/LoadingScreen";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
@@ -25,6 +26,7 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <div className="relative min-h-screen overflow-hidden">
+            <LoadingScreen />
             <AnimatedBackground />
 
             <CustomCursor />

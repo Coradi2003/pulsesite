@@ -42,69 +42,11 @@ export default function Home() {
       });
     });
 
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText =
-      'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35;';
-    document.body.prepend(canvas);
 
-    const ctx = canvas.getContext('2d');
-    let W = (canvas.width = window.innerWidth);
-    let H = (canvas.height = window.innerHeight);
-    let particles: any[] = [];
-
-    function createParticles() {
-      particles = [];
-      const count = Math.min(60, Math.floor((W * H) / 18000));
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 1.5 + 0.3,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          alpha: Math.random() * 0.5 + 0.1,
-        });
-      }
-    }
-
-    function draw() {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, W, H);
-
-      particles.forEach((p) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(138, 43, 226, ${p.alpha})`;
-        ctx.fill();
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = W;
-        if (p.x > W) p.x = 0;
-        if (p.y < 0) p.y = H;
-        if (p.y > H) p.y = 0;
-      });
-
-      requestAnimationFrame(draw);
-    }
-
-    createParticles();
-    draw();
-
-    const handleResize = () => {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-      createParticles();
-    };
-
-    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
       revealObserver.disconnect();
-      canvas.remove();
     };
   }, []);
 
