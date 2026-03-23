@@ -97,7 +97,7 @@ export default function AnimatedBackground() {
 
   return (
     <>
-      <div className="fixed inset-0 z-[-50] w-screen h-screen overflow-hidden bg-[#050505] pointer-events-none">
+      <div className="fixed inset-0 z-[-1] w-screen h-screen overflow-hidden bg-[#050505] pointer-events-none">
         {/* Subtle Tech Grid */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
@@ -127,11 +127,11 @@ export default function AnimatedBackground() {
           <div className="ab-blob ab-blob-3" />
         </div>
 
-        {/* Particles Canvas */}
-        <canvas ref={canvasRef} className="absolute inset-0 opacity-40" />
+        {/* Contrast Overlay (Behind Particles) */}
+        <div className="absolute inset-0 bg-[#05050A]/40 z-10" />
 
-        {/* Contrast Overlay */}
-        <div className="absolute inset-0 bg-[#05050A]/60 z-10" />
+        {/* Particles Canvas */}
+        <canvas ref={canvasRef} className="absolute inset-0 opacity-80 z-20" />
       </div>
 
       <style>{`

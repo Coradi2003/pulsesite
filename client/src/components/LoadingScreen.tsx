@@ -62,8 +62,8 @@ export default function LoadingScreen() {
             className="flex flex-col items-center"
           >
             <motion.div 
-              className="text-[var(--purple-light)] font-medium text-sm md:text-base tracking-[0.3em] ml-[0.3em] font-[var(--font-main)] uppercase"
-              animate={{ opacity: [0.5, 1, 0.5] }}
+              className="text-white drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] font-bold text-sm md:text-base tracking-[0.4em] ml-[0.4em] font-[var(--font-main)] uppercase"
+              animate={{ opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
               Carregando
