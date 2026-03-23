@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 export default function Home() {
   useEffect(() => {
     const navbar = document.getElementById('navbar');
@@ -41,8 +42,6 @@ export default function Home() {
         }
       });
     });
-
-
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -548,9 +547,9 @@ export default function Home() {
         }
 
         .landing-page {
-          --bg-deep: #0B0B0F;
-          --bg-card: rgba(17, 17, 24, 0.72);
-          --bg-card2: rgba(19, 19, 28, 0.58);
+          --bg-deep: #07070b;
+          --bg-card: rgba(17, 17, 24, 0.62);
+          --bg-card2: rgba(19, 19, 28, 0.48);
           --purple-neon: #8A2BE2;
           --purple-bright: #9D3FFF;
           --purple-light: #B56BFF;
@@ -569,7 +568,8 @@ export default function Home() {
           line-height: 1.65;
           overflow-x: hidden;
           position: relative;
-          z-index: 1;
+          z-index: 2;
+          isolation: isolate;
         }
 
         .landing-page::before {
@@ -577,9 +577,21 @@ export default function Home() {
           position: fixed;
           inset: 0;
           background-image:
-            linear-gradient(rgba(138, 43, 226, 0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(138, 43, 226, 0.04) 1px, transparent 1px);
+            linear-gradient(rgba(138, 43, 226, 0.028) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(138, 43, 226, 0.028) 1px, transparent 1px);
           background-size: 60px 60px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .landing-page::after {
+          content: '';
+          position: fixed;
+          inset: 0;
+          background:
+            radial-gradient(circle at 20% 18%, rgba(157, 63, 255, 0.12), transparent 28%),
+            radial-gradient(circle at 78% 24%, rgba(138, 43, 226, 0.08), transparent 24%),
+            radial-gradient(circle at 60% 78%, rgba(181, 107, 255, 0.07), transparent 26%);
           pointer-events: none;
           z-index: 0;
         }
@@ -592,6 +604,8 @@ export default function Home() {
           max-width: 1160px;
           margin: 0 auto;
           padding: 0 24px;
+          position: relative;
+          z-index: 1;
         }
 
         .landing-page .section {
@@ -646,6 +660,7 @@ export default function Home() {
         .landing-page .btn {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 10px;
           font-family: var(--font-main);
           font-weight: 700;
@@ -679,6 +694,11 @@ export default function Home() {
           color: #fff;
           box-shadow: 0 0 24px var(--purple-glow), 0 4px 20px rgba(138,43,226,0.35);
           border-radius: 12px;
+        }
+
+        .landing-page .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0 32px rgba(157, 63, 255, 0.45), 0 10px 28px rgba(138,43,226,0.28);
         }
 
         @media (max-width: 600px) {
@@ -741,6 +761,7 @@ export default function Home() {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 16px;
         }
 
         .landing-page .navbar-logo {
@@ -793,7 +814,7 @@ export default function Home() {
           transform: translateX(-50%);
           width: 900px;
           height: 700px;
-          background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.18) 0%, transparent 70%);
+          background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.16) 0%, transparent 70%);
           pointer-events: none;
           z-index: 0;
         }
@@ -803,6 +824,12 @@ export default function Home() {
           grid-template-columns: 1fr 1fr;
           gap: 60px;
           align-items: center;
+          position: relative;
+          z-index: 1;
+        }
+
+        .landing-page .hero-content,
+        .landing-page .hero-visual {
           position: relative;
           z-index: 1;
         }
@@ -999,9 +1026,9 @@ export default function Home() {
         .landing-page .problema {
           background: linear-gradient(
             180deg,
-            rgba(11, 11, 15, 0.18) 0%,
-            rgba(19, 19, 28, 0.32) 50%,
-            rgba(11, 11, 15, 0.18) 100%
+            rgba(11, 11, 15, 0.14) 0%,
+            rgba(19, 19, 28, 0.26) 50%,
+            rgba(11, 11, 15, 0.14) 100%
           );
           backdrop-filter: blur(6px);
         }
@@ -1205,7 +1232,7 @@ export default function Home() {
         }
 
         .landing-page .como-funciona {
-          background: rgba(19, 19, 28, 0.26);
+          background: rgba(19, 19, 28, 0.22);
           position: relative;
           overflow: hidden;
           backdrop-filter: blur(6px);
@@ -1341,7 +1368,7 @@ export default function Home() {
         }
 
         .landing-page .cta-final {
-          background: rgba(11, 11, 15, 0.12);
+          background: rgba(11, 11, 15, 0.1);
           position: relative;
           overflow: hidden;
           backdrop-filter: blur(4px);
@@ -1368,6 +1395,7 @@ export default function Home() {
           position: relative;
           overflow: hidden;
           backdrop-filter: blur(18px);
+          box-shadow: 0 0 60px rgba(138, 43, 226, 0.08);
         }
 
         .landing-page .cta-box::before {
@@ -1415,7 +1443,7 @@ export default function Home() {
         }
 
         .landing-page .footer {
-          background: rgba(17, 17, 24, 0.5);
+          background: rgba(17, 17, 24, 0.42);
           border-top: 1px solid var(--border);
           padding: 48px 0 32px;
           position: relative;
@@ -1675,6 +1703,17 @@ export default function Home() {
           .landing-page .footer-bottom {
             flex-direction: column;
             text-align: center;
+          }
+
+          .landing-page .btn-lg {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1rem;
+          }
+
+          .landing-page .hero-buttons,
+          .landing-page .cta-buttons {
+            flex-direction: column;
           }
         }
       `}</style>
