@@ -1,14 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
+
 
   // Mouse Parallax Effect
   useEffect(() => {
-    if (prefersReducedMotion) return;
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
@@ -21,12 +20,12 @@ export default function AnimatedBackground() {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [prefersReducedMotion]);
+  }, []);
 
   // Canvas Particles from Home.tsx rebuilt
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || prefersReducedMotion) return;
+    if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -93,11 +92,11 @@ export default function AnimatedBackground() {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationId);
     };
-  }, [prefersReducedMotion]);
+  }, []);
 
   return (
     <>
-      <div className="fixed inset-0 z-[-1] w-screen h-screen overflow-hidden bg-[#050505] pointer-events-none">
+      <div className="fixed inset-0 z-0 w-screen h-screen overflow-hidden bg-[#050505] pointer-events-none">
         {/* Subtle Tech Grid */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
