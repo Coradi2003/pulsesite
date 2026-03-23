@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -23,12 +22,11 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
-          <div className="relative min-h-screen overflow-hidden">
+          <div className="relative min-h-screen overflow-hidden bg-transparent">
             <LoadingScreen />
             <AnimatedBackground />
-
             <CustomCursor />
             <Toaster />
             <Router />
