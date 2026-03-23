@@ -35,7 +35,7 @@ export default function AnimatedBackground() {
         if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
-        // 🔥 glow forte
+        // 🔥 GLOW REAL
         const gradient = ctx.createRadialGradient(
           p.x,
           p.y,
@@ -70,13 +70,15 @@ export default function AnimatedBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      <canvas ref={canvasRef} className="absolute inset-0" />
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      
+      {/* CANVAS (partículas) */}
+      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
 
-      {/* glow geral */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.12),transparent_70%)]" />
+      {/* GLOW GLOBAL */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.12),transparent_70%)]" />
 
-      {/* esferas */}
+      {/* ESFERAS */}
       <div className="sphere sphere-1" />
       <div className="sphere sphere-2" />
       <div className="sphere sphere-3" />
