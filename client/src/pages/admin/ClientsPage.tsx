@@ -26,8 +26,7 @@ export default function ClientsPage() {
   const filtered = clients.filter(
     (c) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.company.toLowerCase().includes(search.toLowerCase()) ||
-      c.email.toLowerCase().includes(search.toLowerCase())
+      c.company.toLowerCase().includes(search.toLowerCase())
   );
 
   const openCreate = () => {
@@ -84,7 +83,7 @@ export default function ClientsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-purple-900/20">
-                  {["Nome", "Empresa", "E-mail", "Telefone", "Status", ""].map((h) => (
+                  {["Nome", "Empresa", "Telefone", "Status", ""].map((h) => (
                     <th key={h} className="px-5 py-3 text-left text-gray-500 text-xs font-medium">{h}</th>
                   ))}
                 </tr>
@@ -109,7 +108,6 @@ export default function ClientsPage() {
                       >
                         <td className="px-5 py-3.5 text-gray-200 font-medium">{c.name}</td>
                         <td className="px-5 py-3.5 text-gray-400">{c.company}</td>
-                        <td className="px-5 py-3.5 text-gray-400">{c.email}</td>
                         <td className="px-5 py-3.5 text-gray-400">{c.phone}</td>
                         <td className="px-5 py-3.5">
                           <StatusBadge status={c.status} />
@@ -161,10 +159,10 @@ export default function ClientsPage() {
               </div>
 
               <div className="space-y-4">
-                {(["name", "company", "email", "phone"] as const).map((field) => (
+                {(["name", "company", "phone"] as const).map((field) => (
                   <div key={field}>
                     <label className="text-gray-400 text-xs font-medium mb-1.5 block capitalize">
-                      {field === "name" ? "Nome" : field === "company" ? "Empresa" : field === "email" ? "E-mail" : "Telefone"}
+                      {field === "name" ? "Nome" : field === "company" ? "Empresa" : "Telefone"}
                     </label>
                     <Input
                       value={form[field]}

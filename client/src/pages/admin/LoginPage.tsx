@@ -55,17 +55,7 @@ export default function LoginPage() {
 
         {/* Card */}
         <div className="bg-[#0d0a1a]/90 backdrop-blur border border-purple-900/30 rounded-2xl p-7 shadow-2xl shadow-black/40">
-          {mockMode && (
-            <div className="flex items-start gap-2.5 mb-5 p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg">
-              <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-amber-300 text-xs font-semibold">Modo Demo</p>
-                <p className="text-amber-400/80 text-xs mt-0.5">
-                  Use: <strong>admin@pulsefuturo.com.br</strong> / <strong>admin123</strong>
-                </p>
-              </div>
-            </div>
-          )}
+
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -75,7 +65,7 @@ export default function LoginPage() {
                 <Input
                   id="admin-email"
                   type="email"
-                  placeholder="admin@pulsefuturo.com.br"
+                  placeholder="seu@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
