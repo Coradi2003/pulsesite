@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CustomCursor from "./components/CustomCursor";
 import AnimatedBackground from "./components/AnimatedBackground";
@@ -20,6 +21,29 @@ import FinancePage from "./pages/admin/FinancePage";
 import DomainsPage from "./pages/admin/DomainsPage";
 import MonitoringPage from "./pages/admin/MonitoringPage";
 import SettingsPage from "./pages/admin/SettingsPage";
+
+const ADMIN_HOSTNAME = "admin.pulsefuturo.com.br";
+
+/**
+ * If the user visits admin.pulsefuturo.com.br on any path that is not
+ * already under /admin/*, redirect them to /admin/login.
+ * This is a client-side safety net; vercel.json handles the edge case for /.
+ */
+function AdminSubdomainGuard() {
+  const [location, navigate] = useLocation();
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.location.hostname === ADMIN_HOSTNAME &&
+      !location.startsWith("/admin")
+    ) {
+      navigate("/admin/login", { replace: true });
+    }
+  }, [location, navigate]);
+
+  return null;
+}
 
 function AdminRouter() {
   return (
@@ -71,6 +95,7 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
+          <AdminSubdomainGuard />
           <Switch>
             {/* Admin: bare layout — no loading screen, no cursor, no animated bg */}
             <Route path="/admin/:rest*">

@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "admin.pulsefuturo.com.br" }],
+      "destination": "/admin/login",
+      "permanent": false
+    }
+  ]
+}
