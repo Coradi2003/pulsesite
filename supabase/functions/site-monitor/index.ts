@@ -23,63 +23,76 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    const { data: projects, error } = await supabase.from("projects").select("*");
-    if (error) throw error;
-    if (!projects) return new Response(JSON.stringify({ ok: true, results: {} }), { headers: corsHeaders });
+    const [{ data: projects, error: pe }, { data: domains, error: de }] = await Promise.all([
+      supabase.from("projects").select("*"),
+      supabase.from("domains").select("*")
+    ]);
+
+    if (pe || de) throw pe || de;
 
     const now = new Date();
     const results: Record<string, string> = {};
     const projectUpdates: any[] = [];
+    const domainUpdates: any[] = [];
 
-    // Sequential processing to be 100% safe
-    for (const project of projects) {
-      const url = project.custom_domain
-        ? `https://${project.custom_domain.replace(/^https?:\/\//, "")}`
-        : project.vercel_url;
-
-      if (!url) {
-        results[project.id] = "offline";
-        continue;
-      }
+    // Process Projects
+    for (const p of projects || []) {
+      const url = p.custom_domain ? `https://${p.custom_domain.replace(/^https?:\/\//, "")}` : p.vercel_url;
+      if (!url) { results[p.id] = "offline"; continue; }
 
       let isUp = false;
       try {
         const res = await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(5000) });
         isUp = res.status < 500;
-      } catch {
-        isUp = false;
-      }
+      } catch { isUp = false; }
 
       const status = isUp ? "online" : "offline";
-      results[project.id] = status;
+      results[p.id] = status;
 
-      const update: any = {
-        id: project.id,
-        status: status,
-        last_ping: now.toISOString(),
-      };
-
-      if (isUp && project.down_since) {
+      const update: any = { id: p.id, status, last_ping: now.toISOString() };
+      if (isUp && p.down_since) {
         update.down_since = null;
         update.last_alert_sent = null;
-        await sendWhatsApp(`✅ Site de volta: *${project.project_name}*`);
-      } else if (!isUp && !project.down_since) {
+        await sendWhatsApp(`✅ Site online: *${p.project_name}*`);
+      } else if (!isUp && !p.down_since) {
         update.down_since = now.toISOString();
       }
-
       projectUpdates.push(update);
     }
 
-    // Bulk update database
-    if (projectUpdates.length > 0) {
-      const { error: upsertError } = await supabase
-        .from("projects")
-        .upsert(projectUpdates);
-      
-      if (upsertError) console.error("Upsert Error:", upsertError);
+    // Process Domains (Standalone)
+    for (const d of domains || []) {
+      const url = `https://${d.domain.replace(/^https?:\/\//, "")}`;
+      let isUp = false;
+      try {
+        const res = await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+        isUp = res.status < 500;
+      } catch { isUp = false; }
+
+      const status = isUp ? "online" : "offline";
+      results[d.id] = status; // Use ID as key in statusMap
+
+      const update: any = { id: d.id, status, last_ping: now.toISOString() };
+      // Check if domain was previously down (if col exists now)
+      if (isUp && (d as any).down_since) {
+        (update as any).down_since = null;
+        await sendWhatsApp(`✅ Domínio online: *${d.domain}*`);
+      } else if (!isUp && !(d as any).down_since) {
+        // (update as any).down_since = now.toISOString(); // We didn't add down_since to domains, only status/last_ping
+      }
+      domainUpdates.push(update);
     }
 
-    return new Response(JSON.stringify({ ok: true, results, version: "1.0.8", count: projectUpdates.length }), {
+    // Bulk updates
+    if (projectUpdates.length > 0) await supabase.from("projects").upsert(projectUpdates);
+    if (domainUpdates.length > 0) await supabase.from("domains").upsert(domainUpdates);
+
+    return new Response(JSON.stringify({ 
+      ok: true, 
+      results, 
+      version: "1.1.0", 
+      monitored: projectUpdates.length + domainUpdates.length 
+    }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });

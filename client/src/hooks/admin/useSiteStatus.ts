@@ -4,22 +4,28 @@ import { type Project } from "@/lib/mockData";
 
 type StatusMap = Record<string, "online" | "offline" | "checking">;
 
-// In mock mode, simulate statuses based on the project data
-export function useSiteStatus(projects: Project[], intervalMs = 30000) {
+// Generic type for anything we monitor
+interface MonitoredAsset {
+  id: string;
+  status: string;
+  project_name?: string;
+  domain?: string;
+}
+
+export function useSiteStatus(assets: MonitoredAsset[], intervalMs = 30000) {
   const [statusMap, setStatusMap] = useState<StatusMap>({});
   const [lastChecked, setLastChecked] = useState<Date | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const check = useCallback(async () => {
-    if (projects.length === 0 || !isSupabaseConfigured || !supabase) return;
+    if (assets.length === 0 || !isSupabaseConfigured || !supabase) return;
 
     // Mark as checking
-    const checkingMap: StatusMap = {};
-    projects.forEach(p => { checkingMap[p.id] = "checking"; });
+    const checkingMap: StatusMap = { ...statusMap };
+    assets.forEach(p => { checkingMap[p.id] = "checking"; });
     setStatusMap(checkingMap);
 
     try {
-      // Call the Edge Function for real-time ping
       const { data, error } = await supabase.functions.invoke("site-monitor", {
         method: "POST"
       });
@@ -27,9 +33,8 @@ export function useSiteStatus(projects: Project[], intervalMs = 30000) {
       if (!error && data?.results) {
         setStatusMap(data.results);
       } else {
-        // Fallback to current project status if error
         const fallback: StatusMap = {};
-        projects.forEach(p => { fallback[p.id] = (p.status as "online" | "offline") || "online"; });
+        assets.forEach(p => { fallback[p.id] = (p.status as "online" | "offline") || "online"; });
         setStatusMap(fallback);
       }
     } catch (err) {
@@ -37,16 +42,16 @@ export function useSiteStatus(projects: Project[], intervalMs = 30000) {
     }
     
     setLastChecked(new Date());
-  }, [projects]);
+  }, [assets, statusMap]);
 
   useEffect(() => {
     // Initial sync from DB data
     const initial: StatusMap = {};
-    projects.forEach((p) => {
+    assets.forEach((p) => {
       initial[p.id] = (p.status as "online" | "offline") || "online";
     });
     setStatusMap(initial);
-  }, [projects]);
+  }, [assets]);
 
   return { statusMap, lastChecked, checkNow: check };
 }
