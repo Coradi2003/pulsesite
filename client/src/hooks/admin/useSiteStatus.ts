@@ -47,9 +47,20 @@ export function useSiteStatus(assets: MonitoredAsset[], intervalMs = 30000) {
     setChecking(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke("site-monitor", {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
+      const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+
+      const response = await fetch(`${supabaseUrl}/functions/v1/site-monitor`, {
         method: "POST",
+        headers: {
+          "Authorization": `Bearer ${supabaseKey}`,
+          "Content-Type": "application/json",
+        },
+        signal: AbortSignal.timeout(60000),
       });
+
+      const data = response.ok ? await response.json() : null;
+      const error = response.ok ? null : `HTTP ${response.status}`;
 
       if (!error && data?.results) {
         // Handle BOTH old format (string) and new format ({ status, responseTime })

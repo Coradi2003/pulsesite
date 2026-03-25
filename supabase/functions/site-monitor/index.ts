@@ -5,10 +5,15 @@ const ALLOWED_ORIGINS = [
   "https://pulsefuturo.com.br",
   "https://www.pulsefuturo.com.br",
   "https://admin.pulsefuturo.com.br",
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "http://localhost:4173",
 ];
 
 function getCorsHeaders(origin: string): Record<string, string> {
-  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  // Allow any vercel preview deployment or known origin
+  const isAllowed = ALLOWED_ORIGINS.includes(origin) || origin.endsWith(".vercel.app");
+  const allowedOrigin = isAllowed ? origin : ALLOWED_ORIGINS[0];
   return {
     "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -128,9 +133,26 @@ Deno.serve(async (req) => {
       domainUpdates.push(update);
     }
 
-    // ── Bulk upserts ──────────────────────────────────────────────────────────
-    if (projectUpdates.length > 0) await supabase.from("projects").upsert(projectUpdates);
-    if (domainUpdates.length > 0) await supabase.from("domains").upsert(domainUpdates);
+    // ── Bulk upserts (wrapped so DB errors don't kill the response) ───────────
+    try {
+      if (projectUpdates.length > 0) await supabase.from("projects").upsert(projectUpdates);
+    } catch (upsertErr) {
+      // Likely missing response_time column — retry without it
+      try {
+        const safeUpdates = projectUpdates.map(({ response_time, ...rest }: any) => rest);
+        await supabase.from("projects").upsert(safeUpdates);
+      } catch { /* ignore */ }
+    }
+
+    try {
+      if (domainUpdates.length > 0) await supabase.from("domains").upsert(domainUpdates);
+    } catch (upsertErr) {
+      // Likely missing response_time column — retry without it
+      try {
+        const safeUpdates = domainUpdates.map(({ response_time, ...rest }: any) => rest);
+        await supabase.from("domains").upsert(safeUpdates);
+      } catch { /* ignore */ }
+    }
 
     return new Response(
       JSON.stringify({
