@@ -124,7 +124,7 @@ export default function DashboardPage() {
   // Real-time Revenue calculation (Status: paid + Type: monthly)
   const monthlyRevenue = finance
     .filter((f) => f.status === "paid" && f.type === "monthly")
-    .reduce((a, b) => a + b.amount, 0);
+    .reduce((a, b) => a + Number(b.amount || 0), 0);
 
   const pendingPayments = finance.filter((f) => f.status === "pending" || f.status === "overdue").length;
 
