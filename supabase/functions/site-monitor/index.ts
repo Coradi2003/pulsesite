@@ -31,15 +31,15 @@ Deno.serve(async (req) => {
     const results: Record<string, string> = {};
     const projectUpdates: any[] = [];
 
-    // Parallel ping all sites
-    await Promise.all(projects.map(async (project) => {
+    // Sequential processing to be 100% safe
+    for (const project of projects) {
       const url = project.custom_domain
         ? `https://${project.custom_domain.replace(/^https?:\/\//, "")}`
         : project.vercel_url;
 
       if (!url) {
         results[project.id] = "offline";
-        return;
+        continue;
       }
 
       let isUp = false;
@@ -53,24 +53,22 @@ Deno.serve(async (req) => {
       const status = isUp ? "online" : "offline";
       results[project.id] = status;
 
-      // Prepare update object
       const update: any = {
         id: project.id,
         status: status,
         last_ping: now.toISOString(),
       };
 
-      // WhatsApp logic
       if (isUp && project.down_since) {
         update.down_since = null;
         update.last_alert_sent = null;
-        await sendWhatsApp(`✅ *Pulse Futuro* — Site de volta: *${project.project_name}*`);
+        await sendWhatsApp(`✅ Site de volta: *${project.project_name}*`);
       } else if (!isUp && !project.down_since) {
         update.down_since = now.toISOString();
       }
 
       projectUpdates.push(update);
-    }));
+    }
 
     // Bulk update database
     if (projectUpdates.length > 0) {
@@ -81,7 +79,7 @@ Deno.serve(async (req) => {
       if (upsertError) console.error("Upsert Error:", upsertError);
     }
 
-    return new Response(JSON.stringify({ ok: true, results }), {
+    return new Response(JSON.stringify({ ok: true, results, version: "1.0.8", count: projectUpdates.length }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });

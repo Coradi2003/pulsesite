@@ -43,6 +43,8 @@ export default function DashboardPage() {
 
   const handleVerify = async () => {
     await checkNow();
+    // Delay for DB consistency
+    await new Promise(r => setTimeout(r, 1500));
     await reloadProjects();
   };
 
@@ -200,7 +202,7 @@ export default function DashboardPage() {
 
         {/* Diagnostic Footer (Internal Use) */}
         <div className="mt-12 opacity-10 hover:opacity-100 transition-opacity text-[8px] text-gray-700 flex flex-col gap-1 font-mono">
-          <p>Debug Info (v1.0.7):</p>
+          <p>Debug Info (v1.0.8):</p>
           <p>Supabase Configured: {String(isSupabaseConfigured)}</p>
           <p>URL: {import.meta.env.VITE_SUPABASE_URL ? "Defined (starts with " + import.meta.env.VITE_SUPABASE_URL.substring(0, 10) + "...)" : "UNDEFINED"}</p>
           <p>Projects Count: {projects.length}</p>
