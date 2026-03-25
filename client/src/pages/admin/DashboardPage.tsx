@@ -48,7 +48,17 @@ export default function DashboardPage() {
     ...domains.map(d => ({ ...d, _type: 'domain' as const, _name: d.domain, _url: d.domain, _client: d.client_id }))
   ].sort((a, b) => a._name.localeCompare(b._name));
 
-  const { statusMap, lastChecked, checkNow } = useSiteStatus(allAssets as any);
+  // Unified assets list: Now restricted to Domains as requested
+  // Projects will remain visible in the Monitoring/Projects pages
+  const dashboardAssets = domains.map(d => ({ 
+    ...d, 
+    _type: 'domain' as const, 
+    _name: d.domain, 
+    _url: d.domain, 
+    _client: d.client_id 
+  })).sort((a, b) => a._name.localeCompare(b._name));
+
+  const { statusMap, lastChecked, checkNow } = useSiteStatus(dashboardAssets as any);
 
   const handleVerify = async () => {
     await checkNow();
@@ -56,16 +66,19 @@ export default function DashboardPage() {
     await Promise.all([reloadProjects(), reloadDomains()]);
   };
 
-  // Version: 1.1.0 - Unified Check
+  // Version: 1.1.2 - Filtered Dashboard
   const isRealData = isSupabaseConfigured;
 
-  const onlineCount = allAssets.filter((a) =>
+  const onlineCount = dashboardAssets.filter((a) =>
     statusMap[a.id] ? statusMap[a.id] === "online" : (a as any).status === "online"
   ).length;
-  const offlineCount = allAssets.length - onlineCount;
+  const offlineCount = dashboardAssets.length - onlineCount;
+  
+  // Real-time Revenue calculation (Status: paid + Type: monthly)
   const monthlyRevenue = finance
     .filter((f) => f.status === "paid" && f.type === "monthly")
     .reduce((a, b) => a + b.amount, 0);
+
   const pendingPayments = finance.filter((f) => f.status === "pending" || f.status === "overdue").length;
 
   const clientMap = Object.fromEntries(clients.map((c) => [c.id, c.name]));
@@ -103,9 +116,9 @@ export default function DashboardPage() {
         {/* Stats grid */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           <StatCard label="Total de Clientes" value={cl ? "…" : clients.length} icon={Users} color="purple" />
-          <StatCard label="Total de Ativos" value={pl || dl ? "…" : allAssets.length} icon={Globe2} color="blue" />
-          <StatCard label="Sistemas Online" value={pl || dl ? "…" : onlineCount} icon={CheckCircle2} color="green" />
-          <StatCard label="Sistemas Offline" value={pl || dl ? "…" : offlineCount} icon={XCircle} color="red" />
+          <StatCard label="Domínios Monitorados" value={dl ? "…" : dashboardAssets.length} icon={Globe2} color="blue" />
+          <StatCard label="Domínios Online" value={dl ? "…" : onlineCount} icon={CheckCircle2} color="green" />
+          <StatCard label="Domínios Offline" value={dl ? "…" : offlineCount} icon={XCircle} color="red" />
           <StatCard
             label="Receita Mensal"
             value={fl ? "…" : formatBRL(monthlyRevenue)}
@@ -115,7 +128,7 @@ export default function DashboardPage() {
           <StatCard label="Pagamentos Pendentes" value={fl ? "…" : pendingPayments} icon={Clock} color="amber" />
         </div>
 
-        {/* Projects table */}
+        {/* Domains monitoring table */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -123,7 +136,7 @@ export default function DashboardPage() {
           className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl overflow-hidden shadow-2xl shadow-purple-900/10"
         >
           <div className="flex items-center justify-between px-5 py-4 border-b border-purple-900/20 bg-white/[0.02]">
-            <h3 className="text-white font-semibold text-sm">Resumo de Monitoramento</h3>
+            <h3 className="text-white font-semibold text-sm">Monitoramento de Domínios</h3>
             <div className="flex items-center gap-3">
               {lastChecked && (
                 <span className="text-gray-500 text-xs">
@@ -132,14 +145,14 @@ export default function DashboardPage() {
               )}
               <button
                 onClick={handleVerify}
-                disabled={pl || dl}
+                disabled={dl}
                 className={cn(
                   "flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors bg-purple-500/10 px-2 py-1 rounded",
-                  (pl || dl) && "opacity-50 cursor-not-allowed"
+                  dl && "opacity-50 cursor-not-allowed"
                 )}
               >
-                <RefreshCw className={cn("w-3 h-3", (pl || dl) && "animate-spin")} />
-                {pl || dl ? "Verificando..." : "Verificar"}
+                <RefreshCw className={cn("w-3 h-3", dl && "animate-spin")} />
+                {dl ? "Verificando..." : "Verificar"}
               </button>
             </div>
           </div>
@@ -148,7 +161,7 @@ export default function DashboardPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-purple-900/20 bg-white/[0.01]">
-                  {["Ativo", "Cliente", "Domínio", "Status", "Último Ping"].map((h) => (
+                  {["Domínio", "Cliente", "Status", "Último Ping"].map((h) => (
                     <th key={h} className="px-5 py-3 text-left text-gray-500 text-[10px] uppercase tracking-wider font-bold">
                       {h}
                     </th>
@@ -156,51 +169,30 @@ export default function DashboardPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-purple-900/10">
-                {pl || dl
+                {dl
                   ? Array.from({ length: 4 }).map((_, i) => (
                       <tr key={i}>
-                        {Array.from({ length: 5 }).map((_, j) => (
+                        {Array.from({ length: 4 }).map((_, j) => (
                           <td key={j} className="px-5 py-3.5">
                             <div className="h-3 bg-white/5 rounded animate-pulse w-24" />
                           </td>
                         ))}
                       </tr>
                     ))
-                  : allAssets.length === 0 ? (
+                  : dashboardAssets.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="px-5 py-10 text-center text-gray-500 italic">
-                        Nenhum ativo cadastrado no banco de dados.
+                      <td colSpan={4} className="px-5 py-10 text-center text-gray-500 italic">
+                        Nenhum domínio cadastrado para monitoramento.
                       </td>
                     </tr>
-                  ) : allAssets.map((p) => {
+                  ) : dashboardAssets.map((p) => {
                       const liveStatus = statusMap[p.id];
                       const displayStatus =
                         liveStatus === "checking" ? (p as any).status : liveStatus ?? (p as any).status;
                       return (
                         <tr key={p.id} className="hover:bg-white/[0.02] transition-colors group">
-                          <td className="px-5 py-3.5">
-                            <div className="flex flex-col">
-                              <span className="text-gray-200 font-medium tracking-tight">{p._name}</span>
-                              <span className={cn(
-                                "text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded-sm w-fit mt-1",
-                                p._type === 'project' ? "bg-purple-500/10 text-purple-400" : "bg-amber-500/10 text-amber-400"
-                              )}>
-                                {p._type === 'project' ? 'Projeto' : 'Domínio'}
-                              </span>
-                            </div>
-                          </td>
+                          <td className="px-5 py-3.5 text-gray-200 font-medium">{p._name}</td>
                           <td className="px-5 py-3.5 text-gray-400">{clientMap[p._client] ?? "—"}</td>
-                          <td className="px-5 py-3.5">
-                            <a
-                              href={`https://${p._url}`}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-purple-400 hover:text-purple-300 flex items-center gap-1 transition-colors"
-                            >
-                              {p._url}
-                              <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </a>
-                          </td>
                           <td className="px-5 py-3.5">
                             <div className="flex items-center gap-2">
                               <StatusBadge status={displayStatus as "online" | "offline"} />
@@ -220,11 +212,11 @@ export default function DashboardPage() {
 
         {/* Diagnostic Footer (Internal Use) */}
         <div className="mt-12 opacity-10 hover:opacity-100 transition-opacity text-[8px] text-gray-700 flex flex-col gap-1 font-mono">
-          <p>Debug Info (v1.1.0):</p>
+          <p>Debug Info (v1.1.2):</p>
           <p>Supabase Configured: {String(isSupabaseConfigured)}</p>
           <p>URL: {import.meta.env.VITE_SUPABASE_URL ? "Defined (starts with " + import.meta.env.VITE_SUPABASE_URL.substring(0, 10) + "...)" : "UNDEFINED"}</p>
-          <p>Projects Count: {projects.length}</p>
-          <p>Clients Count: {clients.length}</p>
+          <p>Domains Count: {dashboardAssets.length}</p>
+          <p>Revenue Paid: {formatBRL(monthlyRevenue)}</p>
         </div>
       </div>
     </AdminLayout>
