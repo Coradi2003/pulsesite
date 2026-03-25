@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import {
   Users,
@@ -6,7 +7,6 @@ import {
   XCircle,
   DollarSign,
   Clock,
-  ExternalLink,
   RefreshCw,
   Zap,
 } from "lucide-react";
@@ -17,7 +17,7 @@ import { StatusBadge } from "@/components/admin/StatusBadge";
 import { useClients } from "@/hooks/admin/useClients";
 import { useProjects } from "@/hooks/admin/useProjects";
 import { useFinance } from "@/hooks/admin/useFinance";
-import { useSiteStatus } from "@/hooks/admin/useSiteStatus";
+import { useSiteStatus, type PingResult } from "@/hooks/admin/useSiteStatus";
 import { useDomains } from "@/hooks/admin/useDomains";
 import { isSupabaseConfigured } from "@/lib/supabase";
 
@@ -36,11 +36,45 @@ function timeAgo(dateStr: string | null) {
   return `${hrs}h atrás`;
 }
 
+/** Color-coded response time badge */
+function PingBadge({ ping }: { ping: PingResult | undefined }) {
+  if (!ping || ping.status === "checking") {
+    return (
+      <span className="inline-flex items-center gap-1 text-gray-500 text-xs font-mono">
+        <span className="w-2 h-2 rounded-full bg-gray-600 animate-pulse" />
+        Verificando…
+      </span>
+    );
+  }
+  if (ping.status === "offline" || ping.responseTime === null) {
+    return (
+      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+        Offline
+      </span>
+    );
+  }
+  const ms = ping.responseTime;
+  const color =
+    ms < 200
+      ? { dot: "bg-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", text: "text-emerald-400" }
+      : ms <= 500
+      ? { dot: "bg-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", text: "text-yellow-400" }
+      : { dot: "bg-red-400", bg: "bg-red-500/10", border: "border-red-500/20", text: "text-red-400" };
+  return (
+    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full ${color.bg} border ${color.border} ${color.text} text-xs font-bold font-mono`}>
+      <span className={`w-1.5 h-1.5 rounded-full ${color.dot}`} />
+      {ms} ms
+    </span>
+  );
+}
+
 export default function DashboardPage() {
   const { data: clients, loading: cl } = useClients();
   const { data: projects, loading: pl, reload: reloadProjects } = useProjects();
   const { data: domains, loading: dl, reload: reloadDomains } = useDomains();
   const { data: finance, loading: fl } = useFinance();
+  const [verifying, setVerifying] = React.useState(false);
 
   // Unified assets list: Projects + Domains
   const allAssets = [
@@ -58,12 +92,13 @@ export default function DashboardPage() {
     _client: d.client_id 
   })).sort((a, b) => a._name.localeCompare(b._name));
 
-  const { statusMap, lastChecked, checkNow } = useSiteStatus(dashboardAssets as any);
+  const { statusMap, pingMap, lastChecked, checkNow } = useSiteStatus(dashboardAssets as any);
 
   const handleVerify = async () => {
+    setVerifying(true);
     await checkNow();
-    await new Promise(r => setTimeout(r, 1500));
     await Promise.all([reloadProjects(), reloadDomains()]);
+    setVerifying(false);
   };
 
   // Version: 1.1.2 - Filtered Dashboard
@@ -145,14 +180,14 @@ export default function DashboardPage() {
               )}
               <button
                 onClick={handleVerify}
-                disabled={dl}
+                disabled={verifying || dl}
                 className={cn(
                   "flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors bg-purple-500/10 px-2 py-1 rounded",
-                  dl && "opacity-50 cursor-not-allowed"
+                  (verifying || dl) && "opacity-50 cursor-not-allowed"
                 )}
               >
-                <RefreshCw className={cn("w-3 h-3", dl && "animate-spin")} />
-                {dl ? "Verificando..." : "Verificar"}
+                <RefreshCw className={cn("w-3 h-3", (verifying || dl) && "animate-spin")} />
+                {verifying ? "Pingando..." : "Verificar"}
               </button>
             </div>
           </div>
@@ -201,7 +236,9 @@ export default function DashboardPage() {
                               )}
                             </div>
                           </td>
-                          <td className="px-5 py-3.5 text-gray-500 text-xs font-mono">{timeAgo((p as any).last_ping)}</td>
+                          <td className="px-5 py-3.5">
+                            <PingBadge ping={pingMap[p.id]} />
+                          </td>
                         </tr>
                       );
                     })}

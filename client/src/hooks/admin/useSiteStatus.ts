@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
-import { type Project } from "@/lib/mockData";
 
-type StatusMap = Record<string, "online" | "offline" | "checking">;
+export interface PingResult {
+  status: "online" | "offline" | "checking";
+  responseTime: number | null;
+}
 
-// Generic type for anything we monitor
+type PingMap = Record<string, PingResult>;
+
 interface MonitoredAsset {
   id: string;
   status: string;
@@ -13,45 +16,87 @@ interface MonitoredAsset {
 }
 
 export function useSiteStatus(assets: MonitoredAsset[], intervalMs = 30000) {
-  const [statusMap, setStatusMap] = useState<StatusMap>({});
+  const [pingMap, setPingMap] = useState<PingMap>({});
   const [lastChecked, setLastChecked] = useState<Date | null>(null);
+  const [checking, setChecking] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Seed initial state from DB values
+  useEffect(() => {
+    const initial: PingMap = {};
+    assets.forEach((a) => {
+      initial[a.id] = {
+        status: (a.status as "online" | "offline") || "online",
+        responseTime: (a as any).response_time ?? null,
+      };
+    });
+    setPingMap(initial);
+  }, [assets]);
 
   const check = useCallback(async () => {
     if (assets.length === 0 || !isSupabaseConfigured || !supabase) return;
 
-    // Mark as checking
-    const checkingMap: StatusMap = { ...statusMap };
-    assets.forEach(p => { checkingMap[p.id] = "checking"; });
-    setStatusMap(checkingMap);
+    // Mark all as checking
+    setPingMap((prev) => {
+      const next = { ...prev };
+      assets.forEach((a) => {
+        next[a.id] = { status: "checking", responseTime: prev[a.id]?.responseTime ?? null };
+      });
+      return next;
+    });
+    setChecking(true);
 
     try {
       const { data, error } = await supabase.functions.invoke("site-monitor", {
-        method: "POST"
+        method: "POST",
       });
 
       if (!error && data?.results) {
-        setStatusMap(data.results);
+        // data.results is Record<string, { status, responseTime }>
+        const next: PingMap = {};
+        for (const id of Object.keys(data.results)) {
+          const r = data.results[id];
+          next[id] = {
+            status: r.status ?? "offline",
+            responseTime: r.responseTime ?? null,
+          };
+        }
+        setPingMap(next);
       } else {
-        const fallback: StatusMap = {};
-        assets.forEach(p => { fallback[p.id] = (p.status as "online" | "offline") || "online"; });
-        setStatusMap(fallback);
+        // Fallback: keep existing DB values
+        setPingMap((prev) => {
+          const fallback: PingMap = {};
+          assets.forEach((a) => {
+            fallback[a.id] = {
+              status: (a.status as "online" | "offline") || "online",
+              responseTime: prev[a.id]?.responseTime ?? null,
+            };
+          });
+          return fallback;
+        });
       }
     } catch (err) {
       console.error("Ping error:", err);
     }
-    
-    setLastChecked(new Date());
-  }, [assets, statusMap]);
 
-  useEffect(() => {
-    // Initial sync from DB data
-    const initial: StatusMap = {};
-    assets.forEach((p) => {
-      initial[p.id] = (p.status as "online" | "offline") || "online";
-    });
-    setStatusMap(initial);
+    setLastChecked(new Date());
+    setChecking(false);
   }, [assets]);
 
-  return { statusMap, lastChecked, checkNow: check };
+  // Auto-refresh every intervalMs (default 30s)
+  useEffect(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(check, intervalMs);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [check, intervalMs]);
+
+  // Legacy compatibility: statusMap as Record<string, string>
+  const statusMap: Record<string, "online" | "offline" | "checking"> = {};
+  for (const id of Object.keys(pingMap)) {
+    statusMap[id] = pingMap[id].status;
+  }
+
+  return { pingMap, statusMap, lastChecked, checking, checkNow: check };
 }

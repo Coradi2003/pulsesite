@@ -1,21 +1,59 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { RefreshCw, ExternalLink, CheckCircle2, XCircle, Loader2, Zap, Clock, Globe } from "lucide-react";
+import { RefreshCw, CheckCircle2, XCircle, Loader2, Zap, Clock, Globe } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { useProjects } from "@/hooks/admin/useProjects";
 import { useClients } from "@/hooks/admin/useClients";
 import { useVercel } from "@/hooks/admin/useVercel";
+import { useSiteStatus, type PingResult } from "@/hooks/admin/useSiteStatus";
 import { deployStateBadge, formatDeployAge } from "@/lib/vercel";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
+
+/** Color-coded response time badge */
+function PingBadge({ ping }: { ping: PingResult | undefined }) {
+  if (!ping || ping.status === "checking") {
+    return (
+      <span className="inline-flex items-center gap-1 text-gray-500 text-[10px] font-mono">
+        <span className="w-1.5 h-1.5 rounded-full bg-gray-600 animate-pulse" />
+        Pingando…
+      </span>
+    );
+  }
+  if (ping.status === "offline" || ping.responseTime === null) {
+    return (
+      <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold">
+        <span className="w-1 h-1 rounded-full bg-red-500" />
+        Offline
+      </span>
+    );
+  }
+  const ms = ping.responseTime;
+  const color =
+    ms < 200
+      ? { dot: "bg-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", text: "text-emerald-400" }
+      : ms <= 500
+      ? { dot: "bg-yellow-400", bg: "bg-yellow-500/10", border: "border-yellow-500/20", text: "text-yellow-400" }
+      : { dot: "bg-red-400", bg: "bg-red-500/10", border: "border-red-500/20", text: "text-red-400" };
+  return (
+    <span className={`inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded-full ${color.bg} border ${color.border} ${color.text} text-[10px] font-bold font-mono`}>
+      <span className={`w-1 h-1 rounded-full ${color.dot}`} />
+      {ms} ms
+    </span>
+  );
+}
 
 export default function MonitoringPage() {
   const { data: projects, loading: pl, syncWithVercel, reload: reloadProjects } = useProjects();
   const { data: clients } = useClients();
   const { projects: vercelProjects, loading: vl, refetch: refetchVercel, configured } = useVercel();
+  const [refreshing, setRefreshing] = useState(false);
 
-  // Version: 1.0.5 - Real check
+  // Real ping system for all projects
+  const { pingMap, statusMap, lastChecked, checkNow } = useSiteStatus(projects as any, 30000);
+
+  // Version: 2.0.0 - Real ping + responseTime
   const isRealData = isSupabaseConfigured;
 
   // Automatic Sync logic
@@ -26,7 +64,7 @@ export default function MonitoringPage() {
   }, [vl, vercelProjects, projects.length, syncWithVercel]);
 
   const clientMap = Object.fromEntries(clients.map((c) => [c.id, c.name]));
-  
+
   // Map Supabase project to Vercel status
   const getVercelStatus = (pName: string | null) => {
     if (!pName) return null;
@@ -40,20 +78,25 @@ export default function MonitoringPage() {
     };
   };
 
-  const onlineCount = projects.filter(p => p.status === "online").length;
-  const offlineCount = projects.filter(p => p.status === "offline").length;
+  const onlineCount = projects.filter(p => {
+    const live = statusMap[p.id];
+    return live ? live === "online" : p.status === "online";
+  }).length;
+  const offlineCount = projects.length - onlineCount;
 
   const handleRefresh = async () => {
-    await refetchVercel();
+    setRefreshing(true);
+    await Promise.all([refetchVercel(), checkNow()]);
     await reloadProjects();
+    setRefreshing(false);
   };
 
   return (
     <AdminLayout>
       <div id="admin-monitoring">
-        <PageHeader 
-          title="Monitoramento" 
-          description={isRealData ? "📡 Dados em tempo real (Supabase + Vercel)" : "⚠️ Exibindo dados de demonstração"} 
+        <PageHeader
+          title="Monitoramento"
+          description={isRealData ? "📡 Dados em tempo real (Supabase + Vercel)" : "⚠️ Exibindo dados de demonstração"}
         />
 
         {/* Status Indicator */}
@@ -68,7 +111,7 @@ export default function MonitoringPage() {
                 {isRealData ? "Tudo Real" : "Modo Demo"}
               </span>
             </div>
-            
+
             <div className="flex items-center gap-6 text-sm">
               <div className="flex items-center gap-2 text-emerald-400">
                 <CheckCircle2 className="w-4 h-4" />
@@ -83,14 +126,21 @@ export default function MonitoringPage() {
             </div>
           </div>
 
-          <button
-            onClick={handleRefresh}
-            disabled={pl || vl}
-            className="flex items-center gap-1.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 px-3 py-1.5 rounded-lg text-xs font-medium transition-all border border-purple-500/20"
-          >
-            <RefreshCw className={cn("w-3.5 h-3.5", (pl || vl) && "animate-spin")} />
-            Atualizar Status
-          </button>
+          <div className="flex items-center gap-3">
+            {lastChecked && (
+              <span className="text-gray-600 text-xs">
+                Último ping: {Math.round((Date.now() - lastChecked.getTime()) / 1000)}s atrás
+              </span>
+            )}
+            <button
+              onClick={handleRefresh}
+              disabled={refreshing || pl || vl}
+              className="flex items-center gap-1.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 px-3 py-1.5 rounded-lg text-xs font-medium transition-all border border-purple-500/20 disabled:opacity-50"
+            >
+              <RefreshCw className={cn("w-3.5 h-3.5", refreshing && "animate-spin")} />
+              {refreshing ? "Pingando…" : "Pingar Agora"}
+            </button>
+          </div>
         </div>
 
         {/* Grid of monitoring cards */}
@@ -106,7 +156,7 @@ export default function MonitoringPage() {
               <p className="text-gray-500 text-sm mb-6 max-w-xs">
                 Seus projetos da Vercel ainda não foram importados para o sistema de monitoramento.
               </p>
-              <button 
+              <button
                 onClick={handleRefresh}
                 className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-2 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-purple-900/40"
               >
@@ -116,9 +166,10 @@ export default function MonitoringPage() {
           ) : (
             projects.map((p, i) => {
               const v = getVercelStatus(p.vercel_project_name);
-              const isPingOnline = p.status === "online";
+              const ping = pingMap[p.id];
+              const isPingOnline = ping ? ping.status === "online" : p.status === "online";
               const vercelStatus = v?.state ? deployStateBadge(v.state as any) : null;
-              
+
               return (
                 <motion.div
                   key={p.id}
@@ -150,7 +201,11 @@ export default function MonitoringPage() {
 
                     <div className={cn(
                       "w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0 shadow-lg",
-                      isPingOnline ? "bg-emerald-400 shadow-emerald-400/40" : "bg-red-500 shadow-red-400/40 animate-pulse"
+                      ping?.status === "checking"
+                        ? "bg-yellow-400 shadow-yellow-400/40 animate-pulse"
+                        : isPingOnline
+                        ? "bg-emerald-400 shadow-emerald-400/40"
+                        : "bg-red-500 shadow-red-400/40 animate-pulse"
                     )} />
                   </div>
 
@@ -164,7 +219,7 @@ export default function MonitoringPage() {
                       <Globe className="w-3 h-3 flex-shrink-0" />
                       {p.custom_domain || p.vercel_url || "Sem URL"}
                     </a>
-                    
+
                     <div className="flex items-center justify-between pt-2 border-t border-white/5">
                       <div className="flex items-center gap-2">
                         {vercelStatus && (
@@ -178,10 +233,8 @@ export default function MonitoringPage() {
                           </span>
                         )}
                       </div>
-                      <span className="text-gray-600 text-[10px] flex items-center gap-1">
-                        <Clock className="w-2.5 h-2.5" />
-                        {p.last_ping ? formatDeployAge(new Date(p.last_ping).getTime()) : "—"}
-                      </span>
+                      {/* Response time badge */}
+                      <PingBadge ping={ping} />
                     </div>
                   </div>
                 </motion.div>
@@ -195,10 +248,10 @@ export default function MonitoringPage() {
           <div>
             <p className="text-purple-400 text-xs font-bold mb-1 tracking-wide uppercase">⚡ Como funciona o Monitoramento Real?</p>
             <p className="text-gray-500 text-xs">
-              Nosso bot faz um ping em cada site a cada 60 segundos. Se o site não responder em 3 pings seguidos, você recebe o alerta no WhatsApp.
+              Nosso sistema faz um ping real em cada site a cada 30 segundos. O tempo de resposta é medido em ms e exibido em tempo real. Você recebe alerta no WhatsApp caso algum site fique offline.
             </p>
           </div>
-          <Zap className="w-5 h-5 text-purple-900/50" />
+          <Zap className="w-5 h-5 text-purple-900/50 ml-4 flex-shrink-0" />
         </div>
       </div>
     </AdminLayout>
