@@ -8,15 +8,17 @@ import {
   Clock,
   ExternalLink,
   RefreshCw,
+  Zap,
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
+import { cn } from "@/lib/utils";
 import { StatCard } from "@/components/admin/StatCard";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { useClients } from "@/hooks/admin/useClients";
 import { useProjects } from "@/hooks/admin/useProjects";
 import { useFinance } from "@/hooks/admin/useFinance";
 import { useSiteStatus } from "@/hooks/admin/useSiteStatus";
-import { mockClients } from "@/lib/mockData";
+import { isSupabaseConfigured } from "@/lib/supabase";
 
 function formatBRL(value: number) {
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
@@ -39,6 +41,8 @@ export default function DashboardPage() {
   const { data: finance, loading: fl } = useFinance();
   const { statusMap, lastChecked, checkNow } = useSiteStatus(projects);
 
+  const isRealData = isSupabaseConfigured && (clients.length > 0 || projects.length > 0);
+
   const onlineCount = projects.filter((p) =>
     statusMap[p.id] ? statusMap[p.id] === "online" : p.status === "online"
   ).length;
@@ -53,6 +57,33 @@ export default function DashboardPage() {
   return (
     <AdminLayout>
       <div id="admin-dashboard">
+        {/* Environment Status */}
+        <div className="mb-6 flex items-center justify-between bg-[#0d0a1a]/40 border border-purple-900/20 p-4 rounded-xl">
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              "px-3 py-1.5 rounded-lg border flex items-center gap-2",
+              isRealData ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400" : "bg-yellow-500/10 border-yellow-500/20 text-yellow-400"
+            )}>
+              <Zap className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-wider">
+                {isRealData ? "Conexão Real" : "Modo de Demonstração"}
+              </span>
+            </div>
+            <p className="text-gray-500 text-xs">
+              {isRealData 
+                ? "Conectado ao Supabase. Todos os dados são reais." 
+                : "Aguardando conexão ou dados. Exibindo exemplos para visualização."}
+            </p>
+          </div>
+          
+          <button
+            onClick={() => window.location.reload()}
+            className="text-purple-400 hover:text-purple-300 transition-colors"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
+        </div>
+
         {/* Stats grid */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           <StatCard label="Total de Clientes" value={cl ? "…" : clients.length} icon={Users} color="purple" />
@@ -73,19 +104,19 @@ export default function DashboardPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl overflow-hidden"
+          className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl overflow-hidden shadow-2xl shadow-purple-900/10"
         >
-          <div className="flex items-center justify-between px-5 py-4 border-b border-purple-900/20">
-            <h3 className="text-white font-semibold text-sm">Projetos</h3>
+          <div className="flex items-center justify-between px-5 py-4 border-b border-purple-900/20 bg-white/[0.02]">
+            <h3 className="text-white font-semibold text-sm">Resumo de Projetos</h3>
             <div className="flex items-center gap-3">
               {lastChecked && (
                 <span className="text-gray-500 text-xs">
-                  Último check: {timeAgo(lastChecked.toISOString())}
+                  Check: {timeAgo(lastChecked.toISOString())}
                 </span>
               )}
               <button
                 onClick={checkNow}
-                className="flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors"
+                className="flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors bg-purple-500/10 px-2 py-1 rounded"
               >
                 <RefreshCw className="w-3 h-3" />
                 Verificar
@@ -93,12 +124,12 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto text-xs sm:text-sm">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-purple-900/20">
-                  {["Projeto", "Cliente", "Domínio", "Status", "Última verificação"].map((h) => (
-                    <th key={h} className="px-5 py-3 text-left text-gray-500 text-xs font-medium">
+                <tr className="border-b border-purple-900/20 bg-white/[0.01]">
+                  {["Projeto", "Cliente", "Domínio", "Status", "Último Ping"].map((h) => (
+                    <th key={h} className="px-5 py-3 text-left text-gray-500 text-[10px] uppercase tracking-wider font-bold">
                       {h}
                     </th>
                   ))}
@@ -115,7 +146,13 @@ export default function DashboardPage() {
                         ))}
                       </tr>
                     ))
-                  : projects.map((p) => {
+                  : projects.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="px-5 py-10 text-center text-gray-500 italic">
+                        Nenhum projeto cadastrado no banco de dados.
+                      </td>
+                    </tr>
+                  ) : projects.map((p) => {
                       const liveStatus = statusMap[p.id];
                       const displayStatus =
                         liveStatus === "checking" ? p.status : liveStatus ?? p.status;
@@ -142,7 +179,7 @@ export default function DashboardPage() {
                               )}
                             </div>
                           </td>
-                          <td className="px-5 py-3.5 text-gray-500 text-xs">{timeAgo(p.last_ping)}</td>
+                          <td className="px-5 py-3.5 text-gray-500 text-xs font-mono">{timeAgo(p.last_ping)}</td>
                         </tr>
                       );
                     })}

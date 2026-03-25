@@ -11,9 +11,9 @@ export function useProjects() {
   const load = useCallback(async () => {
     setLoading(true);
     if (!isSupabaseConfigured || !supabase) {
-      await new Promise((r) => setTimeout(r, 300));
-      setData([...mockProjects]);
       setLoading(false);
+      setError("Supabase não configurado. Verifique o arquivo .env");
+      setData([]);
       return;
     }
     const { data: rows, error: err } = await supabase.from("projects").select("*").order("project_name");

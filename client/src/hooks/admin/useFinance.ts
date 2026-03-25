@@ -11,9 +11,9 @@ export function useFinance() {
   const load = useCallback(async () => {
     setLoading(true);
     if (!isSupabaseConfigured || !supabase) {
-      await new Promise((r) => setTimeout(r, 300));
-      setData([...mockFinance]);
       setLoading(false);
+      setError("Supabase não configurado.");
+      setData([]);
       return;
     }
     const { data: rows, error: err } = await supabase.from("finance").select("*").order("due_date", { ascending: false });

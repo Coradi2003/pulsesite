@@ -11,9 +11,9 @@ export function useClients() {
   const load = useCallback(async () => {
     setLoading(true);
     if (!isSupabaseConfigured || !supabase) {
-      await new Promise((r) => setTimeout(r, 300));
-      setData([...mockClients]);
       setLoading(false);
+      setError("Supabase não configurado.");
+      setData([]);
       return;
     }
     const { data: rows, error: err } = await supabase.from("clients").select("*").order("created_at", { ascending: false });
