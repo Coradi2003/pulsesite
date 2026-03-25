@@ -26,9 +26,7 @@ export function useProjects() {
 
   const create = useCallback(async (values: Omit<Project, "id">) => {
     if (!isSupabaseConfigured || !supabase) {
-      const newP: Project = { ...values, id: nanoid() };
-      setData((prev) => [...prev, newP]);
-      return { error: null };
+      return { error: "Supabase não configurado. Não é possível criar no modo demonstração." };
     }
     const { error } = await supabase.from("projects").insert(values);
     if (!error) await load();
@@ -37,8 +35,7 @@ export function useProjects() {
 
   const update = useCallback(async (id: string, values: Partial<Project>) => {
     if (!isSupabaseConfigured || !supabase) {
-      setData((prev) => prev.map((p) => (p.id === id ? { ...p, ...values } : p)));
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("projects").update(values).eq("id", id);
     if (!error) await load();
@@ -47,8 +44,7 @@ export function useProjects() {
 
   const remove = useCallback(async (id: string) => {
     if (!isSupabaseConfigured || !supabase) {
-      setData((prev) => prev.filter((p) => p.id !== id));
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("projects").delete().eq("id", id);
     if (!error) await load();

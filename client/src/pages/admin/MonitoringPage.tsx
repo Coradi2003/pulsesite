@@ -15,7 +15,8 @@ export default function MonitoringPage() {
   const { data: clients } = useClients();
   const { projects: vercelProjects, loading: vl, refetch: refetchVercel, configured } = useVercel();
 
-  const isRealData = isSupabaseConfigured && projects.length > 0;
+  // Version: 1.0.5 - Real check
+  const isRealData = isSupabaseConfigured;
 
   // Automatic Sync logic
   useEffect(() => {

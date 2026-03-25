@@ -26,8 +26,7 @@ export function useFinance() {
 
   const create = useCallback(async (values: Omit<Finance, "id">) => {
     if (!isSupabaseConfigured || !supabase) {
-      setData((prev) => [{ ...values, id: nanoid() }, ...prev]);
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("finance").insert(values);
     if (!error) await load();
@@ -36,8 +35,7 @@ export function useFinance() {
 
   const update = useCallback(async (id: string, values: Partial<Finance>) => {
     if (!isSupabaseConfigured || !supabase) {
-      setData((prev) => prev.map((f) => (f.id === id ? { ...f, ...values } : f)));
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("finance").update(values).eq("id", id);
     if (!error) await load();
@@ -46,8 +44,7 @@ export function useFinance() {
 
   const remove = useCallback(async (id: string) => {
     if (!isSupabaseConfigured || !supabase) {
-      setData((prev) => prev.filter((f) => f.id !== id));
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("finance").delete().eq("id", id);
     if (!error) await load();

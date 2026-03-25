@@ -26,9 +26,7 @@ export function useClients() {
 
   const create = useCallback(async (values: Omit<Client, "id" | "created_at">) => {
     if (!isSupabaseConfigured || !supabase) {
-      const newClient: Client = { ...values, id: nanoid(), created_at: new Date().toISOString() };
-      setData((prev) => [newClient, ...prev]);
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("clients").insert(values);
     if (!error) await load();
@@ -37,8 +35,7 @@ export function useClients() {
 
   const update = useCallback(async (id: string, values: Partial<Client>) => {
     if (!isSupabaseConfigured || !supabase) {
-      setData((prev) => prev.map((c) => (c.id === id ? { ...c, ...values } : c)));
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("clients").update(values).eq("id", id);
     if (!error) await load();
@@ -47,8 +44,7 @@ export function useClients() {
 
   const remove = useCallback(async (id: string) => {
     if (!isSupabaseConfigured || !supabase) {
-      setData((prev) => prev.filter((c) => c.id !== id));
-      return { error: null };
+      return { error: "Supabase não configurado." };
     }
     const { error } = await supabase.from("clients").delete().eq("id", id);
     if (!error) await load();
