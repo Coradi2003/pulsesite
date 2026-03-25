@@ -69,19 +69,14 @@ serve(async (req) => {
       console.error(`Vercel API Error: ${res.status} ${JSON.stringify(data)}`);
     }
 
-    return new Response(JSON.stringify({
-      ...data,
-      _proxy_source: 'vercel-api',
-      _status: res.status
-    }), {
+    return new Response(JSON.stringify(data), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: res.status,
     })
   } catch (error) {
     console.error(`Proxy Exception: ${error.message}`);
     return new Response(JSON.stringify({ 
-      error: error.message,
-      _proxy_source: 'edge-function-exception'
+      error: error.message
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 500,
