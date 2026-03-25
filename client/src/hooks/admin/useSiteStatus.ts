@@ -52,14 +52,20 @@ export function useSiteStatus(assets: MonitoredAsset[], intervalMs = 30000) {
       });
 
       if (!error && data?.results) {
-        // data.results is Record<string, { status, responseTime }>
+        // Handle BOTH old format (string) and new format ({ status, responseTime })
         const next: PingMap = {};
         for (const id of Object.keys(data.results)) {
           const r = data.results[id];
-          next[id] = {
-            status: r.status ?? "offline",
-            responseTime: r.responseTime ?? null,
-          };
+          if (typeof r === "string") {
+            // Old edge function format: "online" | "offline"
+            next[id] = { status: r as "online" | "offline", responseTime: null };
+          } else {
+            // New edge function format: { status, responseTime }
+            next[id] = {
+              status: r.status ?? "offline",
+              responseTime: typeof r.responseTime === "number" ? r.responseTime : null,
+            };
+          }
         }
         setPingMap(next);
       } else {
