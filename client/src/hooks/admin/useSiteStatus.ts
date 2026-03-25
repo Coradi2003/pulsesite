@@ -12,37 +12,30 @@ export function useSiteStatus(projects: Project[], intervalMs = 30000) {
   const check = useCallback(async () => {
     if (projects.length === 0) return;
 
-    // Mark all as checking
-    setStatusMap((prev) => {
-      const next: StatusMap = { ...prev };
-      projects.forEach((p) => { next[p.id] = "checking"; });
-      return next;
-    });
-
-    // Simulate check: in a real scenario we'd use a backend proxy to avoid CORS
-    // For now, use the project's existing status + small random variation
-    await new Promise((r) => setTimeout(r, 800 + Math.random() * 600));
+    // In this "Real" version, we simply use the project's current status 
+    // which is updated by the server-side site-monitor Edge Function.
+    // For a truly "live" feel, we could re-validate here via proxy,
+    // but the randomized logic must go.
 
     const next: StatusMap = {};
     projects.forEach((p) => {
-      // 90% chance online projects stay online, 10% chance toggle (simulates real-world)
-      if (p.status === "online") {
-        next[p.id] = Math.random() > 0.05 ? "online" : "offline";
-      } else {
-        next[p.id] = Math.random() > 0.85 ? "online" : "offline";
-      }
+      // Use the database status (online/offline)
+      next[p.id] = (p.status as "online" | "offline") || "online";
     });
+    
     setStatusMap(next);
     setLastChecked(new Date());
   }, [projects]);
 
   useEffect(() => {
-    check();
-    timerRef.current = setInterval(check, intervalMs);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [check, intervalMs]);
+    // Immediate sync when projects change
+    const next: StatusMap = {};
+    projects.forEach((p) => {
+      next[p.id] = (p.status as "online" | "offline") || "online";
+    });
+    setStatusMap(next);
+    setLastChecked(new Date());
+  }, [projects]);
 
   return { statusMap, lastChecked, checkNow: check };
 }
