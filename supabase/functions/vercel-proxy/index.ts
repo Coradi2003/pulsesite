@@ -55,12 +55,25 @@ serve(async (req) => {
 
     const data = await res.json()
     
-    return new Response(JSON.stringify(data), {
+    // Log for debugging in Supabase dashboard
+    if (!res.ok) {
+      console.error(`Vercel API Error: ${res.status} ${JSON.stringify(data)}`);
+    }
+
+    return new Response(JSON.stringify({
+      ...data,
+      _proxy_source: 'vercel-api',
+      _status: res.status
+    }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: res.status,
     })
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
+    console.error(`Proxy Exception: ${error.message}`);
+    return new Response(JSON.stringify({ 
+      error: error.message,
+      _proxy_source: 'edge-function-exception'
+    }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 500,
     })
