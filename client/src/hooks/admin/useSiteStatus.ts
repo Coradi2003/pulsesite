@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { type Project } from "@/lib/mockData";
 
 type StatusMap = Record<string, "online" | "offline" | "checking">;
@@ -10,31 +11,41 @@ export function useSiteStatus(projects: Project[], intervalMs = 30000) {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const check = useCallback(async () => {
-    if (projects.length === 0) return;
+    if (projects.length === 0 || !isSupabaseConfigured || !supabase) return;
 
-    // In this "Real" version, we simply use the project's current status 
-    // which is updated by the server-side site-monitor Edge Function.
-    // For a truly "live" feel, we could re-validate here via proxy,
-    // but the randomized logic must go.
+    // Mark as checking
+    const checkingMap: StatusMap = {};
+    projects.forEach(p => { checkingMap[p.id] = "checking"; });
+    setStatusMap(checkingMap);
 
-    const next: StatusMap = {};
-    projects.forEach((p) => {
-      // Use the database status (online/offline)
-      next[p.id] = (p.status as "online" | "offline") || "online";
-    });
+    try {
+      // Call the Edge Function for real-time ping
+      const { data, error } = await supabase.functions.invoke("site-monitor", {
+        method: "POST"
+      });
+
+      if (!error && data?.results) {
+        setStatusMap(data.results);
+      } else {
+        // Fallback to current project status if error
+        const fallback: StatusMap = {};
+        projects.forEach(p => { fallback[p.id] = (p.status as "online" | "offline") || "online"; });
+        setStatusMap(fallback);
+      }
+    } catch (err) {
+      console.error("Ping error:", err);
+    }
     
-    setStatusMap(next);
     setLastChecked(new Date());
   }, [projects]);
 
   useEffect(() => {
-    // Immediate sync when projects change
-    const next: StatusMap = {};
+    // Initial sync from DB data
+    const initial: StatusMap = {};
     projects.forEach((p) => {
-      next[p.id] = (p.status as "online" | "offline") || "online";
+      initial[p.id] = (p.status as "online" | "offline") || "online";
     });
-    setStatusMap(next);
-    setLastChecked(new Date());
+    setStatusMap(initial);
   }, [projects]);
 
   return { statusMap, lastChecked, checkNow: check };
