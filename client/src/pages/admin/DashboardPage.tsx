@@ -37,9 +37,9 @@ function timeAgo(dateStr: string | null) {
 
 export default function DashboardPage() {
   const { data: clients, loading: cl } = useClients();
-  const { data: projects, loading: pl } = useProjects();
+  const { data: projects, loading: pl, reload: reloadProjects } = useProjects();
   const { data: finance, loading: fl } = useFinance();
-  const { statusMap, lastChecked, checkNow } = useSiteStatus(projects);
+  const { statusMap, lastChecked } = useSiteStatus(projects);
 
   // Version: 1.0.5 - Real check
   const isRealData = isSupabaseConfigured;
@@ -116,11 +116,15 @@ export default function DashboardPage() {
                 </span>
               )}
               <button
-                onClick={checkNow}
-                className="flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors bg-purple-500/10 px-2 py-1 rounded"
+                onClick={() => reloadProjects()}
+                disabled={pl}
+                className={cn(
+                  "flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors bg-purple-500/10 px-2 py-1 rounded",
+                  pl && "opacity-50 cursor-not-allowed"
+                )}
               >
-                <RefreshCw className="w-3 h-3" />
-                Verificar
+                <RefreshCw className={cn("w-3 h-3", pl && "animate-spin")} />
+                {pl ? "Verificando..." : "Verificar"}
               </button>
             </div>
           </div>
