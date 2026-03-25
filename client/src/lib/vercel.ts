@@ -1,23 +1,32 @@
 // Vercel REST API client
 // Docs: https://vercel.com/docs/rest-api
 
-const BASE = "https://api.vercel.com";
-const token = import.meta.env.VITE_VERCEL_TOKEN as string | undefined;
+import { supabase } from "./supabase";
 
-export const isVercelConfigured = !!token;
+export const isVercelConfigured = true;
 
-async function vercelFetch<T = unknown>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Vercel API error ${res.status}: ${text}`);
+async function vercelFetch<T = unknown>(path: string, method: string = 'GET', body?: any): Promise<T> {
+  if (!supabase) {
+    throw new Error('Supabase não configurado');
   }
-  return res.json() as Promise<T>;
+  const { data, error } = await supabase.functions.invoke('vercel-proxy', {
+    body: { url: path, method, body }
+  });
+
+  if (error) {
+    // Handle specific error cases if possible, otherwise generic
+    console.error('Vercel Proxy Error:', error);
+    throw new Error(error.message || 'Erro ao conectar com o serviço Vercel');
+  }
+
+  // The function returns the Vercel API response. 
+  // If the Vercel API itself returned an error (e.g. 401), it will be in the data if the proxy passed it through.
+  // Our proxy passes the status and data.
+  if (data && data.error) {
+    throw new Error(data.error.message || data.error || 'Erro na API da Vercel');
+  }
+
+  return data as T;
 }
 
 // ─── Types ─────────────────────────────────────────────────────────────────
