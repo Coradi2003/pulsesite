@@ -121,9 +121,9 @@ export default function DashboardPage() {
   ).length;
   const offlineCount = dashboardAssets.length - onlineCount;
   
-  // Real-time Revenue calculation (Status: paid + Type: monthly)
+  // Real-time Revenue calculation (Matches 'Total Pago' in Finance)
   const monthlyRevenue = finance
-    .filter((f) => f.status === "paid" && f.type === "monthly")
+    .filter((f) => f.status === "paid")
     .reduce((a, b) => a + Number(b.amount || 0), 0);
 
   const pendingPayments = finance.filter((f) => f.status === "pending" || f.status === "overdue").length;
