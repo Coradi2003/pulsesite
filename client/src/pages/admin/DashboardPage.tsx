@@ -38,6 +38,7 @@ function timeAgo(dateStr: string | null) {
 
 /** Color-coded response time badge */
 function PingBadge({ ping }: { ping: PingResult | undefined }) {
+  // No data yet or currently checking
   if (!ping || ping.status === "checking") {
     return (
       <span className="inline-flex items-center gap-1 text-gray-500 text-xs font-mono">
@@ -46,7 +47,8 @@ function PingBadge({ ping }: { ping: PingResult | undefined }) {
       </span>
     );
   }
-  if (ping.status === "offline" || ping.responseTime === null) {
+  // Explicitly offline
+  if (ping.status === "offline") {
     return (
       <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold">
         <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
@@ -54,6 +56,16 @@ function PingBadge({ ping }: { ping: PingResult | undefined }) {
       </span>
     );
   }
+  // Online but no response time yet (e.g. column doesn't exist or first load)
+  if (ping.responseTime === null) {
+    return (
+      <span className="inline-flex items-center gap-1 text-gray-500 text-xs font-mono">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+        — ms
+      </span>
+    );
+  }
+  // Online with measured response time
   const ms = ping.responseTime;
   const color =
     ms < 200

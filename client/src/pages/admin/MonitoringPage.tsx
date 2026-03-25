@@ -21,11 +21,21 @@ function PingBadge({ ping }: { ping: PingResult | undefined }) {
       </span>
     );
   }
-  if (ping.status === "offline" || ping.responseTime === null) {
+  // Explicitly offline
+  if (ping.status === "offline") {
     return (
       <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold">
         <span className="w-1 h-1 rounded-full bg-red-500" />
         Offline
+      </span>
+    );
+  }
+  // Online but no response time yet
+  if (ping.responseTime === null) {
+    return (
+      <span className="inline-flex items-center gap-1 text-gray-500 text-[10px] font-mono">
+        <span className="w-1 h-1 rounded-full bg-emerald-600" />
+        — ms
       </span>
     );
   }
