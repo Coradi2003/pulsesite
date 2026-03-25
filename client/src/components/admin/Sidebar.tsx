@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
   Users,
@@ -10,6 +10,7 @@ import {
   Settings,
   Zap,
   ChevronRight,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,22 +25,34 @@ const navItems = [
   { href: "/admin/settings", label: "Configurações", icon: Settings },
 ];
 
-export function Sidebar() {
+export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [location] = useLocation();
 
-  return (
-    <aside className="fixed inset-y-0 left-0 w-64 z-30 flex flex-col border-r border-purple-900/30"
+  const sidebarContent = (
+    <aside 
+      className={cn(
+        "fixed inset-y-0 left-0 w-64 z-50 flex flex-col border-r border-purple-900/30 transition-transform duration-300 lg:translate-x-0",
+        open ? "translate-x-0" : "-translate-x-full"
+      )}
       style={{ background: "linear-gradient(180deg, #0d0a1a 0%, #080614 100%)" }}
     >
-      {/* Logo */}
-      <div className="flex items-center gap-3 px-6 h-16 border-b border-purple-900/30">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-violet-700 flex items-center justify-center shadow-lg shadow-purple-900/50">
-          <Zap className="w-4 h-4 text-white" />
+      {/* Logo & Close */}
+      <div className="flex items-center justify-between px-6 h-16 border-b border-purple-900/30">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-violet-700 flex items-center justify-center shadow-lg shadow-purple-900/50">
+            <Zap className="w-4 h-4 text-white" />
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="text-white font-semibold text-sm tracking-wide">Pulse Futuro</span>
+            <span className="text-purple-400 text-xs font-medium">Admin</span>
+          </div>
         </div>
-        <div className="flex flex-col leading-none">
-          <span className="text-white font-semibold text-sm tracking-wide">Pulse Futuro</span>
-          <span className="text-purple-400 text-xs font-medium">Admin</span>
-        </div>
+        <button 
+          onClick={onClose}
+          className="lg:hidden p-1.5 text-gray-500 hover:text-white transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Nav */}
@@ -47,7 +60,7 @@ export function Sidebar() {
         {navItems.map(({ href, label, icon: Icon }) => {
           const active = location === href || (href !== "/admin/dashboard" && location.startsWith(href));
           return (
-            <Link key={href} href={href}>
+            <Link key={href} href={href} onClick={() => { if(window.innerWidth < 1024) onClose(); }}>
               <motion.div
                 whileHover={{ x: 2 }}
                 className={cn(
@@ -74,8 +87,10 @@ export function Sidebar() {
 
       {/* Footer */}
       <div className="px-6 py-4 border-t border-purple-900/30">
-        <div className="text-xs text-gray-600">v1.0.0 · Pulse Futuro Admin</div>
+        <div className="text-xs text-gray-600">v1.1.5 · Pulse Futuro Admin</div>
       </div>
     </aside>
   );
+
+  return sidebarContent;
 }

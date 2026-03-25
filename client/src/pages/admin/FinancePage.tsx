@@ -70,15 +70,15 @@ export default function FinancePage() {
         <PageHeader title="Finanças" description="Controle de pagamentos e receitas" action={{ label: "Nova Cobrança", onClick: openCreate }} />
 
         {/* Summary cards */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-6">
           {[
             { label: "Total Pago", value: totalPaid, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
             { label: "A Receber", value: totalPending, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
             { label: "Em Atraso", value: totalOverdue, color: "text-red-400", bg: "bg-red-500/10 border-red-500/20" },
           ].map(({ label, value, color, bg }) => (
-            <div key={label} className={cn("rounded-xl border p-4", bg, "bg-[#0d0a1a]/80")}>
-              <p className="text-gray-400 text-xs mb-1">{label}</p>
-              <p className={cn("text-2xl font-bold", color)}>{formatBRL(value)}</p>
+            <div key={label} className={cn("rounded-xl border p-4", bg, "bg-[#0d0a1a]/80 flex flex-col justify-between min-h-[90px]")}>
+              <p className="text-gray-400 text-xs mb-1 font-medium">{label}</p>
+              <p className={cn("text-xl md:text-2xl font-bold tracking-tight", color)}>{formatBRL(value)}</p>
             </div>
           ))}
         </div>
