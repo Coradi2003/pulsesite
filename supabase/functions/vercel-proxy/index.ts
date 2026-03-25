@@ -18,6 +18,15 @@ serve(async (req) => {
   }
 
   try {
+    // Manual JWT check since verify_jwt is false in config.toml
+    const authHeader = req.headers.get('Authorization')
+    if (!authHeader) {
+      return new Response(JSON.stringify({ error: 'Sessão expirada ou não autenticada (_proxy_no_header)' }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 401,
+      })
+    }
+
     const VERCEL_TOKEN = Deno.env.get('VERCEL_TOKEN')
     if (!VERCEL_TOKEN) {
       return new Response(JSON.stringify({ error: 'Configuração ausente no servidor' }), {
