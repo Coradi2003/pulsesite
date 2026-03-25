@@ -20,7 +20,7 @@ const navItems = [
   { href: "/admin/monitoring", label: "Monitoramento", icon: Activity },
   { href: "/admin/finance", label: "Finanças", icon: CreditCard },
   { href: "/admin/domains", label: "Domínios", icon: Server },
-  { href: "/admin/vercel", label: "Vercel", icon: Zap },
+  { href: "/admin/vercel", label: "Controle Vercel", icon: Zap },
   { href: "/admin/settings", label: "Configurações", icon: Settings },
 ];
 

@@ -167,7 +167,7 @@ export default function VercelPage() {
   return (
     <AdminLayout>
       <div id="admin-vercel">
-        <PageHeader title="Vercel" description="Projetos, deploys e builds em tempo real" />
+        <PageHeader title="Controle Vercel" description="Projetos, deploys e builds em tempo real" />
 
         {/* Connected user + summary */}
         <div className="flex flex-wrap items-center gap-4 mb-6 px-5 py-3 bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl">

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const integrations = [
   {
     icon: Zap,
-    title: "Vercel API",
+    title: "Controle Vercel",
     description: "Sincronize projetos automaticamente, acesse logs de deploy e monitore builds em tempo real.",
     status: "Sincronizado",
     color: "border-emerald-500/20 bg-emerald-500/10",
