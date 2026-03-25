@@ -64,6 +64,11 @@ Deno.serve(async (req) => {
         results[project.id] = "offline";
       }
 
+      // Update last_ping for EVERY check to show it's active
+      await supabase.from("projects").update({ 
+        last_ping: now.toISOString() 
+      }).eq("id", project.id);
+
       // Sync with DB if status changed or site is down
       if (isUp && project.down_since) {
         await supabase

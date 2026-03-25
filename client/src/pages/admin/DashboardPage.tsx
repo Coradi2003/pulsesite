@@ -39,7 +39,12 @@ export default function DashboardPage() {
   const { data: clients, loading: cl } = useClients();
   const { data: projects, loading: pl, reload: reloadProjects } = useProjects();
   const { data: finance, loading: fl } = useFinance();
-  const { statusMap, lastChecked } = useSiteStatus(projects);
+  const { statusMap, lastChecked, checkNow } = useSiteStatus(projects);
+
+  const handleVerify = async () => {
+    await checkNow();
+    await reloadProjects();
+  };
 
   // Version: 1.0.5 - Real check
   const isRealData = isSupabaseConfigured;
@@ -116,7 +121,7 @@ export default function DashboardPage() {
                 </span>
               )}
               <button
-                onClick={() => reloadProjects()}
+                onClick={handleVerify}
                 disabled={pl}
                 className={cn(
                   "flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors bg-purple-500/10 px-2 py-1 rounded",
