@@ -55,5 +55,48 @@ export function useProjects() {
     return { error: error?.message ?? null };
   }, [load]);
 
-  return { data, loading, error, create, update, remove, reload: load };
+  const syncWithVercel = useCallback(async (vercelProjects: any[]) => {
+    if (!isSupabaseConfigured || !supabase) return;
+    
+    // 1. Get current projects to avoid dups
+    const { data: current } = await supabase.from("projects").select("vercel_project_name, custom_domain");
+    const existingNames = new Set(current?.map(p => p.vercel_project_name) || []);
+    const existingDomains = new Set(current?.map(p => p.custom_domain) || []);
+
+    // 2. Identify new projects (those with domains but not in Supabase)
+    const toImport = vercelProjects.filter(vp => {
+      const hasDomain = vp.targets?.production?.alias?.[0] || vp.link?.projectUrl;
+      return hasDomain && !existingNames.has(vp.name) && !existingDomains.has(vp.targets?.production?.alias?.[0]);
+    });
+
+    if (toImport.length === 0) return;
+
+    // 3. Get a default client
+    const { data: clients } = await supabase.from("clients").select("id").limit(1);
+    let clientId = clients?.[0]?.id;
+
+    if (!clientId) {
+      const { data: newClient } = await supabase.from("clients").insert({ 
+        name: "Pulse Futuro (Geral)", 
+        status: "active" 
+      }).select().single();
+      clientId = newClient?.id;
+    }
+
+    // 4. Insert new projects
+    const newRows = toImport.map(vp => ({
+      client_id: clientId,
+      project_name: vp.name,
+      status: "online",
+      vercel_url: `https://${vp.name}.vercel.app`,
+      custom_domain: vp.targets?.production?.alias?.[0] || null,
+      vercel_project_name: vp.name,
+      last_ping: new Date().toISOString()
+    }));
+
+    await supabase.from("projects").insert(newRows);
+    await load();
+  }, [load]);
+
+  return { data, loading, error, create, update, remove, reload: load, syncWithVercel };
 }

@@ -1,15 +1,19 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Edit2, Trash2, X, RefreshCw, ExternalLink } from "lucide-react";
+import { Edit2, Trash2, X, RefreshCw, ExternalLink, Zap } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { useProjects } from "@/hooks/admin/useProjects";
 import { useClients } from "@/hooks/admin/useClients";
 import { useSiteStatus } from "@/hooks/admin/useSiteStatus";
+import { useVercel } from "@/hooks/admin/useVercel";
 import type { Project, ProjectStatus } from "@/lib/mockData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { deployStateBadge } from "@/lib/vercel";
+import { cn } from "@/lib/utils";
 
 const EMPTY_PROJECT: Omit<Project, "id"> = {
   client_id: "",
@@ -34,14 +38,18 @@ function timeAgo(dateStr: string | null) {
 }
 
 export default function ProjectsPage() {
-  const { data: projects, loading, create, update, remove } = useProjects();
+  const [, navigate] = useLocation();
+  const { data: projects, loading: loadingProjects, create, update, remove } = useProjects();
   const { data: clients } = useClients();
   const { statusMap, lastChecked, checkNow } = useSiteStatus(projects);
+  const { projects: vercelProjects, loading: loadingVercel } = useVercel();
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Project | null>(null);
   const [form, setForm] = useState<Omit<Project, "id">>(EMPTY_PROJECT);
   const [saving, setSaving] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+
+  const loading = loadingProjects || loadingVercel;
 
   const clientMap = Object.fromEntries(clients.map((c) => [c.id, c.name]));
 
@@ -79,13 +87,22 @@ export default function ProjectsPage() {
             <span className="text-gray-400 text-xs">
               {lastChecked ? `Verificado ${timeAgo(lastChecked.toISOString())}` : "Verificando…"}
             </span>
-            <button
-              onClick={checkNow}
-              className="flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors"
-            >
-              <RefreshCw className="w-3 h-3" />
-              Verificar agora
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={checkNow}
+                className="flex items-center gap-1.5 text-purple-400 hover:text-purple-300 text-xs transition-colors"
+              >
+                <RefreshCw className="w-3 h-3" />
+                Verificar agora
+              </button>
+              <button
+                onClick={() => navigate("/admin/vercel")}
+                className="flex items-center gap-1.5 text-blue-400 hover:text-blue-300 text-xs transition-colors"
+              >
+                <Zap className="w-3 h-3" />
+                Sincronizar Vercel
+              </button>
+            </div>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -106,15 +123,33 @@ export default function ProjectsPage() {
                   : projects.map((p) => {
                       const live = statusMap[p.id];
                       const display = live === "checking" ? p.status : live ?? p.status;
+                      const vp = vercelProjects.find(v => v.name === p.vercel_project_name);
+                      const latest = vp?.latestDeployments?.[0];
+                      const vStatus = latest ? deployStateBadge(latest.state) : null;
+
                       return (
                         <motion.tr key={p.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hover:bg-white/[0.02] transition-colors group">
                           <td className="px-5 py-3.5 text-gray-200 font-medium">{p.project_name}</td>
                           <td className="px-5 py-3.5 text-gray-400">{clientMap[p.client_id] ?? "—"}</td>
                           <td className="px-5 py-3.5">
-                            <a href={p.vercel_url} target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center gap-1 text-xs transition-colors">
-                              <ExternalLink className="w-3 h-3" />
-                              Vercel
-                            </a>
+                            <div className="flex flex-col gap-1">
+                              <a href={p.vercel_url} target="_blank" rel="noreferrer" 
+                                className="text-blue-400 hover:text-blue-300 flex items-center gap-1 text-xs transition-colors">
+                                <ExternalLink className="w-3 h-3" />
+                                Vercel
+                              </a>
+                              {vStatus && (
+                                <span className={cn(
+                                  "text-[10px] font-medium px-1.5 py-0.5 rounded-full w-fit",
+                                  vStatus.color === "emerald" ? "bg-emerald-500/10 text-emerald-400" :
+                                  vStatus.color === "red" ? "bg-red-500/10 text-red-400" :
+                                  vStatus.color === "blue" ? "bg-blue-500/10 text-blue-400 animate-pulse" :
+                                  "bg-white/5 text-gray-500"
+                                )}>
+                                  {vStatus.label}
+                                </span>
+                              )}
+                            </div>
                           </td>
                           <td className="px-5 py-3.5 text-gray-400 text-xs">{p.custom_domain}</td>
                           <td className="px-5 py-3.5">

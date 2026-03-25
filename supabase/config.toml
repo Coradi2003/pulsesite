@@ -1,0 +1,7 @@
+[functions.site-monitor]
+enabled = true
+verify_jwt = false
+
+[functions.payment-reminder]
+enabled = true
+verify_jwt = false

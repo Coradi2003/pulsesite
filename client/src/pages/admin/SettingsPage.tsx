@@ -2,15 +2,16 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { Settings, Zap, MessageSquare, Webhook } from "lucide-react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const integrations = [
   {
     icon: Zap,
     title: "Vercel API",
     description: "Sincronize projetos automaticamente, acesse logs de deploy e monitore builds em tempo real.",
-    status: "Em desenvolvimento",
-    color: "border-blue-500/20 bg-blue-500/5",
-    iconColor: "text-blue-400 bg-blue-500/10",
+    status: "Sincronizado",
+    color: "border-emerald-500/20 bg-emerald-500/10",
+    iconColor: "text-emerald-400 bg-emerald-500/10",
   },
   {
     icon: MessageSquare,
@@ -77,7 +78,12 @@ export default function SettingsPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <h4 className="text-white font-medium text-sm">{title}</h4>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-400">
+                      <span className={cn(
+                        "text-[10px] px-2 py-0.5 rounded-full border",
+                        status === "Sincronizado" 
+                          ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400" 
+                          : "bg-white/5 border-white/10 text-gray-400"
+                      )}>
                         {status}
                       </span>
                     </div>

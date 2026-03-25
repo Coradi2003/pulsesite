@@ -19,6 +19,7 @@ import ClientsPage from "./pages/admin/ClientsPage";
 import ProjectsPage from "./pages/admin/ProjectsPage";
 import FinancePage from "./pages/admin/FinancePage";
 import DomainsPage from "./pages/admin/DomainsPage";
+import VercelPage from "./pages/admin/VercelPage";
 import MonitoringPage from "./pages/admin/MonitoringPage";
 import SettingsPage from "./pages/admin/SettingsPage";
 
@@ -64,6 +65,9 @@ function AdminRouter() {
         </Route>
         <Route path="/admin/domains">
           <ProtectedRoute><DomainsPage /></ProtectedRoute>
+        </Route>
+        <Route path="/admin/vercel">
+          <ProtectedRoute><VercelPage /></ProtectedRoute>
         </Route>
         <Route path="/admin/monitoring">
           <ProtectedRoute><MonitoringPage /></ProtectedRoute>
