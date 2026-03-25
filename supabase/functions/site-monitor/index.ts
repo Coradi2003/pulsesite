@@ -1,9 +1,21 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
+// ── Security: restrict CORS to known production origins ─────────────────────
+const ALLOWED_ORIGINS = [
+  "https://pulsefuturo.com.br",
+  "https://www.pulsefuturo.com.br",
+  "https://admin.pulsefuturo.com.br",
+];
+
+function getCorsHeaders(origin: string): Record<string, string> {
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    "Vary": "Origin",
+  };
+}
 
 const CALLMEBOT_PHONE = "5541984606633";
 const CALLMEBOT_APIKEY = Deno.env.get("CALLMEBOT_APIKEY") ?? "";
@@ -15,6 +27,9 @@ async function sendWhatsApp(message: string) {
 }
 
 Deno.serve(async (req) => {
+  const origin = req.headers.get("Origin") ?? "";
+  const corsHeaders = getCorsHeaders(origin);
+
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   try {
@@ -70,15 +85,14 @@ Deno.serve(async (req) => {
       } catch { isUp = false; }
 
       const status = isUp ? "online" : "offline";
-      results[d.id] = status; // Use ID as key in statusMap
+      results[d.id] = status;
 
       const update: any = { id: d.id, status, last_ping: now.toISOString() };
-      // Check if domain was previously down (if col exists now)
       if (isUp && (d as any).down_since) {
         (update as any).down_since = null;
         await sendWhatsApp(`✅ Domínio online: *${d.domain}*`);
       } else if (!isUp && !(d as any).down_since) {
-        // (update as any).down_since = now.toISOString(); // We didn't add down_since to domains, only status/last_ping
+        // down_since not tracked on domains table yet
       }
       domainUpdates.push(update);
     }
@@ -96,7 +110,8 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
-  } catch (err) {
-    return new Response(JSON.stringify({ error: String(err) }), { headers: corsHeaders, status: 500 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    return new Response(JSON.stringify({ error: message }), { headers: corsHeaders, status: 500 });
   }
 });

@@ -1,8 +1,18 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+// ── Security: restrict CORS to known production origins ─────────────────────
+const ALLOWED_ORIGINS = [
+  'https://pulsefuturo.com.br',
+  'https://www.pulsefuturo.com.br',
+  'https://admin.pulsefuturo.com.br',
+];
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+function getCorsHeaders(origin: string): Record<string, string> {
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Vary': 'Origin',
+  };
 }
 
 const ALLOWED_ENDPOINTS = [
@@ -12,7 +22,10 @@ const ALLOWED_ENDPOINTS = [
   /^\/v9\/projects\/[^\/]+$/
 ];
 
-serve(async (req) => {
+Deno.serve(async (req) => {
+  const origin = req.headers.get('Origin') ?? '';
+  const corsHeaders = getCorsHeaders(origin);
+
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
@@ -73,10 +86,11 @@ serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: res.status,
     })
-  } catch (error) {
-    console.error(`Proxy Exception: ${error.message}`);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error(`Proxy Exception: ${message}`);
     return new Response(JSON.stringify({ 
-      error: error.message
+      error: message
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 500,

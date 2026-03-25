@@ -8,9 +8,11 @@ import React, {
 import type { User, Session } from "@supabase/supabase-js";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
-// Mock admin credentials for local preview mode
-const MOCK_EMAIL = "admin@pulsefuturo.com.br";
-const MOCK_PASSWORD = "admin123";
+// Mock admin credentials for local preview mode only.
+// These are read from env vars — never hardcoded. Mock mode is only active
+// when Supabase is NOT configured (i.e. local dev without .env).
+const MOCK_EMAIL = import.meta.env.VITE_MOCK_ADMIN_EMAIL as string | undefined;
+const MOCK_PASSWORD = import.meta.env.VITE_MOCK_ADMIN_PASSWORD as string | undefined;
 
 interface AdminAuthContextValue {
   user: User | null;
@@ -63,12 +65,12 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(
     async (email: string, password: string): Promise<{ error: string | null }> => {
       if (mockMode) {
-        if (email === MOCK_EMAIL && password === MOCK_PASSWORD) {
+        if (MOCK_EMAIL && MOCK_PASSWORD && email === MOCK_EMAIL && password === MOCK_PASSWORD) {
           setMockAuthenticated(true);
           sessionStorage.setItem("admin_mock_auth", "true");
           return { error: null };
         }
-        return { error: "Credenciais inválidas. Use admin@pulsefuturo.com.br / admin123" };
+        return { error: "Credenciais inválidas." };
       }
 
       const { error } = await supabase!.auth.signInWithPassword({ email, password });
