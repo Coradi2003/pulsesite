@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
-import { mockFinance, type Finance } from "@/lib/mockData";
+import { type Finance } from "@/lib/mockData";
 import { nanoid } from "nanoid";
 
 export function useFinance() {
@@ -22,7 +22,27 @@ export function useFinance() {
     setLoading(false);
   }, []);
 
+  // Initial load
   useEffect(() => { load(); }, [load]);
+
+  // Realtime subscription: any INSERT / UPDATE / DELETE on `finance` reloads the list.
+  // This ensures /admin/dashboard always reflects what's in /admin/finance instantly.
+  useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) return;
+
+    const channel = supabase
+      .channel("finance-realtime")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "finance" },
+        () => { load(); }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [load]);
 
   const create = useCallback(async (values: Omit<Finance, "id">) => {
     if (!isSupabaseConfigured || !supabase) {
