@@ -761,7 +761,7 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           z-index: 1;
-          overflow: hidden; /* Only clips the holograms/backgrounds inside safely without 3D breaking */
+          /* overflow: hidden; -- Removed to prevent clipping emojis/text */
         }
 
         /* Number Watermark */
@@ -803,9 +803,11 @@ export default function Home() {
           font-weight: 700;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          padding: 6px 14px;
+          padding: 8px 16px; /* Increased padding */
           border-radius: 100px;
-          align-self: flex-start;
+          display: inline-flex; /* Better for emoji alignment */
+          align-items: center;
+          gap: 6px;
           margin-bottom: 12px;
         }
         .gbadge-start { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
@@ -958,7 +960,7 @@ export default function Home() {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          line-height: 1.4;
+          line-height: 1.6; /* Increased for better emoji/text breathing room */
         }
         .glist li strong { color: #fff; font-weight: 600; }
         .glow-bullet { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
@@ -973,10 +975,11 @@ export default function Home() {
           font-size: 0.85rem;
           font-weight: 700;
           text-align: center;
-          padding: 12px 16px;
+          padding: 14px 16px; /* Slightly more padding */
           border-radius: 12px;
           margin-top: 24px;
           backdrop-filter: blur(5px);
+          line-height: 1.5;
         }
         .gtarget-start { background: rgba(59,130,246,0.05); color: #93c5fd; border: 1px solid rgba(59,130,246,0.15); }
         .gtarget-pro { background: rgba(147,51,234,0.05); color: #d8b4fe; border: 1px solid rgba(147,51,234,0.15); }
