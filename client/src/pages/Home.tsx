@@ -705,8 +705,13 @@ export default function Home() {
 
         .plans-header {
           text-align: center;
-          max-width: 700px;
-          margin: 0 auto;
+          max-width: 900px;
+          margin: 0 auto 50px;
+        }
+
+        .plans-header .section-tag {
+          display: inline-block;
+          margin-bottom: 16px;
         }
 
         .plans-header .section-title {
@@ -718,13 +723,9 @@ export default function Home() {
           max-width: 520px;
         }
 
-        /* Title in single line */
+        /* Title in single line - desktop */
         .plans-title {
           white-space: nowrap;
-          display: block;
-          width: max-content;
-          margin-left: auto !important;
-          margin-right: auto !important;
         }
 
         .plans-galaxy {
