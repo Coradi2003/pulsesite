@@ -420,7 +420,7 @@ export default function Home() {
           {/* SECTION HEADER */}
           <div className="plans-header reveal">
             <span className="section-tag">💰 Planos &amp; Preços</span>
-            <h2 className="section-title">
+            <h2 className="section-title plans-title">
               Escolha seu plano e <span>comece a vender</span>
             </h2>
             <p className="section-subtitle">
@@ -716,6 +716,11 @@ export default function Home() {
         .plans-header .section-subtitle {
           margin: 0 auto;
           max-width: 520px;
+        }
+
+        /* Title in single line */
+        .plans-title {
+          white-space: nowrap;
         }
 
         .plans-galaxy {
@@ -1084,6 +1089,10 @@ export default function Home() {
           .gbtn {
             padding: 16px 20px;
             font-size: 1rem;
+          }
+          .plans-title {
+            white-space: normal;
+            font-size: clamp(1.5rem, 5vw, 2rem);
           }
         }
 
