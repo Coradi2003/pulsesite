@@ -435,16 +435,8 @@ export default function Home() {
             <div className="pcard pcard-start reveal delay-1">
               {/* Watermark numeral */}
               <span className="pcard-num">01</span>
-              {/* Atmospheric glow */}
-              <div className="pcard-atm pcard-atm-start" />
-              {/* Floating particles */}
-              <div className="pcard-sparks">
-                {[...Array(7)].map((_, i) => <span key={i} className="spark spark-blue" />)}
-              </div>
-              {/* Holographic scan line */}
-              <div className="pcard-scan" />
 
-              {/* LEFT — price */}
+              {/* TOP — price */}
               <div className="pcard-left">
                 <div className="pcard-tier pcard-tier-start">🚀 BÁSICO</div>
                 <div className="pcard-price-wrap">
@@ -478,19 +470,11 @@ export default function Home() {
 
             {/* ══════════ PRO ══════════ */}
             <div className="pcard pcard-pro reveal delay-2">
-              {/* Orbital rings */}
-              <div className="orbit-ring orbit-ring-1" />
-              <div className="orbit-ring orbit-ring-2" />
               <span className="pcard-num">02</span>
-              <div className="pcard-atm pcard-atm-pro" />
-              <div className="pcard-sparks">
-                {[...Array(12)].map((_, i) => <span key={i} className="spark spark-purple" />)}
-              </div>
-              <div className="pcard-scan" />
               {/* Popular strip */}
               <div className="pcard-hot">⚡ MAIS POPULAR</div>
 
-              {/* LEFT */}
+              {/* TOP */}
               <div className="pcard-left">
                 <div className="pcard-tier pcard-tier-pro">⚡ PRO</div>
                 <div className="pcard-price-wrap">
@@ -525,13 +509,8 @@ export default function Home() {
             {/* ══════════ ELITE ══════════ */}
             <div className="pcard pcard-elite reveal delay-3">
               <span className="pcard-num">03</span>
-              <div className="pcard-atm pcard-atm-elite" />
-              <div className="pcard-sparks">
-                {[...Array(9)].map((_, i) => <span key={i} className="spark spark-fire" />)}
-              </div>
-              <div className="pcard-scan" />
 
-              {/* LEFT */}
+              {/* TOP */}
               <div className="pcard-left">
                 <div className="pcard-tier pcard-tier-elite">🔥 ELITE</div>
                 <div className="pcard-price-wrap">
@@ -706,64 +685,22 @@ export default function Home() {
 
       <style>{`
 
-        /* ======================== PLANS — v3 (VERTICAL) ======================== */
+        /* ======================== PLANS — v3 (CLEAN) ======================== */
 
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
         /* --- Keyframes --- */
         @keyframes pcardFloat {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
-        }
-        @keyframes pcardFloatPro {
-          0%, 100% { transform: translateY(0px) scale(1.03); }
-          50% { transform: translateY(-10px) scale(1.03); }
-        }
-        @keyframes atmPulse {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-        @keyframes sparkRise {
-          0% { transform: translate(0,0) scale(1); opacity: 0; }
-          12% { opacity: 1; }
-          88% { opacity: 0.5; }
-          100% { transform: translate(var(--sx,20px), var(--sy,-80px)) scale(0.2); opacity: 0; }
-        }
-        @keyframes scanSwipe {
-          0% { transform: translateY(-100%); opacity: 0; }
-          10% { opacity: 1; }
-          80% { opacity: 0.4; }
-          100% { transform: translateY(600px); opacity: 0; }
-        }
-        @keyframes orbitSpin1 {
-          from { transform: translate(-50%,-50%) rotate(0deg); }
-          to { transform: translate(-50%,-50%) rotate(360deg); }
-        }
-        @keyframes orbitSpin2 {
-          from { transform: translate(-50%,-50%) rotate(0deg); }
-          to { transform: translate(-50%,-50%) rotate(-360deg); }
-        }
-        @keyframes hotBadge {
-          0%, 100% { box-shadow: 0 0 14px rgba(157,63,255,0.7), 0 0 32px rgba(157,63,255,0.3); }
-          50% { box-shadow: 0 0 26px rgba(157,63,255,1), 0 0 60px rgba(157,63,255,0.55); }
+          50% { transform: translateY(-4px); }
         }
         @keyframes valPop {
-          from { opacity: 0; transform: translateY(16px) scale(0.85); }
+          from { opacity: 0; transform: translateY(16px) scale(0.95); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        @keyframes ctaBtnShine {
-          0% { left: -120%; }
-          100% { left: 200%; }
-        }
-        @keyframes fireBorder {
-          0%, 100% { border-color: rgba(251,100,0,0.45); }
-          50% { border-color: rgba(251,160,0,0.85); }
-        }
-        @keyframes numGlitch {
-          0%, 96% { text-shadow: none; transform: none; }
-          97% { text-shadow: 4px 0 rgba(157,63,255,0.5), -4px 0 rgba(251,100,0,0.5); transform: skewX(-6deg); }
-          98% { text-shadow: -3px 0 rgba(157,63,255,0.4), 3px 0 rgba(251,100,0,0.4); transform: skewX(4deg); }
-          100% { text-shadow: none; transform: none; }
+        @keyframes numFade {
+          0%, 100% { opacity: 0.02; }
+          50% { opacity: 0.04; }
         }
 
         /* --- Section wrapper --- */
@@ -794,119 +731,50 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           align-items: stretch;
-          border-radius: 24px;
-          border: 1px solid rgba(138,43,226,0.2);
-          background: rgba(11,11,18,0.80);
-          backdrop-filter: blur(22px);
+          border-radius: 20px;
+          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(14, 14, 18, 0.4);
+          backdrop-filter: blur(12px);
           overflow: hidden;
-          animation: pcardFloat 6s ease-in-out infinite;
-          transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+          transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), border-color 0.4s ease, box-shadow 0.4s ease;
           min-height: 480px;
           font-family: var(--font-plan);
         }
         .pcard:hover {
-          transform: translateY(-10px) scale(1.02) !important;
-          animation-play-state: paused;
-          border-color: rgba(157,63,255,0.45);
-          box-shadow: 0 28px 80px rgba(138,43,226,0.22), 0 0 0 1px rgba(157,63,255,0.3);
+          transform: translateY(-8px);
+          border-color: rgba(255,255,255,0.15);
+          box-shadow: 0 16px 40px rgba(0,0,0,0.25);
         }
-        .pcard:nth-child(2) { animation-duration: 7.5s; animation-delay: -2s; }
-        .pcard:nth-child(3) { animation-duration: 5.5s; animation-delay: -4s; }
 
         /* --- Watermark numeral --- */
         .pcard-num {
           position: absolute;
-          right: -10px; top: 10px;
+          right: 0px; top: 10px;
           font-family: var(--font-plan-mono);
           font-size: clamp(80px, 10vw, 130px);
-          font-weight: 900;
+          font-weight: 800;
           line-height: 1;
-          color: rgba(255,255,255,0.03);
+          color: rgba(255,255,255,1);
+          opacity: 0.02;
           pointer-events: none;
           z-index: 0;
           user-select: none;
-          animation: numGlitch 8s ease-in-out infinite;
+          animation: numFade 6s ease-in-out infinite;
         }
-
-        /* --- Atmospheric glow --- */
-        .pcard-atm {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(60px);
-          pointer-events: none;
-          z-index: 0;
-          animation: atmPulse 4s ease-in-out infinite;
-        }
-        .pcard-atm-start { width: 300px; height: 300px; background: radial-gradient(circle, rgba(96,165,250,0.22), transparent 70%); top: -100px; right: -80px; }
-        .pcard-atm-pro { width: 360px; height: 360px; background: radial-gradient(circle, rgba(157,63,255,0.35), transparent 70%); top: -120px; left: 50%; transform: translateX(-50%); animation-duration: 3.5s; }
-        .pcard-atm-elite { width: 320px; height: 320px; background: radial-gradient(circle, rgba(251,100,0,0.28), transparent 70%); top: -100px; left: -80px; animation-duration: 5s; }
-
-        /* --- Sparks / particles --- */
-        .pcard-sparks { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-        .spark {
-          position: absolute;
-          width: 4px; height: 4px;
-          border-radius: 50%;
-          animation: sparkRise 3.8s ease-in-out infinite;
-          opacity: 0;
-        }
-        .spark-blue { background: #60a5fa; }
-        .spark-purple { background: var(--purple-bright); }
-        .spark-fire { background: #fb923c; }
-        .spark:nth-child(1) { left:8%; bottom:10%; --sx:15px; --sy:-90px; animation-delay:0s; animation-duration:3.4s; }
-        .spark:nth-child(2) { left:20%; bottom:5%; --sx:-18px; --sy:-75px; animation-delay:.5s; animation-duration:4.1s; }
-        .spark:nth-child(3) { left:35%; bottom:15%; --sx:22px; --sy:-85px; animation-delay:1s; animation-duration:3.8s; }
-        .spark:nth-child(4) { left:55%; bottom:8%; --sx:-12px; --sy:-95px; animation-delay:1.5s; animation-duration:4.4s; }
-        .spark:nth-child(5) { left:70%; bottom:12%; --sx:18px; --sy:-70px; animation-delay:2s; animation-duration:3.6s; }
-        .spark:nth-child(6) { left:85%; bottom:5%; --sx:-20px; --sy:-80px; animation-delay:2.5s; animation-duration:4.2s; }
-        .spark:nth-child(7) { left:48%; bottom:20%; --sx:10px; --sy:-60px; animation-delay:.8s; animation-duration:3.2s; }
-        .spark:nth-child(8) { left:15%; bottom:25%; --sx:-15px; --sy:-65px; animation-delay:1.3s; animation-duration:4.6s; }
-        .spark:nth-child(9) { left:62%; bottom:18%; --sx:25px; --sy:-88px; animation-delay:1.8s; animation-duration:3.5s; }
-        .spark:nth-child(10) { left:30%; bottom:30%; --sx:-22px; --sy:-72px; animation-delay:2.2s; animation-duration:4.0s; }
-        .spark:nth-child(11) { left:75%; bottom:22%; --sx:12px; --sy:-78px; animation-delay:.3s; animation-duration:3.7s; }
-        .spark:nth-child(12) { left:90%; bottom:30%; --sx:-8px; --sy:-92px; animation-delay:1.7s; animation-duration:4.3s; }
-
-        /* --- Holographic scan line --- */
-        .pcard-scan {
-          position: absolute;
-          left: 0; right: 0;
-          top: 0;
-          height: 60px;
-          background: linear-gradient(to bottom, transparent, rgba(157,63,255,0.06), transparent);
-          pointer-events: none;
-          z-index: 0;
-          animation: scanSwipe 5s ease-in-out infinite;
-        }
-        .pcard-start .pcard-scan { background: linear-gradient(to bottom, transparent, rgba(96,165,250,0.07), transparent); animation-delay: 0s; }
-        .pcard-pro .pcard-scan { background: linear-gradient(to bottom, transparent, rgba(157,63,255,0.09), transparent); animation-delay: -1.6s; }
-        .pcard-elite .pcard-scan { background: linear-gradient(to bottom, transparent, rgba(251,100,0,0.08), transparent); animation-delay: -3.2s; }
-
-        /* --- Orbital rings (Pro only) --- */
-        .orbit-ring {
-          position: absolute;
-          border-radius: 50%;
-          border: 1px solid rgba(157,63,255,0.18);
-          pointer-events: none;
-          z-index: 0;
-          top: 150px; left: 50%; /* Adjusted for vertical */
-        }
-        .orbit-ring-1 { width: 280px; height: 280px; animation: orbitSpin1 12s linear infinite; }
-        .orbit-ring-2 { width: 420px; height: 420px; border-style: dashed; border-color: rgba(157,63,255,0.1); animation: orbitSpin2 18s linear infinite; }
 
         /* --- "MAIS POPULAR" hot badge --- */
         .pcard-hot {
           position: absolute;
           top: 0; left: 50%; transform: translateX(-50%);
-          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
+          background: #2563eb;
           color: #fff;
           font-family: var(--font-plan);
-          font-size: 0.62rem;
-          font-weight: 900;
-          letter-spacing: 0.2em;
+          font-size: 0.65rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          padding: 5px 20px;
-          border-radius: 0 0 16px 16px;
-          animation: hotBadge 2.5s ease-in-out infinite;
+          padding: 6px 16px;
+          border-radius: 0 0 12px 12px;
           white-space: nowrap;
           z-index: 10;
         }
@@ -949,7 +817,7 @@ export default function Home() {
         .pcard-rs {
           font-family: var(--font-plan-mono);
           font-size: 1.15rem;
-          font-weight: 600;
+          font-weight: 500;
           color: var(--gray-mid);
           align-self: flex-start;
           margin-top: 8px;
@@ -957,24 +825,16 @@ export default function Home() {
         .pcard-val {
           font-family: var(--font-plan-mono);
           font-size: clamp(3rem, 5vw, 4rem);
-          font-weight: 700;
+          font-weight: 600;
           line-height: 1;
           letter-spacing: -0.04em;
           color: #fff;
         }
-        .pcard-start .pcard-val { color: #93c5fd; text-shadow: 0 0 30px rgba(96,165,250,0.5); }
-        .pcard-pro .pcard-val {
-          background: linear-gradient(135deg, #fff, var(--purple-light));
-          -webkit-background-clip: text; background-clip: text;
-          -webkit-text-fill-color: transparent;
-          filter: drop-shadow(0 0 20px rgba(157,63,255,0.6));
-        }
-        .pcard-elite .pcard-val { color: #fdba74; text-shadow: 0 0 30px rgba(251,100,0,0.55); }
 
         .pcard-note {
           font-family: var(--font-plan);
           font-size: 0.75rem;
-          font-weight: 700;
+          font-weight: 600;
           letter-spacing: 0.08em;
           color: var(--gray-mid);
           text-transform: uppercase;
@@ -987,45 +847,37 @@ export default function Home() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
+          gap: 6px;
           margin-top: 20px;
-          width: 100%; /* Full width button in vertical grid */
-          padding: 14px 22px;
-          border-radius: 12px;
+          width: 100%;
+          padding: 12px 22px;
+          border-radius: 8px;
           font-family: var(--font-plan);
-          font-weight: 700;
-          font-size: 1rem;
+          font-weight: 600;
+          font-size: 0.95rem;
           text-decoration: none;
           color: #fff;
-          position: relative;
-          overflow: hidden;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
           transition: all 0.3s ease;
           white-space: nowrap;
-          z-index: 2;
-        }
-        .pcard-btn::before {
-          content: '';
-          position: absolute;
-          top: 0; left: -120%;
-          width: 80px; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
-          animation: ctaBtnShine 3.5s ease-in-out infinite;
         }
         .pcard-arrow { transition: transform 0.3s ease; }
-        .pcard-btn:hover .pcard-arrow { transform: translateX(5px); }
-        .pcard-btn:hover { transform: translateY(-3px); }
-
-        .pcard-btn-start { background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.35); }
-        .pcard-btn-start:hover { background: rgba(96,165,250,0.3); box-shadow: 0 0 24px rgba(96,165,250,0.4); }
-        .pcard-btn-pro {
-          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
-          border: none;
-          box-shadow: 0 0 24px rgba(157,63,255,0.5), 0 4px 20px rgba(138,43,226,0.35);
+        .pcard-btn:hover .pcard-arrow { transform: translateX(4px); }
+        .pcard-btn:hover {
+          background: rgba(255,255,255,0.12);
+          border-color: rgba(255,255,255,0.25);
+          transform: translateY(-2px);
         }
-        .pcard-btn-pro:hover { box-shadow: 0 0 40px rgba(157,63,255,0.75), 0 8px 28px rgba(138,43,226,0.45); }
-        .pcard-btn-elite { background: linear-gradient(135deg, #ea580c, #f97316); border: none; box-shadow: 0 0 24px rgba(251,100,0,0.45); }
-        .pcard-btn-elite:hover { box-shadow: 0 0 44px rgba(251,100,0,0.7); }
-        .pcard-btn-elite::before { animation-delay: 1.8s; background: linear-gradient(90deg, transparent, rgba(255,200,100,0.28), transparent); }
+
+        .pcard-btn-pro {
+          background: #2563eb;
+          border-color: #2563eb;
+        }
+        .pcard-btn-pro:hover {
+          background: #3b82f6; 
+          border-color: #3b82f6;
+        }
 
         /* --- Separator --- */
         .pcard-sep {
@@ -1033,12 +885,8 @@ export default function Home() {
           height: 1px;
           margin: 0 auto;
           flex-shrink: 0;
-          position: relative;
-          z-index: 1;
+          background: rgba(255,255,255,0.06);
         }
-        .pcard-sep-start { background: linear-gradient(to right, transparent, rgba(96,165,250,0.35), transparent); }
-        .pcard-sep-pro { background: linear-gradient(to right, transparent, rgba(157,63,255,0.5), transparent); }
-        .pcard-sep-elite { background: linear-gradient(to right, transparent, rgba(251,100,0,0.4), transparent); }
 
         /* --- BOTTOM panel (content) --- */
         .pcard-right {
@@ -1053,8 +901,8 @@ export default function Home() {
 
         .pcard-name {
           font-family: var(--font-plan);
-          font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-          font-weight: 800;
+          font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+          font-weight: 700;
           color: #fff;
           margin: 0;
           line-height: 1.1;
@@ -1102,37 +950,29 @@ export default function Home() {
         .pcard-for {
           font-family: var(--font-plan);
           font-size: 0.8rem;
-          font-weight: 700;
+          font-weight: 500;
           padding: 8px 16px;
-          border-radius: 10px;
+          border-radius: 8px;
           align-self: center; /* Centered in vertical layout */
           margin-top: auto; /* Pushes it to the bottom */
           text-align: center;
+          background: rgba(255,255,255,0.03);
+          color: var(--gray-light);
+          border: 1px solid rgba(255,255,255,0.06);
         }
-        .pcard-for-start { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.22); color: #93c5fd; }
-        .pcard-for-pro { background: rgba(157,63,255,0.1); border: 1px solid rgba(157,63,255,0.28); color: var(--purple-light); }
-        .pcard-for-elite { background: rgba(251,100,0,0.08); border: 1px solid rgba(251,100,0,0.24); color: #fdba74; }
 
         /* --- Pro card theming --- */
         .pcard-pro {
-          border-color: rgba(157,63,255,0.4);
-          background: rgba(12,8,24,0.92);
-          box-shadow: 0 0 60px rgba(138,43,226,0.18), 0 0 130px rgba(138,43,226,0.07);
-          animation: pcardFloatPro 7.5s ease-in-out infinite;
+          border-color: rgba(255,255,255,0.18);
+          background: rgba(18, 18, 24, 0.6);
         }
         .pcard-pro:hover {
-          border-color: rgba(157,63,255,0.65);
-          box-shadow: 0 28px 90px rgba(138,43,226,0.3), 0 0 0 1px rgba(157,63,255,0.45);
+          border-color: rgba(255,255,255,0.28);
         }
 
         /* --- Elite card theming --- */
         .pcard-elite {
-          border-color: rgba(251,100,0,0.3);
-          animation: pcardFloat 5.5s ease-in-out infinite, fireBorder 3s ease-in-out infinite;
-        }
-        .pcard-elite:hover {
-          border-color: rgba(251,160,0,0.65);
-          box-shadow: 0 28px 90px rgba(251,100,0,0.2), 0 0 0 1px rgba(251,140,0,0.4);
+          /* Inherits base clean theme */
         }
 
         /* --- Responsive --- */
@@ -1156,8 +996,6 @@ export default function Home() {
             max-width: 100%;
           }
           .pcard-num { font-size: 80px; top: 10px; right: 10px; }
-          .orbit-ring-1 { width: 200px; height: 200px; top: 120px; }
-          .orbit-ring-2 { width: 300px; height: 300px; top: 120px; }
         }
         /* ============================= */
         @keyframes planFloat {
