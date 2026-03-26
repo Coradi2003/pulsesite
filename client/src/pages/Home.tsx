@@ -721,6 +721,7 @@ export default function Home() {
         /* Title in single line */
         .plans-title {
           white-space: nowrap;
+          text-align: center;
         }
 
         .plans-galaxy {
