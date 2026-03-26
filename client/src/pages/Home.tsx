@@ -416,137 +416,157 @@ export default function Home() {
       {/* ===================== PLANS SECTION ===================== */}
       <section className="section plans-section" id="planos">
         <div className="container">
-          <div className="text-center reveal">
+
+          {/* SECTION HEADER */}
+          <div className="plans-header reveal">
             <span className="section-tag">💰 Planos &amp; Preços</span>
-            <h2 className="section-title" style={{ marginBottom: '12px' }}>
-              Escolha seu plano e <span>decole agora</span>
+            <h2 className="section-title" style={{ marginBottom: '0' }}>
+              Escolha seu plano e <span>comece a vender</span>
             </h2>
-            <p className="section-subtitle" style={{ margin: '0 auto 60px' }}>
-              Sites profissionais que convertem. Sem enrolação, sem preço abusivo.
+            <p className="section-subtitle" style={{ margin: '0 auto' }}>
+              Pagamento único. Sem mensalidade escondida. Sem burocracia.
             </p>
           </div>
 
-          <div className="plans-grid">
-            {/* ═══ PLAN 1 — START ═══ */}
-            <div className="plan-card plan-start reveal delay-1">
-              <div className="plan-glow plan-glow-start" />
-              <div className="plan-particles">
-                {[...Array(6)].map((_, i) => <span key={i} className="plan-particle" />)}
+          {/* CARDS STACK */}
+          <div className="plans-stack">
+
+            {/* ══════════ START ══════════ */}
+            <div className="pcard pcard-start reveal delay-1">
+              {/* Watermark numeral */}
+              <span className="pcard-num">01</span>
+              {/* Atmospheric glow */}
+              <div className="pcard-atm pcard-atm-start" />
+              {/* Floating particles */}
+              <div className="pcard-sparks">
+                {[...Array(7)].map((_, i) => <span key={i} className="spark spark-blue" />)}
               </div>
-              <div className="plan-accent-line plan-accent-start" />
-              <div className="plan-header">
-                <div className="plan-icon-row">
-                  <div className="plan-emoji">🚀</div>
-                  <div className="plan-badge plan-badge-start">BÁSICO</div>
+              {/* Holographic scan line */}
+              <div className="pcard-scan" />
+
+              {/* LEFT — price */}
+              <div className="pcard-left">
+                <div className="pcard-tier pcard-tier-start">🚀 BÁSICO</div>
+                <div className="pcard-price-wrap">
+                  <span className="pcard-rs">R$</span>
+                  <span className="pcard-val">350</span>
                 </div>
-                <h3 className="plan-name">Pulse Start</h3>
-                <p className="plan-tagline">Sua empresa no digital em até 5 dias. Perfeito pra começar do zero.</p>
+                <p className="pcard-note">pagamento único</p>
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="pcard-btn pcard-btn-start" target="_blank" rel="noopener noreferrer">
+                  Começar <span className="pcard-arrow">→</span>
+                </a>
               </div>
-              <div className="plan-price-block plan-price-block-start">
-                <div className="plan-price-row">
-                  <span className="plan-currency">R$</span>
-                  <span className="plan-amount">350</span>
-                </div>
-                <span className="plan-price-label">pagamento único · sem surpresas</span>
+
+              {/* DIVIDER */}
+              <div className="pcard-sep pcard-sep-start" />
+
+              {/* RIGHT — content */}
+              <div className="pcard-right">
+                <h3 className="pcard-name">Pulse Start</h3>
+                <p className="pcard-tagline">Sua empresa no digital em até 5 dias, sem dor de cabeça.</p>
+                <ul className="pcard-feats">
+                  <li><span className="feat-dot feat-dot-start" />Site 1 página · design moderno &amp; responsivo</li>
+                  <li><span className="feat-dot feat-dot-start" />Botão WhatsApp integrado</li>
+                  <li><span className="feat-dot feat-dot-start" />Domínio <strong>.com.br</strong> por 1 ano</li>
+                  <li><span className="feat-dot feat-dot-start" />Hospedagem otimizada</li>
+                  <li><span className="feat-dot feat-dot-start" />Entrega em até <strong>5 dias úteis</strong></li>
+                  <li><span className="feat-dot feat-dot-start" />Manutenção por <strong>30 dias</strong></li>
+                </ul>
+                <div className="pcard-for pcard-for-start">🎯 Autônomos &amp; iniciantes</div>
               </div>
-              <div className="plan-divider plan-divider-start" />
-              <ul className="plan-features">
-                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Site de <strong>1 página</strong> responsivo</li>
-                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Design moderno e profissional</li>
-                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Botão WhatsApp integrado</li>
-                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Domínio <strong>.com.br</strong> por 1 ano incluso</li>
-                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Hospedagem otimizada</li>
-                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Entrega em até <strong>5 dias úteis</strong></li>
-                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Suporte por <strong>30 dias</strong></li>
-              </ul>
-              <div className="plan-callout plan-callout-start">🎯 Ideal para <strong>autônomos &amp; iniciantes</strong></div>
-              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="plan-cta" target="_blank" rel="noopener noreferrer">
-                Quero começar <span className="plan-cta-arrow">→</span>
-              </a>
             </div>
 
-            {/* ═══ PLAN 2 — PRO (FEATURED) ═══ */}
-            <div className="plan-card plan-pro plan-featured reveal delay-2">
-              <div className="plan-glow plan-glow-pro" />
-              <div className="plan-popular-badge">⚡ MAIS POPULAR</div>
-              <div className="plan-particles plan-particles-pro">
-                {[...Array(10)].map((_, i) => <span key={i} className="plan-particle" />)}
+            {/* ══════════ PRO ══════════ */}
+            <div className="pcard pcard-pro reveal delay-2">
+              {/* Orbital rings */}
+              <div className="orbit-ring orbit-ring-1" />
+              <div className="orbit-ring orbit-ring-2" />
+              <span className="pcard-num">02</span>
+              <div className="pcard-atm pcard-atm-pro" />
+              <div className="pcard-sparks">
+                {[...Array(12)].map((_, i) => <span key={i} className="spark spark-purple" />)}
               </div>
-              <div className="plan-accent-line plan-accent-pro" />
-              <div className="plan-header">
-                <div className="plan-icon-row">
-                  <div className="plan-emoji">⚡</div>
-                  <div className="plan-badge plan-badge-pro">INTERMEDIÁRIO</div>
+              <div className="pcard-scan" />
+              {/* Popular strip */}
+              <div className="pcard-hot">⚡ MAIS POPULAR</div>
+
+              {/* LEFT */}
+              <div className="pcard-left">
+                <div className="pcard-tier pcard-tier-pro">⚡ PRO</div>
+                <div className="pcard-price-wrap">
+                  <span className="pcard-rs">R$</span>
+                  <span className="pcard-val">650</span>
                 </div>
-                <h3 className="plan-name">Pulse Pro</h3>
-                <p className="plan-tagline">O equilíbrio perfeito entre preço e resultado. Seu site de verdade.</p>
+                <p className="pcard-note">pagamento único</p>
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="pcard-btn pcard-btn-pro" target="_blank" rel="noopener noreferrer">
+                  Quero o Pro <span className="pcard-arrow">→</span>
+                </a>
               </div>
-              <div className="plan-price-block plan-price-block-pro">
-                <div className="plan-price-row">
-                  <span className="plan-currency">R$</span>
-                  <span className="plan-amount">650</span>
-                </div>
-                <span className="plan-price-label">pagamento único · sem mensalidade</span>
+
+              <div className="pcard-sep pcard-sep-pro" />
+
+              {/* RIGHT */}
+              <div className="pcard-right">
+                <h3 className="pcard-name">Pulse Pro</h3>
+                <p className="pcard-tagline">O site completo que coloca sua empresa no topo do Google.</p>
+                <ul className="pcard-feats">
+                  <li><span className="feat-dot feat-dot-pro" />Até <strong>5 páginas</strong> (Home, Sobre, Serviços, Contato...)</li>
+                  <li><span className="feat-dot feat-dot-pro" />Design estratégico e personalizado</li>
+                  <li><span className="feat-dot feat-dot-pro" />Integração redes sociais + WhatsApp + formulário</li>
+                  <li><span className="feat-dot feat-dot-pro" />Google Analytics (tempo real)</li>
+                  <li><span className="feat-dot feat-dot-pro" /><strong>SEO</strong> — apareça no Google</li>
+                  <li><span className="feat-dot feat-dot-pro" />Domínio + hospedagem otimizada por 1 ano</li>
+                  <li><span className="feat-dot feat-dot-pro" />Suporte + manutenção por <strong>6 meses</strong></li>
+                </ul>
+                <div className="pcard-for pcard-for-pro">🚀 Empresas que querem crescer online</div>
               </div>
-              <div className="plan-divider plan-divider-pro" />
-              <ul className="plan-features">
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Até <strong>5 páginas</strong> completas</li>
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Design estratégico e personalizado</li>
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Redes sociais + formulário + WhatsApp</li>
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Google Analytics em tempo real</li>
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg><strong>SEO</strong> — apareça no Google</li>
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Domínio <strong>.com.br</strong> por 1 ano incluso</li>
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Hospedagem otimizada</li>
-                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Suporte + manutenção por <strong>6 meses</strong></li>
-              </ul>
-              <div className="plan-callout plan-callout-pro">🚀 Para empresas que querem <strong>crescer online</strong></div>
-              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="plan-cta plan-cta-pro" target="_blank" rel="noopener noreferrer">
-                Quero o Pro <span className="plan-cta-arrow">→</span>
-              </a>
             </div>
 
-            {/* ═══ PLAN 3 — ELITE ═══ */}
-            <div className="plan-card plan-elite reveal delay-3">
-              <div className="plan-glow plan-glow-elite" />
-              <div className="plan-particles plan-particles-elite">
-                {[...Array(8)].map((_, i) => <span key={i} className="plan-particle" />)}
+            {/* ══════════ ELITE ══════════ */}
+            <div className="pcard pcard-elite reveal delay-3">
+              <span className="pcard-num">03</span>
+              <div className="pcard-atm pcard-atm-elite" />
+              <div className="pcard-sparks">
+                {[...Array(9)].map((_, i) => <span key={i} className="spark spark-fire" />)}
               </div>
-              <div className="plan-accent-line plan-accent-elite" />
-              <div className="plan-header">
-                <div className="plan-icon-row">
-                  <div className="plan-emoji">🔥</div>
-                  <div className="plan-badge plan-badge-elite">PREMIUM</div>
+              <div className="pcard-scan" />
+
+              {/* LEFT */}
+              <div className="pcard-left">
+                <div className="pcard-tier pcard-tier-elite">🔥 ELITE</div>
+                <div className="pcard-price-wrap">
+                  <span className="pcard-rs">R$</span>
+                  <span className="pcard-val">1.200</span>
                 </div>
-                <h3 className="plan-name">Pulse Elite</h3>
-                <p className="plan-tagline">Site de alto nível com foco total em conversão e autoridade de marca.</p>
+                <p className="pcard-note">investimento único</p>
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="pcard-btn pcard-btn-elite" target="_blank" rel="noopener noreferrer">
+                  Quero o Elite <span className="pcard-arrow">→</span>
+                </a>
               </div>
-              <div className="plan-price-block plan-price-block-elite">
-                <div className="plan-price-row">
-                  <span className="plan-currency">R$</span>
-                  <span className="plan-amount">1.200</span>
-                </div>
-                <span className="plan-price-label">investimento único · ROI garantido</span>
+
+              <div className="pcard-sep pcard-sep-elite" />
+
+              {/* RIGHT */}
+              <div className="pcard-right">
+                <h3 className="pcard-name">Pulse Elite</h3>
+                <p className="pcard-tagline">Alto nível, foco total em conversão — site que vende enquanto você dorme.</p>
+                <ul className="pcard-feats">
+                  <li><span className="feat-dot feat-dot-elite" />Até <strong>10 páginas</strong> ou estrutura avançada</li>
+                  <li><span className="feat-dot feat-dot-elite" />Design premium + animações + UX envolvente</li>
+                  <li><span className="feat-dot feat-dot-elite" />Integração completa (WhatsApp, redes, forms)</li>
+                  <li><span className="feat-dot feat-dot-elite" />Google Analytics avançado + estrutura de vendas</li>
+                  <li><span className="feat-dot feat-dot-elite" />Domínio + hospedagem <strong>alta performance</strong></li>
+                  <li><span className="feat-dot feat-dot-elite" />Suporte <strong>PRIORITÁRIO 24h</strong></li>
+                  <li><span className="feat-dot feat-dot-elite" />Manutenção por <strong>1 ano completo</strong></li>
+                </ul>
+                <div className="pcard-for pcard-for-elite">🔥 Quem quer vender todos os dias</div>
               </div>
-              <div className="plan-divider plan-divider-elite" />
-              <ul className="plan-features">
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Até <strong>10 páginas</strong> ou fluxo avançado</li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Design premium focado em <strong>conversão</strong></li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Animações profissionais + UX premium</li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Integração completa (WhatsApp, redes, forms)</li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Google Analytics <strong>avançado</strong></li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Estrutura otimizada para <strong>vendas</strong></li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Domínio + hospedagem de <strong>alta performance</strong></li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Suporte <strong>PRIORITÁRIO 24h</strong></li>
-                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Manutenção por <strong>1 ano completo</strong></li>
-              </ul>
-              <div className="plan-callout plan-callout-elite">🔥 Pra quem quer <strong>vender todos os dias</strong></div>
-              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="plan-cta plan-cta-elite" target="_blank" rel="noopener noreferrer">
-                Quero o Elite 🔥 <span className="plan-cta-arrow">→</span>
-              </a>
             </div>
-          </div>
+
+          </div>{/* /plans-stack */}
         </div>
       </section>
+
 
       <section className="section cta-final" id="cta">
         <div className="container">
@@ -686,7 +706,433 @@ export default function Home() {
 
       <style>{`
 
-        /* ======================== PLANS ======================== */
+        /* ======================== PLANS — v3 ======================== */
+
+        /* --- Keyframes --- */
+        @keyframes pcardFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes pcardFloatPro {
+          0%, 100% { transform: translateY(0px) scale(1.03); }
+          50% { transform: translateY(-10px) scale(1.03); }
+        }
+        @keyframes atmPulse {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes sparkRise {
+          0% { transform: translate(0,0) scale(1); opacity: 0; }
+          12% { opacity: 1; }
+          88% { opacity: 0.5; }
+          100% { transform: translate(var(--sx,20px), var(--sy,-80px)) scale(0.2); opacity: 0; }
+        }
+        @keyframes scanSwipe {
+          0% { transform: translateY(-100%); opacity: 0; }
+          10% { opacity: 1; }
+          80% { opacity: 0.4; }
+          100% { transform: translateY(400px); opacity: 0; }
+        }
+        @keyframes orbitSpin1 {
+          from { transform: translate(-50%,-50%) rotate(0deg); }
+          to { transform: translate(-50%,-50%) rotate(360deg); }
+        }
+        @keyframes orbitSpin2 {
+          from { transform: translate(-50%,-50%) rotate(0deg); }
+          to { transform: translate(-50%,-50%) rotate(-360deg); }
+        }
+        @keyframes hotBadge {
+          0%, 100% { box-shadow: 0 0 14px rgba(157,63,255,0.7), 0 0 32px rgba(157,63,255,0.3); }
+          50% { box-shadow: 0 0 26px rgba(157,63,255,1), 0 0 60px rgba(157,63,255,0.55); }
+        }
+        @keyframes valPop {
+          from { opacity: 0; transform: translateY(16px) scale(0.85); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes ctaBtnShine {
+          0% { left: -120%; }
+          100% { left: 200%; }
+        }
+        @keyframes fireBorder {
+          0%, 100% { border-color: rgba(251,100,0,0.45); }
+          50% { border-color: rgba(251,160,0,0.85); }
+        }
+        @keyframes numGlitch {
+          0%, 96% { text-shadow: none; transform: none; }
+          97% { text-shadow: 4px 0 rgba(157,63,255,0.5), -4px 0 rgba(251,100,0,0.5); transform: skewX(-6deg); }
+          98% { text-shadow: -3px 0 rgba(157,63,255,0.4), 3px 0 rgba(251,100,0,0.4); transform: skewX(4deg); }
+          100% { text-shadow: none; transform: none; }
+        }
+
+        /* --- Section wrapper --- */
+        .plans-section { padding: 110px 0 130px; }
+        .plans-header { text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+        /* --- Stack of cards --- */
+        .plans-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 22px;
+        }
+
+        /* --- Base card --- */
+        .pcard {
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          border-radius: 24px;
+          border: 1px solid rgba(138,43,226,0.2);
+          background: rgba(11,11,18,0.80);
+          backdrop-filter: blur(22px);
+          overflow: hidden;
+          animation: pcardFloat 6s ease-in-out infinite;
+          transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+          min-height: 200px;
+        }
+        .pcard:hover {
+          transform: translateY(-10px) scale(1.015) !important;
+          animation-play-state: paused;
+          border-color: rgba(157,63,255,0.45);
+          box-shadow: 0 28px 80px rgba(138,43,226,0.22), 0 0 0 1px rgba(157,63,255,0.3);
+        }
+        .pcard:nth-child(2) { animation-duration: 7.5s; animation-delay: -2s; }
+        .pcard:nth-child(3) { animation-duration: 5.5s; animation-delay: -4s; }
+
+        /* --- Watermark numeral --- */
+        .pcard-num {
+          position: absolute;
+          right: 28px; top: 50%;
+          transform: translateY(-50%);
+          font-family: var(--font-main);
+          font-size: clamp(100px, 14vw, 160px);
+          font-weight: 900;
+          line-height: 1;
+          color: rgba(255,255,255,0.03);
+          pointer-events: none;
+          z-index: 0;
+          user-select: none;
+          animation: numGlitch 8s ease-in-out infinite;
+        }
+
+        /* --- Atmospheric glow --- */
+        .pcard-atm {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(60px);
+          pointer-events: none;
+          z-index: 0;
+          animation: atmPulse 4s ease-in-out infinite;
+        }
+        .pcard-atm-start { width: 300px; height: 300px; background: radial-gradient(circle, rgba(96,165,250,0.22), transparent 70%); top: -100px; right: -80px; }
+        .pcard-atm-pro { width: 360px; height: 360px; background: radial-gradient(circle, rgba(157,63,255,0.35), transparent 70%); top: -120px; left: 50%; transform: translateX(-50%); animation-duration: 3.5s; }
+        .pcard-atm-elite { width: 320px; height: 320px; background: radial-gradient(circle, rgba(251,100,0,0.28), transparent 70%); top: -100px; left: -80px; animation-duration: 5s; }
+
+        /* --- Sparks / particles --- */
+        .pcard-sparks { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+        .spark {
+          position: absolute;
+          width: 4px; height: 4px;
+          border-radius: 50%;
+          animation: sparkRise 3.8s ease-in-out infinite;
+          opacity: 0;
+        }
+        .spark-blue { background: #60a5fa; }
+        .spark-purple { background: var(--purple-bright); }
+        .spark-fire { background: #fb923c; }
+        .spark:nth-child(1) { left:8%; bottom:10%; --sx:15px; --sy:-90px; animation-delay:0s; animation-duration:3.4s; }
+        .spark:nth-child(2) { left:20%; bottom:5%; --sx:-18px; --sy:-75px; animation-delay:.5s; animation-duration:4.1s; }
+        .spark:nth-child(3) { left:35%; bottom:15%; --sx:22px; --sy:-85px; animation-delay:1s; animation-duration:3.8s; }
+        .spark:nth-child(4) { left:55%; bottom:8%; --sx:-12px; --sy:-95px; animation-delay:1.5s; animation-duration:4.4s; }
+        .spark:nth-child(5) { left:70%; bottom:12%; --sx:18px; --sy:-70px; animation-delay:2s; animation-duration:3.6s; }
+        .spark:nth-child(6) { left:85%; bottom:5%; --sx:-20px; --sy:-80px; animation-delay:2.5s; animation-duration:4.2s; }
+        .spark:nth-child(7) { left:48%; bottom:20%; --sx:10px; --sy:-60px; animation-delay:.8s; animation-duration:3.2s; }
+        .spark:nth-child(8) { left:15%; bottom:25%; --sx:-15px; --sy:-65px; animation-delay:1.3s; animation-duration:4.6s; }
+        .spark:nth-child(9) { left:62%; bottom:18%; --sx:25px; --sy:-88px; animation-delay:1.8s; animation-duration:3.5s; }
+        .spark:nth-child(10) { left:30%; bottom:30%; --sx:-22px; --sy:-72px; animation-delay:2.2s; animation-duration:4.0s; }
+        .spark:nth-child(11) { left:75%; bottom:22%; --sx:12px; --sy:-78px; animation-delay:.3s; animation-duration:3.7s; }
+        .spark:nth-child(12) { left:90%; bottom:30%; --sx:-8px; --sy:-92px; animation-delay:1.7s; animation-duration:4.3s; }
+
+        /* --- Holographic scan line --- */
+        .pcard-scan {
+          position: absolute;
+          left: 0; right: 0;
+          top: 0;
+          height: 60px;
+          background: linear-gradient(to bottom, transparent, rgba(157,63,255,0.06), transparent);
+          pointer-events: none;
+          z-index: 0;
+          animation: scanSwipe 5s ease-in-out infinite;
+        }
+        .pcard-start .pcard-scan { background: linear-gradient(to bottom, transparent, rgba(96,165,250,0.07), transparent); animation-delay: 0s; }
+        .pcard-pro .pcard-scan { background: linear-gradient(to bottom, transparent, rgba(157,63,255,0.09), transparent); animation-delay: -1.6s; }
+        .pcard-elite .pcard-scan { background: linear-gradient(to bottom, transparent, rgba(251,100,0,0.08), transparent); animation-delay: -3.2s; }
+
+        /* --- Orbital rings (Pro only) --- */
+        .orbit-ring {
+          position: absolute;
+          border-radius: 50%;
+          border: 1px solid rgba(157,63,255,0.18);
+          pointer-events: none;
+          z-index: 0;
+          top: 50%; left: 50%;
+        }
+        .orbit-ring-1 { width: 280px; height: 280px; animation: orbitSpin1 12s linear infinite; }
+        .orbit-ring-2 { width: 420px; height: 420px; border-style: dashed; border-color: rgba(157,63,255,0.1); animation: orbitSpin2 18s linear infinite; }
+
+        /* --- "MAIS POPULAR" hot badge --- */
+        .pcard-hot {
+          position: absolute;
+          top: 0; left: 50%; transform: translateX(-50%);
+          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
+          color: #fff;
+          font-size: 0.62rem;
+          font-weight: 900;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          padding: 5px 20px;
+          border-radius: 0 0 16px 16px;
+          animation: hotBadge 2.5s ease-in-out infinite;
+          white-space: nowrap;
+          z-index: 10;
+        }
+
+        /* --- LEFT panel (price) --- */
+        .pcard-left {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 6px;
+          padding: 32px 36px 32px 40px;
+          flex: 0 0 240px;
+          min-width: 200px;
+        }
+
+        /* --- Tier badge --- */
+        .pcard-tier {
+          font-size: 0.62rem;
+          font-weight: 900;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          padding: 5px 12px;
+          border-radius: 100px;
+          margin-bottom: 4px;
+        }
+        .pcard-tier-start { background: rgba(96,165,250,0.12); color: #93c5fd; border: 1px solid rgba(96,165,250,0.3); }
+        .pcard-tier-pro { background: rgba(157,63,255,0.15); color: var(--purple-light); border: 1px solid rgba(157,63,255,0.35); }
+        .pcard-tier-elite { background: rgba(251,100,0,0.12); color: #fdba74; border: 1px solid rgba(251,100,0,0.3); }
+
+        /* --- Price --- */
+        .pcard-price-wrap {
+          display: flex;
+          align-items: baseline;
+          gap: 4px;
+          animation: valPop 0.7s ease both;
+        }
+        .pcard-rs {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: var(--gray-mid);
+          align-self: flex-start;
+          margin-top: 8px;
+        }
+        .pcard-val {
+          font-family: var(--font-main);
+          font-size: clamp(2.8rem, 5vw, 3.8rem);
+          font-weight: 900;
+          line-height: 1;
+          letter-spacing: -0.03em;
+          color: #fff;
+        }
+        .pcard-start .pcard-val { color: #93c5fd; text-shadow: 0 0 30px rgba(96,165,250,0.5); }
+        .pcard-pro .pcard-val {
+          background: linear-gradient(135deg, #fff, var(--purple-light));
+          -webkit-background-clip: text; background-clip: text;
+          -webkit-text-fill-color: transparent;
+          filter: drop-shadow(0 0 20px rgba(157,63,255,0.6));
+        }
+        .pcard-elite .pcard-val { color: #fdba74; text-shadow: 0 0 30px rgba(251,100,0,0.55); }
+
+        .pcard-note {
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.06em;
+          color: var(--gray-mid);
+          text-transform: uppercase;
+          margin-top: 2px;
+        }
+
+        /* --- CTA button --- */
+        .pcard-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 14px;
+          padding: 12px 22px;
+          border-radius: 10px;
+          font-family: var(--font-main);
+          font-weight: 700;
+          font-size: 0.9rem;
+          text-decoration: none;
+          color: #fff;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          z-index: 2;
+        }
+        .pcard-btn::before {
+          content: '';
+          position: absolute;
+          top: 0; left: -120%;
+          width: 80px; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+          animation: ctaBtnShine 3.5s ease-in-out infinite;
+        }
+        .pcard-arrow { transition: transform 0.3s ease; }
+        .pcard-btn:hover .pcard-arrow { transform: translateX(5px); }
+        .pcard-btn:hover { transform: translateY(-2px); }
+
+        .pcard-btn-start { background: rgba(96,165,250,0.18); border: 1px solid rgba(96,165,250,0.4); }
+        .pcard-btn-start:hover { background: rgba(96,165,250,0.32); box-shadow: 0 0 22px rgba(96,165,250,0.35); }
+        .pcard-btn-pro {
+          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
+          border: none;
+          box-shadow: 0 0 24px rgba(157,63,255,0.5), 0 4px 20px rgba(138,43,226,0.35);
+        }
+        .pcard-btn-pro:hover { box-shadow: 0 0 40px rgba(157,63,255,0.75), 0 8px 28px rgba(138,43,226,0.45); transform: translateY(-3px); }
+        .pcard-btn-elite { background: linear-gradient(135deg, #ea580c, #f97316); border: none; box-shadow: 0 0 24px rgba(251,100,0,0.45); }
+        .pcard-btn-elite:hover { box-shadow: 0 0 44px rgba(251,100,0,0.7); transform: translateY(-3px); }
+        .pcard-btn-elite::before { animation-delay: 1.8s; background: linear-gradient(90deg, transparent, rgba(255,200,100,0.28), transparent); }
+
+        /* --- Vertical separator --- */
+        .pcard-sep {
+          width: 1px;
+          margin: 32px 0;
+          flex-shrink: 0;
+          align-self: stretch;
+          position: relative;
+          z-index: 1;
+        }
+        .pcard-sep-start { background: linear-gradient(to bottom, transparent, rgba(96,165,250,0.35), transparent); }
+        .pcard-sep-pro { background: linear-gradient(to bottom, transparent, rgba(157,63,255,0.5), transparent); }
+        .pcard-sep-elite { background: linear-gradient(to bottom, transparent, rgba(251,100,0,0.4), transparent); }
+
+        /* --- RIGHT panel (content) --- */
+        .pcard-right {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 10px;
+          padding: 32px 40px 32px 32px;
+          flex: 1;
+        }
+
+        .pcard-name {
+          font-family: var(--font-main);
+          font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+          font-weight: 800;
+          color: #fff;
+          margin: 0;
+          line-height: 1.1;
+        }
+        .pcard-tagline {
+          font-size: 0.85rem;
+          color: var(--gray-mid);
+          line-height: 1.55;
+          margin: 0;
+          max-width: 460px;
+        }
+
+        /* --- Feature list --- */
+        .pcard-feats {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 7px 24px;
+        }
+        .pcard-feats li {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          font-size: 0.83rem;
+          color: var(--gray-light);
+          line-height: 1.4;
+        }
+        .pcard-feats li strong { color: #fff; font-weight: 700; }
+        .feat-dot {
+          width: 7px; height: 7px;
+          border-radius: 50%;
+          flex-shrink: 0;
+          margin-top: 5px;
+        }
+        .feat-dot-start { background: #60a5fa; box-shadow: 0 0 6px rgba(96,165,250,0.7); }
+        .feat-dot-pro { background: var(--purple-bright); box-shadow: 0 0 6px rgba(157,63,255,0.7); }
+        .feat-dot-elite { background: #fb923c; box-shadow: 0 0 6px rgba(251,100,0,0.7); }
+
+        /* --- For whom tag --- */
+        .pcard-for {
+          font-size: 0.78rem;
+          font-weight: 700;
+          padding: 7px 14px;
+          border-radius: 8px;
+          align-self: flex-start;
+          margin-top: 4px;
+        }
+        .pcard-for-start { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.22); color: #93c5fd; }
+        .pcard-for-pro { background: rgba(157,63,255,0.1); border: 1px solid rgba(157,63,255,0.28); color: var(--purple-light); }
+        .pcard-for-elite { background: rgba(251,100,0,0.08); border: 1px solid rgba(251,100,0,0.24); color: #fdba74; }
+
+        /* --- Pro card theming --- */
+        .pcard-pro {
+          border-color: rgba(157,63,255,0.4);
+          background: rgba(12,8,24,0.92);
+          box-shadow: 0 0 60px rgba(138,43,226,0.18), 0 0 130px rgba(138,43,226,0.07);
+          animation: pcardFloatPro 7.5s ease-in-out infinite;
+        }
+        .pcard-pro:hover {
+          border-color: rgba(157,63,255,0.65);
+          box-shadow: 0 28px 90px rgba(138,43,226,0.3), 0 0 0 1px rgba(157,63,255,0.45);
+        }
+
+        /* --- Elite card theming --- */
+        .pcard-elite {
+          border-color: rgba(251,100,0,0.3);
+          animation: pcardFloat 5.5s ease-in-out infinite, fireBorder 3s ease-in-out infinite;
+        }
+        .pcard-elite:hover {
+          border-color: rgba(251,160,0,0.65);
+          box-shadow: 0 28px 90px rgba(251,100,0,0.2), 0 0 0 1px rgba(251,140,0,0.4);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+          .pcard { flex-direction: column; min-height: unset; }
+          .pcard-left { flex: unset; padding: 32px 28px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 10px 28px; align-items: center; }
+          .pcard-sep { width: 100%; height: 1px; margin: 0 24px; align-self: auto; }
+          .pcard-sep-start { background: linear-gradient(to right, transparent, rgba(96,165,250,0.35), transparent); }
+          .pcard-sep-pro { background: linear-gradient(to right, transparent, rgba(157,63,255,0.5), transparent); }
+          .pcard-sep-elite { background: linear-gradient(to right, transparent, rgba(251,100,0,0.4), transparent); }
+          .pcard-right { padding: 20px 28px 28px; }
+          .pcard-num { font-size: 90px; top: 20px; right: 16px; transform: none; }
+          .orbit-ring-1 { width: 200px; height: 200px; }
+          .orbit-ring-2 { width: 300px; height: 300px; }
+        }
+        @media (max-width: 600px) {
+          .pcard-left { padding: 28px 20px 16px; }
+          .pcard-right { padding: 16px 20px 24px; }
+          .pcard-feats { grid-template-columns: 1fr; }
+          .pcard-val { font-size: 2.6rem; }
+          .pcard-name { font-size: 1.3rem; }
+        }
+        /* ============================= */
         @keyframes planFloat {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           33% { transform: translateY(-10px) rotate(0.5deg); }
