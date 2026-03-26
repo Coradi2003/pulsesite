@@ -429,76 +429,113 @@ export default function Home() {
           </div>
 
           {/* CARDS GALAXY (ULTRA ANIMATED) */}
-          <div className="plans-saas">
+          <div className="plans-galaxy">
             {/* ====== START ====== */}
-            <div className="scard">
-              <div className="scard-edge"></div>
-              <div className="scard-inner">
-                <div className="sbadge sbadge-start">BÁSICO</div>
-                <div className="sprice">
-                  <span className="scurrency">R$</span>350
+            <div className="gcard gcard-start reveal delay-1">
+              <div className="gcard-inner">
+                <div className="gcard-hologram">01</div>
+                
+                {/* Background Nebula */}
+                <div className="nebula nebula-blue" />
+                
+                <div className="gbadge gbadge-start">🚀 BÁSICO</div>
+                <div className="gprice-wrap">
+                  <span className="gcurrency">R$</span>
+                  <span className="gprice">350</span>
                 </div>
-                <h3 className="stitle">Pulse Start</h3>
-                <p className="sdesc">Presença digital rápida e eficiente.</p>
-                <div className="sdivider" />
-                <ul className="slist">
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Site institucional (1 página)</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Design moderno e responsivo</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Botão WhatsApp integrado</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Domínio .com.br incluso</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Hospedagem otimizada</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Entrega em até 5 dias</li>
+                <div className="gnote">pagamento único</div>
+                
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="gbtn gbtn-start" target="_blank" rel="noopener noreferrer">
+                  Lançar Projeto
+                </a>
+                
+                <div className="gdivider" />
+                
+                <h3 className="gtitle">Pulse Start</h3>
+                <p className="gdesc">Sua empresa no digital em até 5 dias, sem dor de cabeça.</p>
+                <ul className="glist">
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Site 1 página moderno e responsivo</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Botão WhatsApp integrado</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Domínio <strong>.com.br</strong> (1 ano)</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Hospedagem otimizada</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Entrega em até <strong>5 dias úteis</strong></li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Manutenção por <strong>30 dias</strong></li>
                 </ul>
-                <a href="https://wa.me/5541984606633?text=Quero%20meu%20site!" className="sbtn sbtn-start" target="_blank" rel="noopener noreferrer">Quero meu site</a>
+                <div className="gtarget gtarget-start">🎯 Autônomos & iniciantes</div>
               </div>
             </div>
 
             {/* ====== PRO ====== */}
-            <div className="scard scard-pro">
-              <div className="scard-edge"></div>
-              <div className="scard-inner">
-                <div className="sbadge sbadge-pro">MAIS VENDIDO</div>
-                <div className="sprice">
-                  <span className="scurrency">R$</span>650
+            <div className="gcard gcard-pro reveal delay-2">
+              <div className="gcard-inner">
+                <div className="gcard-hologram">02</div>
+                
+                <div className="nebula nebula-purple" />
+                
+                <div className="ghot">⚡ MAIS VENDIDO</div>
+                <div className="gbadge gbadge-pro">⚡ INTERMEDIÁRIO</div>
+                <div className="gprice-wrap">
+                  <span className="gcurrency">R$</span>
+                  <span className="gprice text-gradient-pro">650</span>
                 </div>
-                <h3 className="stitle">Pulse Pro</h3>
-                <p className="sdesc">Posicione-se no topo das buscas do Google.</p>
-                <div className="sdivider" />
-                <ul className="slist">
-                  <li><svg className="sicon sicon-pro" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Até 5 páginas estruturadas</li>
-                  <li><svg className="sicon sicon-pro" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Design estratégico customizado</li>
-                  <li><svg className="sicon sicon-pro" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> SEO para buscas do Google</li>
-                  <li><svg className="sicon sicon-pro" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Google Analytics em tempo real</li>
-                  <li><svg className="sicon sicon-pro" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Formulários e automações</li>
-                  <li><svg className="sicon sicon-pro" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Suporte VIP por 6 meses</li>
+                <div className="gnote">pagamento único</div>
+                
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="gbtn gbtn-pro" target="_blank" rel="noopener noreferrer">
+                  Dominar o Mercado
+                </a>
+                
+                <div className="gdivider" />
+                
+                <h3 className="gtitle">Pulse Pro</h3>
+                <p className="gdesc">O site completo que coloca sua empresa no topo do Google.</p>
+                <ul className="glist">
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Até <strong>5 páginas</strong> (Home, Sobre, Serviços...)</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Design estratégico e personalizado</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Integração redes, WhatsApp e forms</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Google Analytics (tempo real)</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> <strong>SEO</strong> (Buscas no Google)</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Domínio + hospedagem por 1 ano</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Manutenção por <strong>6 meses</strong></li>
                 </ul>
-                <a href="https://wa.me/5541984606633?text=Quero%20vender%20mais!" className="sbtn sbtn-pro" target="_blank" rel="noopener noreferrer">Quero vender mais</a>
+                <div className="gtarget gtarget-pro">🚀 Empresas em crescimento</div>
               </div>
             </div>
 
             {/* ====== ELITE ====== */}
-            <div className="scard">
-              <div className="scard-edge"></div>
-              <div className="scard-inner">
-                <div className="sbadge sbadge-elite">AVANÇADO</div>
-                <div className="sprice">
-                  <span className="scurrency">R$</span>1.200
+            <div className="gcard gcard-elite reveal delay-3">
+              <div className="gcard-inner">
+                <div className="gcard-hologram elite-glitch">03</div>
+                
+                <div className="nebula nebula-fire" />
+                
+                <div className="gbadge gbadge-elite">🔥 AVANÇADO</div>
+                <div className="gprice-wrap">
+                  <span className="gcurrency">R$</span>
+                  <span className="gprice text-gradient-elite">1.200</span>
                 </div>
-                <h3 className="stitle">Pulse Elite</h3>
-                <p className="sdesc">Construa autoridade absoluta no seu nicho.</p>
-                <div className="sdivider" />
-                <ul className="slist">
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Até 10 páginas / Funil de vendas</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Copywriting para conversão</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Integração com sistemas e CRMs</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Servidor Alta Performance</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> UX/UI Impecável e Premium</li>
-                  <li><svg className="sicon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> Assessoria técnica de 1 ano</li>
+                <div className="gnote">investimento único</div>
+                
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="gbtn gbtn-elite" target="_blank" rel="noopener noreferrer">
+                  Me Torne a Referência
+                </a>
+                
+                <div className="gdivider" />
+                
+                <h3 className="gtitle">Pulse Elite</h3>
+                <p className="gdesc">Alto nível, foco extremo em conversão. Venda enquanto dorme.</p>
+                <ul className="glist">
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Até <strong>10 páginas</strong> ou sistema complexo</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> UX Envolvente + Animações 3D</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Integração total de funil e pixels</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Copywriting focado em vendas</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Servidor <strong>Alta Performance</strong></li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Suporte <strong>PRIORITÁRIO 24h</strong></li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Manutenção por <strong>1 ano</strong></li>
                 </ul>
-                <a href="https://wa.me/5541984606633?text=Quero%20dominar%20meu%20mercado!" className="sbtn sbtn-elite" target="_blank" rel="noopener noreferrer">Quero dominar meu mercado</a>
+                <div className="gtarget gtarget-elite">👑 Para os líderes de mercado</div>
               </div>
             </div>
-          </div>{/* /plans-saas */}
+          </div>{/* /plans-stack */}
         </div>
       </section>
 
@@ -641,228 +678,327 @@ export default function Home() {
 
       <style>{`
 
-        /* ======================== PLANS — SAAS HIGH-END ======================== */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap');
+        /* ======================== PLANS — V5 (PREMIUM GLASS & GLOW) ======================== */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Space+Grotesk:wght@400;700&display=swap');
 
+        /* --- Elegant Keyframes --- */
+        @keyframes floatSubtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes glowPulse {
+          0%, 100% { opacity: 0.3; transform: scale(1); filter: blur(40px); }
+          50% { opacity: 0.6; transform: scale(1.1); filter: blur(50px); }
+        }
+        @keyframes shimmeringEdge {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+
+        /* --- Container --- */
         .plans-section {
           padding: 120px 0 160px;
-          --font-s-title: 'Sora', sans-serif;
-          --font-s-body: 'Inter', sans-serif;
-          background: #0A0A0F;
+          --font-plan: 'Outfit', sans-serif;
+          --font-plan-mono: 'Space Grotesk', sans-serif;
           position: relative;
         }
-        
-        /* Subtle Grid Texture */
-        .plans-section::before {
+
+        .plans-galaxy {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+          padding: 20px 0;
+          align-items: stretch;
+        }
+
+        /* --- Card Base --- */
+        .gcard {
+          position: relative;
+          background: rgba(12, 12, 16, 0.4);
+          border-radius: 24px;
+          padding: 1px; /* the thin border */
+          transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+          animation: floatSubtle 6s infinite ease-in-out;
+        }
+
+        .gcard::before {
           content: '';
           position: absolute;
           inset: 0;
-          background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-          background-size: 40px 40px;
-          pointer-events: none;
+          border-radius: 24px;
+          background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 40%, rgba(255,255,255,0.02) 80%, rgba(255,255,255,0.15));
           z-index: 0;
+          opacity: 0.5;
+          transition: opacity 0.4s ease;
         }
 
-        .plans-saas {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-          padding: 20px 0;
-          align-items: stretch;
-          max-width: 1100px;
-          margin: 0 auto;
-          position: relative;
+        .gcard-start { animation-delay: 0s; }
+        .gcard-pro { animation-delay: -2s; transform-origin: center; transform: translateY(-10px) scale(1.03); }
+        .gcard-elite { animation-delay: -4s; }
+
+        /* Specific Animated Edges */
+        .gcard-start::before { background: linear-gradient(135deg, rgba(96,165,250,0.4), transparent 50%, rgba(59,130,246,0.3)); }
+        .gcard-pro::before { background: linear-gradient(135deg, rgba(157,63,255,0.6), transparent 50%, rgba(217,70,239,0.4)); }
+        .gcard-elite::before { background: linear-gradient(135deg, rgba(251,100,0,0.5), transparent 50%, rgba(249,115,22,0.4)); }
+
+        /* Hover Interaction */
+        .gcard:hover {
+          transform: translateY(-16px) scale(1.02) !important;
+          animation-play-state: paused;
           z-index: 10;
+          box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.03);
         }
+        .gcard:hover::before { opacity: 1; }
 
-        .scard {
+        /* --- Inner Card Body --- */
+        .gcard-inner {
           position: relative;
-          background: rgba(15, 15, 20, 0.4);
-          border-radius: 16px;
-          padding: 1px;
-          transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .scard-pro {
-          background: rgba(20, 20, 28, 0.6);
-          transform: scale(1.02);
-        }
-
-        /* Hover Edge Glow */
-        .scard-edge {
-          position: absolute;
-          inset: 0;
-          border-radius: 16px;
-          background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
-          z-index: 0;
-          opacity: 1;
-          transition: opacity 0.3s ease, background 0.3s ease;
-        }
-        
-        .scard:hover {
-          transform: scale(1.02);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        .scard-pro:hover {
-          transform: scale(1.04);
-        }
-
-        .scard:hover .scard-edge {
-          background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent 40%, rgba(124,58,237,0.3));
-        }
-
-        .scard-pro:hover .scard-edge {
-          background: linear-gradient(135deg, rgba(124,58,237,0.6), transparent 40%, rgba(249,115,22,0.5));
-        }
-
-        .scard-inner {
-          position: relative;
-          background: #0D0D12;
-          backdrop-filter: blur(16px);
-          border-radius: 15px;
+          background: rgba(14, 14, 18, 0.85);
+          backdrop-filter: blur(24px);
+          border-radius: 23px;
           height: 100%;
-          padding: 40px 32px;
+          padding: 40px 32px 40px;
           display: flex;
           flex-direction: column;
           z-index: 1;
-        }
-        
-        .scard-pro .scard-inner {
-          background: #111118;
+          overflow: hidden; /* Only clips the holograms/backgrounds inside safely without 3D breaking */
         }
 
-        .sbadge {
-          font-family: var(--font-s-title);
-          font-size: 0.75rem;
+        /* Number Watermark */
+        .gcard-hologram {
+          position: absolute;
+          top: -10px; right: -10px;
+          font-family: var(--font-plan-mono);
+          font-size: 140px;
+          font-weight: 800;
+          color: #ffffff;
+          opacity: 0.03;
+          z-index: 0;
+          pointer-events: none;
+          transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .gcard:hover .gcard-hologram { opacity: 0.06; transform: scale(1.05) translate(-10px, 10px); }
+
+        /* Soft Glows instead of Glitch Negulas */
+        .nebula {
+          position: absolute;
+          width: 200px; height: 200px;
+          border-radius: 50%;
+          filter: blur(50px);
+          z-index: 0;
+          pointer-events: none;
+          opacity: 0.4;
+          animation: glowPulse 6s ease-in-out infinite alternate;
+        }
+        .nebula-blue { background: #3b82f6; top: -50px; left: -50px; }
+        .nebula-purple { background: #9333ea; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 4s; }
+        .nebula-fire { background: #ea580c; bottom: -50px; right: -50px; animation-duration: 5s; }
+
+        /* --- Typography & Badges --- */
+        .gbadge {
+          position: relative;
+          z-index: 2;
+          font-family: var(--font-plan-mono);
+          font-size: 0.65rem;
           font-weight: 700;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.25em;
           text-transform: uppercase;
-          padding: 6px 12px;
-          border-radius: 6px;
+          padding: 6px 14px;
+          border-radius: 100px;
           align-self: flex-start;
-          margin-bottom: 24px;
+          margin-bottom: 12px;
         }
-        .sbadge-start { background: rgba(255,255,255,0.05); color: #A1A1AA; border: 1px solid rgba(255,255,255,0.1); }
-        .sbadge-pro { background: rgba(124,58,237,0.15); color: #C4B5FD; border: 1px solid rgba(124,58,237,0.3); }
-        .sbadge-elite { background: rgba(255,255,255,0.05); color: #A1A1AA; border: 1px solid rgba(255,255,255,0.1); }
+        .gbadge-start { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .gbadge-pro { background: rgba(157,63,255,0.15); color: #d8b4fe; border: 1px solid rgba(157,63,255,0.4); }
+        .gbadge-elite { background: rgba(234,88,12,0.1); color: #fdba74; border: 1px solid rgba(234,88,12,0.4); }
 
-        .sprice {
-          font-family: var(--font-s-title);
-          font-size: 3rem;
+        .ghot {
+          position: absolute;
+          top: 0; left: 50%; transform: translateX(-50%);
+          background: linear-gradient(90deg, #d946ef, #9333ea);
+          color: #fff;
+          font-family: var(--font-plan);
+          font-size: 0.65rem;
+          font-weight: 800;
+          letter-spacing: 0.15em;
+          padding: 6px 20px;
+          border-radius: 0 0 12px 12px;
+          z-index: 10;
+          box-shadow: 0 4px 15px rgba(217,70,239,0.3);
+        }
+
+        .gprice-wrap {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+        }
+        .gcurrency { font-family: var(--font-plan-mono); font-size: 1.2rem; font-weight: 500; color: #a1a1aa; }
+        .gprice {
+          font-family: var(--font-plan-mono);
+          font-size: 3.5rem;
           font-weight: 700;
           line-height: 1;
           color: #fff;
-          margin-bottom: 6px;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.04em;
         }
-        .scurrency { font-size: 1.25rem; font-weight: 600; color: #71717a; margin-right: 4px; vertical-align: middle; }
-
-        .stitle {
-          font-family: var(--font-s-title);
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: #fff;
-          margin-bottom: 6px;
+        .text-gradient-pro {
+          background: linear-gradient(135deg, #fff, #e9d5ff);
+          -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-elite {
+          background: linear-gradient(135deg, #fff, #fed7aa);
+          -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .sdesc {
-          font-family: var(--font-s-body);
-          font-size: 0.9rem;
-          color: #A1A1AA;
-          line-height: 1.5;
+        .gnote {
+          position: relative;
+          z-index: 2;
+          font-family: var(--font-plan);
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: #71717a;
+          margin-bottom: 24px;
+          letter-spacing: 0.05em;
         }
 
-        .sdivider {
-          width: 100%;
-          height: 1px;
-          background: rgba(255,255,255,0.06);
-          margin: 32px 0;
-        }
-
-        .slist {
-          list-style: none;
-          padding: 0; margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          flex: 1;
-          margin-bottom: 40px;
-        }
-        .slist li {
-          font-family: var(--font-s-body);
-          font-size: 0.9rem;
-          color: #D4D4D8;
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          line-height: 1.5;
-        }
-        .sicon {
-          width: 18px; height: 18px;
-          color: #52525B;
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-        .sicon-pro { color: #7C3AED; }
-
-        .sbtn {
+        /* Premium Buttons */
+        .gbtn {
+          position: relative;
+          z-index: 3;
           display: flex;
           justify-content: center;
           align-items: center;
           width: 100%;
-          padding: 14px 20px;
-          border-radius: 8px;
-          font-family: var(--font-s-body);
-          font-weight: 600;
-          font-size: 0.95rem;
+          padding: 16px 20px;
+          border-radius: 14px;
+          font-family: var(--font-plan);
+          font-weight: 700;
+          font-size: 1.05rem;
           color: #fff;
           text-decoration: none;
-          transition: background 0.3s ease, filter 0.3s ease;
+          transition: all 0.3s ease;
+          overflow: hidden;
         }
-        .sbtn-start {
-          background: #18181B;
-          border: 1px solid #3F3F46;
-        }
-        .sbtn-start:hover { background: #27272A; border-color: #52525B; }
-        
-        .sbtn-pro {
-          background: #7C3AED;
-          border: none;
-        }
-        .sbtn-pro:hover {
-          filter: brightness(1.2);
-        }
-
-        .sbtn-elite {
-          background: transparent;
-          border: 1px solid #52525B;
-        }
-        .sbtn-elite:hover {
+        .gbtn-start {
           background: rgba(255,255,255,0.05);
-          border-color: #A1A1AA;
+          border: 1px solid rgba(255,255,255,0.1);
+        }
+        .gbtn-start:hover { background: rgba(255,255,255,0.1); box-shadow: 0 0 15px rgba(255,255,255,0.05); transform: translateY(-2px); }
+        
+        .gbtn-pro {
+          background: linear-gradient(90deg, #9333ea, #8b5cf6, #3b82f6, #9333ea);
+          background-size: 300% auto;
+          border: none;
+          box-shadow: 0 8px 20px rgba(147,51,234,0.3);
+          animation: shimmeringEdge 4s linear infinite;
+        }
+        .gbtn-pro:hover {
+          box-shadow: 0 12px 30px rgba(147,51,234,0.5);
+          transform: translateY(-2px);
         }
 
+        .gbtn-elite {
+          background: linear-gradient(90deg, #ea580c, #f97316, #fbbf24, #ea580c);
+          background-size: 300% auto;
+          border: none;
+          box-shadow: 0 8px 20px rgba(234,88,12,0.3);
+          animation: shimmeringEdge 4s linear infinite;
+        }
+        .gbtn-elite:hover {
+          box-shadow: 0 12px 30px rgba(234,88,12,0.5);
+          transform: translateY(-2px);
+        }
+
+        .gdivider {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          height: 1px;
+          background: rgba(255,255,255,0.08);
+          margin: 30px 0;
+        }
+
+        /* Typography & Lists */
+        .gtitle {
+          position: relative;
+          z-index: 2;
+          font-family: var(--font-plan);
+          font-size: 1.6rem;
+          font-weight: 800;
+          color: #fff;
+          margin: 0 0 8px;
+        }
+        .gdesc {
+          position: relative;
+          z-index: 2;
+          font-family: var(--font-plan);
+          font-size: 0.95rem;
+          color: #a1a1aa;
+          line-height: 1.5;
+          margin: 0 0 20px;
+        }
+
+        .glist {
+          position: relative;
+          z-index: 2;
+          list-style: none;
+          padding: 0; margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          flex: 1;
+        }
+        .glist li {
+          font-family: var(--font-plan);
+          font-size: 0.95rem;
+          color: #d4d4d8;
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          line-height: 1.4;
+        }
+        .glist li strong { color: #fff; font-weight: 600; }
+        .glow-bullet { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+        .glow-bullet-blue { color: #60a5fa; }
+        .glow-bullet-purple { color: #d8b4fe; }
+        .glow-bullet-fire { color: #fbbf24; }
+
+        .gtarget {
+          position: relative;
+          z-index: 2;
+          font-family: var(--font-plan);
+          font-size: 0.85rem;
+          font-weight: 700;
+          text-align: center;
+          padding: 12px 16px;
+          border-radius: 12px;
+          margin-top: 24px;
+          backdrop-filter: blur(5px);
+        }
+        .gtarget-start { background: rgba(59,130,246,0.05); color: #93c5fd; border: 1px solid rgba(59,130,246,0.15); }
+        .gtarget-pro { background: rgba(147,51,234,0.05); color: #d8b4fe; border: 1px solid rgba(147,51,234,0.15); }
+        .gtarget-elite { background: rgba(234,88,12,0.05); color: #fbbf24; border: 1px solid rgba(234,88,12,0.15); }
+
+        /* --- Responsive Premium --- */
         @media (max-width: 1024px) {
-          .plans-saas {
+          .plans-galaxy {
             grid-template-columns: repeat(2, 1fr);
-            align-items: stretch;
-            gap: 24px;
+            gap: 40px 30px;
           }
-          .scard:last-child {
+          .gcard-elite {
             grid-column: 1 / -1;
             max-width: 500px;
             margin: 0 auto;
             width: 100%;
           }
-          .scard-pro { transform: scale(1); }
-          .scard-pro:hover { transform: scale(1.02); }
         }
-        
         @media (max-width: 768px) {
-          .plans-saas { grid-template-columns: 1fr; }
+          .plans-galaxy { grid-template-columns: 1fr; }
+          .gcard { transform-style: flat; animation: none; max-width: 100%; }
+          .gcard:hover { transform: translateY(-8px) !important; }
         }
         /* ============================= */
 
