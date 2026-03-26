@@ -68,6 +68,9 @@ export default function Home() {
               </span>
             </a>
             <div className="navbar-cta">
+              <a href="#planos" className="btn btn-secondary btn-nav" style={{ padding: '10px 18px', fontSize: '0.9rem' }}>
+                💰 Planos
+              </a>
               <a
                 href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
                 className="btn btn-secondary"
@@ -410,6 +413,137 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===================== PLANS SECTION ===================== */}
+      <section className="section plans-section" id="planos">
+        <div className="container">
+          <div className="text-center reveal">
+            <span className="section-tag">💰 Planos &amp; Preços</span>
+            <h2 className="section-title" style={{ marginBottom: '12px' }}>
+              Escolha seu plano e <span>decole agora</span>
+            </h2>
+            <p className="section-subtitle" style={{ margin: '0 auto 60px' }}>
+              Sites profissionais que convertem. Sem enrolação, sem preço abusivo.
+            </p>
+          </div>
+
+          <div className="plans-grid">
+            {/* PLAN 1 — START */}
+            <div className="plan-card plan-start reveal delay-1">
+              <div className="plan-glow plan-glow-start" />
+              <div className="plan-particles">
+                {[...Array(6)].map((_, i) => <span key={i} className="plan-particle" />)}
+              </div>
+              <div className="plan-header">
+                <div className="plan-emoji">🚀</div>
+                <div className="plan-badge plan-badge-start">BÁSICO</div>
+                <h3 className="plan-name">Pulse Start</h3>
+                <div className="plan-price">
+                  <span className="plan-currency">R$</span>
+                  <span className="plan-amount">350</span>
+                </div>
+                <p className="plan-tagline">Ideal para quem quer começar no digital rápido e barato.</p>
+              </div>
+              <ul className="plan-features">
+                <li><span className="plan-check">✔️</span> Site institucional (1 página)</li>
+                <li><span className="plan-check">✔️</span> Design moderno e responsivo</li>
+                <li><span className="plan-check">✔️</span> Botão de WhatsApp integrado</li>
+                <li><span className="plan-check">✔️</span> 1 ano de domínio (.com.br) incluso</li>
+                <li><span className="plan-check">✔️</span> Hospedagem otimizada</li>
+                <li><span className="plan-check">✔️</span> Entrega rápida (até 5 dias)</li>
+                <li><span className="plan-check">✔️</span> Manutenção por 30 dias</li>
+              </ul>
+              <p className="plan-ideal">👉 Perfeito para autônomos e iniciantes</p>
+              <a
+                href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!"
+                className="plan-cta"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Começar agora
+              </a>
+            </div>
+
+            {/* PLAN 2 — PRO (FEATURED) */}
+            <div className="plan-card plan-pro plan-featured reveal delay-2">
+              <div className="plan-glow plan-glow-pro" />
+              <div className="plan-popular-badge">⚡ MAIS POPULAR</div>
+              <div className="plan-particles plan-particles-pro">
+                {[...Array(10)].map((_, i) => <span key={i} className="plan-particle" />)}
+              </div>
+              <div className="plan-header">
+                <div className="plan-emoji">⚡</div>
+                <div className="plan-badge plan-badge-pro">INTERMEDIÁRIO</div>
+                <h3 className="plan-name">Pulse Pro</h3>
+                <div className="plan-price">
+                  <span className="plan-currency">R$</span>
+                  <span className="plan-amount">650</span>
+                </div>
+                <p className="plan-tagline">Para quem quer um site mais completo e profissional.</p>
+              </div>
+              <ul className="plan-features">
+                <li><span className="plan-check">✔️</span> Até 5 páginas (Home, Sobre, Serviços…)</li>
+                <li><span className="plan-check">✔️</span> Design estratégico e personalizado</li>
+                <li><span className="plan-check">✔️</span> Integração com redes sociais</li>
+                <li><span className="plan-check">✔️</span> Formulário de contato + WhatsApp</li>
+                <li><span className="plan-check">✔️</span> Google Analytics (visitas em tempo real)</li>
+                <li><span className="plan-check">✔️</span> SEO básico (aparecer no Google)</li>
+                <li><span className="plan-check">✔️</span> 1 ano de domínio (.com.br) incluso</li>
+                <li><span className="plan-check">✔️</span> Hospedagem otimizada</li>
+                <li><span className="plan-check">✔️</span> Suporte + manutenção por 6 meses</li>
+              </ul>
+              <p className="plan-ideal">👉 Ideal para empresas que querem crescer online</p>
+              <a
+                href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!"
+                className="plan-cta plan-cta-pro"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quero o Pro
+              </a>
+            </div>
+
+            {/* PLAN 3 — ELITE */}
+            <div className="plan-card plan-elite reveal delay-3">
+              <div className="plan-glow plan-glow-elite" />
+              <div className="plan-particles plan-particles-elite">
+                {[...Array(8)].map((_, i) => <span key={i} className="plan-particle" />)}
+              </div>
+              <div className="plan-header">
+                <div className="plan-emoji">🔥</div>
+                <div className="plan-badge plan-badge-elite">PREMIUM</div>
+                <h3 className="plan-name">Pulse Elite</h3>
+                <div className="plan-price">
+                  <span className="plan-currency">R$</span>
+                  <span className="plan-amount">1.200</span>
+                </div>
+                <p className="plan-tagline">Para quem quer um site de alto nível que realmente gera clientes.</p>
+              </div>
+              <ul className="plan-features">
+                <li><span className="plan-check">✔️</span> Até 10 páginas ou estrutura avançada</li>
+                <li><span className="plan-check">✔️</span> Design premium focado em conversão</li>
+                <li><span className="plan-check">✔️</span> Animações modernas e experiência envolvente</li>
+                <li><span className="plan-check">✔️</span> Integração completa (WhatsApp, redes, forms)</li>
+                <li><span className="plan-check">✔️</span> Google Analytics avançado</li>
+                <li><span className="plan-check">✔️</span> Estrutura otimizada para vendas</li>
+                <li><span className="plan-check">✔️</span> 1 ano de domínio (.com.br) incluso</li>
+                <li><span className="plan-check">✔️</span> Hospedagem de alta performance</li>
+                <li><span className="plan-check">✔️</span> Suporte PRIORITÁRIO 24h</li>
+                <li><span className="plan-check">✔️</span> Manutenção durante 1 ano</li>
+              </ul>
+              <p className="plan-ideal">👉 Pra quem quer vender todos os dias com o site</p>
+              <a
+                href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!"
+                className="plan-cta plan-cta-elite"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quero o Elite 🔥
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section cta-final" id="cta">
         <div className="container">
           <div className="cta-box reveal">
@@ -547,6 +681,359 @@ export default function Home() {
       </a>
 
       <style>{`
+
+        /* ======================== PLANS ======================== */
+        @keyframes planFloat {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-10px) rotate(0.5deg); }
+          66% { transform: translateY(-5px) rotate(-0.5deg); }
+        }
+        @keyframes planGlowPulse {
+          0%, 100% { opacity: 0.55; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.18); }
+        }
+        @keyframes planGlowPulsePro {
+          0%, 100% { opacity: 0.7; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.25); }
+        }
+        @keyframes planShimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        @keyframes particleDrift {
+          0% { transform: translate(0,0) scale(1); opacity: 0; }
+          15% { opacity: 1; }
+          85% { opacity: 0.6; }
+          100% { transform: translate(var(--px, 40px), var(--py, -60px)) scale(0); opacity: 0; }
+        }
+        @keyframes popularBadgePulse {
+          0%, 100% { box-shadow: 0 0 12px rgba(157, 63, 255, 0.6), 0 0 28px rgba(157, 63, 255, 0.3); }
+          50% { box-shadow: 0 0 22px rgba(157, 63, 255, 1), 0 0 50px rgba(157, 63, 255, 0.55); }
+        }
+        @keyframes borderSpin {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes eliteFireBorder {
+          0%, 100% { border-color: rgba(255, 100, 0, 0.5); box-shadow: 0 0 20px rgba(255,100,0,0.2), inset 0 0 20px rgba(255,100,0,0.04); }
+          50% { border-color: rgba(255, 160, 0, 0.8); box-shadow: 0 0 35px rgba(255,140,0,0.4), inset 0 0 30px rgba(255,100,0,0.08); }
+        }
+        @keyframes priceCount {
+          from { opacity: 0; transform: scale(0.7) translateY(10px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes ctaShine {
+          0% { left: -100%; }
+          100% { left: 200%; }
+        }
+
+        .plans-section { padding: 110px 0 120px; }
+
+        .plans-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 28px;
+          align-items: stretch;
+        }
+
+        .plan-card {
+          position: relative;
+          border-radius: 24px;
+          padding: 40px 32px 36px;
+          border: 1px solid rgba(138, 43, 226, 0.22);
+          background: rgba(13, 13, 20, 0.72);
+          backdrop-filter: blur(18px);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+          animation: planFloat 7s ease-in-out infinite;
+          cursor: default;
+        }
+
+        .plan-card:nth-child(2) { animation-duration: 8.5s; animation-delay: -1.5s; }
+        .plan-card:nth-child(3) { animation-duration: 6.5s; animation-delay: -3s; }
+
+        .plan-card:hover {
+          transform: translateY(-14px) scale(1.025) !important;
+          box-shadow: 0 30px 80px rgba(138, 43, 226, 0.25), 0 0 0 1px rgba(157, 63, 255, 0.35);
+          animation-play-state: paused;
+        }
+
+        /* GLOW BLOBS */
+        .plan-glow {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(55px);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .plan-glow-start {
+          width: 220px; height: 220px;
+          background: radial-gradient(circle, rgba(100, 160, 255, 0.3), transparent 70%);
+          top: -60px; right: -60px;
+          animation: planGlowPulse 4s ease-in-out infinite;
+        }
+        .plan-glow-pro {
+          width: 280px; height: 280px;
+          background: radial-gradient(circle, rgba(157, 63, 255, 0.45), transparent 70%);
+          top: -80px; left: 50%; transform: translateX(-50%);
+          animation: planGlowPulsePro 3.5s ease-in-out infinite;
+        }
+        .plan-glow-elite {
+          width: 240px; height: 240px;
+          background: radial-gradient(circle, rgba(255, 100, 0, 0.35), transparent 70%);
+          top: -60px; left: -60px;
+          animation: planGlowPulse 5s ease-in-out infinite 1s;
+        }
+
+        /* FLOATING PARTICLES */
+        .plan-particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+        .plan-particle {
+          position: absolute;
+          width: 5px; height: 5px;
+          border-radius: 50%;
+          background: var(--purple-bright);
+          animation: particleDrift 4s ease-in-out infinite;
+          opacity: 0;
+        }
+
+        .plan-start .plan-particle { background: #60a5fa; }
+        .plan-particles-pro .plan-particle { background: var(--purple-bright); }
+        .plan-particles-elite .plan-particle { background: #fb923c; }
+
+        .plan-particle:nth-child(1) { left: 10%; top: 80%; --px: 20px; --py: -70px; animation-delay: 0s; animation-duration: 3.5s; }
+        .plan-particle:nth-child(2) { left: 25%; top: 70%; --px: -15px; --py: -80px; animation-delay: 0.5s; animation-duration: 4.2s; }
+        .plan-particle:nth-child(3) { left: 70%; top: 85%; --px: 30px; --py: -60px; animation-delay: 1s; animation-duration: 3.8s; }
+        .plan-particle:nth-child(4) { left: 85%; top: 60%; --px: -20px; --py: -90px; animation-delay: 1.5s; animation-duration: 4.5s; }
+        .plan-particle:nth-child(5) { left: 50%; top: 90%; --px: 10px; --py: -75px; animation-delay: 2s; animation-duration: 3.2s; }
+        .plan-particle:nth-child(6) { left: 40%; top: 75%; --px: -25px; --py: -65px; animation-delay: 2.5s; animation-duration: 4.8s; }
+        .plan-particle:nth-child(7) { left: 15%; top: 50%; --px: 35px; --py: -55px; animation-delay: 0.7s; animation-duration: 3.6s; }
+        .plan-particle:nth-child(8) { left: 60%; top: 40%; --px: -30px; --py: -85px; animation-delay: 1.2s; animation-duration: 4.1s; }
+        .plan-particle:nth-child(9) { left: 80%; top: 30%; --px: 25px; --py: -95px; animation-delay: 1.8s; animation-duration: 3.9s; }
+        .plan-particle:nth-child(10) { left: 30%; top: 20%; --px: -18px; --py: -70px; animation-delay: 2.3s; animation-duration: 4.4s; }
+
+        /* PLAN HEADER */
+        .plan-header { position: relative; z-index: 1; margin-bottom: 24px; }
+        .plan-emoji {
+          font-size: 2.4rem;
+          margin-bottom: 12px;
+          display: block;
+          filter: drop-shadow(0 0 12px rgba(157, 63, 255, 0.6));
+          animation: planFloat 3s ease-in-out infinite;
+        }
+        .plan-badge {
+          display: inline-block;
+          font-size: 0.65rem;
+          font-weight: 800;
+          letter-spacing: 0.2em;
+          padding: 4px 12px;
+          border-radius: 100px;
+          margin-bottom: 10px;
+        }
+        .plan-badge-start { background: rgba(96, 165, 250, 0.15); color: #93c5fd; border: 1px solid rgba(96,165,250,0.3); }
+        .plan-badge-pro { background: rgba(157, 63, 255, 0.18); color: var(--purple-light); border: 1px solid var(--border); }
+        .plan-badge-elite { background: rgba(251, 146, 60, 0.15); color: #fdba74; border: 1px solid rgba(251,146,60,0.3); }
+
+        .plan-name {
+          font-family: var(--font-main);
+          font-size: 1.7rem;
+          font-weight: 800;
+          color: var(--white);
+          margin-bottom: 12px;
+          background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,0.65));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .plan-featured .plan-name {
+          background: linear-gradient(135deg, #fff 0%, var(--purple-light) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        .plan-elite .plan-name {
+          background: linear-gradient(135deg, #fff 0%, #fb923c 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+
+        .plan-price {
+          display: flex;
+          align-items: baseline;
+          gap: 4px;
+          margin-bottom: 10px;
+          animation: priceCount 0.6s ease both;
+        }
+        .plan-currency { font-size: 1.1rem; font-weight: 700; color: var(--gray-mid); margin-top: 4px; }
+        .plan-amount {
+          font-family: var(--font-main);
+          font-size: 3.2rem;
+          font-weight: 900;
+          color: var(--white);
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+        .plan-featured .plan-amount {
+          background: linear-gradient(135deg, #fff 0%, var(--purple-light) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          filter: drop-shadow(0 0 20px rgba(157,63,255,0.5));
+        }
+        .plan-elite .plan-amount {
+          background: linear-gradient(135deg, #fff 0%, #fb923c 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          filter: drop-shadow(0 0 20px rgba(255,100,0,0.5));
+        }
+
+        .plan-tagline {
+          font-size: 0.88rem;
+          color: var(--gray-mid);
+          line-height: 1.5;
+        }
+
+        /* FEATURED CARD */
+        .plan-featured {
+          border: 1px solid rgba(157, 63, 255, 0.5);
+          background: rgba(15, 10, 30, 0.85);
+          box-shadow: 0 0 50px rgba(138, 43, 226, 0.2), 0 0 120px rgba(138, 43, 226, 0.08);
+          transform: scale(1.04);
+        }
+        .plan-featured:hover {
+          transform: translateY(-14px) scale(1.06) !important;
+        }
+
+        /* ELITE CARD */
+        .plan-elite {
+          border: 1px solid rgba(255, 100, 0, 0.3);
+          animation: planFloat 7s ease-in-out infinite, eliteFireBorder 3s ease-in-out infinite;
+        }
+        .plan-elite:hover {
+          border-color: rgba(255, 140, 0, 0.7) !important;
+          box-shadow: 0 30px 80px rgba(255, 100, 0, 0.2), 0 0 0 1px rgba(255, 140, 0, 0.4) !important;
+        }
+
+        /* "MAIS POPULAR" badge */
+        .plan-popular-badge {
+          position: absolute;
+          top: -1px; left: 50%; transform: translateX(-50%);
+          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
+          color: #fff;
+          font-size: 0.65rem;
+          font-weight: 800;
+          letter-spacing: 0.18em;
+          padding: 6px 18px;
+          border-radius: 0 0 14px 14px;
+          text-transform: uppercase;
+          animation: popularBadgePulse 2.5s ease-in-out infinite;
+          white-space: nowrap;
+          z-index: 5;
+        }
+
+        /* FEATURES LIST */
+        .plan-features {
+          list-style: none;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 11px;
+          margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
+        }
+        .plan-features li {
+          display: flex;
+          align-items: flex-start;
+          gap: 9px;
+          font-size: 0.9rem;
+          color: var(--gray-light);
+          line-height: 1.4;
+        }
+        .plan-check { flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+
+        .plan-ideal {
+          font-size: 0.85rem;
+          color: var(--gray-mid);
+          font-style: italic;
+          margin-bottom: 24px;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* CTA BUTTONS */
+        .plan-cta {
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          font-family: var(--font-main);
+          font-weight: 700;
+          font-size: 1rem;
+          padding: 15px 24px;
+          border-radius: 12px;
+          border: 1.5px solid rgba(138, 43, 226, 0.4);
+          color: var(--white);
+          background: rgba(138, 43, 226, 0.12);
+          position: relative;
+          overflow: hidden;
+          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 1;
+        }
+        .plan-cta::after {
+          content: '';
+          position: absolute;
+          top: 0; left: -100%;
+          width: 80px; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+          animation: ctaShine 3s ease-in-out infinite;
+        }
+        .plan-cta:hover {
+          background: rgba(138, 43, 226, 0.28);
+          border-color: var(--purple-bright);
+          color: #fff;
+          box-shadow: 0 0 24px rgba(138, 43, 226, 0.4);
+          transform: translateY(-2px);
+        }
+
+        .plan-cta-pro {
+          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
+          border-color: transparent;
+          box-shadow: 0 0 28px rgba(157, 63, 255, 0.45), 0 4px 20px rgba(138,43,226,0.35);
+        }
+        .plan-cta-pro:hover {
+          box-shadow: 0 0 45px rgba(157, 63, 255, 0.7), 0 8px 30px rgba(138,43,226,0.45);
+          transform: translateY(-3px) scale(1.02);
+          background: linear-gradient(135deg, var(--purple-bright), #bf7fff);
+        }
+        .plan-cta-pro::after { animation-delay: 1s; }
+
+        .plan-cta-elite {
+          background: linear-gradient(135deg, #ea580c, #f97316);
+          border-color: transparent;
+          box-shadow: 0 0 28px rgba(251, 100, 0, 0.45), 0 4px 20px rgba(234,88,12,0.35);
+        }
+        .plan-cta-elite:hover {
+          box-shadow: 0 0 50px rgba(251, 100, 0, 0.7), 0 10px 35px rgba(234,88,12,0.45);
+          transform: translateY(-3px) scale(1.02);
+          background: linear-gradient(135deg, #f97316, #fdba74);
+        }
+        .plan-cta-elite::after { animation-delay: 2s; background: linear-gradient(90deg, transparent, rgba(255,200,100,0.25), transparent); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+          .plans-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+          .plan-featured { transform: scale(1); }
+          .plan-featured:hover { transform: translateY(-14px) scale(1.025) !important; }
+        }
+        @media (max-width: 600px) {
+          .plan-card { padding: 36px 24px 28px; }
+          .plan-amount { font-size: 2.6rem; }
+        }
+        /* ============================= */
+
         .landing-page * {
           box-sizing: border-box;
           margin: 0;
