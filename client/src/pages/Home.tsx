@@ -428,8 +428,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* CARDS STACK */}
-          <div className="plans-stack">
+          {/* CARDS GRID */}
+          <div className="plans-grid-v3">
 
             {/* ══════════ START ══════════ */}
             <div className="pcard pcard-start reveal delay-1">
@@ -706,7 +706,9 @@ export default function Home() {
 
       <style>{`
 
-        /* ======================== PLANS — v3 ======================== */
+        /* ======================== PLANS — v3 (VERTICAL) ======================== */
+
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;600;700&display=swap');
 
         /* --- Keyframes --- */
         @keyframes pcardFloat {
@@ -731,7 +733,7 @@ export default function Home() {
           0% { transform: translateY(-100%); opacity: 0; }
           10% { opacity: 1; }
           80% { opacity: 0.4; }
-          100% { transform: translateY(400px); opacity: 0; }
+          100% { transform: translateY(600px); opacity: 0; }
         }
         @keyframes orbitSpin1 {
           from { transform: translate(-50%,-50%) rotate(0deg); }
@@ -765,21 +767,32 @@ export default function Home() {
         }
 
         /* --- Section wrapper --- */
-        .plans-section { padding: 110px 0 130px; }
+        .plans-section { 
+          padding: 110px 0 130px; 
+          --font-plan: 'Outfit', sans-serif;
+          --font-plan-mono: 'Space Grotesk', sans-serif;
+        }
         .plans-header { text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+        
+        .plans-section .section-title, 
+        .plans-section .section-subtitle, 
+        .plans-section .section-tag {
+          font-family: var(--font-plan) !important;
+        }
 
-        /* --- Stack of cards --- */
-        .plans-stack {
-          display: flex;
-          flex-direction: column;
-          gap: 22px;
+        /* --- Grid of cards --- */
+        .plans-grid-v3 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+          align-items: start;
         }
 
         /* --- Base card --- */
         .pcard {
           position: relative;
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           align-items: stretch;
           border-radius: 24px;
           border: 1px solid rgba(138,43,226,0.2);
@@ -788,10 +801,11 @@ export default function Home() {
           overflow: hidden;
           animation: pcardFloat 6s ease-in-out infinite;
           transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.4s ease, border-color 0.4s ease;
-          min-height: 200px;
+          min-height: 480px;
+          font-family: var(--font-plan);
         }
         .pcard:hover {
-          transform: translateY(-10px) scale(1.015) !important;
+          transform: translateY(-10px) scale(1.02) !important;
           animation-play-state: paused;
           border-color: rgba(157,63,255,0.45);
           box-shadow: 0 28px 80px rgba(138,43,226,0.22), 0 0 0 1px rgba(157,63,255,0.3);
@@ -802,10 +816,9 @@ export default function Home() {
         /* --- Watermark numeral --- */
         .pcard-num {
           position: absolute;
-          right: 28px; top: 50%;
-          transform: translateY(-50%);
-          font-family: var(--font-main);
-          font-size: clamp(100px, 14vw, 160px);
+          right: -10px; top: 10px;
+          font-family: var(--font-plan-mono);
+          font-size: clamp(80px, 10vw, 130px);
           font-weight: 900;
           line-height: 1;
           color: rgba(255,255,255,0.03);
@@ -875,7 +888,7 @@ export default function Home() {
           border: 1px solid rgba(157,63,255,0.18);
           pointer-events: none;
           z-index: 0;
-          top: 50%; left: 50%;
+          top: 150px; left: 50%; /* Adjusted for vertical */
         }
         .orbit-ring-1 { width: 280px; height: 280px; animation: orbitSpin1 12s linear infinite; }
         .orbit-ring-2 { width: 420px; height: 420px; border-style: dashed; border-color: rgba(157,63,255,0.1); animation: orbitSpin2 18s linear infinite; }
@@ -886,6 +899,7 @@ export default function Home() {
           top: 0; left: 50%; transform: translateX(-50%);
           background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
           color: #fff;
+          font-family: var(--font-plan);
           font-size: 0.62rem;
           font-weight: 900;
           letter-spacing: 0.2em;
@@ -897,29 +911,28 @@ export default function Home() {
           z-index: 10;
         }
 
-        /* --- LEFT panel (price) --- */
+        /* --- TOP panel (price) --- */
         .pcard-left {
           position: relative;
           z-index: 1;
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items: center; /* Centered in vertical layout */
           justify-content: center;
           gap: 6px;
-          padding: 32px 36px 32px 40px;
-          flex: 0 0 240px;
-          min-width: 200px;
+          padding: 40px 32px 24px;
         }
 
         /* --- Tier badge --- */
         .pcard-tier {
-          font-size: 0.62rem;
-          font-weight: 900;
+          font-family: var(--font-plan-mono);
+          font-size: 0.65rem;
+          font-weight: 700;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          padding: 5px 12px;
+          padding: 5px 14px;
           border-radius: 100px;
-          margin-bottom: 4px;
+          margin-bottom: 8px;
         }
         .pcard-tier-start { background: rgba(96,165,250,0.12); color: #93c5fd; border: 1px solid rgba(96,165,250,0.3); }
         .pcard-tier-pro { background: rgba(157,63,255,0.15); color: var(--purple-light); border: 1px solid rgba(157,63,255,0.35); }
@@ -929,22 +942,24 @@ export default function Home() {
         .pcard-price-wrap {
           display: flex;
           align-items: baseline;
-          gap: 4px;
+          justify-content: center;
+          gap: 6px;
           animation: valPop 0.7s ease both;
         }
         .pcard-rs {
-          font-size: 1.1rem;
-          font-weight: 700;
+          font-family: var(--font-plan-mono);
+          font-size: 1.15rem;
+          font-weight: 600;
           color: var(--gray-mid);
           align-self: flex-start;
           margin-top: 8px;
         }
         .pcard-val {
-          font-family: var(--font-main);
-          font-size: clamp(2.8rem, 5vw, 3.8rem);
-          font-weight: 900;
+          font-family: var(--font-plan-mono);
+          font-size: clamp(3rem, 5vw, 4rem);
+          font-weight: 700;
           line-height: 1;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.04em;
           color: #fff;
         }
         .pcard-start .pcard-val { color: #93c5fd; text-shadow: 0 0 30px rgba(96,165,250,0.5); }
@@ -957,25 +972,29 @@ export default function Home() {
         .pcard-elite .pcard-val { color: #fdba74; text-shadow: 0 0 30px rgba(251,100,0,0.55); }
 
         .pcard-note {
-          font-size: 0.7rem;
-          font-weight: 600;
-          letter-spacing: 0.06em;
+          font-family: var(--font-plan);
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
           color: var(--gray-mid);
           text-transform: uppercase;
           margin-top: 2px;
+          text-align: center;
         }
 
         /* --- CTA button --- */
         .pcard-btn {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 8px;
-          margin-top: 14px;
-          padding: 12px 22px;
-          border-radius: 10px;
-          font-family: var(--font-main);
+          margin-top: 20px;
+          width: 100%; /* Full width button in vertical grid */
+          padding: 14px 22px;
+          border-radius: 12px;
+          font-family: var(--font-plan);
           font-weight: 700;
-          font-size: 0.9rem;
+          font-size: 1rem;
           text-decoration: none;
           color: #fff;
           position: relative;
@@ -994,59 +1013,60 @@ export default function Home() {
         }
         .pcard-arrow { transition: transform 0.3s ease; }
         .pcard-btn:hover .pcard-arrow { transform: translateX(5px); }
-        .pcard-btn:hover { transform: translateY(-2px); }
+        .pcard-btn:hover { transform: translateY(-3px); }
 
-        .pcard-btn-start { background: rgba(96,165,250,0.18); border: 1px solid rgba(96,165,250,0.4); }
-        .pcard-btn-start:hover { background: rgba(96,165,250,0.32); box-shadow: 0 0 22px rgba(96,165,250,0.35); }
+        .pcard-btn-start { background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.35); }
+        .pcard-btn-start:hover { background: rgba(96,165,250,0.3); box-shadow: 0 0 24px rgba(96,165,250,0.4); }
         .pcard-btn-pro {
           background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
           border: none;
           box-shadow: 0 0 24px rgba(157,63,255,0.5), 0 4px 20px rgba(138,43,226,0.35);
         }
-        .pcard-btn-pro:hover { box-shadow: 0 0 40px rgba(157,63,255,0.75), 0 8px 28px rgba(138,43,226,0.45); transform: translateY(-3px); }
+        .pcard-btn-pro:hover { box-shadow: 0 0 40px rgba(157,63,255,0.75), 0 8px 28px rgba(138,43,226,0.45); }
         .pcard-btn-elite { background: linear-gradient(135deg, #ea580c, #f97316); border: none; box-shadow: 0 0 24px rgba(251,100,0,0.45); }
-        .pcard-btn-elite:hover { box-shadow: 0 0 44px rgba(251,100,0,0.7); transform: translateY(-3px); }
+        .pcard-btn-elite:hover { box-shadow: 0 0 44px rgba(251,100,0,0.7); }
         .pcard-btn-elite::before { animation-delay: 1.8s; background: linear-gradient(90deg, transparent, rgba(255,200,100,0.28), transparent); }
 
-        /* --- Vertical separator --- */
+        /* --- Separator --- */
         .pcard-sep {
-          width: 1px;
-          margin: 32px 0;
+          width: calc(100% - 64px);
+          height: 1px;
+          margin: 0 auto;
           flex-shrink: 0;
-          align-self: stretch;
           position: relative;
           z-index: 1;
         }
-        .pcard-sep-start { background: linear-gradient(to bottom, transparent, rgba(96,165,250,0.35), transparent); }
-        .pcard-sep-pro { background: linear-gradient(to bottom, transparent, rgba(157,63,255,0.5), transparent); }
-        .pcard-sep-elite { background: linear-gradient(to bottom, transparent, rgba(251,100,0,0.4), transparent); }
+        .pcard-sep-start { background: linear-gradient(to right, transparent, rgba(96,165,250,0.35), transparent); }
+        .pcard-sep-pro { background: linear-gradient(to right, transparent, rgba(157,63,255,0.5), transparent); }
+        .pcard-sep-elite { background: linear-gradient(to right, transparent, rgba(251,100,0,0.4), transparent); }
 
-        /* --- RIGHT panel (content) --- */
+        /* --- BOTTOM panel (content) --- */
         .pcard-right {
           position: relative;
           z-index: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          gap: 10px;
-          padding: 32px 40px 32px 32px;
+          gap: 12px;
+          padding: 28px 32px 40px;
           flex: 1;
         }
 
         .pcard-name {
-          font-family: var(--font-main);
-          font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+          font-family: var(--font-plan);
+          font-size: clamp(1.4rem, 2.5vw, 1.8rem);
           font-weight: 800;
           color: #fff;
           margin: 0;
           line-height: 1.1;
+          text-align: center;
         }
         .pcard-tagline {
-          font-size: 0.85rem;
+          font-family: var(--font-plan);
+          font-size: 0.88rem;
           color: var(--gray-mid);
           line-height: 1.55;
-          margin: 0;
-          max-width: 460px;
+          margin: 0 0 12px;
+          text-align: center;
         }
 
         /* --- Feature list --- */
@@ -1054,37 +1074,40 @@ export default function Home() {
           list-style: none;
           margin: 0;
           padding: 0;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 7px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
         }
         .pcard-feats li {
           display: flex;
           align-items: flex-start;
-          gap: 8px;
-          font-size: 0.83rem;
+          gap: 10px;
+          font-family: var(--font-plan);
+          font-size: 0.88rem;
           color: var(--gray-light);
-          line-height: 1.4;
+          line-height: 1.45;
         }
-        .pcard-feats li strong { color: #fff; font-weight: 700; }
+        .pcard-feats li strong { color: #fff; font-weight: 600; }
         .feat-dot {
-          width: 7px; height: 7px;
+          width: 8px; height: 8px;
           border-radius: 50%;
           flex-shrink: 0;
           margin-top: 5px;
         }
-        .feat-dot-start { background: #60a5fa; box-shadow: 0 0 6px rgba(96,165,250,0.7); }
-        .feat-dot-pro { background: var(--purple-bright); box-shadow: 0 0 6px rgba(157,63,255,0.7); }
-        .feat-dot-elite { background: #fb923c; box-shadow: 0 0 6px rgba(251,100,0,0.7); }
+        .feat-dot-start { background: #60a5fa; box-shadow: 0 0 8px rgba(96,165,250,0.7); }
+        .feat-dot-pro { background: var(--purple-bright); box-shadow: 0 0 8px rgba(157,63,255,0.7); }
+        .feat-dot-elite { background: #fb923c; box-shadow: 0 0 8px rgba(251,100,0,0.7); }
 
         /* --- For whom tag --- */
         .pcard-for {
-          font-size: 0.78rem;
+          font-family: var(--font-plan);
+          font-size: 0.8rem;
           font-weight: 700;
-          padding: 7px 14px;
-          border-radius: 8px;
-          align-self: flex-start;
-          margin-top: 4px;
+          padding: 8px 16px;
+          border-radius: 10px;
+          align-self: center; /* Centered in vertical layout */
+          margin-top: auto; /* Pushes it to the bottom */
+          text-align: center;
         }
         .pcard-for-start { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.22); color: #93c5fd; }
         .pcard-for-pro { background: rgba(157,63,255,0.1); border: 1px solid rgba(157,63,255,0.28); color: var(--purple-light); }
@@ -1113,24 +1136,28 @@ export default function Home() {
         }
 
         /* --- Responsive --- */
-        @media (max-width: 900px) {
-          .pcard { flex-direction: column; min-height: unset; }
-          .pcard-left { flex: unset; padding: 32px 28px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 10px 28px; align-items: center; }
-          .pcard-sep { width: 100%; height: 1px; margin: 0 24px; align-self: auto; }
-          .pcard-sep-start { background: linear-gradient(to right, transparent, rgba(96,165,250,0.35), transparent); }
-          .pcard-sep-pro { background: linear-gradient(to right, transparent, rgba(157,63,255,0.5), transparent); }
-          .pcard-sep-elite { background: linear-gradient(to right, transparent, rgba(251,100,0,0.4), transparent); }
-          .pcard-right { padding: 20px 28px 28px; }
-          .pcard-num { font-size: 90px; top: 20px; right: 16px; transform: none; }
-          .orbit-ring-1 { width: 200px; height: 200px; }
-          .orbit-ring-2 { width: 300px; height: 300px; }
+        @media (max-width: 1000px) {
+          .plans-grid-v3 {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .pcard-elite {
+            grid-column: 1 / -1;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+          }
         }
-        @media (max-width: 600px) {
-          .pcard-left { padding: 28px 20px 16px; }
-          .pcard-right { padding: 16px 20px 24px; }
-          .pcard-feats { grid-template-columns: 1fr; }
-          .pcard-val { font-size: 2.6rem; }
-          .pcard-name { font-size: 1.3rem; }
+        @media (max-width: 768px) {
+          .plans-grid-v3 {
+            grid-template-columns: 1fr;
+          }
+          .pcard-elite {
+            grid-column: auto;
+            max-width: 100%;
+          }
+          .pcard-num { font-size: 80px; top: 10px; right: 10px; }
+          .orbit-ring-1 { width: 200px; height: 200px; top: 120px; }
+          .orbit-ring-2 { width: 300px; height: 300px; top: 120px; }
         }
         /* ============================= */
         @keyframes planFloat {
