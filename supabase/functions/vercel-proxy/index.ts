@@ -1,3 +1,5 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
 // ── Security: restrict CORS to known production origins ─────────────────────
 const ALLOWED_ORIGINS = [
   'https://pulsefuturo.com.br',
@@ -34,7 +36,21 @@ Deno.serve(async (req) => {
     // Manual JWT check since verify_jwt is false in config.toml
     const authHeader = req.headers.get('Authorization')
     if (!authHeader) {
-      return new Response(JSON.stringify({ error: 'Sessão expirada ou não autenticada (_proxy_no_header)' }), {
+      return new Response(JSON.stringify({ error: 'Unauthorized: Missing Authorization header' }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 401,
+      })
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const supabaseClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!
+    );
+    const { data: { user }, error: authError } = await supabaseClient.auth.getUser(token);
+    
+    if (authError || !user) {
+      return new Response(JSON.stringify({ error: 'Unauthorized: Invalid JWT signature' }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 401,
       })
@@ -42,7 +58,7 @@ Deno.serve(async (req) => {
 
     const VERCEL_TOKEN = Deno.env.get('VERCEL_TOKEN')
     if (!VERCEL_TOKEN) {
-      return new Response(JSON.stringify({ error: 'Configuração ausente no servidor' }), {
+      return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 500,
       })
@@ -90,7 +106,7 @@ Deno.serve(async (req) => {
     const message = err instanceof Error ? err.message : String(err);
     console.error(`Proxy Exception: ${message}`);
     return new Response(JSON.stringify({ 
-      error: message
+      error: 'Internal Server Error'
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 500,
