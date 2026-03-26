@@ -428,120 +428,113 @@ export default function Home() {
             </p>
           </div>
 
-          {/* CARDS GRID */}
-          <div className="plans-grid-v3">
-
-            {/* ══════════ START ══════════ */}
-            <div className="pcard pcard-start reveal delay-1">
-              {/* Watermark numeral */}
-              <span className="pcard-num">01</span>
-
-              {/* TOP — price */}
-              <div className="pcard-left">
-                <div className="pcard-tier pcard-tier-start">🚀 BÁSICO</div>
-                <div className="pcard-price-wrap">
-                  <span className="pcard-rs">R$</span>
-                  <span className="pcard-val">350</span>
+          {/* CARDS GALAXY (ULTRA ANIMATED) */}
+          <div className="plans-galaxy">
+            {/* ====== START ====== */}
+            <div className="gcard gcard-start reveal delay-1">
+              <div className="gcard-inner">
+                <div className="gcard-hologram">01</div>
+                
+                {/* Background Nebula */}
+                <div className="nebula nebula-blue" />
+                
+                <div className="gbadge gbadge-start">🚀 BÁSICO</div>
+                <div className="gprice-wrap">
+                  <span className="gcurrency">R$</span>
+                  <span className="gprice">350</span>
                 </div>
-                <p className="pcard-note">pagamento único</p>
-                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="pcard-btn pcard-btn-start" target="_blank" rel="noopener noreferrer">
-                  Começar <span className="pcard-arrow">→</span>
+                <div className="gnote">pagamento único</div>
+                
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="gbtn gbtn-start" target="_blank" rel="noopener noreferrer">
+                  Lançar Projeto
                 </a>
-              </div>
-
-              {/* DIVIDER */}
-              <div className="pcard-sep pcard-sep-start" />
-
-              {/* RIGHT — content */}
-              <div className="pcard-right">
-                <h3 className="pcard-name">Pulse Start</h3>
-                <p className="pcard-tagline">Sua empresa no digital em até 5 dias, sem dor de cabeça.</p>
-                <ul className="pcard-feats">
-                  <li><span className="feat-dot feat-dot-start" />Site 1 página · design moderno &amp; responsivo</li>
-                  <li><span className="feat-dot feat-dot-start" />Botão WhatsApp integrado</li>
-                  <li><span className="feat-dot feat-dot-start" />Domínio <strong>.com.br</strong> por 1 ano</li>
-                  <li><span className="feat-dot feat-dot-start" />Hospedagem otimizada</li>
-                  <li><span className="feat-dot feat-dot-start" />Entrega em até <strong>5 dias úteis</strong></li>
-                  <li><span className="feat-dot feat-dot-start" />Manutenção por <strong>30 dias</strong></li>
+                
+                <div className="gdivider" />
+                
+                <h3 className="gtitle">Pulse Start</h3>
+                <p className="gdesc">Sua empresa no digital em até 5 dias, sem dor de cabeça.</p>
+                <ul className="glist">
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Site 1 página moderno e responsivo</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Botão WhatsApp integrado</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Domínio <strong>.com.br</strong> (1 ano)</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Hospedagem otimizada</li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Entrega em até <strong>5 dias úteis</strong></li>
+                  <li><span className="glow-bullet glow-bullet-blue">✦</span> Manutenção por <strong>30 dias</strong></li>
                 </ul>
-                <div className="pcard-for pcard-for-start">🎯 Autônomos &amp; iniciantes</div>
+                <div className="gtarget gtarget-start">🎯 Autônomos & iniciantes</div>
               </div>
             </div>
 
-            {/* ══════════ PRO ══════════ */}
-            <div className="pcard pcard-pro reveal delay-2">
-              <span className="pcard-num">02</span>
-              {/* Popular strip */}
-              <div className="pcard-hot">⚡ MAIS POPULAR</div>
-
-              {/* TOP */}
-              <div className="pcard-left">
-                <div className="pcard-tier pcard-tier-pro">⚡ PRO</div>
-                <div className="pcard-price-wrap">
-                  <span className="pcard-rs">R$</span>
-                  <span className="pcard-val">650</span>
+            {/* ====== PRO ====== */}
+            <div className="gcard gcard-pro reveal delay-2">
+              <div className="gcard-inner">
+                <div className="gcard-hologram">02</div>
+                
+                <div className="nebula nebula-purple" />
+                
+                <div className="ghot">⚡ MAIS VENDIDO</div>
+                <div className="gbadge gbadge-pro">⚡ INTERMEDIÁRIO</div>
+                <div className="gprice-wrap">
+                  <span className="gcurrency">R$</span>
+                  <span className="gprice text-gradient-pro">650</span>
                 </div>
-                <p className="pcard-note">pagamento único</p>
-                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="pcard-btn pcard-btn-pro" target="_blank" rel="noopener noreferrer">
-                  Quero o Pro <span className="pcard-arrow">→</span>
+                <div className="gnote">pagamento único</div>
+                
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="gbtn gbtn-pro" target="_blank" rel="noopener noreferrer">
+                  Dominar o Mercado
                 </a>
-              </div>
-
-              <div className="pcard-sep pcard-sep-pro" />
-
-              {/* RIGHT */}
-              <div className="pcard-right">
-                <h3 className="pcard-name">Pulse Pro</h3>
-                <p className="pcard-tagline">O site completo que coloca sua empresa no topo do Google.</p>
-                <ul className="pcard-feats">
-                  <li><span className="feat-dot feat-dot-pro" />Até <strong>5 páginas</strong> (Home, Sobre, Serviços, Contato...)</li>
-                  <li><span className="feat-dot feat-dot-pro" />Design estratégico e personalizado</li>
-                  <li><span className="feat-dot feat-dot-pro" />Integração redes sociais + WhatsApp + formulário</li>
-                  <li><span className="feat-dot feat-dot-pro" />Google Analytics (tempo real)</li>
-                  <li><span className="feat-dot feat-dot-pro" /><strong>SEO</strong> — apareça no Google</li>
-                  <li><span className="feat-dot feat-dot-pro" />Domínio + hospedagem otimizada por 1 ano</li>
-                  <li><span className="feat-dot feat-dot-pro" />Suporte + manutenção por <strong>6 meses</strong></li>
+                
+                <div className="gdivider" />
+                
+                <h3 className="gtitle">Pulse Pro</h3>
+                <p className="gdesc">O site completo que coloca sua empresa no topo do Google.</p>
+                <ul className="glist">
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Até <strong>5 páginas</strong> (Home, Sobre, Serviços...)</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Design estratégico e personalizado</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Integração redes, WhatsApp e forms</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Google Analytics (tempo real)</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> <strong>SEO</strong> (Buscas no Google)</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Domínio + hospedagem por 1 ano</li>
+                  <li><span className="glow-bullet glow-bullet-purple">✦</span> Manutenção por <strong>6 meses</strong></li>
                 </ul>
-                <div className="pcard-for pcard-for-pro">🚀 Empresas que querem crescer online</div>
+                <div className="gtarget gtarget-pro">🚀 Empresas em crescimento</div>
               </div>
             </div>
 
-            {/* ══════════ ELITE ══════════ */}
-            <div className="pcard pcard-elite reveal delay-3">
-              <span className="pcard-num">03</span>
-
-              {/* TOP */}
-              <div className="pcard-left">
-                <div className="pcard-tier pcard-tier-elite">🔥 ELITE</div>
-                <div className="pcard-price-wrap">
-                  <span className="pcard-rs">R$</span>
-                  <span className="pcard-val">1.200</span>
+            {/* ====== ELITE ====== */}
+            <div className="gcard gcard-elite reveal delay-3">
+              <div className="gcard-inner">
+                <div className="gcard-hologram elite-glitch">03</div>
+                
+                <div className="nebula nebula-fire" />
+                
+                <div className="gbadge gbadge-elite">🔥 AVANÇADO</div>
+                <div className="gprice-wrap">
+                  <span className="gcurrency">R$</span>
+                  <span className="gprice text-gradient-elite">1.200</span>
                 </div>
-                <p className="pcard-note">investimento único</p>
-                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="pcard-btn pcard-btn-elite" target="_blank" rel="noopener noreferrer">
-                  Quero o Elite <span className="pcard-arrow">→</span>
+                <div className="gnote">investimento único</div>
+                
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="gbtn gbtn-elite" target="_blank" rel="noopener noreferrer">
+                  Me Torne a Referência
                 </a>
-              </div>
-
-              <div className="pcard-sep pcard-sep-elite" />
-
-              {/* RIGHT */}
-              <div className="pcard-right">
-                <h3 className="pcard-name">Pulse Elite</h3>
-                <p className="pcard-tagline">Alto nível, foco total em conversão — site que vende enquanto você dorme.</p>
-                <ul className="pcard-feats">
-                  <li><span className="feat-dot feat-dot-elite" />Até <strong>10 páginas</strong> ou estrutura avançada</li>
-                  <li><span className="feat-dot feat-dot-elite" />Design premium + animações + UX envolvente</li>
-                  <li><span className="feat-dot feat-dot-elite" />Integração completa (WhatsApp, redes, forms)</li>
-                  <li><span className="feat-dot feat-dot-elite" />Google Analytics avançado + estrutura de vendas</li>
-                  <li><span className="feat-dot feat-dot-elite" />Domínio + hospedagem <strong>alta performance</strong></li>
-                  <li><span className="feat-dot feat-dot-elite" />Suporte <strong>PRIORITÁRIO 24h</strong></li>
-                  <li><span className="feat-dot feat-dot-elite" />Manutenção por <strong>1 ano completo</strong></li>
+                
+                <div className="gdivider" />
+                
+                <h3 className="gtitle">Pulse Elite</h3>
+                <p className="gdesc">Alto nível, foco extremo em conversão. Venda enquanto dorme.</p>
+                <ul className="glist">
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Até <strong>10 páginas</strong> ou sistema complexo</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> UX Envolvente + Animações 3D</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Integração total de funil e pixels</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Copywriting focado em vendas</li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Servidor <strong>Alta Performance</strong></li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Suporte <strong>PRIORITÁRIO 24h</strong></li>
+                  <li><span className="glow-bullet glow-bullet-fire">✦</span> Manutenção por <strong>1 ano</strong></li>
                 </ul>
-                <div className="pcard-for pcard-for-elite">🔥 Quem quer vender todos os dias</div>
+                <div className="gtarget gtarget-elite">👑 Para os líderes de mercado</div>
               </div>
             </div>
-
           </div>{/* /plans-stack */}
         </div>
       </section>
@@ -685,302 +678,357 @@ export default function Home() {
 
       <style>{`
 
-        /* ======================== PLANS — v3 (CLEAN) ======================== */
+        /* ======================== PLANS — V4 (OUT OF THIS WORLD / GALAXY) ======================== */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Space+Grotesk:wght@400;700&display=swap');
 
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        /* --- Insane Keyframes --- */
+        @keyframes galaxySweep {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes borderSpin {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes cardFloat3D {
+          0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(-2deg); }
+          50% { transform: translateY(-15px) rotateX(-2deg) rotateY(2deg); }
+        }
+        @keyframes hologramFlicker {
+          0%, 100% { opacity: 0.03; transform: scale(1); filter: blur(2px); }
+          50% { opacity: 0.08; transform: scale(1.05); filter: blur(0px); }
+          52% { opacity: 0.02; transform: skewX(10deg); }
+          54% { opacity: 0.08; transform: skewX(0deg); }
+        }
+        @keyframes eliteGlitch {
+          0%, 100% { text-shadow: none; transform: none; }
+          20% { text-shadow: 4px 0 rgba(251,100,0,0.5), -4px 0 rgba(157,63,255,0.5); transform: skewX(-10deg); }
+          22% { text-shadow: -4px 0 rgba(251,100,0,0.5), 4px 0 rgba(157,63,255,0.5); transform: skewX(10deg); }
+          24% { text-shadow: none; transform: none; }
+        }
+        @keyframes btnPlasma {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+        @keyframes nebulaPulse {
+          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+          50% { transform: scale(1.3) rotate(15deg); opacity: 0.8; }
+        }
 
-        /* --- Keyframes --- */
-        @keyframes pcardFloat {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-4px); }
-        }
-        @keyframes valPop {
-          from { opacity: 0; transform: translateY(16px) scale(0.95); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes numFade {
-          0%, 100% { opacity: 0.02; }
-          50% { opacity: 0.04; }
-        }
-
-        /* --- Section wrapper --- */
-        .plans-section { 
-          padding: 110px 0 130px; 
+        /* --- Galaxy Container --- */
+        .plans-section {
+          padding: 120px 0 160px;
           --font-plan: 'Outfit', sans-serif;
           --font-plan-mono: 'Space Grotesk', sans-serif;
-        }
-        .plans-header { text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-        
-        .plans-section .section-title, 
-        .plans-section .section-subtitle, 
-        .plans-section .section-tag {
-          font-family: var(--font-plan) !important;
+          position: relative;
         }
 
-        /* --- Grid of cards --- */
-        .plans-grid-v3 {
+        .plans-galaxy {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 30px;
-          align-items: start;
+          perspective: 1400px; /* Activates extreme 3D depth */
+          padding: 20px 0;
+          align-items: center;
         }
 
-        /* --- Base card --- */
-        .pcard {
+        /* --- 3D Card Base --- */
+        .gcard {
           position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          border-radius: 20px;
-          border: 1px solid rgba(255,255,255,0.06);
-          background: rgba(14, 14, 18, 0.4);
-          backdrop-filter: blur(12px);
-          overflow: hidden;
-          transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275), border-color 0.4s ease, box-shadow 0.4s ease;
-          min-height: 480px;
-          font-family: var(--font-plan);
-        }
-        .pcard:hover {
-          transform: translateY(-8px);
-          border-color: rgba(255,255,255,0.15);
-          box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+          background: #030305;
+          border-radius: 28px;
+          padding: 2px; /* Border thickness */
+          transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+          transform-style: preserve-3d;
+          animation: cardFloat3D 8s infinite ease-in-out;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
         }
 
-        /* --- Watermark numeral --- */
-        .pcard-num {
+        /* Animated Glowing Edge using conic-gradient */
+        .gcard::before {
+          content: '';
           position: absolute;
-          right: 0px; top: 10px;
-          font-family: var(--font-plan-mono);
-          font-size: clamp(80px, 10vw, 130px);
-          font-weight: 800;
-          line-height: 1;
-          color: rgba(255,255,255,1);
-          opacity: 0.02;
-          pointer-events: none;
+          top: 50%; left: 50%;
+          width: 250%; height: 250%;
+          background: conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,0.05) 20%, transparent 40%);
+          animation: borderSpin 6s linear infinite;
           z-index: 0;
-          user-select: none;
-          animation: numFade 6s ease-in-out infinite;
+          pointer-events: none;
         }
 
-        /* --- "MAIS POPULAR" hot badge --- */
-        .pcard-hot {
-          position: absolute;
-          top: 0; left: 50%; transform: translateX(-50%);
-          background: #2563eb;
-          color: #fff;
-          font-family: var(--font-plan);
-          font-size: 0.65rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 6px 16px;
-          border-radius: 0 0 12px 12px;
-          white-space: nowrap;
+        /* Specific Animated Edges */
+        .gcard-start::before {
+          background: conic-gradient(from 0deg, transparent 0%, rgba(96,165,250,0.3) 20%, #3b82f6 30%, transparent 40%);
+        }
+        .gcard-pro::before {
+          background: conic-gradient(from 0deg, transparent 0%, rgba(157,63,255,0.5) 20%, #d946ef 30%, transparent 40%);
+          animation-duration: 4s;
+        }
+        .gcard-elite::before {
+          background: conic-gradient(from 0deg, transparent 0%, rgba(251,100,0,0.6) 20%, #f97316 30%, #fbbf24 35%, transparent 50%);
+          animation-duration: 3s;
+        }
+
+        /* Hover interaction for the card */
+        .gcard:hover {
+          transform: translateY(-20px) rotateX(0deg) rotateY(0deg) scale(1.04) !important;
+          animation-play-state: paused;
           z-index: 10;
         }
+        .gcard:hover::before { animation-duration: 1.5s; }
 
-        /* --- TOP panel (price) --- */
-        .pcard-left {
+        .gcard-start { animation-delay: 0s; }
+        .gcard-pro { animation-delay: -2s; transform-origin: center; transform: translateY(-20px) scale(1.05); }
+        .gcard-elite { animation-delay: -4s; }
+
+        /* --- Inner Card Body --- */
+        .gcard-inner {
           position: relative;
-          z-index: 1;
+          background: linear-gradient(160deg, rgba(16,16,22,0.95), rgba(8,8,12,0.98));
+          border-radius: 26px;
+          height: 100%;
+          padding: 40px 32px 40px;
           display: flex;
           flex-direction: column;
-          align-items: center; /* Centered in vertical layout */
-          justify-content: center;
-          gap: 6px;
-          padding: 40px 32px 24px;
+          z-index: 1;
+          transform: translateZ(20px); /* Pushes content out towards the user */
+          overflow: hidden;
+          backdrop-filter: blur(20px);
         }
 
-        /* --- Tier badge --- */
-        .pcard-tier {
+        /* Holographic Numeral in the back */
+        .gcard-hologram {
+          position: absolute;
+          top: -20px; right: -10px;
+          font-family: var(--font-plan-mono);
+          font-size: 160px;
+          font-weight: 800;
+          color: #fff;
+          z-index: 0;
+          pointer-events: none;
+          animation: hologramFlicker 5s infinite;
+        }
+        .elite-glitch { animation: hologramFlicker 5s infinite, eliteGlitch 4s infinite; }
+
+        /* Floating Nebulas */
+        .nebula {
+          position: absolute;
+          width: 300px; height: 300px;
+          border-radius: 50%;
+          filter: blur(60px);
+          z-index: 0;
+          pointer-events: none;
+          animation: nebulaPulse 6s ease-in-out infinite alternate;
+        }
+        .nebula-blue { background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%); top: -50px; left: -50px; }
+        .nebula-purple { background: radial-gradient(circle, rgba(157,63,255,0.2), transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 4s; }
+        .nebula-fire { background: radial-gradient(circle, rgba(234,88,12,0.2), transparent 70%); bottom: -50px; right: -50px; animation-duration: 5s; }
+
+        /* --- Typography & Elements --- */
+        .gbadge {
+          position: relative;
+          z-index: 2;
           font-family: var(--font-plan-mono);
           font-size: 0.65rem;
           font-weight: 700;
-          letter-spacing: 0.22em;
+          letter-spacing: 0.25em;
           text-transform: uppercase;
-          padding: 5px 14px;
+          padding: 6px 14px;
           border-radius: 100px;
-          margin-bottom: 8px;
+          align-self: flex-start;
+          margin-bottom: 12px;
+          transform: translateZ(30px); /* 3D pop */
         }
-        .pcard-tier-start { background: rgba(96,165,250,0.12); color: #93c5fd; border: 1px solid rgba(96,165,250,0.3); }
-        .pcard-tier-pro { background: rgba(157,63,255,0.15); color: var(--purple-light); border: 1px solid rgba(157,63,255,0.35); }
-        .pcard-tier-elite { background: rgba(251,100,0,0.12); color: #fdba74; border: 1px solid rgba(251,100,0,0.3); }
+        .gbadge-start { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .gbadge-pro { background: rgba(157,63,255,0.15); color: #d8b4fe; border: 1px solid rgba(157,63,255,0.4); }
+        .gbadge-elite { background: rgba(234,88,12,0.1); color: #fdba74; border: 1px solid rgba(234,88,12,0.4); }
 
-        /* --- Price --- */
-        .pcard-price-wrap {
+        .ghot {
+          position: absolute;
+          top: 0; left: 50%; transform: translateX(-50%);
+          background: #d946ef;
+          color: #fff;
+          font-family: var(--font-plan);
+          font-size: 0.65rem;
+          font-weight: 800;
+          letter-spacing: 0.15em;
+          padding: 6px 20px;
+          border-radius: 0 0 12px 12px;
+          z-index: 10;
+          box-shadow: 0 0 20px rgba(217,70,239,0.5);
+        }
+
+        .gprice-wrap {
+          position: relative;
+          z-index: 2;
           display: flex;
           align-items: baseline;
-          justify-content: center;
           gap: 6px;
-          animation: valPop 0.7s ease both;
+          transform: translateZ(40px);
         }
-        .pcard-rs {
+        .gcurrency { font-family: var(--font-plan-mono); font-size: 1.2rem; font-weight: 500; color: #a1a1aa; }
+        .gprice {
           font-family: var(--font-plan-mono);
-          font-size: 1.15rem;
-          font-weight: 500;
-          color: var(--gray-mid);
-          align-self: flex-start;
-          margin-top: 8px;
-        }
-        .pcard-val {
-          font-family: var(--font-plan-mono);
-          font-size: clamp(3rem, 5vw, 4rem);
-          font-weight: 600;
+          font-size: 3.5rem;
+          font-weight: 700;
           line-height: 1;
-          letter-spacing: -0.04em;
           color: #fff;
+          letter-spacing: -0.04em;
+        }
+        .text-gradient-pro {
+          background: linear-gradient(135deg, #fff, #d8b4fe);
+          -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+          filter: drop-shadow(0 0 15px rgba(157,63,255,0.4));
+        }
+        .text-gradient-elite {
+          background: linear-gradient(135deg, #fff, #fdba74);
+          -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+          filter: drop-shadow(0 0 15px rgba(234,88,12,0.4));
         }
 
-        .pcard-note {
+        .gnote {
+          position: relative;
+          z-index: 2;
           font-family: var(--font-plan);
           font-size: 0.75rem;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          color: var(--gray-mid);
-          text-transform: uppercase;
-          margin-top: 2px;
-          text-align: center;
-        }
-
-        /* --- CTA button --- */
-        .pcard-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          margin-top: 20px;
-          width: 100%;
-          padding: 12px 22px;
-          border-radius: 8px;
-          font-family: var(--font-plan);
-          font-weight: 600;
-          font-size: 0.95rem;
-          text-decoration: none;
-          color: #fff;
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.12);
-          transition: all 0.3s ease;
-          white-space: nowrap;
-        }
-        .pcard-arrow { transition: transform 0.3s ease; }
-        .pcard-btn:hover .pcard-arrow { transform: translateX(4px); }
-        .pcard-btn:hover {
-          background: rgba(255,255,255,0.12);
-          border-color: rgba(255,255,255,0.25);
-          transform: translateY(-2px);
-        }
-
-        .pcard-btn-pro {
-          background: #2563eb;
-          border-color: #2563eb;
-        }
-        .pcard-btn-pro:hover {
-          background: #3b82f6; 
-          border-color: #3b82f6;
-        }
-
-        /* --- Separator --- */
-        .pcard-sep {
-          width: calc(100% - 64px);
-          height: 1px;
-          margin: 0 auto;
-          flex-shrink: 0;
-          background: rgba(255,255,255,0.06);
-        }
-
-        /* --- BOTTOM panel (content) --- */
-        .pcard-right {
-          position: relative;
-          z-index: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          padding: 28px 32px 40px;
-          flex: 1;
-        }
-
-        .pcard-name {
-          font-family: var(--font-plan);
-          font-size: clamp(1.2rem, 2.5vw, 1.4rem);
           font-weight: 700;
-          color: #fff;
-          margin: 0;
-          line-height: 1.1;
-          text-align: center;
-        }
-        .pcard-tagline {
-          font-family: var(--font-plan);
-          font-size: 0.88rem;
-          color: var(--gray-mid);
-          line-height: 1.55;
-          margin: 0 0 12px;
-          text-align: center;
+          text-transform: uppercase;
+          color: #71717a;
+          margin-bottom: 24px;
+          letter-spacing: 0.05em;
+          transform: translateZ(30px);
         }
 
-        /* --- Feature list --- */
-        .pcard-feats {
+        /* Extraterrestrial Buttons */
+        .gbtn {
+          position: relative;
+          z-index: 3;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          padding: 16px 20px;
+          border-radius: 14px;
+          font-family: var(--font-plan);
+          font-weight: 700;
+          font-size: 1.05rem;
+          color: #fff;
+          text-decoration: none;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transform: translateZ(50px); /* Extreme pop out */
+        }
+        .gbtn-start {
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.1);
+        }
+        .gbtn-start:hover { background: rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(255,255,255,0.1); transform: translateZ(60px) scale(1.02); }
+        
+        .gbtn-pro {
+          background: linear-gradient(90deg, #9333ea, #3b82f6, #9333ea);
+          background-size: 200% auto;
+          border: none;
+          box-shadow: 0 0 30px rgba(147,51,234,0.5);
+          animation: btnPlasma 3s linear infinite;
+        }
+        .gbtn-pro:hover {
+          box-shadow: 0 0 50px rgba(147,51,234,0.8);
+          transform: translateZ(60px) scale(1.02);
+        }
+
+        .gbtn-elite {
+          background: linear-gradient(90deg, #ea580c, #fbbf24, #ea580c);
+          background-size: 200% auto;
+          border: none;
+          box-shadow: 0 0 30px rgba(234,88,12,0.5);
+          animation: btnPlasma 2s linear infinite;
+        }
+        .gbtn-elite:hover {
+          box-shadow: 0 0 50px rgba(234,88,12,0.8);
+          transform: translateZ(60px) scale(1.02);
+        }
+
+        .gdivider {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+          margin: 30px 0;
+          transform: translateZ(30px);
+        }
+
+        /* Typography & Lists */
+        .gtitle {
+          position: relative;
+          z-index: 2;
+          font-family: var(--font-plan);
+          font-size: 1.6rem;
+          font-weight: 800;
+          color: #fff;
+          margin: 0 0 8px;
+          transform: translateZ(35px);
+        }
+        .gdesc {
+          position: relative;
+          z-index: 2;
+          font-family: var(--font-plan);
+          font-size: 0.9rem;
+          color: #a1a1aa;
+          line-height: 1.5;
+          margin: 0 0 20px;
+          transform: translateZ(35px);
+        }
+
+        .glist {
+          position: relative;
+          z-index: 2;
           list-style: none;
-          margin: 0;
-          padding: 0;
+          padding: 0; margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 14px;
+          flex: 1;
+          transform: translateZ(40px);
         }
-        .pcard-feats li {
+        .glist li {
+          font-family: var(--font-plan);
+          font-size: 0.9rem;
+          color: #d4d4d8;
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          font-family: var(--font-plan);
-          font-size: 0.88rem;
-          color: var(--gray-light);
-          line-height: 1.45;
+          line-height: 1.4;
         }
-        .pcard-feats li strong { color: #fff; font-weight: 600; }
-        .feat-dot {
-          width: 8px; height: 8px;
-          border-radius: 50%;
-          flex-shrink: 0;
-          margin-top: 5px;
-        }
-        .feat-dot-start { background: #60a5fa; box-shadow: 0 0 8px rgba(96,165,250,0.7); }
-        .feat-dot-pro { background: var(--purple-bright); box-shadow: 0 0 8px rgba(157,63,255,0.7); }
-        .feat-dot-elite { background: #fb923c; box-shadow: 0 0 8px rgba(251,100,0,0.7); }
+        .glist li strong { color: #fff; font-weight: 700; }
+        .glow-bullet { font-size: 1.1rem; line-height: 1; }
+        .glow-bullet-blue { color: #60a5fa; text-shadow: 0 0 10px #60a5fa; }
+        .glow-bullet-purple { color: #d8b4fe; text-shadow: 0 0 10px #d8b4fe; }
+        .glow-bullet-fire { color: #fbbf24; text-shadow: 0 0 10px #fbbf24; }
 
-        /* --- For whom tag --- */
-        .pcard-for {
+        .gtarget {
+          position: relative;
+          z-index: 2;
           font-family: var(--font-plan);
           font-size: 0.8rem;
-          font-weight: 500;
-          padding: 8px 16px;
-          border-radius: 8px;
-          align-self: center; /* Centered in vertical layout */
-          margin-top: auto; /* Pushes it to the bottom */
+          font-weight: 700;
           text-align: center;
-          background: rgba(255,255,255,0.03);
-          color: var(--gray-light);
-          border: 1px solid rgba(255,255,255,0.06);
+          padding: 10px;
+          border-radius: 10px;
+          margin-top: 24px;
+          transform: translateZ(45px);
         }
+        .gtarget-start { background: rgba(59,130,246,0.05); color: #93c5fd; border: 1px dashed rgba(59,130,246,0.3); }
+        .gtarget-pro { background: rgba(147,51,234,0.05); color: #d8b4fe; border: 1px dashed rgba(147,51,234,0.3); }
+        .gtarget-elite { background: rgba(234,88,12,0.05); color: #fbbf24; border: 1px dashed rgba(234,88,12,0.3); }
 
-        /* --- Pro card theming --- */
-        .pcard-pro {
-          border-color: rgba(255,255,255,0.18);
-          background: rgba(18, 18, 24, 0.6);
-        }
-        .pcard-pro:hover {
-          border-color: rgba(255,255,255,0.28);
-        }
-
-        /* --- Elite card theming --- */
-        .pcard-elite {
-          /* Inherits base clean theme */
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 1000px) {
-          .plans-grid-v3 {
+        /* --- Responsive Galaxy --- */
+        @media (max-width: 1024px) {
+          .plans-galaxy {
             grid-template-columns: repeat(2, 1fr);
+            gap: 40px 30px;
           }
-          .pcard-elite {
+          .gcard-elite {
             grid-column: 1 / -1;
             max-width: 500px;
             margin: 0 auto;
@@ -988,451 +1036,19 @@ export default function Home() {
           }
         }
         @media (max-width: 768px) {
-          .plans-grid-v3 {
+          .plans-galaxy {
             grid-template-columns: 1fr;
+            perspective: none; /* Turn off 3D on mobile for performance */
           }
-          .pcard-elite {
-            grid-column: auto;
+          .gcard {
+            transform-style: flat;
+            animation: none;
             max-width: 100%;
           }
-          .pcard-num { font-size: 80px; top: 10px; right: 10px; }
-        }
-        /* ============================= */
-        @keyframes planFloat {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-10px) rotate(0.5deg); }
-          66% { transform: translateY(-5px) rotate(-0.5deg); }
-        }
-        @keyframes planGlowPulse {
-          0%, 100% { opacity: 0.55; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.18); }
-        }
-        @keyframes planGlowPulsePro {
-          0%, 100% { opacity: 0.7; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.25); }
-        }
-        @keyframes planShimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-        @keyframes particleDrift {
-          0% { transform: translate(0,0) scale(1); opacity: 0; }
-          15% { opacity: 1; }
-          85% { opacity: 0.6; }
-          100% { transform: translate(var(--px, 40px), var(--py, -60px)) scale(0); opacity: 0; }
-        }
-        @keyframes popularBadgePulse {
-          0%, 100% { box-shadow: 0 0 12px rgba(157, 63, 255, 0.6), 0 0 28px rgba(157, 63, 255, 0.3); }
-          50% { box-shadow: 0 0 22px rgba(157, 63, 255, 1), 0 0 50px rgba(157, 63, 255, 0.55); }
-        }
-        @keyframes borderSpin {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        @keyframes eliteFireBorder {
-          0%, 100% { border-color: rgba(255, 100, 0, 0.5); box-shadow: 0 0 20px rgba(255,100,0,0.2), inset 0 0 20px rgba(255,100,0,0.04); }
-          50% { border-color: rgba(255, 160, 0, 0.8); box-shadow: 0 0 35px rgba(255,140,0,0.4), inset 0 0 30px rgba(255,100,0,0.08); }
-        }
-        @keyframes priceCount {
-          from { opacity: 0; transform: scale(0.7) translateY(10px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes ctaShine {
-          0% { left: -100%; }
-          100% { left: 200%; }
-        }
-
-        .plans-section { padding: 110px 0 120px; }
-
-        .plans-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 28px;
-          align-items: stretch;
-        }
-
-        .plan-card {
-          position: relative;
-          border-radius: 24px;
-          padding: 40px 32px 36px;
-          border: 1px solid rgba(138, 43, 226, 0.22);
-          background: rgba(13, 13, 20, 0.72);
-          backdrop-filter: blur(18px);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-          animation: planFloat 7s ease-in-out infinite;
-          cursor: default;
-        }
-
-        .plan-card:nth-child(2) { animation-duration: 8.5s; animation-delay: -1.5s; }
-        .plan-card:nth-child(3) { animation-duration: 6.5s; animation-delay: -3s; }
-
-        .plan-card:hover {
-          transform: translateY(-14px) scale(1.025) !important;
-          box-shadow: 0 30px 80px rgba(138, 43, 226, 0.25), 0 0 0 1px rgba(157, 63, 255, 0.35);
-          animation-play-state: paused;
-        }
-
-        /* GLOW BLOBS */
-        .plan-glow {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(55px);
-          pointer-events: none;
-          z-index: 0;
-        }
-        .plan-glow-start {
-          width: 220px; height: 220px;
-          background: radial-gradient(circle, rgba(100, 160, 255, 0.3), transparent 70%);
-          top: -60px; right: -60px;
-          animation: planGlowPulse 4s ease-in-out infinite;
-        }
-        .plan-glow-pro {
-          width: 280px; height: 280px;
-          background: radial-gradient(circle, rgba(157, 63, 255, 0.45), transparent 70%);
-          top: -80px; left: 50%; transform: translateX(-50%);
-          animation: planGlowPulsePro 3.5s ease-in-out infinite;
-        }
-        .plan-glow-elite {
-          width: 240px; height: 240px;
-          background: radial-gradient(circle, rgba(255, 100, 0, 0.35), transparent 70%);
-          top: -60px; left: -60px;
-          animation: planGlowPulse 5s ease-in-out infinite 1s;
-        }
-
-        /* FLOATING PARTICLES */
-        .plan-particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-        .plan-particle {
-          position: absolute;
-          width: 5px; height: 5px;
-          border-radius: 50%;
-          background: var(--purple-bright);
-          animation: particleDrift 4s ease-in-out infinite;
-          opacity: 0;
-        }
-
-        .plan-start .plan-particle { background: #60a5fa; }
-        .plan-particles-pro .plan-particle { background: var(--purple-bright); }
-        .plan-particles-elite .plan-particle { background: #fb923c; }
-
-        .plan-particle:nth-child(1) { left: 10%; top: 80%; --px: 20px; --py: -70px; animation-delay: 0s; animation-duration: 3.5s; }
-        .plan-particle:nth-child(2) { left: 25%; top: 70%; --px: -15px; --py: -80px; animation-delay: 0.5s; animation-duration: 4.2s; }
-        .plan-particle:nth-child(3) { left: 70%; top: 85%; --px: 30px; --py: -60px; animation-delay: 1s; animation-duration: 3.8s; }
-        .plan-particle:nth-child(4) { left: 85%; top: 60%; --px: -20px; --py: -90px; animation-delay: 1.5s; animation-duration: 4.5s; }
-        .plan-particle:nth-child(5) { left: 50%; top: 90%; --px: 10px; --py: -75px; animation-delay: 2s; animation-duration: 3.2s; }
-        .plan-particle:nth-child(6) { left: 40%; top: 75%; --px: -25px; --py: -65px; animation-delay: 2.5s; animation-duration: 4.8s; }
-        .plan-particle:nth-child(7) { left: 15%; top: 50%; --px: 35px; --py: -55px; animation-delay: 0.7s; animation-duration: 3.6s; }
-        .plan-particle:nth-child(8) { left: 60%; top: 40%; --px: -30px; --py: -85px; animation-delay: 1.2s; animation-duration: 4.1s; }
-        .plan-particle:nth-child(9) { left: 80%; top: 30%; --px: 25px; --py: -95px; animation-delay: 1.8s; animation-duration: 3.9s; }
-        .plan-particle:nth-child(10) { left: 30%; top: 20%; --px: -18px; --py: -70px; animation-delay: 2.3s; animation-duration: 4.4s; }
-
-        /* PLAN HEADER */
-        .plan-header { position: relative; z-index: 1; margin-bottom: 24px; }
-        .plan-emoji {
-          font-size: 2.4rem;
-          margin-bottom: 12px;
-          display: block;
-          filter: drop-shadow(0 0 12px rgba(157, 63, 255, 0.6));
-          animation: planFloat 3s ease-in-out infinite;
-        }
-        .plan-badge {
-          display: inline-block;
-          font-size: 0.65rem;
-          font-weight: 800;
-          letter-spacing: 0.2em;
-          padding: 4px 12px;
-          border-radius: 100px;
-          margin-bottom: 10px;
-        }
-        .plan-badge-start { background: rgba(96, 165, 250, 0.15); color: #93c5fd; border: 1px solid rgba(96,165,250,0.3); }
-        .plan-badge-pro { background: rgba(157, 63, 255, 0.18); color: var(--purple-light); border: 1px solid var(--border); }
-        .plan-badge-elite { background: rgba(251, 146, 60, 0.15); color: #fdba74; border: 1px solid rgba(251,146,60,0.3); }
-
-        .plan-name {
-          font-family: var(--font-main);
-          font-size: 1.7rem;
-          font-weight: 800;
-          color: var(--white);
-          margin-bottom: 12px;
-          background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,0.65));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        .plan-featured .plan-name {
-          background: linear-gradient(135deg, #fff 0%, var(--purple-light) 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-        }
-        .plan-elite .plan-name {
-          background: linear-gradient(135deg, #fff 0%, #fb923c 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-        }
-
-        .plan-price {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-          margin-bottom: 10px;
-          animation: priceCount 0.6s ease both;
-        }
-        .plan-currency { font-size: 1.1rem; font-weight: 700; color: var(--gray-mid); margin-top: 4px; }
-        .plan-amount {
-          font-family: var(--font-main);
-          font-size: 3.2rem;
-          font-weight: 900;
-          color: var(--white);
-          line-height: 1;
-          letter-spacing: -0.02em;
-        }
-        .plan-featured .plan-amount {
-          background: linear-gradient(135deg, #fff 0%, var(--purple-light) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          filter: drop-shadow(0 0 20px rgba(157,63,255,0.5));
-        }
-        .plan-elite .plan-amount {
-          background: linear-gradient(135deg, #fff 0%, #fb923c 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          filter: drop-shadow(0 0 20px rgba(255,100,0,0.5));
-        }
-
-        .plan-tagline {
-          font-size: 0.88rem;
-          color: var(--gray-mid);
-          line-height: 1.5;
-        }
-
-        /* FEATURED CARD */
-        .plan-featured {
-          border: 1px solid rgba(157, 63, 255, 0.5);
-          background: rgba(15, 10, 30, 0.85);
-          box-shadow: 0 0 50px rgba(138, 43, 226, 0.2), 0 0 120px rgba(138, 43, 226, 0.08);
-          transform: scale(1.04);
-        }
-        .plan-featured:hover {
-          transform: translateY(-14px) scale(1.06) !important;
-        }
-
-        /* ELITE CARD */
-        .plan-elite {
-          border: 1px solid rgba(255, 100, 0, 0.3);
-          animation: planFloat 7s ease-in-out infinite, eliteFireBorder 3s ease-in-out infinite;
-        }
-        .plan-elite:hover {
-          border-color: rgba(255, 140, 0, 0.7) !important;
-          box-shadow: 0 30px 80px rgba(255, 100, 0, 0.2), 0 0 0 1px rgba(255, 140, 0, 0.4) !important;
-        }
-
-        /* "MAIS POPULAR" badge */
-        .plan-popular-badge {
-          position: absolute;
-          top: -1px; left: 50%; transform: translateX(-50%);
-          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
-          color: #fff;
-          font-size: 0.65rem;
-          font-weight: 800;
-          letter-spacing: 0.18em;
-          padding: 6px 18px;
-          border-radius: 0 0 14px 14px;
-          text-transform: uppercase;
-          animation: popularBadgePulse 2.5s ease-in-out infinite;
-          white-space: nowrap;
-          z-index: 5;
-        }
-
-        /* FEATURES LIST */
-        .plan-features {
-          list-style: none;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 11px;
-          margin-bottom: 20px;
-          position: relative;
-          z-index: 1;
-        }
-        .plan-features li {
-          display: flex;
-          align-items: flex-start;
-          gap: 9px;
-          font-size: 0.875rem;
-          color: var(--gray-light);
-          line-height: 1.45;
-        }
-        .plan-features li strong { color: #fff; }
-
-        /* SVG CHECK ICONS */
-        .plan-icon {
-          width: 16px;
-          height: 16px;
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-        .plan-icon-start { color: #60a5fa; }
-        .plan-icon-pro { color: var(--purple-light); }
-        .plan-icon-elite { color: #fb923c; }
-
-        /* ACCENT TOP LINE */
-        .plan-accent-line {
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 3px;
-          border-radius: 24px 24px 0 0;
-          z-index: 2;
-        }
-        .plan-accent-start { background: linear-gradient(90deg, #3b82f6, #60a5fa, transparent); }
-        .plan-accent-pro { background: linear-gradient(90deg, var(--purple-neon), var(--purple-bright), #bf7fff, transparent); }
-        .plan-accent-elite { background: linear-gradient(90deg, #ea580c, #f97316, #fbbf24, transparent); }
-
-        /* ICON + BADGE ROW */
-        .plan-icon-row {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 10px;
-        }
-        .plan-emoji {
-          font-size: 1.9rem;
-          line-height: 1;
-          filter: drop-shadow(0 0 10px rgba(157, 63, 255, 0.5));
-          animation: planFloat 3s ease-in-out infinite;
-        }
-
-        /* PRICE BLOCK */
-        .plan-price-block {
-          border-radius: 14px;
-          padding: 18px 20px 14px;
-          margin-bottom: 20px;
-          position: relative;
-          z-index: 1;
-        }
-        .plan-price-block-start { background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59,130,246,0.18); }
-        .plan-price-block-pro { background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138,43,226,0.25); }
-        .plan-price-block-elite { background: rgba(234, 88, 12, 0.08); border: 1px solid rgba(234,88,12,0.2); }
-
-        .plan-price-row {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-          margin-bottom: 4px;
-        }
-        .plan-price-label {
-          font-size: 0.72rem;
-          font-weight: 600;
-          letter-spacing: 0.04em;
-          color: var(--gray-mid);
-          text-transform: uppercase;
-        }
-
-        /* DIVIDER */
-        .plan-divider {
-          height: 1px;
-          margin-bottom: 18px;
-          position: relative;
-          z-index: 1;
-        }
-        .plan-divider-start { background: linear-gradient(90deg, rgba(59,130,246,0.35), transparent); }
-        .plan-divider-pro { background: linear-gradient(90deg, rgba(157,63,255,0.45), transparent); }
-        .plan-divider-elite { background: linear-gradient(90deg, rgba(234,88,12,0.4), transparent); }
-
-        /* CALLOUT STRIP */
-        .plan-callout {
-          border-radius: 10px;
-          padding: 10px 14px;
-          font-size: 0.82rem;
-          margin-bottom: 20px;
-          position: relative;
-          z-index: 1;
-          line-height: 1.4;
-        }
-        .plan-callout strong { color: #fff; }
-        .plan-callout-start { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); color: #93c5fd; }
-        .plan-callout-pro { background: rgba(138,43,226,0.1); border: 1px solid rgba(138,43,226,0.25); color: var(--purple-light); }
-        .plan-callout-elite { background: rgba(234,88,12,0.08); border: 1px solid rgba(234,88,12,0.22); color: #fdba74; }
-
-        /* CTA ARROW */
-        .plan-cta-arrow {
-          display: inline-block;
-          transition: transform 0.3s ease;
-        }
-        .plan-cta:hover .plan-cta-arrow { transform: translateX(5px); }
-
-        /* CTA BUTTONS */
-        .plan-cta {
-          display: block;
-          text-align: center;
-          text-decoration: none;
-          font-family: var(--font-main);
-          font-weight: 700;
-          font-size: 1rem;
-          padding: 15px 24px;
-          border-radius: 12px;
-          border: 1.5px solid rgba(138, 43, 226, 0.4);
-          color: var(--white);
-          background: rgba(138, 43, 226, 0.12);
-          position: relative;
-          overflow: hidden;
-          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-          z-index: 1;
-        }
-        .plan-cta::after {
-          content: '';
-          position: absolute;
-          top: 0; left: -100%;
-          width: 80px; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-          animation: ctaShine 3s ease-in-out infinite;
-        }
-        .plan-cta:hover {
-          background: rgba(138, 43, 226, 0.28);
-          border-color: var(--purple-bright);
-          color: #fff;
-          box-shadow: 0 0 24px rgba(138, 43, 226, 0.4);
-          transform: translateY(-2px);
-        }
-
-        .plan-cta-pro {
-          background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
-          border-color: transparent;
-          box-shadow: 0 0 28px rgba(157, 63, 255, 0.45), 0 4px 20px rgba(138,43,226,0.35);
-        }
-        .plan-cta-pro:hover {
-          box-shadow: 0 0 45px rgba(157, 63, 255, 0.7), 0 8px 30px rgba(138,43,226,0.45);
-          transform: translateY(-3px) scale(1.02);
-          background: linear-gradient(135deg, var(--purple-bright), #bf7fff);
-        }
-        .plan-cta-pro::after { animation-delay: 1s; }
-
-        .plan-cta-elite {
-          background: linear-gradient(135deg, #ea580c, #f97316);
-          border-color: transparent;
-          box-shadow: 0 0 28px rgba(251, 100, 0, 0.45), 0 4px 20px rgba(234,88,12,0.35);
-        }
-        .plan-cta-elite:hover {
-          box-shadow: 0 0 50px rgba(251, 100, 0, 0.7), 0 10px 35px rgba(234,88,12,0.45);
-          transform: translateY(-3px) scale(1.02);
-          background: linear-gradient(135deg, #f97316, #fdba74);
-        }
-        .plan-cta-elite::after { animation-delay: 2s; background: linear-gradient(90deg, transparent, rgba(255,200,100,0.25), transparent); }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-          .plans-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-          .plan-featured { transform: scale(1); }
-          .plan-featured:hover { transform: translateY(-14px) scale(1.025) !important; }
-        }
-        @media (max-width: 600px) {
-          .plan-card { padding: 36px 24px 28px; }
-          .plan-amount { font-size: 2.6rem; }
+          .gcard:hover { transform: translateY(-10px) !important; }
+          .gcard-inner, .gbadge, .gprice-wrap, .gnote, .gbtn, .gdivider, .gtitle, .gdesc, .glist, .gtarget {
+            transform: none !important;
+          }
         }
         /* ============================= */
 
