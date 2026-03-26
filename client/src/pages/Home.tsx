@@ -708,6 +708,7 @@ export default function Home() {
           grid-template-columns: repeat(3, 1fr);
           gap: 32px;
           padding: 20px 0;
+          margin-top: 60px; /* Brought the cards down */
           align-items: stretch;
         }
 
@@ -816,15 +817,15 @@ export default function Home() {
 
         .ghot {
           position: absolute;
-          top: 0; left: 50%; transform: translateX(-50%);
+          top: -12px; right: 20px; /* Moved to the right corner */
           background: linear-gradient(90deg, #d946ef, #9333ea);
           color: #fff;
           font-family: var(--font-plan);
           font-size: 0.65rem;
           font-weight: 800;
           letter-spacing: 0.15em;
-          padding: 6px 20px;
-          border-radius: 0 0 12px 12px;
+          padding: 6px 16px;
+          border-radius: 8px; /* More modern shape */
           z-index: 10;
           box-shadow: 0 4px 15px rgba(217,70,239,0.3);
         }
