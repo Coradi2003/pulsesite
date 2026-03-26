@@ -427,117 +427,121 @@ export default function Home() {
           </div>
 
           <div className="plans-grid">
-            {/* PLAN 1 — START */}
+            {/* ═══ PLAN 1 — START ═══ */}
             <div className="plan-card plan-start reveal delay-1">
               <div className="plan-glow plan-glow-start" />
               <div className="plan-particles">
                 {[...Array(6)].map((_, i) => <span key={i} className="plan-particle" />)}
               </div>
+              <div className="plan-accent-line plan-accent-start" />
               <div className="plan-header">
-                <div className="plan-emoji">🚀</div>
-                <div className="plan-badge plan-badge-start">BÁSICO</div>
+                <div className="plan-icon-row">
+                  <div className="plan-emoji">🚀</div>
+                  <div className="plan-badge plan-badge-start">BÁSICO</div>
+                </div>
                 <h3 className="plan-name">Pulse Start</h3>
-                <div className="plan-price">
+                <p className="plan-tagline">Sua empresa no digital em até 5 dias. Perfeito pra começar do zero.</p>
+              </div>
+              <div className="plan-price-block plan-price-block-start">
+                <div className="plan-price-row">
                   <span className="plan-currency">R$</span>
                   <span className="plan-amount">350</span>
                 </div>
-                <p className="plan-tagline">Ideal para quem quer começar no digital rápido e barato.</p>
+                <span className="plan-price-label">pagamento único · sem surpresas</span>
               </div>
+              <div className="plan-divider plan-divider-start" />
               <ul className="plan-features">
-                <li><span className="plan-check">✔️</span> Site institucional (1 página)</li>
-                <li><span className="plan-check">✔️</span> Design moderno e responsivo</li>
-                <li><span className="plan-check">✔️</span> Botão de WhatsApp integrado</li>
-                <li><span className="plan-check">✔️</span> 1 ano de domínio (.com.br) incluso</li>
-                <li><span className="plan-check">✔️</span> Hospedagem otimizada</li>
-                <li><span className="plan-check">✔️</span> Entrega rápida (até 5 dias)</li>
-                <li><span className="plan-check">✔️</span> Manutenção por 30 dias</li>
+                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Site de <strong>1 página</strong> responsivo</li>
+                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Design moderno e profissional</li>
+                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Botão WhatsApp integrado</li>
+                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Domínio <strong>.com.br</strong> por 1 ano incluso</li>
+                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Hospedagem otimizada</li>
+                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Entrega em até <strong>5 dias úteis</strong></li>
+                <li><svg className="plan-icon plan-icon-start" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.3"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Suporte por <strong>30 dias</strong></li>
               </ul>
-              <p className="plan-ideal">👉 Perfeito para autônomos e iniciantes</p>
-              <a
-                href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!"
-                className="plan-cta"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Começar agora
+              <div className="plan-callout plan-callout-start">🎯 Ideal para <strong>autônomos &amp; iniciantes</strong></div>
+              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="plan-cta" target="_blank" rel="noopener noreferrer">
+                Quero começar <span className="plan-cta-arrow">→</span>
               </a>
             </div>
 
-            {/* PLAN 2 — PRO (FEATURED) */}
+            {/* ═══ PLAN 2 — PRO (FEATURED) ═══ */}
             <div className="plan-card plan-pro plan-featured reveal delay-2">
               <div className="plan-glow plan-glow-pro" />
               <div className="plan-popular-badge">⚡ MAIS POPULAR</div>
               <div className="plan-particles plan-particles-pro">
                 {[...Array(10)].map((_, i) => <span key={i} className="plan-particle" />)}
               </div>
+              <div className="plan-accent-line plan-accent-pro" />
               <div className="plan-header">
-                <div className="plan-emoji">⚡</div>
-                <div className="plan-badge plan-badge-pro">INTERMEDIÁRIO</div>
+                <div className="plan-icon-row">
+                  <div className="plan-emoji">⚡</div>
+                  <div className="plan-badge plan-badge-pro">INTERMEDIÁRIO</div>
+                </div>
                 <h3 className="plan-name">Pulse Pro</h3>
-                <div className="plan-price">
+                <p className="plan-tagline">O equilíbrio perfeito entre preço e resultado. Seu site de verdade.</p>
+              </div>
+              <div className="plan-price-block plan-price-block-pro">
+                <div className="plan-price-row">
                   <span className="plan-currency">R$</span>
                   <span className="plan-amount">650</span>
                 </div>
-                <p className="plan-tagline">Para quem quer um site mais completo e profissional.</p>
+                <span className="plan-price-label">pagamento único · sem mensalidade</span>
               </div>
+              <div className="plan-divider plan-divider-pro" />
               <ul className="plan-features">
-                <li><span className="plan-check">✔️</span> Até 5 páginas (Home, Sobre, Serviços…)</li>
-                <li><span className="plan-check">✔️</span> Design estratégico e personalizado</li>
-                <li><span className="plan-check">✔️</span> Integração com redes sociais</li>
-                <li><span className="plan-check">✔️</span> Formulário de contato + WhatsApp</li>
-                <li><span className="plan-check">✔️</span> Google Analytics (visitas em tempo real)</li>
-                <li><span className="plan-check">✔️</span> SEO básico (aparecer no Google)</li>
-                <li><span className="plan-check">✔️</span> 1 ano de domínio (.com.br) incluso</li>
-                <li><span className="plan-check">✔️</span> Hospedagem otimizada</li>
-                <li><span className="plan-check">✔️</span> Suporte + manutenção por 6 meses</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Até <strong>5 páginas</strong> completas</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Design estratégico e personalizado</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Redes sociais + formulário + WhatsApp</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Google Analytics em tempo real</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg><strong>SEO</strong> — apareça no Google</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Domínio <strong>.com.br</strong> por 1 ano incluso</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Hospedagem otimizada</li>
+                <li><svg className="plan-icon plan-icon-pro" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Suporte + manutenção por <strong>6 meses</strong></li>
               </ul>
-              <p className="plan-ideal">👉 Ideal para empresas que querem crescer online</p>
-              <a
-                href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!"
-                className="plan-cta plan-cta-pro"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Quero o Pro
+              <div className="plan-callout plan-callout-pro">🚀 Para empresas que querem <strong>crescer online</strong></div>
+              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="plan-cta plan-cta-pro" target="_blank" rel="noopener noreferrer">
+                Quero o Pro <span className="plan-cta-arrow">→</span>
               </a>
             </div>
 
-            {/* PLAN 3 — ELITE */}
+            {/* ═══ PLAN 3 — ELITE ═══ */}
             <div className="plan-card plan-elite reveal delay-3">
               <div className="plan-glow plan-glow-elite" />
               <div className="plan-particles plan-particles-elite">
                 {[...Array(8)].map((_, i) => <span key={i} className="plan-particle" />)}
               </div>
+              <div className="plan-accent-line plan-accent-elite" />
               <div className="plan-header">
-                <div className="plan-emoji">🔥</div>
-                <div className="plan-badge plan-badge-elite">PREMIUM</div>
+                <div className="plan-icon-row">
+                  <div className="plan-emoji">🔥</div>
+                  <div className="plan-badge plan-badge-elite">PREMIUM</div>
+                </div>
                 <h3 className="plan-name">Pulse Elite</h3>
-                <div className="plan-price">
+                <p className="plan-tagline">Site de alto nível com foco total em conversão e autoridade de marca.</p>
+              </div>
+              <div className="plan-price-block plan-price-block-elite">
+                <div className="plan-price-row">
                   <span className="plan-currency">R$</span>
                   <span className="plan-amount">1.200</span>
                 </div>
-                <p className="plan-tagline">Para quem quer um site de alto nível que realmente gera clientes.</p>
+                <span className="plan-price-label">investimento único · ROI garantido</span>
               </div>
+              <div className="plan-divider plan-divider-elite" />
               <ul className="plan-features">
-                <li><span className="plan-check">✔️</span> Até 10 páginas ou estrutura avançada</li>
-                <li><span className="plan-check">✔️</span> Design premium focado em conversão</li>
-                <li><span className="plan-check">✔️</span> Animações modernas e experiência envolvente</li>
-                <li><span className="plan-check">✔️</span> Integração completa (WhatsApp, redes, forms)</li>
-                <li><span className="plan-check">✔️</span> Google Analytics avançado</li>
-                <li><span className="plan-check">✔️</span> Estrutura otimizada para vendas</li>
-                <li><span className="plan-check">✔️</span> 1 ano de domínio (.com.br) incluso</li>
-                <li><span className="plan-check">✔️</span> Hospedagem de alta performance</li>
-                <li><span className="plan-check">✔️</span> Suporte PRIORITÁRIO 24h</li>
-                <li><span className="plan-check">✔️</span> Manutenção durante 1 ano</li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Até <strong>10 páginas</strong> ou fluxo avançado</li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Design premium focado em <strong>conversão</strong></li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Animações profissionais + UX premium</li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Integração completa (WhatsApp, redes, forms)</li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Google Analytics <strong>avançado</strong></li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Estrutura otimizada para <strong>vendas</strong></li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Domínio + hospedagem de <strong>alta performance</strong></li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Suporte <strong>PRIORITÁRIO 24h</strong></li>
+                <li><svg className="plan-icon plan-icon-elite" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.4"/><path d="M4.5 8l2.5 2.5L11.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>Manutenção por <strong>1 ano completo</strong></li>
               </ul>
-              <p className="plan-ideal">👉 Pra quem quer vender todos os dias com o site</p>
-              <a
-                href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!"
-                className="plan-cta plan-cta-elite"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Quero o Elite 🔥
+              <div className="plan-callout plan-callout-elite">🔥 Pra quem quer <strong>vender todos os dias</strong></div>
+              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="plan-cta plan-cta-elite" target="_blank" rel="noopener noreferrer">
+                Quero o Elite 🔥 <span className="plan-cta-arrow">→</span>
               </a>
             </div>
           </div>
@@ -949,20 +953,107 @@ export default function Home() {
           display: flex;
           align-items: flex-start;
           gap: 9px;
-          font-size: 0.9rem;
+          font-size: 0.875rem;
           color: var(--gray-light);
-          line-height: 1.4;
+          line-height: 1.45;
         }
-        .plan-check { flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+        .plan-features li strong { color: #fff; }
 
-        .plan-ideal {
-          font-size: 0.85rem;
-          color: var(--gray-mid);
-          font-style: italic;
-          margin-bottom: 24px;
+        /* SVG CHECK ICONS */
+        .plan-icon {
+          width: 16px;
+          height: 16px;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        .plan-icon-start { color: #60a5fa; }
+        .plan-icon-pro { color: var(--purple-light); }
+        .plan-icon-elite { color: #fb923c; }
+
+        /* ACCENT TOP LINE */
+        .plan-accent-line {
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 3px;
+          border-radius: 24px 24px 0 0;
+          z-index: 2;
+        }
+        .plan-accent-start { background: linear-gradient(90deg, #3b82f6, #60a5fa, transparent); }
+        .plan-accent-pro { background: linear-gradient(90deg, var(--purple-neon), var(--purple-bright), #bf7fff, transparent); }
+        .plan-accent-elite { background: linear-gradient(90deg, #ea580c, #f97316, #fbbf24, transparent); }
+
+        /* ICON + BADGE ROW */
+        .plan-icon-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+        .plan-emoji {
+          font-size: 1.9rem;
+          line-height: 1;
+          filter: drop-shadow(0 0 10px rgba(157, 63, 255, 0.5));
+          animation: planFloat 3s ease-in-out infinite;
+        }
+
+        /* PRICE BLOCK */
+        .plan-price-block {
+          border-radius: 14px;
+          padding: 18px 20px 14px;
+          margin-bottom: 20px;
           position: relative;
           z-index: 1;
         }
+        .plan-price-block-start { background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59,130,246,0.18); }
+        .plan-price-block-pro { background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138,43,226,0.25); }
+        .plan-price-block-elite { background: rgba(234, 88, 12, 0.08); border: 1px solid rgba(234,88,12,0.2); }
+
+        .plan-price-row {
+          display: flex;
+          align-items: baseline;
+          gap: 4px;
+          margin-bottom: 4px;
+        }
+        .plan-price-label {
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          color: var(--gray-mid);
+          text-transform: uppercase;
+        }
+
+        /* DIVIDER */
+        .plan-divider {
+          height: 1px;
+          margin-bottom: 18px;
+          position: relative;
+          z-index: 1;
+        }
+        .plan-divider-start { background: linear-gradient(90deg, rgba(59,130,246,0.35), transparent); }
+        .plan-divider-pro { background: linear-gradient(90deg, rgba(157,63,255,0.45), transparent); }
+        .plan-divider-elite { background: linear-gradient(90deg, rgba(234,88,12,0.4), transparent); }
+
+        /* CALLOUT STRIP */
+        .plan-callout {
+          border-radius: 10px;
+          padding: 10px 14px;
+          font-size: 0.82rem;
+          margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
+          line-height: 1.4;
+        }
+        .plan-callout strong { color: #fff; }
+        .plan-callout-start { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); color: #93c5fd; }
+        .plan-callout-pro { background: rgba(138,43,226,0.1); border: 1px solid rgba(138,43,226,0.25); color: var(--purple-light); }
+        .plan-callout-elite { background: rgba(234,88,12,0.08); border: 1px solid rgba(234,88,12,0.22); color: #fdba74; }
+
+        /* CTA ARROW */
+        .plan-cta-arrow {
+          display: inline-block;
+          transition: transform 0.3s ease;
+        }
+        .plan-cta:hover .plan-cta-arrow { transform: translateX(5px); }
 
         /* CTA BUTTONS */
         .plan-cta {
