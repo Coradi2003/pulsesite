@@ -678,45 +678,24 @@ export default function Home() {
 
       <style>{`
 
-        /* ======================== PLANS — V4 (OUT OF THIS WORLD / GALAXY) ======================== */
+        /* ======================== PLANS — V5 (PREMIUM GLASS & GLOW) ======================== */
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Space+Grotesk:wght@400;700&display=swap');
 
-        /* --- Insane Keyframes --- */
-        @keyframes galaxySweep {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        /* --- Elegant Keyframes --- */
+        @keyframes floatSubtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
         }
-        @keyframes borderSpin {
-          0% { transform: translate(-50%, -50%) rotate(0deg); }
-          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes glowPulse {
+          0%, 100% { opacity: 0.3; transform: scale(1); filter: blur(40px); }
+          50% { opacity: 0.6; transform: scale(1.1); filter: blur(50px); }
         }
-        @keyframes cardFloat3D {
-          0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(-2deg); }
-          50% { transform: translateY(-15px) rotateX(-2deg) rotateY(2deg); }
-        }
-        @keyframes hologramFlicker {
-          0%, 100% { opacity: 0.03; transform: scale(1); filter: blur(2px); }
-          50% { opacity: 0.08; transform: scale(1.05); filter: blur(0px); }
-          52% { opacity: 0.02; transform: skewX(10deg); }
-          54% { opacity: 0.08; transform: skewX(0deg); }
-        }
-        @keyframes eliteGlitch {
-          0%, 100% { text-shadow: none; transform: none; }
-          20% { text-shadow: 4px 0 rgba(251,100,0,0.5), -4px 0 rgba(157,63,255,0.5); transform: skewX(-10deg); }
-          22% { text-shadow: -4px 0 rgba(251,100,0,0.5), 4px 0 rgba(157,63,255,0.5); transform: skewX(10deg); }
-          24% { text-shadow: none; transform: none; }
-        }
-        @keyframes btnPlasma {
+        @keyframes shimmeringEdge {
           0% { background-position: 0% 50%; }
           100% { background-position: 200% 50%; }
         }
-        @keyframes nebulaPulse {
-          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
-          50% { transform: scale(1.3) rotate(15deg); opacity: 0.8; }
-        }
 
-        /* --- Galaxy Container --- */
+        /* --- Container --- */
         .plans-section {
           padding: 120px 0 160px;
           --font-plan: 'Outfit', sans-serif;
@@ -727,105 +706,95 @@ export default function Home() {
         .plans-galaxy {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 30px;
-          perspective: 1400px; /* Activates extreme 3D depth */
+          gap: 32px;
           padding: 20px 0;
-          align-items: center;
+          align-items: stretch;
         }
 
-        /* --- 3D Card Base --- */
+        /* --- Card Base --- */
         .gcard {
           position: relative;
-          background: #030305;
-          border-radius: 28px;
-          padding: 2px; /* Border thickness */
-          transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-          transform-style: preserve-3d;
-          animation: cardFloat3D 8s infinite ease-in-out;
-          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+          background: rgba(12, 12, 16, 0.4);
+          border-radius: 24px;
+          padding: 1px; /* the thin border */
+          transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+          animation: floatSubtle 6s infinite ease-in-out;
         }
 
-        /* Animated Glowing Edge using conic-gradient */
         .gcard::before {
           content: '';
           position: absolute;
-          top: 50%; left: 50%;
-          width: 250%; height: 250%;
-          background: conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,0.05) 20%, transparent 40%);
-          animation: borderSpin 6s linear infinite;
+          inset: 0;
+          border-radius: 24px;
+          background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 40%, rgba(255,255,255,0.02) 80%, rgba(255,255,255,0.15));
           z-index: 0;
-          pointer-events: none;
+          opacity: 0.5;
+          transition: opacity 0.4s ease;
         }
-
-        /* Specific Animated Edges */
-        .gcard-start::before {
-          background: conic-gradient(from 0deg, transparent 0%, rgba(96,165,250,0.3) 20%, #3b82f6 30%, transparent 40%);
-        }
-        .gcard-pro::before {
-          background: conic-gradient(from 0deg, transparent 0%, rgba(157,63,255,0.5) 20%, #d946ef 30%, transparent 40%);
-          animation-duration: 4s;
-        }
-        .gcard-elite::before {
-          background: conic-gradient(from 0deg, transparent 0%, rgba(251,100,0,0.6) 20%, #f97316 30%, #fbbf24 35%, transparent 50%);
-          animation-duration: 3s;
-        }
-
-        /* Hover interaction for the card */
-        .gcard:hover {
-          transform: translateY(-20px) rotateX(0deg) rotateY(0deg) scale(1.04) !important;
-          animation-play-state: paused;
-          z-index: 10;
-        }
-        .gcard:hover::before { animation-duration: 1.5s; }
 
         .gcard-start { animation-delay: 0s; }
-        .gcard-pro { animation-delay: -2s; transform-origin: center; transform: translateY(-20px) scale(1.05); }
+        .gcard-pro { animation-delay: -2s; transform-origin: center; transform: translateY(-10px) scale(1.03); }
         .gcard-elite { animation-delay: -4s; }
+
+        /* Specific Animated Edges */
+        .gcard-start::before { background: linear-gradient(135deg, rgba(96,165,250,0.4), transparent 50%, rgba(59,130,246,0.3)); }
+        .gcard-pro::before { background: linear-gradient(135deg, rgba(157,63,255,0.6), transparent 50%, rgba(217,70,239,0.4)); }
+        .gcard-elite::before { background: linear-gradient(135deg, rgba(251,100,0,0.5), transparent 50%, rgba(249,115,22,0.4)); }
+
+        /* Hover Interaction */
+        .gcard:hover {
+          transform: translateY(-16px) scale(1.02) !important;
+          animation-play-state: paused;
+          z-index: 10;
+          box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.03);
+        }
+        .gcard:hover::before { opacity: 1; }
 
         /* --- Inner Card Body --- */
         .gcard-inner {
           position: relative;
-          background: linear-gradient(160deg, rgba(16,16,22,0.95), rgba(8,8,12,0.98));
-          border-radius: 26px;
+          background: rgba(14, 14, 18, 0.85);
+          backdrop-filter: blur(24px);
+          border-radius: 23px;
           height: 100%;
           padding: 40px 32px 40px;
           display: flex;
           flex-direction: column;
           z-index: 1;
-          transform: translateZ(20px); /* Pushes content out towards the user */
-          overflow: hidden;
-          backdrop-filter: blur(20px);
+          overflow: hidden; /* Only clips the holograms/backgrounds inside safely without 3D breaking */
         }
 
-        /* Holographic Numeral in the back */
+        /* Number Watermark */
         .gcard-hologram {
           position: absolute;
-          top: -20px; right: -10px;
+          top: -10px; right: -10px;
           font-family: var(--font-plan-mono);
-          font-size: 160px;
+          font-size: 140px;
           font-weight: 800;
-          color: #fff;
+          color: #ffffff;
+          opacity: 0.03;
           z-index: 0;
           pointer-events: none;
-          animation: hologramFlicker 5s infinite;
+          transition: opacity 0.4s ease, transform 0.4s ease;
         }
-        .elite-glitch { animation: hologramFlicker 5s infinite, eliteGlitch 4s infinite; }
+        .gcard:hover .gcard-hologram { opacity: 0.06; transform: scale(1.05) translate(-10px, 10px); }
 
-        /* Floating Nebulas */
+        /* Soft Glows instead of Glitch Negulas */
         .nebula {
           position: absolute;
-          width: 300px; height: 300px;
+          width: 200px; height: 200px;
           border-radius: 50%;
-          filter: blur(60px);
+          filter: blur(50px);
           z-index: 0;
           pointer-events: none;
-          animation: nebulaPulse 6s ease-in-out infinite alternate;
+          opacity: 0.4;
+          animation: glowPulse 6s ease-in-out infinite alternate;
         }
-        .nebula-blue { background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%); top: -50px; left: -50px; }
-        .nebula-purple { background: radial-gradient(circle, rgba(157,63,255,0.2), transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 4s; }
-        .nebula-fire { background: radial-gradient(circle, rgba(234,88,12,0.2), transparent 70%); bottom: -50px; right: -50px; animation-duration: 5s; }
+        .nebula-blue { background: #3b82f6; top: -50px; left: -50px; }
+        .nebula-purple { background: #9333ea; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-duration: 4s; }
+        .nebula-fire { background: #ea580c; bottom: -50px; right: -50px; animation-duration: 5s; }
 
-        /* --- Typography & Elements --- */
+        /* --- Typography & Badges --- */
         .gbadge {
           position: relative;
           z-index: 2;
@@ -838,7 +807,6 @@ export default function Home() {
           border-radius: 100px;
           align-self: flex-start;
           margin-bottom: 12px;
-          transform: translateZ(30px); /* 3D pop */
         }
         .gbadge-start { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
         .gbadge-pro { background: rgba(157,63,255,0.15); color: #d8b4fe; border: 1px solid rgba(157,63,255,0.4); }
@@ -847,7 +815,7 @@ export default function Home() {
         .ghot {
           position: absolute;
           top: 0; left: 50%; transform: translateX(-50%);
-          background: #d946ef;
+          background: linear-gradient(90deg, #d946ef, #9333ea);
           color: #fff;
           font-family: var(--font-plan);
           font-size: 0.65rem;
@@ -856,7 +824,7 @@ export default function Home() {
           padding: 6px 20px;
           border-radius: 0 0 12px 12px;
           z-index: 10;
-          box-shadow: 0 0 20px rgba(217,70,239,0.5);
+          box-shadow: 0 4px 15px rgba(217,70,239,0.3);
         }
 
         .gprice-wrap {
@@ -865,7 +833,6 @@ export default function Home() {
           display: flex;
           align-items: baseline;
           gap: 6px;
-          transform: translateZ(40px);
         }
         .gcurrency { font-family: var(--font-plan-mono); font-size: 1.2rem; font-weight: 500; color: #a1a1aa; }
         .gprice {
@@ -877,14 +844,12 @@ export default function Home() {
           letter-spacing: -0.04em;
         }
         .text-gradient-pro {
-          background: linear-gradient(135deg, #fff, #d8b4fe);
+          background: linear-gradient(135deg, #fff, #e9d5ff);
           -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-          filter: drop-shadow(0 0 15px rgba(157,63,255,0.4));
         }
         .text-gradient-elite {
-          background: linear-gradient(135deg, #fff, #fdba74);
+          background: linear-gradient(135deg, #fff, #fed7aa);
           -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-          filter: drop-shadow(0 0 15px rgba(234,88,12,0.4));
         }
 
         .gnote {
@@ -897,10 +862,9 @@ export default function Home() {
           color: #71717a;
           margin-bottom: 24px;
           letter-spacing: 0.05em;
-          transform: translateZ(30px);
         }
 
-        /* Extraterrestrial Buttons */
+        /* Premium Buttons */
         .gbtn {
           position: relative;
           z-index: 3;
@@ -915,37 +879,37 @@ export default function Home() {
           font-size: 1.05rem;
           color: #fff;
           text-decoration: none;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          transform: translateZ(50px); /* Extreme pop out */
+          transition: all 0.3s ease;
+          overflow: hidden;
         }
         .gbtn-start {
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,255,255,0.1);
         }
-        .gbtn-start:hover { background: rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(255,255,255,0.1); transform: translateZ(60px) scale(1.02); }
+        .gbtn-start:hover { background: rgba(255,255,255,0.1); box-shadow: 0 0 15px rgba(255,255,255,0.05); transform: translateY(-2px); }
         
         .gbtn-pro {
-          background: linear-gradient(90deg, #9333ea, #3b82f6, #9333ea);
-          background-size: 200% auto;
+          background: linear-gradient(90deg, #9333ea, #8b5cf6, #3b82f6, #9333ea);
+          background-size: 300% auto;
           border: none;
-          box-shadow: 0 0 30px rgba(147,51,234,0.5);
-          animation: btnPlasma 3s linear infinite;
+          box-shadow: 0 8px 20px rgba(147,51,234,0.3);
+          animation: shimmeringEdge 4s linear infinite;
         }
         .gbtn-pro:hover {
-          box-shadow: 0 0 50px rgba(147,51,234,0.8);
-          transform: translateZ(60px) scale(1.02);
+          box-shadow: 0 12px 30px rgba(147,51,234,0.5);
+          transform: translateY(-2px);
         }
 
         .gbtn-elite {
-          background: linear-gradient(90deg, #ea580c, #fbbf24, #ea580c);
-          background-size: 200% auto;
+          background: linear-gradient(90deg, #ea580c, #f97316, #fbbf24, #ea580c);
+          background-size: 300% auto;
           border: none;
-          box-shadow: 0 0 30px rgba(234,88,12,0.5);
-          animation: btnPlasma 2s linear infinite;
+          box-shadow: 0 8px 20px rgba(234,88,12,0.3);
+          animation: shimmeringEdge 4s linear infinite;
         }
         .gbtn-elite:hover {
-          box-shadow: 0 0 50px rgba(234,88,12,0.8);
-          transform: translateZ(60px) scale(1.02);
+          box-shadow: 0 12px 30px rgba(234,88,12,0.5);
+          transform: translateY(-2px);
         }
 
         .gdivider {
@@ -953,9 +917,8 @@ export default function Home() {
           z-index: 2;
           width: 100%;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+          background: rgba(255,255,255,0.08);
           margin: 30px 0;
-          transform: translateZ(30px);
         }
 
         /* Typography & Lists */
@@ -967,17 +930,15 @@ export default function Home() {
           font-weight: 800;
           color: #fff;
           margin: 0 0 8px;
-          transform: translateZ(35px);
         }
         .gdesc {
           position: relative;
           z-index: 2;
           font-family: var(--font-plan);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
           color: #a1a1aa;
           line-height: 1.5;
           margin: 0 0 20px;
-          transform: translateZ(35px);
         }
 
         .glist {
@@ -989,40 +950,39 @@ export default function Home() {
           flex-direction: column;
           gap: 14px;
           flex: 1;
-          transform: translateZ(40px);
         }
         .glist li {
           font-family: var(--font-plan);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
           color: #d4d4d8;
           display: flex;
           align-items: flex-start;
           gap: 10px;
           line-height: 1.4;
         }
-        .glist li strong { color: #fff; font-weight: 700; }
-        .glow-bullet { font-size: 1.1rem; line-height: 1; }
-        .glow-bullet-blue { color: #60a5fa; text-shadow: 0 0 10px #60a5fa; }
-        .glow-bullet-purple { color: #d8b4fe; text-shadow: 0 0 10px #d8b4fe; }
-        .glow-bullet-fire { color: #fbbf24; text-shadow: 0 0 10px #fbbf24; }
+        .glist li strong { color: #fff; font-weight: 600; }
+        .glow-bullet { font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+        .glow-bullet-blue { color: #60a5fa; }
+        .glow-bullet-purple { color: #d8b4fe; }
+        .glow-bullet-fire { color: #fbbf24; }
 
         .gtarget {
           position: relative;
           z-index: 2;
           font-family: var(--font-plan);
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           font-weight: 700;
           text-align: center;
-          padding: 10px;
-          border-radius: 10px;
+          padding: 12px 16px;
+          border-radius: 12px;
           margin-top: 24px;
-          transform: translateZ(45px);
+          backdrop-filter: blur(5px);
         }
-        .gtarget-start { background: rgba(59,130,246,0.05); color: #93c5fd; border: 1px dashed rgba(59,130,246,0.3); }
-        .gtarget-pro { background: rgba(147,51,234,0.05); color: #d8b4fe; border: 1px dashed rgba(147,51,234,0.3); }
-        .gtarget-elite { background: rgba(234,88,12,0.05); color: #fbbf24; border: 1px dashed rgba(234,88,12,0.3); }
+        .gtarget-start { background: rgba(59,130,246,0.05); color: #93c5fd; border: 1px solid rgba(59,130,246,0.15); }
+        .gtarget-pro { background: rgba(147,51,234,0.05); color: #d8b4fe; border: 1px solid rgba(147,51,234,0.15); }
+        .gtarget-elite { background: rgba(234,88,12,0.05); color: #fbbf24; border: 1px solid rgba(234,88,12,0.15); }
 
-        /* --- Responsive Galaxy --- */
+        /* --- Responsive Premium --- */
         @media (max-width: 1024px) {
           .plans-galaxy {
             grid-template-columns: repeat(2, 1fr);
@@ -1036,19 +996,9 @@ export default function Home() {
           }
         }
         @media (max-width: 768px) {
-          .plans-galaxy {
-            grid-template-columns: 1fr;
-            perspective: none; /* Turn off 3D on mobile for performance */
-          }
-          .gcard {
-            transform-style: flat;
-            animation: none;
-            max-width: 100%;
-          }
-          .gcard:hover { transform: translateY(-10px) !important; }
-          .gcard-inner, .gbadge, .gprice-wrap, .gnote, .gbtn, .gdivider, .gtitle, .gdesc, .glist, .gtarget {
-            transform: none !important;
-          }
+          .plans-galaxy { grid-template-columns: 1fr; }
+          .gcard { transform-style: flat; animation: none; max-width: 100%; }
+          .gcard:hover { transform: translateY(-8px) !important; }
         }
         /* ============================= */
 
