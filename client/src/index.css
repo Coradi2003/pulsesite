@@ -66,6 +66,21 @@
   --foreground: #ffffff;
 }
 
+/* ===== FIX FONT AWESOME ===== */
+.fa, .fas, .fa-solid, .fab, .far {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  line-height: 1 !important;
+}
+.fas, .fa-solid {
+  font-weight: 900 !important;
+}
+.fab {
+  font-family: "Font Awesome 6 Brands" !important;
+}
+
 /* ===== BASE ===== */
 
 @layer base {
