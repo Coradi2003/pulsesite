@@ -1082,8 +1082,7 @@ export default function Home() {
         .rocket-trail {
           position: absolute;
           top: 25%;
-          left: 50%;
-          margin-left: -3px;
+          left: 20%;
           width: 6px;
           height: 15px;
           background: linear-gradient(to bottom, rgba(124, 58, 237, 0.6), transparent);
@@ -1096,16 +1095,17 @@ export default function Home() {
 
         .rocket-trail:nth-child(1) {
           animation-delay: 0s;
-          margin-left: -8px;
+          left: 15%;
         }
 
         .rocket-trail:nth-child(2) {
           animation-delay: 0.3s;
+          left: 20%;
         }
 
         .rocket-trail:nth-child(3) {
           animation-delay: 0.6s;
-          margin-left: 2px;
+          left: 25%;
         }
 
         @keyframes rocketTrail {
@@ -1169,7 +1169,7 @@ export default function Home() {
         .flame-particle {
           position: absolute;
           top: 22%;
-          left: 50%;
+          left: 20%;
           width: 6px;
           height: 10px;
           background: linear-gradient(to top, rgba(255, 77, 0, 0.8), rgba(255, 214, 0, 0.6));
@@ -1182,27 +1182,27 @@ export default function Home() {
         }
 
         .flame-particle:nth-child(1) {
-          margin-left: -15px;
+          left: 12%;
           animation-delay: 0s;
         }
 
         .flame-particle:nth-child(2) {
-          margin-left: -8px;
+          left: 16%;
           animation-delay: 0.4s;
         }
 
         .flame-particle:nth-child(3) {
-          margin-left: 0px;
+          left: 20%;
           animation-delay: 0.8s;
         }
 
         .flame-particle:nth-child(4) {
-          margin-left: 8px;
+          left: 24%;
           animation-delay: 1.2s;
         }
 
         .flame-particle:nth-child(5) {
-          margin-left: 15px;
+          left: 28%;
           animation-delay: 1.6s;
         }
 
@@ -1223,10 +1223,9 @@ export default function Home() {
         .elite-glow {
           position: absolute;
           top: 15%;
-          left: 50%;
-          width: 150px;
-          height: 150px;
-          margin-left: -75px;
+          left: 20%;
+          width: 120px;
+          height: 120px;
           background: radial-gradient(circle, rgba(255, 100, 0, 0.2), transparent 70%);
           border-radius: 50%;
           animation: eliteGlowPulse 3s ease-in-out infinite;
