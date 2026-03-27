@@ -24,7 +24,7 @@ export default function Home() {
       
       if (ribbonTop && ribbonBottom) {
         const scrollY = window.scrollY;
-        const parallaxSpeed = 0.3;
+        const parallaxSpeed = 0.1; // Suavizado para movimento sutil
         
         ribbonTop.style.transform = `rotate(4deg) translateX(${scrollY * parallaxSpeed}px)`;
         ribbonBottom.style.transform = `rotate(-4deg) translateX(${-scrollY * parallaxSpeed}px)`;
@@ -188,7 +188,7 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="container">
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="problema-grid">
             <div className="reveal-left">
               <span className="section-tag">O Problema</span>
@@ -734,17 +734,19 @@ export default function Home() {
           height: 100%;
           pointer-events: none;
           overflow: hidden;
-          z-index: 10;
+          z-index: 0;
         }
 
         .diagonal-ribbon {
           position: absolute;
           width: 200%;
-          height: 120px;
+          height: 48px;
           display: flex;
           align-items: center;
           overflow: hidden;
           will-change: transform;
+          opacity: 0.15;
+          filter: blur(0.5px);
         }
 
         .ribbon-top {
@@ -753,20 +755,20 @@ export default function Home() {
           transform: rotate(4deg);
           background: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(168, 85, 247, 0.95));
           box-shadow: 
-            0 8px 32px rgba(124, 58, 237, 0.4),
-            0 0 60px rgba(124, 58, 237, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            0 4px 16px rgba(124, 58, 237, 0.2),
+            0 0 30px rgba(124, 58, 237, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .ribbon-bottom {
-          bottom: 30%;
+          top: 70%;
           left: -50%;
           transform: rotate(-4deg);
           background: linear-gradient(135deg, rgba(168, 85, 247, 0.95), rgba(124, 58, 237, 0.95));
           box-shadow: 
-            0 8px 32px rgba(168, 85, 247, 0.4),
-            0 0 60px rgba(168, 85, 247, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            0 4px 16px rgba(168, 85, 247, 0.2),
+            0 0 30px rgba(168, 85, 247, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .ribbon-track {
@@ -783,16 +785,27 @@ export default function Home() {
 
         .ribbon-text {
           font-family: var(--font-main);
-          font-size: 1.5rem;
+          font-size: 1rem;
           font-weight: 800;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           color: white;
           text-shadow: 
-            0 2px 10px rgba(0, 0, 0, 0.3),
-            0 0 20px rgba(255, 255, 255, 0.2);
+            0 1px 4px rgba(0, 0, 0, 0.2),
+            0 0 10px rgba(255, 255, 255, 0.1);
           padding: 0 40px;
           display: inline-block;
+        }
+
+        /* Garantir que o conteúdo fique acima das ribbons */
+        .problema-grid,
+        .problema-item,
+        .alert-box,
+        .section-tag,
+        .section-title,
+        .section-subtitle {
+          position: relative;
+          z-index: 2;
         }
 
         @keyframes scroll-left {
@@ -816,30 +829,24 @@ export default function Home() {
         /* Responsive adjustments */
         @media (max-width: 768px) {
           .diagonal-ribbon {
-            height: 80px;
+            height: 40px;
+            opacity: 0.12;
           }
 
           .ribbon-text {
-            font-size: 1rem;
+            font-size: 0.85rem;
             padding: 0 20px;
-          }
-
-          .ribbon-top {
-            top: 15%;
-          }
-
-          .ribbon-bottom {
-            bottom: 25%;
           }
         }
 
         @media (max-width: 480px) {
           .diagonal-ribbon {
-            height: 60px;
+            height: 32px;
+            opacity: 0.1;
           }
 
           .ribbon-text {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             letter-spacing: 0.1em;
           }
         }
