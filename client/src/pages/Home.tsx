@@ -644,6 +644,27 @@ export default function Home() {
       <section className="section cta-final" id="cta">
         <div className="container">
           <div className="cta-box reveal">
+            {/* Cosmic Stars */}
+            <span className="cosmic-star" style={{'--x': '10%', '--y': '15%', '--delay': '0s', '--duration': '3s'} as any}></span>
+            <span className="cosmic-star" style={{'--x': '85%', '--y': '20%', '--delay': '0.5s', '--duration': '3.5s'} as any}></span>
+            <span className="cosmic-star" style={{'--x': '20%', '--y': '75%', '--delay': '1s', '--duration': '4s'} as any}></span>
+            <span className="cosmic-star" style={{'--x': '90%', '--y': '80%', '--delay': '1.5s', '--duration': '3.2s'} as any}></span>
+            <span className="cosmic-star" style={{'--x': '50%', '--y': '10%', '--delay': '2s', '--duration': '3.8s'} as any}></span>
+            <span className="cosmic-star" style={{'--x': '15%', '--y': '50%', '--delay': '2.5s', '--duration': '3.3s'} as any}></span>
+            
+            {/* Orbital Rings */}
+            <div className="orbital-ring ring-1"></div>
+            <div className="orbital-ring ring-2"></div>
+            <div className="orbital-ring ring-3"></div>
+            
+            {/* Energy Particles */}
+            <span className="energy-particle" style={{'--angle': '0deg'} as any}></span>
+            <span className="energy-particle" style={{'--angle': '60deg'} as any}></span>
+            <span className="energy-particle" style={{'--angle': '120deg'} as any}></span>
+            <span className="energy-particle" style={{'--angle': '180deg'} as any}></span>
+            <span className="energy-particle" style={{'--angle': '240deg'} as any}></span>
+            <span className="energy-particle" style={{'--angle': '300deg'} as any}></span>
+            
             <span className="section-tag">Comece Agora</span>
             <h2 className="cta-title">
               Está pronto para colocar
@@ -3135,26 +3156,177 @@ export default function Home() {
           box-shadow: 0 0 60px rgba(138, 43, 226, 0.08);
         }
 
+        /* Cosmic Nebula Background */
         .landing-page .cta-box::before {
           content: '';
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, var(--purple-bright), transparent);
+          inset: -100%;
+          background: 
+            radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(217, 70, 239, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 60%);
+          animation: nebulaDrift 20s ease-in-out infinite;
+          filter: blur(60px);
+          z-index: 0;
         }
 
+        @keyframes nebulaDrift {
+          0%, 100% {
+            transform: translate(0, 0) rotate(0deg) scale(1);
+          }
+          33% {
+            transform: translate(30px, -30px) rotate(120deg) scale(1.1);
+          }
+          66% {
+            transform: translate(-30px, 30px) rotate(240deg) scale(0.9);
+          }
+        }
+
+        /* Dimensional Portal Effect */
         .landing-page .cta-box::after {
           content: '';
           position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(138,43,226,0.4), transparent);
+          top: 50%;
+          left: 50%;
+          width: 300px;
+          height: 300px;
+          margin-left: -150px;
+          margin-top: -150px;
+          background: 
+            radial-gradient(circle, 
+              rgba(168, 85, 247, 0.2) 0%,
+              rgba(217, 70, 239, 0.15) 30%,
+              transparent 70%
+            );
+          border-radius: 50%;
+          animation: portalPulse 4s ease-in-out infinite;
+          filter: blur(40px);
+          z-index: 0;
         }
 
+        @keyframes portalPulse {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 0.5;
+          }
+          50% {
+            transform: scale(1.3) rotate(180deg);
+            opacity: 1;
+          }
+        }
+
+        /* Cosmic Stars */
+        .landing-page .cosmic-star {
+          position: absolute;
+          left: var(--x);
+          top: var(--y);
+          width: 4px;
+          height: 4px;
+          background: #fff;
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(168, 85, 247, 0.6),
+            0 0 30px rgba(217, 70, 239, 0.4);
+          animation: starTwinkle var(--duration) ease-in-out infinite;
+          animation-delay: var(--delay);
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        @keyframes starTwinkle {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(0.8);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.5);
+          }
+        }
+
+        /* Orbital Rings */
+        .landing-page .orbital-ring {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          border: 1px solid rgba(168, 85, 247, 0.3);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .landing-page .ring-1 {
+          width: 400px;
+          height: 400px;
+          margin-left: -200px;
+          margin-top: -200px;
+          animation: ringRotate 20s linear infinite;
+          border-style: dashed;
+        }
+
+        .landing-page .ring-2 {
+          width: 550px;
+          height: 550px;
+          margin-left: -275px;
+          margin-top: -275px;
+          animation: ringRotate 30s linear infinite reverse;
+          opacity: 0.5;
+        }
+
+        .landing-page .ring-3 {
+          width: 700px;
+          height: 700px;
+          margin-left: -350px;
+          margin-top: -350px;
+          animation: ringRotate 40s linear infinite;
+          opacity: 0.3;
+          border-style: dotted;
+        }
+
+        @keyframes ringRotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        /* Energy Particles Orbiting */
+        .landing-page .energy-particle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 8px;
+          height: 8px;
+          background: radial-gradient(circle, #D946EF, #A855F7);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 15px #D946EF,
+            0 0 30px #A855F7,
+            0 0 45px rgba(217, 70, 239, 0.5);
+          animation: particleOrbit 8s linear infinite;
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        @keyframes particleOrbit {
+          from {
+            transform: 
+              rotate(var(--angle)) 
+              translateX(250px) 
+              rotate(calc(-1 * var(--angle)));
+          }
+          to {
+            transform: 
+              rotate(calc(var(--angle) + 360deg)) 
+              translateX(250px) 
+              rotate(calc(-1 * (var(--angle) + 360deg)));
+          }
+        }
+
+        /* Title with Cosmic Glow */
         .landing-page .cta-title {
           font-family: var(--font-main);
           font-size: clamp(2rem, 4.5vw, 3.2rem);
@@ -3162,21 +3334,66 @@ export default function Home() {
           color: var(--white);
           line-height: 1.15;
           margin-bottom: 20px;
+          position: relative;
+          z-index: 3;
+          animation: titleFloat 6s ease-in-out infinite;
+          text-shadow: 
+            0 0 20px rgba(168, 85, 247, 0.5),
+            0 0 40px rgba(217, 70, 239, 0.3);
         }
 
+        @keyframes titleFloat {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        /* Subtitle with Glow */
         .landing-page .cta-subtitle {
           font-size: 1.1rem;
           color: var(--gray-light);
           max-width: 560px;
           margin: 0 auto 44px;
           line-height: 1.75;
+          position: relative;
+          z-index: 3;
         }
 
+        /* Buttons with Cosmic Energy */
         .landing-page .cta-buttons {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
           gap: 18px;
+          position: relative;
+          z-index: 3;
+        }
+
+        .landing-page .cta-box:hover {
+          box-shadow: 
+            0 0 100px rgba(138, 43, 226, 0.3),
+            0 0 150px rgba(168, 85, 247, 0.2),
+            inset 0 0 100px rgba(138, 43, 226, 0.05);
+          border-color: rgba(168, 85, 247, 0.6);
+        }
+
+        .landing-page .cta-box:hover .cosmic-star {
+          animation-duration: 1.5s;
+        }
+
+        .landing-page .cta-box:hover .orbital-ring {
+          border-color: rgba(168, 85, 247, 0.6);
+        }
+
+        .landing-page .cta-box:hover .energy-particle {
+          animation-duration: 4s;
+          box-shadow: 
+            0 0 20px #D946EF,
+            0 0 40px #A855F7,
+            0 0 60px rgba(217, 70, 239, 0.8);
         }
 
         .landing-page .footer {
