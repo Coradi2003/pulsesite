@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Search, UserX, TrendingUp, MonitorSmartphone, Smartphone, Target, Rocket, ChevronRight, MapPin, Mail, Instagram } from 'lucide-react';
 import CTASection from '../components/CTASection';
 import PlansSection from '../components/PlansSection';
+import Footer from '../components/Footer';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className={className} fill="currentColor">
@@ -527,98 +528,7 @@ export default function Home() {
 
       <CTASection />
 
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-inner">
-            <div>
-              <div className="footer-brand">
-                <img src="/logo.png" alt="Pulse Futuro" />
-                <span className="footer-brand-name">Pulse Futuro</span>
-              </div>
-              <p className="footer-tagline">
-                Serviços de marketing na internet.
-                <br />
-                Transformamos negócios locais em referências digitais.
-              </p>
-              <a
-                href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
-                className="btn btn-whatsapp"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ fontSize: '0.9rem', padding: '11px 22px' }}
-              >
-                          <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
-                Falar no WhatsApp
-              </a>
-            </div>
-
-            <div>
-              <p className="footer-col-title">Serviços</p>
-              <ul className="footer-list">
-                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Sites Profissionais</li>
-                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Landing Pages</li>
-                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> SEO Local</li>
-                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Google Meu Negócio</li>
-                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Marketing Digital</li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="footer-col-title">Contato</p>
-              <ul className="footer-list">
-                <li>
-                  <MapPin className="w-4 h-4 text-purple-400" />
-                  Curitiba — PR
-                </li>
-                <li>
-                  <Mail className="w-4 h-4 text-purple-400" />
-                  <a href="mailto:contato@pulsefuturo.com.br">contato@pulsefuturo.com.br</a>
-                </li>
-                <li>
-                            <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
-                  <a
-                    href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    (41) 98460-6633
-                  </a>
-                </li>
-                <li>
-                  <Instagram className="w-4 h-4 text-purple-400 flex-shrink-0 mt-1" />
-                  <a
-                    href="https://instagram.com/pulsefuturo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    @pulsefuturo
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <p className="footer-copy">
-              &copy; 2026 <span>Pulse Futuro</span>. Todos os direitos reservados.
-            </p>
-            <p className="footer-copy">
-              Feito com <span>♥</span> em Curitiba, PR
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      <a
-        href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
-        className="whatsapp-float"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Falar no WhatsApp"
-        title="Falar no WhatsApp"
-      >
-                  <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
-      </a>
+      <Footer />
 
       <style>{`
 
