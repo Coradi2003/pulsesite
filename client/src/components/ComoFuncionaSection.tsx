@@ -5,7 +5,7 @@ export default function ComoFuncionaSection() {
         <div className="text-center reveal">
           <span className="section-tag">Processo</span>
           <h2 className="section-title">
-            Como <span>funciona</span>
+            Como funciona a <span>criação do seu site</span>
           </h2>
           <p className="section-subtitle">
             Processo simples, rápido e sem complicação. Do primeiro contato ao site no ar em

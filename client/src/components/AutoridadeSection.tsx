@@ -6,9 +6,9 @@ export default function AutoridadeSection() {
           <div className="reveal-left">
             <span className="section-tag">Autoridade</span>
             <h2 className="section-title">
-              Presença digital é o novo
+              Presença digital forte
               <br />
-              <span>cartão de visitas</span>
+              <span>para crescer online</span>
             </h2>
             <p className="section-subtitle">
               No mundo conectado de hoje, seu site é a primeira impressão que os clientes têm da

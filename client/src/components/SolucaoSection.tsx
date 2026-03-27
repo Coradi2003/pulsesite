@@ -7,7 +7,7 @@ export default function SolucaoSection() {
         <div className="text-center reveal">
           <span className="section-tag">A Solução</span>
           <h2 className="section-title">
-            Como a Pulse Futuro <span>resolve isso</span>
+            Sites modernos e estratégicos <span>para seu negócio</span>
           </h2>
           <p className="section-subtitle">
             Desenvolvemos sites profissionais e estratégicos para comércios locais que querem

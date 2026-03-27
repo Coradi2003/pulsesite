@@ -26,9 +26,9 @@ export default function ProblemaSection() {
           <div className="reveal-left">
             <span className="section-tag">O Problema</span>
             <h2 className="section-title">
-              Você pode estar perdendo
+              Por que sua empresa precisa de um
               <br />
-              <span>clientes todos os dias</span>
+              <span>site profissional</span>
             </h2>
             <p className="section-subtitle">
               Hoje, antes de qualquer compra ou contratação, as pessoas abrem o Google. Se sua

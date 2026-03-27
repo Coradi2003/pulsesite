@@ -39,6 +39,9 @@ export default function HeroSection() {
       </nav>
 
       <section className="hero" id="hero">
+        {/* SEO-optimized H1 - visually hidden but accessible */}
+        <h1 className="sr-only">Criação de Sites e Landing Pages em Curitiba | Pulse Futuro</h1>
+        
         {/* Purple Fireworks */}
         <div className="hero-fireworks">
           <span className="fw-particle" style={{'--x': '8%',  '--delay': '0s',   '--duration': '2.8s', '--size': '3px'} as any}></span>
@@ -70,11 +73,11 @@ export default function HeroSection() {
                 <span className="dot"></span>
                 Agência Digital · Curitiba, PR
               </div>
-              <h1 className="hero-title">
+              <div className="hero-title">
                 Seu negócio ainda
                 <br />
                 <span className="highlight">não tem site?</span>
-              </h1>
+              </div>
               <p className="hero-subtitle">
                 Colocamos sua empresa no digital e ajudamos você a atrair mais clientes todos
                 os dias — com um site profissional, moderno e feito para converter.

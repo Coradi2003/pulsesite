@@ -7,7 +7,7 @@ export default function PlansSection() {
         <div className="plans-header-premium text-center reveal">
           <span className="premium-tag">💰 INVESTIMENTO ÚNICO</span>
           <h2 className="premium-title">
-            Escolha seu plano e <span>comece a vender</span>
+            Planos de criação de sites <span>em Curitiba</span>
           </h2>
           <p className="premium-subtitle">
             Sua empresa no digital com design de alto nível e foco total em conversão. Sem mensalidades escondidas.

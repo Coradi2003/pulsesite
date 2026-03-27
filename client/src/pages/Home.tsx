@@ -91,6 +91,20 @@ export default function Home() {
 
       <style>{`
 
+        /* ======================== ACCESSIBILITY UTILITIES ======================== */
+        /* Screen reader only - visually hidden but accessible to screen readers and SEO */
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border-width: 0;
+        }
+
         /* ======================== DIAGONAL RIBBONS WITH PARALLAX ======================== */
         .diagonal-ribbons-wrapper {
           position: absolute;
