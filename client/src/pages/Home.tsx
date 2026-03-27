@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
-import { Search, UserX, TrendingUp, MonitorSmartphone, Smartphone, Target, Rocket, ChevronRight, MapPin, Mail, Instagram } from 'lucide-react';
+import { Search, UserX, TrendingUp, MonitorSmartphone, Smartphone, Target, Rocket } from 'lucide-react';
 import CTASection from '../components/CTASection';
 import PlansSection from '../components/PlansSection';
 import Footer from '../components/Footer';
+import ComoFuncionaSection from '../components/ComoFuncionaSection';
+import AutoridadeSection from '../components/AutoridadeSection';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className={className} fill="currentColor">
@@ -408,119 +410,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section como-funciona" id="como-funciona">
-        <div className="container">
-          <div className="text-center reveal">
-            <span className="section-tag">Processo</span>
-            <h2 className="section-title">
-              Como <span>funciona</span>
-            </h2>
-            <p className="section-subtitle">
-              Processo simples, rápido e sem complicação. Do primeiro contato ao site no ar em
-              poucos dias.
-            </p>
-          </div>
+      <ComoFuncionaSection />
 
-          <div className="steps-container">
-            <span className="energy-particle"></span>
-            <span className="energy-particle"></span>
-            <span className="energy-particle"></span>
-            <span className="energy-particle"></span>
-            <span className="energy-particle"></span>
-            <span className="energy-particle"></span>
-            
-            <div className="step-item reveal delay-1">
-              <div className="step-number">01</div>
-              <h3 className="step-title">Entendemos seu negócio</h3>
-              <p className="step-text">
-                Conversamos para entender seu segmento, seus diferenciais, seu público-alvo e o
-                que você precisa comunicar. Nenhum detalhe é ignorado.
-              </p>
-            </div>
-
-            <div className="step-item reveal delay-2">
-              <div className="step-number">02</div>
-              <h3 className="step-title">Criamos o layout personalizado</h3>
-              <p className="step-text">
-                Nossa equipe desenvolve um design exclusivo para sua marca, com textos persuasivos
-                e estrutura pensada para converter visitantes em clientes.
-              </p>
-            </div>
-
-            <div className="step-item reveal delay-3">
-              <div className="step-number">03</div>
-              <h3 className="step-title">Colocamos seu site no ar</h3>
-              <p className="step-text">
-                Após sua aprovação, publicamos o site com domínio e hospedagem configurados. Seu
-                negócio estará online e pronto para atrair clientes.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="autoridade">
-        <div className="container">
-          <div className="autoridade-inner">
-            <div className="reveal-left">
-              <span className="section-tag">Autoridade</span>
-              <h2 className="section-title">
-                Presença digital é o novo
-                <br />
-                <span>cartão de visitas</span>
-              </h2>
-              <p className="section-subtitle">
-                No mundo conectado de hoje, seu site é a primeira impressão que os clientes têm da
-                sua empresa. Uma presença digital profissional não é mais um diferencial — é uma
-                necessidade para qualquer negócio que queira crescer.
-              </p>
-              <blockquote className="autoridade-quote">
-                "Empresas com site profissional geram até 3 vezes mais contatos e têm percepção de
-                valor significativamente maior pelos consumidores digitais."
-              </blockquote>
-            </div>
-
-            <div className="reveal-right">
-              <div className="autoridade-metrics">
-                <div className="metric-card">
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <div className="metric-number">+200%</div>
-                  <div className="metric-label">
-                    Aumento médio de visibilidade online com site otimizado
-                  </div>
-                </div>
-                <div className="metric-card">
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <div className="metric-number">24/7</div>
-                  <div className="metric-label">
-                    Seu negócio trabalhando para você enquanto você descansa
-                  </div>
-                </div>
-                <div className="metric-card">
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <div className="metric-number">3x</div>
-                  <div className="metric-label">
-                    Mais credibilidade percebida pelos clientes
-                  </div>
-                </div>
-                <div className="metric-card">
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <span className="metric-particle"></span>
-                  <div className="metric-number">3h</div>
-                  <div className="metric-label">Tempo médio para seu site entrar no ar</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AutoridadeSection />
 
       {/* ===================== PREMIUM PLANS SECTION ===================== */}
       <PlansSection />
