@@ -1064,7 +1064,6 @@ export default function Home() {
         /* ====== PULSE START (ROCKET) ANIMATIONS ====== */
         .pcard-start {
           position: relative;
-          overflow: visible;
         }
 
         .pcard-start .pcard-emoji {
@@ -1073,39 +1072,40 @@ export default function Home() {
 
         @keyframes rocketBounce {
           0%, 100% {
-            transform: translateY(0) rotate(-45deg);
+            transform: translateY(0);
           }
           50% {
-            transform: translateY(-10px) rotate(-40deg);
+            transform: translateY(-8px);
           }
         }
 
         .rocket-trail {
           position: absolute;
-          bottom: 20%;
-          left: 15%;
+          top: 25%;
+          left: 50%;
+          margin-left: -3px;
           width: 6px;
-          height: 20px;
-          background: linear-gradient(to bottom, rgba(124, 58, 237, 0.8), transparent);
+          height: 15px;
+          background: linear-gradient(to bottom, rgba(124, 58, 237, 0.6), transparent);
           border-radius: 50%;
           opacity: 0;
-          animation: rocketTrail 2s ease-out infinite;
+          animation: rocketTrail 1.5s ease-out infinite;
           pointer-events: none;
+          z-index: 0;
         }
 
         .rocket-trail:nth-child(1) {
           animation-delay: 0s;
-          left: 12%;
+          margin-left: -8px;
         }
 
         .rocket-trail:nth-child(2) {
           animation-delay: 0.3s;
-          left: 15%;
         }
 
         .rocket-trail:nth-child(3) {
           animation-delay: 0.6s;
-          left: 18%;
+          margin-left: 2px;
         }
 
         @keyframes rocketTrail {
@@ -1114,109 +1114,95 @@ export default function Home() {
             transform: translateY(0) scale(1);
           }
           20% {
-            opacity: 0.8;
+            opacity: 0.6;
           }
           100% {
             opacity: 0;
-            transform: translateY(60px) scale(0.5);
+            transform: translateY(40px) scale(0.3);
           }
         }
 
-        .pcard-start:hover {
-          animation: rocketShake 0.5s ease-in-out;
-        }
-
-        @keyframes rocketShake {
-          0%, 100% { transform: translateY(-4px) rotate(0deg); }
-          25% { transform: translateY(-6px) rotate(-2deg); }
-          75% { transform: translateY(-6px) rotate(2deg); }
-        }
-
         .pcard-start:hover .pcard-emoji {
-          animation: rocketLaunch 0.8s ease-out;
+          animation: rocketLaunch 0.6s ease-out;
         }
 
         @keyframes rocketLaunch {
           0% {
-            transform: translateY(0) rotate(-45deg) scale(1);
+            transform: translateY(0) scale(1);
           }
           50% {
-            transform: translateY(-30px) rotate(-35deg) scale(1.3);
+            transform: translateY(-15px) scale(1.2);
           }
           100% {
-            transform: translateY(0) rotate(-45deg) scale(1);
+            transform: translateY(0) scale(1);
           }
         }
 
         /* ====== PULSE ELITE (FIRE) ANIMATIONS ====== */
         .pcard-elite {
           position: relative;
-          overflow: visible;
         }
 
         .pcard-elite .pcard-emoji {
           animation: fireFlicker 1.5s ease-in-out infinite;
-          filter: drop-shadow(0 0 10px rgba(255, 100, 0, 0.8));
         }
 
         @keyframes fireFlicker {
           0%, 100% {
-            transform: scale(1) rotate(0deg);
-            filter: drop-shadow(0 0 10px rgba(255, 100, 0, 0.8));
+            transform: scale(1);
+            filter: brightness(1);
           }
           25% {
-            transform: scale(1.1) rotate(-5deg);
-            filter: drop-shadow(0 0 15px rgba(255, 100, 0, 1));
+            transform: scale(1.1);
+            filter: brightness(1.2);
           }
           50% {
-            transform: scale(0.95) rotate(5deg);
-            filter: drop-shadow(0 0 20px rgba(255, 150, 0, 0.9));
+            transform: scale(0.95);
+            filter: brightness(0.9);
           }
           75% {
-            transform: scale(1.05) rotate(-3deg);
-            filter: drop-shadow(0 0 15px rgba(255, 100, 0, 1));
+            transform: scale(1.05);
+            filter: brightness(1.1);
           }
         }
 
         .flame-particle {
           position: absolute;
-          width: 8px;
-          height: 12px;
-          background: linear-gradient(to top, #FF4D00, #FFD600);
+          top: 22%;
+          left: 50%;
+          width: 6px;
+          height: 10px;
+          background: linear-gradient(to top, rgba(255, 77, 0, 0.8), rgba(255, 214, 0, 0.6));
           border-radius: 50% 50% 0 0;
           opacity: 0;
           animation: flameRise 2s ease-out infinite;
           pointer-events: none;
           filter: blur(1px);
+          z-index: 0;
         }
 
         .flame-particle:nth-child(1) {
-          top: 15%;
-          left: 20%;
+          margin-left: -15px;
           animation-delay: 0s;
         }
 
         .flame-particle:nth-child(2) {
-          top: 15%;
-          left: 25%;
+          margin-left: -8px;
           animation-delay: 0.4s;
         }
 
         .flame-particle:nth-child(3) {
-          top: 15%;
-          right: 25%;
+          margin-left: 0px;
           animation-delay: 0.8s;
         }
 
         .flame-particle:nth-child(4) {
-          top: 15%;
-          right: 20%;
+          margin-left: 8px;
           animation-delay: 1.2s;
         }
 
         .flame-particle:nth-child(5) {
-          top: 15%;
-          left: 50%;
+          margin-left: 15px;
           animation-delay: 1.6s;
         }
 
@@ -1226,42 +1212,42 @@ export default function Home() {
             transform: translateY(0) scale(1);
           }
           20% {
-            opacity: 1;
+            opacity: 0.8;
           }
           100% {
             opacity: 0;
-            transform: translateY(-80px) scale(0.3);
+            transform: translateY(-50px) scale(0.3);
           }
         }
 
         .elite-glow {
           position: absolute;
-          top: 10%;
+          top: 15%;
           left: 50%;
-          width: 200px;
-          height: 200px;
-          margin-left: -100px;
-          background: radial-gradient(circle, rgba(255, 100, 0, 0.3), transparent 70%);
+          width: 150px;
+          height: 150px;
+          margin-left: -75px;
+          background: radial-gradient(circle, rgba(255, 100, 0, 0.2), transparent 70%);
           border-radius: 50%;
           animation: eliteGlowPulse 3s ease-in-out infinite;
-          filter: blur(30px);
+          filter: blur(25px);
           pointer-events: none;
           z-index: 0;
         }
 
         @keyframes eliteGlowPulse {
           0%, 100% {
-            opacity: 0.5;
+            opacity: 0.4;
             transform: scale(1);
           }
           50% {
-            opacity: 1;
-            transform: scale(1.2);
+            opacity: 0.8;
+            transform: scale(1.15);
           }
         }
 
         .pcard-elite:hover .pcard-emoji {
-          animation: fireExplosion 0.6s ease-out, fireFlicker 1.5s ease-in-out infinite;
+          animation: fireExplosion 0.5s ease-out, fireFlicker 1.5s ease-in-out infinite;
         }
 
         @keyframes fireExplosion {
@@ -1269,8 +1255,8 @@ export default function Home() {
             transform: scale(1);
           }
           50% {
-            transform: scale(1.5) rotate(10deg);
-            filter: drop-shadow(0 0 30px rgba(255, 100, 0, 1));
+            transform: scale(1.3);
+            filter: brightness(1.5);
           }
           100% {
             transform: scale(1);
@@ -1279,9 +1265,8 @@ export default function Home() {
 
         .pcard-elite:hover {
           box-shadow: 
-            0 0 60px rgba(255, 100, 0, 0.4),
-            0 0 100px rgba(255, 150, 0, 0.3);
-          border-color: rgba(255, 100, 0, 0.8);
+            0 0 50px rgba(255, 100, 0, 0.3),
+            0 0 80px rgba(255, 150, 0, 0.2);
         }
 
         .pcard-featured {
