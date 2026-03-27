@@ -176,14 +176,16 @@ export default function Home() {
         <div className="diagonal-ribbons-wrapper">
           <div className="diagonal-ribbon ribbon-top">
             <div className="ribbon-track">
-              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
-              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
             </div>
           </div>
           <div className="diagonal-ribbon ribbon-bottom">
             <div className="ribbon-track">
-              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
-              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
             </div>
           </div>
         </div>
@@ -775,12 +777,12 @@ export default function Home() {
           display: flex;
           gap: 0;
           white-space: nowrap;
-          animation: scroll-left 40s linear infinite;
+          animation: scroll-left 60s linear infinite;
           will-change: transform;
         }
 
         .ribbon-bottom .ribbon-track {
-          animation: scroll-right 40s linear infinite;
+          animation: scroll-right 60s linear infinite;
         }
 
         .ribbon-text {
@@ -793,7 +795,7 @@ export default function Home() {
           text-shadow: 
             0 1px 4px rgba(0, 0, 0, 0.2),
             0 0 10px rgba(255, 255, 255, 0.1);
-          padding: 0 40px;
+          padding: 0 20px;
           display: inline-block;
         }
 
@@ -813,13 +815,13 @@ export default function Home() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(-33.333%);
           }
         }
 
         @keyframes scroll-right {
           0% {
-            transform: translateX(-50%);
+            transform: translateX(-33.333%);
           }
           100% {
             transform: translateX(0);
