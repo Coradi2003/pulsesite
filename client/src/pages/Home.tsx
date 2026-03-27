@@ -890,7 +890,7 @@ export default function Home() {
         .pcard-features {
           list-style: none;
           padding: 0;
-          margin: 0 0 48px;
+          margin: 24px 0 48px;
           display: flex;
           flex-direction: column;
           align-items: center; /* Centraliza a lista como um todo */
