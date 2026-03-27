@@ -100,41 +100,33 @@ export default function Home() {
       </nav>
 
       <section className="hero" id="hero">
-        {/* Matrix Rain Effect */}
-        <div className="matrix-rain">
-          <span style={{'--i': 1} as any}></span>
-          <span style={{'--i': 2} as any}></span>
-          <span style={{'--i': 3} as any}></span>
-          <span style={{'--i': 4} as any}></span>
-          <span style={{'--i': 5} as any}></span>
-          <span style={{'--i': 6} as any}></span>
-          <span style={{'--i': 7} as any}></span>
-          <span style={{'--i': 8} as any}></span>
-          <span style={{'--i': 9} as any}></span>
-          <span style={{'--i': 10} as any}></span>
+        {/* Purple Fireworks */}
+        <div className="hero-fireworks">
+          <span className="fw-particle" style={{'--x': '8%',  '--delay': '0s',   '--duration': '2.8s', '--size': '3px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '15%', '--delay': '0.4s', '--duration': '3.2s', '--size': '2px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '22%', '--delay': '0.8s', '--duration': '2.6s', '--size': '4px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '30%', '--delay': '1.2s', '--duration': '3.0s', '--size': '2px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '38%', '--delay': '0.2s', '--duration': '2.9s', '--size': '3px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '45%', '--delay': '1.6s', '--duration': '3.4s', '--size': '2px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '52%', '--delay': '0.6s', '--duration': '2.7s', '--size': '4px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '60%', '--delay': '1.0s', '--duration': '3.1s', '--size': '2px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '68%', '--delay': '1.8s', '--duration': '2.5s', '--size': '3px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '75%', '--delay': '0.3s', '--duration': '3.3s', '--size': '2px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '82%', '--delay': '1.4s', '--duration': '2.8s', '--size': '4px'} as any}></span>
+          <span className="fw-particle" style={{'--x': '90%', '--delay': '0.7s', '--duration': '3.0s', '--size': '2px'} as any}></span>
+          <span className="fw-particle fw-violet" style={{'--x': '12%', '--delay': '0.5s', '--duration': '3.5s', '--size': '3px'} as any}></span>
+          <span className="fw-particle fw-violet" style={{'--x': '35%', '--delay': '1.1s', '--duration': '2.9s', '--size': '2px'} as any}></span>
+          <span className="fw-particle fw-violet" style={{'--x': '55%', '--delay': '0.9s', '--duration': '3.2s', '--size': '4px'} as any}></span>
+          <span className="fw-particle fw-violet" style={{'--x': '72%', '--delay': '1.7s', '--duration': '2.6s', '--size': '2px'} as any}></span>
+          <span className="fw-particle fw-violet" style={{'--x': '88%', '--delay': '0.1s', '--duration': '3.4s', '--size': '3px'} as any}></span>
+          <span className="fw-particle fw-pink"   style={{'--x': '25%', '--delay': '1.3s', '--duration': '3.0s', '--size': '2px'} as any}></span>
+          <span className="fw-particle fw-pink"   style={{'--x': '48%', '--delay': '0.6s', '--duration': '2.7s', '--size': '3px'} as any}></span>
+          <span className="fw-particle fw-pink"   style={{'--x': '78%', '--delay': '1.5s', '--duration': '3.1s', '--size': '2px'} as any}></span>
         </div>
-        
-        {/* Cyberpunk Grid */}
-        <div className="cyber-grid"></div>
-        
-        {/* Energy Waves */}
-        <div className="energy-wave wave-1"></div>
-        <div className="energy-wave wave-2"></div>
-        <div className="energy-wave wave-3"></div>
-        
+
         <div className="container">
           <div className="hero-inner">
             <div className="hero-content">
-              {/* Explosion Particles */}
-              <span className="explosion-particle" style={{'--angle': '0deg', '--distance': '150px', '--delay': '0s'} as any}></span>
-              <span className="explosion-particle" style={{'--angle': '45deg', '--distance': '180px', '--delay': '0.1s'} as any}></span>
-              <span className="explosion-particle" style={{'--angle': '90deg', '--distance': '160px', '--delay': '0.2s'} as any}></span>
-              <span className="explosion-particle" style={{'--angle': '135deg', '--distance': '170px', '--delay': '0.3s'} as any}></span>
-              <span className="explosion-particle" style={{'--angle': '180deg', '--distance': '190px', '--delay': '0.4s'} as any}></span>
-              <span className="explosion-particle" style={{'--angle': '225deg', '--distance': '165px', '--delay': '0.5s'} as any}></span>
-              <span className="explosion-particle" style={{'--angle': '270deg', '--distance': '175px', '--delay': '0.6s'} as any}></span>
-              <span className="explosion-particle" style={{'--angle': '315deg', '--distance': '185px', '--delay': '0.7s'} as any}></span>
-              
               <div className="hero-badge">
                 <span className="dot"></span>
                 Agência Digital · Curitiba, PR
@@ -1937,140 +1929,63 @@ export default function Home() {
           overflow: hidden;
         }
 
-        /* Matrix Rain Effect */
-        .matrix-rain {
+        /* Purple Fireworks */
+        .hero-fireworks {
           position: absolute;
           inset: 0;
+          pointer-events: none;
+          z-index: 0;
           overflow: hidden;
-          z-index: 0;
-          opacity: 0.15;
         }
 
-        .matrix-rain span {
+        .fw-particle {
           position: absolute;
-          top: -100%;
-          width: 2px;
-          height: 100px;
-          background: linear-gradient(transparent, #A855F7, transparent);
-          animation: matrixFall 3s linear infinite;
-          animation-delay: calc(var(--i) * 0.3s);
-          left: calc(var(--i) * 10%);
-          filter: blur(1px);
-        }
-
-        @keyframes matrixFall {
-          0% {
-            top: -100%;
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            top: 100%;
-            opacity: 0;
-          }
-        }
-
-        /* Cyberpunk Grid */
-        .cyber-grid {
-          position: absolute;
-          inset: 0;
-          background-image: 
-            linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
-          background-size: 50px 50px;
-          animation: gridMove 20s linear infinite;
-          z-index: 0;
-        }
-
-        @keyframes gridMove {
-          0% {
-            transform: perspective(500px) rotateX(60deg) translateY(0);
-          }
-          100% {
-            transform: perspective(500px) rotateX(60deg) translateY(50px);
-          }
-        }
-
-        /* Energy Waves */
-        .energy-wave {
-          position: absolute;
-          width: 200%;
-          height: 200%;
-          border-radius: 40%;
-          z-index: 0;
-        }
-
-        .wave-1 {
-          top: -50%;
-          left: -50%;
-          background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-          animation: waveRotate 15s linear infinite;
-        }
-
-        .wave-2 {
-          top: -50%;
-          left: -50%;
-          background: radial-gradient(circle, rgba(217, 70, 239, 0.1) 0%, transparent 70%);
-          animation: waveRotate 20s linear infinite reverse;
-        }
-
-        .wave-3 {
-          top: -50%;
-          left: -50%;
-          background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
-          animation: waveRotate 25s linear infinite;
-        }
-
-        @keyframes waveRotate {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        /* Explosion Particles */
-        .explosion-particle {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          width: 8px;
-          height: 8px;
-          background: radial-gradient(circle, #D946EF, #A855F7);
+          bottom: -10px;
+          left: var(--x);
+          width: var(--size);
+          height: var(--size);
           border-radius: 50%;
-          box-shadow: 
-            0 0 20px #D946EF,
-            0 0 40px #A855F7,
-            0 0 60px rgba(217, 70, 239, 0.5);
-          animation: particleExplode 2s ease-out infinite;
-          animation-delay: var(--delay);
+          background: #A855F7;
+          box-shadow:
+            0 0 6px #A855F7,
+            0 0 12px #7C3AED,
+            0 0 20px rgba(168, 85, 247, 0.6);
           opacity: 0;
-          z-index: 1;
+          animation: fireworkRise var(--duration) ease-out infinite;
+          animation-delay: var(--delay);
+          will-change: transform, opacity;
         }
 
-        @keyframes particleExplode {
+        .fw-particle.fw-violet {
+          background: #7C3AED;
+          box-shadow:
+            0 0 6px #7C3AED,
+            0 0 12px #6D28D9,
+            0 0 20px rgba(124, 58, 237, 0.6);
+        }
+
+        .fw-particle.fw-pink {
+          background: #D946EF;
+          box-shadow:
+            0 0 6px #D946EF,
+            0 0 12px #A855F7,
+            0 0 20px rgba(217, 70, 239, 0.6);
+        }
+
+        @keyframes fireworkRise {
           0% {
             opacity: 0;
-            transform: 
-              rotate(var(--angle)) 
-              translateX(0) 
-              scale(0);
+            transform: translateY(0) translateX(0) scale(0.5);
           }
-          10% {
+          5% {
+            opacity: 1;
+          }
+          60% {
             opacity: 1;
           }
           100% {
             opacity: 0;
-            transform: 
-              rotate(var(--angle)) 
-              translateX(var(--distance)) 
-              scale(0);
+            transform: translateY(-100vh) translateX(calc(sin(var(--delay, 0) * 137deg) * 40px)) scale(0.2);
           }
         }
 
@@ -2085,18 +2000,6 @@ export default function Home() {
           background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.16) 0%, transparent 70%);
           pointer-events: none;
           z-index: 0;
-          animation: heroGlowPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes heroGlowPulse {
-          0%, 100% {
-            opacity: 0.5;
-            transform: translateX(-50%) scale(1);
-          }
-          50% {
-            opacity: 1;
-            transform: translateX(-50%) scale(1.1);
-          }
         }
 
         .landing-page .hero-inner {
@@ -2152,58 +2055,12 @@ export default function Home() {
           line-height: 1.1;
           color: var(--white);
           margin-bottom: 24px;
-          animation: titleGlitch 5s ease-in-out infinite;
-          position: relative;
-        }
-
-        @keyframes titleGlitch {
-          0%, 90%, 100% {
-            transform: translate(0, 0);
-            text-shadow: none;
-          }
-          91% {
-            transform: translate(-2px, 2px);
-            text-shadow: 
-              2px 0 #A855F7,
-              -2px 0 #00FFFF;
-          }
-          92% {
-            transform: translate(2px, -2px);
-            text-shadow: 
-              -2px 0 #A855F7,
-              2px 0 #00FFFF;
-          }
-          93% {
-            transform: translate(0, 0);
-          }
         }
 
         .landing-page .hero-title .highlight {
           color: var(--purple-bright);
-          text-shadow: 
-            0 0 30px rgba(138, 43, 226, 0.8),
-            0 0 60px rgba(168, 85, 247, 0.6),
-            0 0 90px rgba(217, 70, 239, 0.4);
-          animation: highlightExplosion 3s ease-in-out infinite;
+          text-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
           display: inline-block;
-        }
-
-        @keyframes highlightExplosion {
-          0%, 100% {
-            transform: scale(1);
-            text-shadow: 
-              0 0 30px rgba(138, 43, 226, 0.8),
-              0 0 60px rgba(168, 85, 247, 0.6),
-              0 0 90px rgba(217, 70, 239, 0.4);
-          }
-          50% {
-            transform: scale(1.05);
-            text-shadow: 
-              0 0 50px rgba(138, 43, 226, 1),
-              0 0 100px rgba(168, 85, 247, 0.8),
-              0 0 150px rgba(217, 70, 239, 0.6),
-              0 0 200px rgba(138, 43, 226, 0.4);
-          }
         }
 
         .landing-page .hero-subtitle {
@@ -2224,31 +2081,12 @@ export default function Home() {
           z-index: 1;
         }
 
-        /* ===== BOTÃO ROXO — EFEITO PLASMA ===== */
+        /* Shimmer sweep no botão roxo */
         .landing-page .hero-buttons .btn-primary {
           position: relative;
           overflow: hidden;
-          animation: plasmaPulse 2.5s ease-in-out infinite;
-          z-index: 1;
         }
 
-        @keyframes plasmaPulse {
-          0%, 100% {
-            box-shadow:
-              0 0 20px rgba(138,43,226,0.5),
-              0 0 40px rgba(168,85,247,0.3),
-              0 0 60px rgba(217,70,239,0.2);
-          }
-          50% {
-            box-shadow:
-              0 0 30px rgba(138,43,226,0.8),
-              0 0 60px rgba(168,85,247,0.6),
-              0 0 90px rgba(217,70,239,0.4),
-              0 0 120px rgba(138,43,226,0.2);
-          }
-        }
-
-        /* Shimmer sweep */
         .landing-page .hero-buttons .btn-primary::before {
           content: '';
           position: absolute;
@@ -2259,75 +2097,40 @@ export default function Home() {
           background: linear-gradient(
             120deg,
             transparent,
-            rgba(255,255,255,0.25),
+            rgba(255,255,255,0.2),
             transparent
           );
-          animation: shimmerSweep 2.5s ease-in-out infinite;
+          animation: shimmerSweep 3s ease-in-out infinite;
           z-index: 2;
+          pointer-events: none;
         }
 
         @keyframes shimmerSweep {
           0% { left: -100%; }
-          50%, 100% { left: 150%; }
-        }
-
-        /* Ripple on hover */
-        .landing-page .hero-buttons .btn-primary::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.2), transparent 60%);
-          opacity: 0;
-          transition: opacity 0.3s;
-          z-index: 1;
-        }
-
-        .landing-page .hero-buttons .btn-primary:hover::after {
-          opacity: 1;
+          40%, 100% { left: 150%; }
         }
 
         .landing-page .hero-buttons .btn-primary:hover {
           transform: translateY(-3px) scale(1.03);
-          animation: plasmaBurst 0.4s ease-out;
+          box-shadow:
+            0 0 40px rgba(138,43,226,0.7),
+            0 0 80px rgba(168,85,247,0.4);
         }
 
-        @keyframes plasmaBurst {
-          0% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-5px) scale(1.05); }
-          100% { transform: translateY(-3px) scale(1.03); }
-        }
-
-        /* ===== BOTÃO WHATSAPP — EFEITO PULSO VIVO ===== */
+        /* Ping rings no botão WhatsApp */
         .landing-page .hero-buttons .btn-whatsapp {
           position: relative;
-          overflow: hidden;
-          animation: waPulse 2s ease-in-out infinite;
-          z-index: 1;
+          overflow: visible;
         }
 
-        @keyframes waPulse {
-          0%, 100% {
-            box-shadow:
-              0 0 20px rgba(37,211,102,0.4),
-              0 0 40px rgba(37,211,102,0.2);
-          }
-          50% {
-            box-shadow:
-              0 0 30px rgba(37,211,102,0.7),
-              0 0 60px rgba(37,211,102,0.4),
-              0 0 90px rgba(37,211,102,0.2);
-          }
-        }
-
-        /* Ping rings */
         .landing-page .hero-buttons .btn-whatsapp::before {
           content: '';
           position: absolute;
           inset: -4px;
           border-radius: 14px;
-          border: 2px solid rgba(37,211,102,0.5);
-          animation: waPing 2s ease-out infinite;
-          z-index: -1;
+          border: 1.5px solid rgba(37,211,102,0.5);
+          animation: waPing 2.5s ease-out infinite;
+          pointer-events: none;
         }
 
         .landing-page .hero-buttons .btn-whatsapp::after {
@@ -2335,27 +2138,21 @@ export default function Home() {
           position: absolute;
           inset: -10px;
           border-radius: 16px;
-          border: 1px solid rgba(37,211,102,0.3);
-          animation: waPing 2s ease-out infinite 0.4s;
-          z-index: -1;
+          border: 1px solid rgba(37,211,102,0.25);
+          animation: waPing 2.5s ease-out infinite 0.5s;
+          pointer-events: none;
         }
 
         @keyframes waPing {
-          0% {
-            opacity: 1;
-            transform: scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: scale(1.15);
-          }
+          0% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(1.12); }
         }
 
         .landing-page .hero-buttons .btn-whatsapp:hover {
           transform: translateY(-3px) scale(1.03);
           box-shadow:
-            0 0 40px rgba(37,211,102,0.8),
-            0 0 80px rgba(37,211,102,0.5);
+            0 0 40px rgba(37,211,102,0.7),
+            0 0 80px rgba(37,211,102,0.3);
         }
 
         .landing-page .hero-visual {
