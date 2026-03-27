@@ -1432,6 +1432,31 @@ export default function Home() {
           color: #fff;
           box-shadow: 0 0 24px var(--purple-glow), 0 4px 20px rgba(138,43,226,0.35);
           border-radius: 12px;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Subtle energy aura for primary buttons */
+        .landing-page .btn-primary::before {
+          content: "";
+          position: absolute;
+          inset: -4px;
+          border-radius: 14px;
+          background: radial-gradient(
+            circle,
+            rgba(168, 85, 247, 0.4) 0%,
+            rgba(168, 85, 247, 0.2) 50%,
+            transparent 70%
+          );
+          filter: blur(8px);
+          opacity: 0;
+          z-index: -1;
+          transition: opacity 0.3s ease;
+          animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .landing-page .btn-primary:hover::before {
+          opacity: 1;
         }
 
         .landing-page .btn-primary:hover {
@@ -1815,6 +1840,38 @@ export default function Home() {
           justify-content: center;
           color: var(--purple-light);
           font-size: 1.1rem;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Purple Energy Glow for problema icons */
+        .landing-page .problema-icon::before {
+          content: "";
+          position: absolute;
+          inset: -6px;
+          border-radius: 14px;
+          background: radial-gradient(
+            circle,
+            rgba(168, 85, 247, 0.5) 0%,
+            rgba(168, 85, 247, 0.25) 40%,
+            transparent 70%
+          );
+          filter: blur(10px);
+          opacity: 0.6;
+          z-index: -1;
+          animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+
+        .landing-page .problema-item:nth-child(1) .problema-icon::before {
+          animation-delay: 0s;
+        }
+
+        .landing-page .problema-item:nth-child(2) .problema-icon::before {
+          animation-delay: 0.8s;
+        }
+
+        .landing-page .problema-item:nth-child(3) .problema-icon::before {
+          animation-delay: 1.6s;
         }
 
         .landing-page .problema-item-text strong {
@@ -1927,6 +1984,50 @@ export default function Home() {
           color: var(--purple-light);
           margin-bottom: 24px;
           box-shadow: 0 0 20px rgba(138,43,226,0.15);
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Purple Energy Glow Effect */
+        .landing-page .card-icon::before {
+          content: "";
+          position: absolute;
+          inset: -8px;
+          border-radius: 18px;
+          background: radial-gradient(
+            circle,
+            rgba(168, 85, 247, 0.6) 0%,
+            rgba(168, 85, 247, 0.3) 40%,
+            transparent 70%
+          );
+          filter: blur(12px);
+          opacity: 0.5;
+          z-index: -1;
+          animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+          0%, 100% { 
+            opacity: 0.5; 
+            transform: scale(1); 
+          }
+          50% { 
+            opacity: 0.9; 
+            transform: scale(1.05); 
+          }
+        }
+
+        /* Stagger animation for each card */
+        .landing-page .solucao-card:nth-child(1) .card-icon::before {
+          animation-delay: 0s;
+        }
+
+        .landing-page .solucao-card:nth-child(2) .card-icon::before {
+          animation-delay: 0.8s;
+        }
+
+        .landing-page .solucao-card:nth-child(3) .card-icon::before {
+          animation-delay: 1.6s;
         }
 
         .landing-page .card-title {
