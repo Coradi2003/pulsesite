@@ -248,11 +248,18 @@ export default function Home() {
 
             <div className="reveal-right">
               <div className="alert-box">
+                <span className="alert-particle"></span>
+                <span className="alert-particle"></span>
+                <span className="alert-particle"></span>
+                <span className="alert-particle"></span>
+                <span className="alert-particle"></span>
+                <div className="alert-radar"></div>
+                <div className="alert-radar"></div>
                 <div className="alert-number">97%</div>
                 <p className="alert-text">
                   dos consumidores brasileiros pesquisam na internet antes de comprar ou contratar
                   um serviço local. Empresas sem site ficam{' '}
-                  <strong style={{ color: 'var(--purple-light)' }}>
+                  <strong className="alert-highlight" style={{ color: 'var(--purple-light)' }}>
                     completamente invisíveis
                   </strong>{' '}
                   para essa maioria.
@@ -1939,16 +1946,95 @@ export default function Home() {
           position: relative;
           overflow: hidden;
           backdrop-filter: blur(18px);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Animated Glowing Border */
+        .landing-page .alert-box {
+          background: 
+            linear-gradient(135deg, rgba(138,43,226,0.12), rgba(138,43,226,0.05)) padding-box,
+            linear-gradient(
+              var(--alert-angle, 0deg),
+              rgba(217, 70, 239, 0.6),
+              rgba(168, 85, 247, 0.8),
+              rgba(124, 58, 237, 0.6),
+              rgba(217, 70, 239, 0.6)
+            ) border-box;
+          animation: alertBorderRotate 3s linear infinite;
+        }
+
+        @keyframes alertBorderRotate {
+          0% { --alert-angle: 0deg; }
+          100% { --alert-angle: 360deg; }
+        }
+
+        @property --alert-angle {
+          syntax: '<angle>';
+          initial-value: 0deg;
+          inherits: false;
+        }
+
+        /* Pulsing Warning Glow */
         .landing-page .alert-box::before {
           content: '';
           position: absolute;
-          top: 0;
+          inset: -20px;
+          background: radial-gradient(
+            circle at 50% 0%,
+            rgba(217, 70, 239, 0.3) 0%,
+            rgba(168, 85, 247, 0.2) 30%,
+            transparent 60%
+          );
+          animation: warningPulse 2s ease-in-out infinite;
+          z-index: -1;
+          filter: blur(20px);
+        }
+
+        @keyframes warningPulse {
+          0%, 100% {
+            opacity: 0.5;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.1);
+          }
+        }
+
+        /* Scanning Lines Effect */
+        .landing-page .alert-box::after {
+          content: '';
+          position: absolute;
+          top: -100%;
           left: 0;
-          right: 0;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, var(--purple-bright), transparent);
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(168, 85, 247, 0.1) 50%,
+            transparent 100%
+          );
+          animation: scanDown 3s ease-in-out infinite;
+          pointer-events: none;
+        }
+
+        @keyframes scanDown {
+          0% {
+            top: -100%;
+          }
+          50%, 100% {
+            top: 100%;
+          }
+        }
+
+        .landing-page .alert-box:hover {
+          border-color: rgba(217, 70, 239, 0.8);
+          box-shadow: 
+            0 0 60px rgba(217, 70, 239, 0.4),
+            0 0 100px rgba(168, 85, 247, 0.3),
+            inset 0 0 60px rgba(138, 43, 226, 0.1);
+          transform: scale(1.02);
         }
 
         .landing-page .alert-number {
@@ -1956,9 +2042,230 @@ export default function Home() {
           font-size: 4.5rem;
           font-weight: 900;
           color: var(--purple-bright);
-          text-shadow: 0 0 30px rgba(138,43,226,0.6);
+          text-shadow: 
+            0 0 40px rgba(217, 70, 239, 1),
+            0 0 80px rgba(168, 85, 247, 0.8),
+            0 0 120px rgba(138, 43, 226, 0.6);
           line-height: 1;
           margin-bottom: 12px;
+          position: relative;
+          z-index: 1;
+          animation: numberGlitch 3s ease-in-out infinite;
+        }
+
+        /* Glitch Effect on Numbers */
+        @keyframes numberGlitch {
+          0%, 90%, 100% {
+            transform: translate(0, 0);
+            text-shadow: 
+              0 0 40px rgba(217, 70, 239, 1),
+              0 0 80px rgba(168, 85, 247, 0.8),
+              0 0 120px rgba(138, 43, 226, 0.6);
+          }
+          91% {
+            transform: translate(-2px, 2px);
+            text-shadow: 
+              2px 0 rgba(255, 0, 255, 0.8),
+              -2px 0 rgba(0, 255, 255, 0.8),
+              0 0 40px rgba(217, 70, 239, 1);
+          }
+          92% {
+            transform: translate(2px, -2px);
+            text-shadow: 
+              -2px 0 rgba(255, 0, 255, 0.8),
+              2px 0 rgba(0, 255, 255, 0.8),
+              0 0 40px rgba(217, 70, 239, 1);
+          }
+          93% {
+            transform: translate(0, 0);
+          }
+        }
+
+        .landing-page .alert-box:hover .alert-number {
+          animation: numberExplosion 0.6s ease-out, numberGlitch 3s ease-in-out infinite;
+          color: #fff;
+        }
+
+        @keyframes numberExplosion {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.2);
+            text-shadow: 
+              0 0 60px rgba(217, 70, 239, 1),
+              0 0 120px rgba(168, 85, 247, 1),
+              0 0 180px rgba(138, 43, 226, 0.8);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        /* Warning Particles Floating */
+        .landing-page .alert-particle {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #D946EF, #A855F7);
+          box-shadow: 
+            0 0 20px #D946EF,
+            0 0 40px #A855F7;
+          opacity: 0.8;
+          pointer-events: none;
+          z-index: 1;
+          animation: alertParticleFloat 4s ease-in-out infinite;
+        }
+
+        .landing-page .alert-particle:nth-child(1) {
+          top: 20%;
+          left: 10%;
+          animation-delay: 0s;
+        }
+
+        .landing-page .alert-particle:nth-child(2) {
+          top: 40%;
+          right: 15%;
+          animation-delay: 0.8s;
+        }
+
+        .landing-page .alert-particle:nth-child(3) {
+          bottom: 30%;
+          left: 20%;
+          animation-delay: 1.6s;
+        }
+
+        .landing-page .alert-particle:nth-child(4) {
+          top: 60%;
+          right: 25%;
+          animation-delay: 2.4s;
+        }
+
+        .landing-page .alert-particle:nth-child(5) {
+          bottom: 20%;
+          right: 10%;
+          animation-delay: 3.2s;
+        }
+
+        @keyframes alertParticleFloat {
+          0%, 100% {
+            transform: translateY(0) translateX(0) scale(1);
+            opacity: 0.8;
+          }
+          25% {
+            transform: translateY(-20px) translateX(10px) scale(1.2);
+            opacity: 1;
+          }
+          50% {
+            transform: translateY(-10px) translateX(-10px) scale(0.8);
+            opacity: 0.6;
+          }
+          75% {
+            transform: translateY(-30px) translateX(5px) scale(1.1);
+            opacity: 1;
+          }
+        }
+
+        /* Radar Scanning Effect */
+        .landing-page .alert-radar {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          border: 3px solid rgba(217, 70, 239, 0.6);
+          opacity: 0;
+          pointer-events: none;
+          z-index: 0;
+          animation: radarPulse 3s ease-out infinite;
+        }
+
+        .landing-page .alert-radar:nth-child(6) {
+          animation-delay: 0s;
+        }
+
+        .landing-page .alert-radar:nth-child(7) {
+          animation-delay: 1.5s;
+        }
+
+        @keyframes radarPulse {
+          0% {
+            width: 0;
+            height: 0;
+            margin-left: 0;
+            margin-top: 0;
+            opacity: 0;
+            border-width: 3px;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            width: 600px;
+            height: 600px;
+            margin-left: -300px;
+            margin-top: -300px;
+            opacity: 0;
+            border-width: 1px;
+          }
+        }
+
+        /* Hover intensifies everything */
+        .landing-page .alert-box:hover .alert-particle {
+          animation-duration: 2s;
+          box-shadow: 
+            0 0 30px #D946EF,
+            0 0 60px #A855F7,
+            0 0 90px rgba(217, 70, 239, 0.5);
+        }
+
+        .landing-page .alert-box:hover .alert-radar {
+          animation-duration: 2s;
+          border-color: rgba(217, 70, 239, 1);
+        }
+
+        /* Highlighted Text Animation */
+        .landing-page .alert-highlight {
+          position: relative;
+          display: inline-block;
+          animation: textGlowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textGlowPulse {
+          0%, 100% {
+            text-shadow: 
+              0 0 10px rgba(168, 85, 247, 0.6),
+              0 0 20px rgba(217, 70, 239, 0.4);
+          }
+          50% {
+            text-shadow: 
+              0 0 20px rgba(168, 85, 247, 1),
+              0 0 40px rgba(217, 70, 239, 0.8),
+              0 0 60px rgba(138, 43, 226, 0.6);
+          }
+        }
+
+        .landing-page .alert-box:hover .alert-highlight {
+          color: #fff !important;
+          animation: textExplosion 0.5s ease-out, textGlowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textExplosion {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+            text-shadow: 
+              0 0 30px rgba(168, 85, 247, 1),
+              0 0 60px rgba(217, 70, 239, 1),
+              0 0 90px rgba(138, 43, 226, 0.8);
+          }
+          100% {
+            transform: scale(1);
+          }
         }
 
         .landing-page .alert-text {
