@@ -448,7 +448,7 @@ export default function Home() {
                 <li><ChevronRight className="w-4 h-4 text-purple-500" /> WhatsApp integrado</li>
                 <li><ChevronRight className="w-4 h-4 text-purple-500" /> Domínio .com.br (1 ano)</li>
                 <li><ChevronRight className="w-4 h-4 text-purple-500" /> Hospedagem inclusa</li>
-                <li><ChevronRight className="w-4 h-4 text-purple-500" /> Entrega em 5 dias úteis</li>
+                <li><ChevronRight className="w-4 h-4 text-purple-500" /> Entrega em 2 horas</li>
               </ul>
               
               <div className="pcard-footer">
