@@ -418,7 +418,7 @@ export default function Home() {
         <div className="container">
 
           {/* SECTION HEADER */}
-          <div className="plans-header reveal">
+          <div className="plans-header text-center reveal">
             <span className="section-tag">💰 Planos &amp; Preços</span>
             <h2 className="section-title plans-title">
               Escolha seu plano e <span>comece a vender</span>
@@ -705,8 +705,11 @@ export default function Home() {
 
         .plans-header {
           text-align: center;
-          max-width: 900px;
+          max-width: 1000px; /* Aumentado para melhor respiro no desktop */
           margin: 0 auto 50px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .plans-header .section-tag {
@@ -725,7 +728,7 @@ export default function Home() {
 
         /* Title in single line - desktop */
         .plans-title {
-          white-space: nowrap;
+          white-space: normal; /* Removido nowrap para evitar problemas de centralização/transbordamento */
         }
 
         .plans-galaxy {
