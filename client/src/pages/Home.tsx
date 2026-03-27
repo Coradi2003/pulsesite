@@ -1081,31 +1081,32 @@ export default function Home() {
 
         .rocket-trail {
           position: absolute;
-          top: 8%;
-          left: 8%;
-          width: 5px;
-          height: 12px;
-          background: linear-gradient(to bottom, rgba(124, 58, 237, 0.5), transparent);
+          top: 12%;
+          left: 50%;
+          margin-left: -40px;
+          width: 4px;
+          height: 10px;
+          background: linear-gradient(to bottom, rgba(124, 58, 237, 0.4), transparent);
           border-radius: 50%;
           opacity: 0;
           animation: rocketTrail 1.5s ease-out infinite;
           pointer-events: none;
-          z-index: 1;
+          z-index: 0;
         }
 
         .rocket-trail:nth-child(1) {
           animation-delay: 0s;
-          left: 6%;
+          margin-left: -45px;
         }
 
         .rocket-trail:nth-child(2) {
           animation-delay: 0.3s;
-          left: 8%;
+          margin-left: -40px;
         }
 
         .rocket-trail:nth-child(3) {
           animation-delay: 0.6s;
-          left: 10%;
+          margin-left: -35px;
         }
 
         @keyframes rocketTrail {
@@ -1168,41 +1169,42 @@ export default function Home() {
 
         .flame-particle {
           position: absolute;
-          top: 8%;
-          left: 8%;
-          width: 5px;
+          top: 12%;
+          left: 50%;
+          margin-left: -40px;
+          width: 4px;
           height: 8px;
-          background: linear-gradient(to top, rgba(255, 77, 0, 0.7), rgba(255, 214, 0, 0.5));
+          background: linear-gradient(to top, rgba(255, 77, 0, 0.6), rgba(255, 214, 0, 0.4));
           border-radius: 50% 50% 0 0;
           opacity: 0;
           animation: flameRise 2s ease-out infinite;
           pointer-events: none;
           filter: blur(0.5px);
-          z-index: 1;
+          z-index: 0;
         }
 
         .flame-particle:nth-child(1) {
-          left: 5%;
+          margin-left: -50px;
           animation-delay: 0s;
         }
 
         .flame-particle:nth-child(2) {
-          left: 7%;
+          margin-left: -45px;
           animation-delay: 0.4s;
         }
 
         .flame-particle:nth-child(3) {
-          left: 9%;
+          margin-left: -40px;
           animation-delay: 0.8s;
         }
 
         .flame-particle:nth-child(4) {
-          left: 11%;
+          margin-left: -35px;
           animation-delay: 1.2s;
         }
 
         .flame-particle:nth-child(5) {
-          left: 13%;
+          margin-left: -30px;
           animation-delay: 1.6s;
         }
 
@@ -1222,16 +1224,17 @@ export default function Home() {
 
         .elite-glow {
           position: absolute;
-          top: 5%;
-          left: 8%;
-          width: 80px;
-          height: 80px;
-          background: radial-gradient(circle, rgba(255, 100, 0, 0.15), transparent 70%);
+          top: 8%;
+          left: 50%;
+          margin-left: -60px;
+          width: 60px;
+          height: 60px;
+          background: radial-gradient(circle, rgba(255, 100, 0, 0.12), transparent 70%);
           border-radius: 50%;
           animation: eliteGlowPulse 3s ease-in-out infinite;
-          filter: blur(20px);
+          filter: blur(15px);
           pointer-events: none;
-          z-index: 1;
+          z-index: 0;
         }
 
         @keyframes eliteGlowPulse {
@@ -1337,16 +1340,17 @@ export default function Home() {
           display: flex;
           align-items: center;
           justify-content: center;
+          gap: 12px;
           width: auto;
           margin-bottom: 28px;
         }
 
         .pcard-emoji {
-          position: absolute;
-          left: 0;
-          transform: translateX(-120%);
+          position: relative;
+          flex-shrink: 0;
           font-size: 1.25rem;
           z-index: 2;
+          line-height: 1;
         }
 
         .pcard-label-text {
@@ -1356,6 +1360,9 @@ export default function Home() {
           color: #A855F7;
           letter-spacing: -0.01em;
           display: inline-block;
+          line-height: 1;
+          position: relative;
+          z-index: 2;
         }
 
         .pcard-price-wrap {
