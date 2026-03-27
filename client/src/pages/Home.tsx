@@ -423,24 +423,36 @@ export default function Home() {
             <div className="reveal-right">
               <div className="autoridade-metrics">
                 <div className="metric-card">
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
                   <div className="metric-number">+200%</div>
                   <div className="metric-label">
                     Aumento médio de visibilidade online com site otimizado
                   </div>
                 </div>
                 <div className="metric-card">
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
                   <div className="metric-number">24/7</div>
                   <div className="metric-label">
                     Seu negócio trabalhando para você enquanto você descansa
                   </div>
                 </div>
                 <div className="metric-card">
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
                   <div className="metric-number">3x</div>
                   <div className="metric-label">
                     Mais credibilidade percebida pelos clientes
                   </div>
                 </div>
                 <div className="metric-card">
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
+                  <span className="metric-particle"></span>
                   <div className="metric-number">3h</div>
                   <div className="metric-label">Tempo médio para seu site entrar no ar</div>
                 </div>
@@ -2323,13 +2335,117 @@ export default function Home() {
           border: 1px solid var(--border);
           border-radius: 16px;
           padding: 28px 24px;
-          transition: var(--transition);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           backdrop-filter: blur(16px);
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
         }
 
+        /* Animated Border Glow */
+        .landing-page .metric-card {
+          background: 
+            linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+            linear-gradient(
+              135deg,
+              rgba(124, 58, 237, 0.3),
+              rgba(168, 85, 247, 0.5),
+              rgba(217, 70, 239, 0.3),
+              rgba(168, 85, 247, 0.5),
+              rgba(124, 58, 237, 0.3)
+            ) border-box;
+          background-size: 100% 100%, 300% 300%;
+          animation: borderGlow 4s ease infinite;
+        }
+
+        @keyframes borderGlow {
+          0%, 100% {
+            background-position: 0% 0%, 0% 50%;
+          }
+          50% {
+            background-position: 0% 0%, 100% 50%;
+          }
+        }
+
+        /* Epic Energy Glow Background */
+        .landing-page .metric-card::before {
+          content: "";
+          position: absolute;
+          inset: -2px;
+          border-radius: 16px;
+          background: linear-gradient(
+            135deg,
+            rgba(124, 58, 237, 0.4),
+            rgba(168, 85, 247, 0.4),
+            rgba(217, 70, 239, 0.4),
+            rgba(168, 85, 247, 0.4),
+            rgba(124, 58, 237, 0.4)
+          );
+          background-size: 300% 300%;
+          opacity: 0;
+          z-index: -1;
+          animation: gradientShift 4s ease infinite;
+          filter: blur(12px);
+          transition: opacity 0.4s ease;
+        }
+
+        .landing-page .metric-card:hover::before {
+          opacity: 0.6;
+        }
+
+        /* Scanning Energy Line */
+        .landing-page .metric-card::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(168, 85, 247, 0.3) 50%,
+            transparent
+          );
+          animation: energyScan 3s ease-in-out infinite;
+          z-index: 0;
+        }
+
+        @keyframes gradientShift {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+
+        @keyframes energyScan {
+          0% {
+            left: -100%;
+          }
+          50%, 100% {
+            left: 100%;
+          }
+        }
+
+        /* Floating Energy Particles */
+        .landing-page .metric-card {
+          --particle-color: rgba(168, 85, 247, 0.8);
+        }
+
+        .landing-page .metric-card:nth-child(1) { --particle-color: rgba(124, 58, 237, 0.8); }
+        .landing-page .metric-card:nth-child(2) { --particle-color: rgba(168, 85, 247, 0.8); }
+        .landing-page .metric-card:nth-child(3) { --particle-color: rgba(217, 70, 239, 0.8); }
+        .landing-page .metric-card:nth-child(4) { --particle-color: rgba(147, 51, 234, 0.8); }
+
         .landing-page .metric-card:hover {
-          border-color: rgba(138,43,226,0.4);
-          box-shadow: 0 4px 24px rgba(138,43,226,0.12);
+          border-color: rgba(168, 85, 247, 0.8);
+          box-shadow: 
+            0 0 40px rgba(138, 43, 226, 0.4),
+            0 0 80px rgba(168, 85, 247, 0.2),
+            inset 0 0 60px rgba(138, 43, 226, 0.1);
+          transform: translateY(-8px) scale(1.02);
         }
 
         .landing-page .metric-number {
@@ -2337,15 +2453,151 @@ export default function Home() {
           font-size: 2.2rem;
           font-weight: 900;
           color: var(--purple-light);
-          text-shadow: 0 0 16px rgba(138,43,226,0.5);
+          text-shadow: 
+            0 0 20px rgba(168, 85, 247, 0.8),
+            0 0 40px rgba(138, 43, 226, 0.5),
+            0 0 60px rgba(217, 70, 239, 0.3);
           line-height: 1;
           margin-bottom: 8px;
+          position: relative;
+          z-index: 1;
+          animation: numberPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes numberPulse {
+          0%, 100% {
+            text-shadow: 
+              0 0 20px rgba(168, 85, 247, 0.8),
+              0 0 40px rgba(138, 43, 226, 0.5),
+              0 0 60px rgba(217, 70, 239, 0.3);
+          }
+          50% {
+            text-shadow: 
+              0 0 30px rgba(168, 85, 247, 1),
+              0 0 60px rgba(138, 43, 226, 0.8),
+              0 0 90px rgba(217, 70, 239, 0.5);
+          }
+        }
+
+        .landing-page .metric-card:hover .metric-number {
+          animation: numberExplosion 0.6s ease-out;
+          color: #fff;
+        }
+
+        @keyframes numberExplosion {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.15);
+            text-shadow: 
+              0 0 40px rgba(168, 85, 247, 1),
+              0 0 80px rgba(138, 43, 226, 1),
+              0 0 120px rgba(217, 70, 239, 0.8);
+          }
+          100% {
+            transform: scale(1);
+          }
         }
 
         .landing-page .metric-label {
           font-size: 0.85rem;
           color: var(--gray-light);
           line-height: 1.5;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Stagger animation delays */
+        .landing-page .metric-card:nth-child(1)::after {
+          animation-delay: 0s;
+        }
+
+        .landing-page .metric-card:nth-child(2)::after {
+          animation-delay: 0.75s;
+        }
+
+        .landing-page .metric-card:nth-child(3)::after {
+          animation-delay: 1.5s;
+        }
+
+        .landing-page .metric-card:nth-child(4)::after {
+          animation-delay: 2.25s;
+        }
+
+        .landing-page .metric-card:nth-child(1) .metric-number {
+          animation-delay: 0s;
+        }
+
+        .landing-page .metric-card:nth-child(2) .metric-number {
+          animation-delay: 0.5s;
+        }
+
+        .landing-page .metric-card:nth-child(3) .metric-number {
+          animation-delay: 1s;
+        }
+
+        .landing-page .metric-card:nth-child(4) .metric-number {
+          animation-delay: 1.5s;
+        }
+
+        /* Floating Energy Particles Inside Cards */
+        .landing-page .metric-particle {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: var(--particle-color);
+          box-shadow: 
+            0 0 10px var(--particle-color),
+            0 0 20px var(--particle-color);
+          opacity: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .landing-page .metric-card:hover .metric-particle {
+          animation: particleFloat 2s ease-in-out infinite;
+        }
+
+        .landing-page .metric-particle:nth-child(1) {
+          left: 20%;
+          bottom: 10%;
+          animation-delay: 0s;
+        }
+
+        .landing-page .metric-particle:nth-child(2) {
+          left: 50%;
+          bottom: 10%;
+          animation-delay: 0.6s;
+        }
+
+        .landing-page .metric-particle:nth-child(3) {
+          left: 80%;
+          bottom: 10%;
+          animation-delay: 1.2s;
+        }
+
+        @keyframes particleFloat {
+          0% {
+            transform: translateY(0) translateX(0) scale(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+            transform: translateY(-10px) translateX(5px) scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(-60px) translateX(-10px) scale(1.5);
+          }
+          90% {
+            opacity: 0.5;
+          }
+          100% {
+            transform: translateY(-120px) translateX(15px) scale(0.5);
+            opacity: 0;
+          }
         }
 
         .landing-page .autoridade-quote {
