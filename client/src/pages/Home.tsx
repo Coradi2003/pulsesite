@@ -17,6 +17,18 @@ export default function Home() {
       } else {
         navbar?.classList.remove('scrolled');
       }
+
+      // Parallax effect for diagonal ribbons
+      const ribbonTop = document.querySelector('.ribbon-top') as HTMLElement;
+      const ribbonBottom = document.querySelector('.ribbon-bottom') as HTMLElement;
+      
+      if (ribbonTop && ribbonBottom) {
+        const scrollY = window.scrollY;
+        const parallaxSpeed = 0.3;
+        
+        ribbonTop.style.transform = `rotate(4deg) translateX(${scrollY * parallaxSpeed}px)`;
+        ribbonBottom.style.transform = `rotate(-4deg) translateX(${-scrollY * parallaxSpeed}px)`;
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -159,7 +171,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section problema" id="problema">
+      <section className="section problema" id="problema" style={{ position: 'relative' }}>
+        {/* Diagonal Ribbons with Parallax */}
+        <div className="diagonal-ribbons-wrapper">
+          <div className="diagonal-ribbon ribbon-top">
+            <div className="ribbon-track">
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+            </div>
+          </div>
+          <div className="diagonal-ribbon ribbon-bottom">
+            <div className="ribbon-track">
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+              <span className="ribbon-text">✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO ✦ PULSE FUTURO</span>
+            </div>
+          </div>
+        </div>
+        
         <div className="container">
           <div className="problema-grid">
             <div className="reveal-left">
@@ -696,6 +724,126 @@ export default function Home() {
       </a>
 
       <style>{`
+
+        /* ======================== DIAGONAL RIBBONS WITH PARALLAX ======================== */
+        .diagonal-ribbons-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          overflow: hidden;
+          z-index: 10;
+        }
+
+        .diagonal-ribbon {
+          position: absolute;
+          width: 200%;
+          height: 120px;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          will-change: transform;
+        }
+
+        .ribbon-top {
+          top: 20%;
+          left: -50%;
+          transform: rotate(4deg);
+          background: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(168, 85, 247, 0.95));
+          box-shadow: 
+            0 8px 32px rgba(124, 58, 237, 0.4),
+            0 0 60px rgba(124, 58, 237, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .ribbon-bottom {
+          bottom: 30%;
+          left: -50%;
+          transform: rotate(-4deg);
+          background: linear-gradient(135deg, rgba(168, 85, 247, 0.95), rgba(124, 58, 237, 0.95));
+          box-shadow: 
+            0 8px 32px rgba(168, 85, 247, 0.4),
+            0 0 60px rgba(168, 85, 247, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .ribbon-track {
+          display: flex;
+          gap: 0;
+          white-space: nowrap;
+          animation: scroll-left 40s linear infinite;
+          will-change: transform;
+        }
+
+        .ribbon-bottom .ribbon-track {
+          animation: scroll-right 40s linear infinite;
+        }
+
+        .ribbon-text {
+          font-family: var(--font-main);
+          font-size: 1.5rem;
+          font-weight: 800;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: white;
+          text-shadow: 
+            0 2px 10px rgba(0, 0, 0, 0.3),
+            0 0 20px rgba(255, 255, 255, 0.2);
+          padding: 0 40px;
+          display: inline-block;
+        }
+
+        @keyframes scroll-left {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        @keyframes scroll-right {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .diagonal-ribbon {
+            height: 80px;
+          }
+
+          .ribbon-text {
+            font-size: 1rem;
+            padding: 0 20px;
+          }
+
+          .ribbon-top {
+            top: 15%;
+          }
+
+          .ribbon-bottom {
+            bottom: 25%;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .diagonal-ribbon {
+            height: 60px;
+          }
+
+          .ribbon-text {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+          }
+        }
+        /* ======================== END DIAGONAL RIBBONS ======================== */
 
         /* ======================== PREMIUM PLANS REDESIGN ======================== */
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
