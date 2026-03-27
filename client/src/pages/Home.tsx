@@ -7,6 +7,7 @@ import AutoridadeSection from '../components/AutoridadeSection';
 import SolucaoSection from '../components/SolucaoSection';
 import ProblemaSection from '../components/ProblemaSection';
 import HeroSection from '../components/HeroSection';
+import FAQSection from '../components/FAQSection';
 
 export default function Home() {
   useEffect(() => {
@@ -84,6 +85,7 @@ export default function Home() {
       {/* ===================== PREMIUM PLANS SECTION ===================== */}
       <PlansSection />
 
+      <FAQSection />
 
       <CTASection />
 
@@ -3431,7 +3433,176 @@ export default function Home() {
             flex-direction: column;
           }
         }
+
+        /* ======================== FAQ SECTION ======================== */
+        .faq-section {
+          background: rgba(10, 5, 25, 0.3);
+        }
+
+        .faq-container {
+          max-width: 800px;
+          margin: 48px auto 0;
+        }
+
+        .faq-item {
+          background: rgba(17, 17, 24, 0.6);
+          border: 1px solid rgba(124, 58, 237, 0.2);
+          border-radius: 16px;
+          margin-bottom: 16px;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+          border-color: rgba(124, 58, 237, 0.4);
+          box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1);
+        }
+
+        .faq-question {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 24px 28px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          text-align: left;
+          transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+          background: rgba(124, 58, 237, 0.05);
+        }
+
+        .faq-question.active {
+          background: rgba(124, 58, 237, 0.08);
+        }
+
+        .faq-question-text {
+          font-family: var(--font-main);
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: var(--white);
+          margin: 0;
+          padding-right: 20px;
+          line-height: 1.4;
+        }
+
+        .faq-icon {
+          font-size: 1.5rem;
+          font-weight: 300;
+          color: var(--purple-bright);
+          flex-shrink: 0;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: rgba(124, 58, 237, 0.1);
+          transition: all 0.3s ease;
+        }
+
+        .faq-question:hover .faq-icon {
+          background: rgba(124, 58, 237, 0.2);
+          transform: scale(1.1);
+        }
+
+        .faq-answer {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.open {
+          max-height: 500px;
+          padding: 0 28px 24px 28px;
+        }
+
+        .faq-answer p {
+          font-size: 1rem;
+          line-height: 1.7;
+          color: var(--gray-light);
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          .faq-question {
+            padding: 20px 20px;
+          }
+
+          .faq-question-text {
+            font-size: 1rem;
+          }
+
+          .faq-answer.open {
+            padding: 0 20px 20px 20px;
+          }
+
+          .faq-answer p {
+            font-size: 0.95rem;
+          }
+        }
       `}</style>
+
+      {/* FAQ Structured Data (JSON-LD) */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Quanto custa criar um site em Curitiba?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O valor de um site pode variar de acordo com a complexidade do projeto. Na Pulse Futuro, temos planos a partir de R$ 350, ideais para empresas que querem começar com um site profissional."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Em quanto tempo meu site fica pronto?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "O prazo médio de entrega é de 3 a 7 dias, dependendo do tipo de site e das informações enviadas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "O site já vem otimizado para o Google?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. Todos os sites são entregues com técnicas de SEO aplicadas, como estrutura correta e carregamento rápido."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Vocês fazem landing pages também?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. Criamos landing pages focadas em conversão para gerar contatos e vendas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "O site funciona no celular?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. Todos os nossos sites são totalmente responsivos e funcionam perfeitamente em celulares."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Ter um site realmente traz clientes?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. Um site aumenta sua credibilidade e permite que sua empresa seja encontrada no Google."
+              }
+            }
+          ]
+        })}
+      </script>
     </div>
   );
 }
