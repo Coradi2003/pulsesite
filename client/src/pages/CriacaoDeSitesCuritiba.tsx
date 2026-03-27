@@ -56,7 +56,7 @@ export default function CriacaoDeSitesCuritiba() {
   return (
     <div className="landing-page">
       {/* Hero Section */}
-      <section className="hero" id="hero">
+      <section className="section hero" id="hero">
         <div className="container">
           <div className="hero-inner">
             <div className="hero-content">
@@ -145,7 +145,7 @@ export default function CriacaoDeSitesCuritiba() {
       </section>
 
       {/* How It Works Section */}
-      <section className="section" id="como-funciona">
+      <section className="section como-funciona" id="como-funciona">
         <div className="container">
           <div className="text-center reveal">
             <span className="section-tag">Processo</span>
