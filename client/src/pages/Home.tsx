@@ -1082,8 +1082,7 @@ export default function Home() {
         .rocket-trail {
           position: absolute;
           top: 12%;
-          left: 50%;
-          margin-left: -40px;
+          left: 15px;
           width: 4px;
           height: 10px;
           background: linear-gradient(to bottom, rgba(124, 58, 237, 0.4), transparent);
@@ -1096,17 +1095,17 @@ export default function Home() {
 
         .rocket-trail:nth-child(1) {
           animation-delay: 0s;
-          margin-left: -45px;
+          left: 10px;
         }
 
         .rocket-trail:nth-child(2) {
           animation-delay: 0.3s;
-          margin-left: -40px;
+          left: 15px;
         }
 
         .rocket-trail:nth-child(3) {
           animation-delay: 0.6s;
-          margin-left: -35px;
+          left: 20px;
         }
 
         @keyframes rocketTrail {
@@ -1170,8 +1169,7 @@ export default function Home() {
         .flame-particle {
           position: absolute;
           top: 12%;
-          left: 50%;
-          margin-left: -40px;
+          left: 15px;
           width: 4px;
           height: 8px;
           background: linear-gradient(to top, rgba(255, 77, 0, 0.6), rgba(255, 214, 0, 0.4));
@@ -1184,27 +1182,27 @@ export default function Home() {
         }
 
         .flame-particle:nth-child(1) {
-          margin-left: -50px;
+          left: 5px;
           animation-delay: 0s;
         }
 
         .flame-particle:nth-child(2) {
-          margin-left: -45px;
+          left: 10px;
           animation-delay: 0.4s;
         }
 
         .flame-particle:nth-child(3) {
-          margin-left: -40px;
+          left: 15px;
           animation-delay: 0.8s;
         }
 
         .flame-particle:nth-child(4) {
-          margin-left: -35px;
+          left: 20px;
           animation-delay: 1.2s;
         }
 
         .flame-particle:nth-child(5) {
-          margin-left: -30px;
+          left: 25px;
           animation-delay: 1.6s;
         }
 
@@ -1225,10 +1223,9 @@ export default function Home() {
         .elite-glow {
           position: absolute;
           top: 8%;
-          left: 50%;
-          margin-left: -60px;
-          width: 60px;
-          height: 60px;
+          left: 15px;
+          width: 50px;
+          height: 50px;
           background: radial-gradient(circle, rgba(255, 100, 0, 0.12), transparent 70%);
           border-radius: 50%;
           animation: eliteGlowPulse 3s ease-in-out infinite;
@@ -1340,13 +1337,13 @@ export default function Home() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 12px;
-          width: auto;
+          width: 100%;
           margin-bottom: 28px;
         }
 
         .pcard-emoji {
-          position: relative;
+          position: absolute;
+          left: 0;
           flex-shrink: 0;
           font-size: 1.25rem;
           z-index: 2;
@@ -1359,7 +1356,8 @@ export default function Home() {
           font-weight: 800;
           color: #A855F7;
           letter-spacing: -0.01em;
-          display: inline-block;
+          text-align: center;
+          width: 100%;
           line-height: 1;
           position: relative;
           z-index: 2;
