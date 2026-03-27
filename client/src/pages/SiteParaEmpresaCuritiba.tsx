@@ -23,10 +23,10 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
   );
 };
 
-export default function CriacaoDeSitesCuritiba() {
+export default function SiteParaEmpresaCuritiba() {
   useEffect(() => {
     // Title
-    document.title = 'Criação de Sites em Curitiba | Pulse Futuro';
+    document.title = 'Site para Empresas em Curitiba | Pulse Futuro';
 
     // Meta description
     let metaDesc = document.querySelector('meta[name="description"]');
@@ -35,7 +35,7 @@ export default function CriacaoDeSitesCuritiba() {
       metaDesc.setAttribute('name', 'description');
       document.head.appendChild(metaDesc);
     }
-    metaDesc.setAttribute('content', 'Criamos sites profissionais em Curitiba para empresas que querem mais presença digital, credibilidade e clientes. Solicite um orçamento.');
+    metaDesc.setAttribute('content', 'Criamos sites profissionais para empresas em Curitiba que querem mais credibilidade, presença digital e clientes. Solicite um orçamento.');
 
     // Canonical
     let canonical = document.querySelector('link[rel="canonical"]');
@@ -44,9 +44,8 @@ export default function CriacaoDeSitesCuritiba() {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://pulsefuturo.com.br/criacao-de-sites-curitiba');
+    canonical.setAttribute('href', 'https://pulsefuturo.com.br/site-para-empresa-curitiba');
 
-    // Cleanup on unmount
     return () => {
       document.title = 'Pulse Futuro';
       canonical?.remove();
@@ -65,21 +64,22 @@ export default function CriacaoDeSitesCuritiba() {
                 Agência Digital · Curitiba, PR
               </div>
               <h1 className="hero-title">
-                Criação de Sites em Curitiba
+                Site para Empresas em Curitiba
                 <br />
-                <span className="highlight">para Empresas que Querem Crescer</span>
+                <span className="highlight">com Estrutura Profissional</span>
               </h1>
               <p className="hero-subtitle">
-                Desenvolvemos sites profissionais e modernos para empresas de Curitiba que 
-                buscam aumentar sua presença digital, gerar mais leads e conquistar novos clientes online.
+                Criamos sites corporativos para empresas de Curitiba que precisam transmitir 
+                credibilidade, conquistar a confiança dos clientes e fortalecer sua presença 
+                digital com uma identidade profissional e moderna.
               </p>
               <div className="hero-buttons">
                 <a href="#contato" className="btn btn-primary btn-lg">
                   <Rocket className="w-5 h-5" />
-                  Solicitar Orçamento Gratuito
+                  Quero um Site Profissional
                 </a>
                 <a
-                  href="https://wa.me/5541984606633?text=Quero%20criar%20um%20site%20em%20Curitiba!"
+                  href="https://wa.me/5541984606633?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
                   className="btn btn-whatsapp btn-lg"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -98,9 +98,10 @@ export default function CriacaoDeSitesCuritiba() {
         <div className="container">
           <div className="text-center reveal">
             <p className="section-subtitle" style={{ maxWidth: '700px', margin: '0 auto' }}>
-              A criação de sites em Curitiba é fundamental para empresas que desejam se destacar no mercado digital. 
-              Nossa agência desenvolve soluções web personalizadas que combinam design moderno, funcionalidade avançada 
-              e estratégias de SEO para garantir que sua empresa seja encontrada pelos clientes certos.
+              Em Curitiba, o mercado corporativo é competitivo e exigente. Antes de fechar qualquer 
+              negócio, seus potenciais clientes pesquisam sua empresa online. Um site corporativo 
+              profissional é o cartão de visitas digital da sua empresa — ele transmite seriedade, 
+              organiza suas informações e facilita o contato com quem já está pronto para contratar.
             </p>
           </div>
         </div>
@@ -112,32 +113,29 @@ export default function CriacaoDeSitesCuritiba() {
           <div className="text-center reveal">
             <span className="section-tag">Vantagens</span>
             <h2 className="section-title">
-              Por que sua empresa precisa de um <span>site profissional</span>
+              O que um site corporativo <span>faz pela sua empresa</span>
             </h2>
           </div>
-
           <div className="solucao-cards">
             <div className="solucao-card reveal delay-1">
-              <h3 className="card-title">Credibilidade e Confiança</h3>
+              <h3 className="card-title">Credibilidade Imediata</h3>
               <p className="card-text">
-                Um site profissional transmite seriedade e confiança aos seus clientes, 
-                aumentando as chances de conversão e fidelização.
+                Empresas com site profissional transmitem confiança antes mesmo do primeiro 
+                contato. Seus clientes chegam mais seguros e prontos para fechar negócio.
               </p>
             </div>
-
             <div className="solucao-card reveal delay-2">
-              <h3 className="card-title">Geração de Leads 24/7</h3>
+              <h3 className="card-title">Presença Digital Sólida</h3>
               <p className="card-text">
-                Seu site trabalha para você mesmo quando você está dormindo, 
-                captando leads e gerando oportunidades de negócio constantemente.
+                Apareça no Google quando seus clientes pesquisarem pelos serviços que você 
+                oferece. Um site bem estruturado é a base de qualquer estratégia digital.
               </p>
             </div>
-
             <div className="solucao-card reveal delay-3">
-              <h3 className="card-title">Visibilidade no Google</h3>
+              <h3 className="card-title">Contato e Orçamentos Facilitados</h3>
               <p className="card-text">
-                Sites otimizados aparecem nas primeiras posições do Google, 
-                aumentando sua visibilidade e atraindo mais clientes qualificados.
+                Formulários, botões de WhatsApp e informações organizadas tornam mais fácil 
+                para o cliente entrar em contato e solicitar uma proposta comercial.
               </p>
             </div>
           </div>
@@ -150,35 +148,32 @@ export default function CriacaoDeSitesCuritiba() {
           <div className="text-center reveal">
             <span className="section-tag">Processo</span>
             <h2 className="section-title">
-              Como funciona nossa <span>criação de sites</span>
+              Como desenvolvemos o <span>site da sua empresa</span>
             </h2>
           </div>
-
           <div className="steps-container">
             <div className="step-item reveal delay-1">
               <div className="step-number">01</div>
-              <h3 className="step-title">Análise e Planejamento</h3>
+              <h3 className="step-title">Entendemos seu Negócio</h3>
               <p className="step-text">
-                Analisamos seu negócio, concorrência e público-alvo para criar 
-                uma estratégia digital personalizada e eficaz.
+                Analisamos seu segmento, seus diferenciais competitivos e o perfil dos seus 
+                clientes para criar uma estrutura que comunique o valor real da sua empresa.
               </p>
             </div>
-
             <div className="step-item reveal delay-2">
               <div className="step-number">02</div>
-              <h3 className="step-title">Design e Desenvolvimento</h3>
+              <h3 className="step-title">Design e Estrutura Corporativa</h3>
               <p className="step-text">
-                Criamos um design moderno e responsivo, desenvolvendo todas as 
-                funcionalidades necessárias para seu sucesso online.
+                Desenvolvemos um layout moderno e alinhado à identidade visual da sua marca, 
+                com hierarquia clara de informações e foco na experiência do visitante.
               </p>
             </div>
-
             <div className="step-item reveal delay-3">
               <div className="step-number">03</div>
-              <h3 className="step-title">Otimização e Entrega</h3>
+              <h3 className="step-title">Publicação e Suporte Contínuo</h3>
               <p className="step-text">
-                Otimizamos seu site para SEO e velocidade, realizamos testes 
-                completos e colocamos tudo no ar com suporte total.
+                Publicamos seu site com domínio, hospedagem e configurações técnicas incluídas, 
+                com suporte disponível para atualizações e melhorias futuras.
               </p>
             </div>
           </div>
@@ -192,31 +187,31 @@ export default function CriacaoDeSitesCuritiba() {
             <div className="reveal-left">
               <span className="section-tag">Diferenciais</span>
               <h2 className="section-title">
-                Por que escolher a <span>Pulse Futuro</span>
+                Sites corporativos feitos para <span>empresas sérias</span>
               </h2>
               <p className="section-subtitle">
-                Somos especialistas em criação de sites em Curitiba, oferecendo soluções 
-                completas que combinam tecnologia avançada, design premium e resultados comprovados.
+                Não entregamos apenas um site bonito. Entregamos uma presença digital 
+                estratégica, pensada para representar sua empresa com profissionalismo 
+                e gerar resultados reais no mercado de Curitiba.
               </p>
             </div>
-
             <div className="reveal-right">
               <div className="autoridade-metrics">
                 <div className="metric-card">
                   <div className="metric-number">3-7</div>
-                  <div className="metric-label">Dias para entrega do seu site completo</div>
+                  <div className="metric-label">Dias para seu site corporativo entrar no ar</div>
                 </div>
                 <div className="metric-card">
                   <div className="metric-number">100%</div>
-                  <div className="metric-label">Sites responsivos e otimizados para mobile</div>
+                  <div className="metric-label">Responsivo e adaptado para todos os dispositivos</div>
                 </div>
                 <div className="metric-card">
                   <div className="metric-number">SEO</div>
-                  <div className="metric-label">Otimização inclusa para Google</div>
+                  <div className="metric-label">Estrutura otimizada para aparecer no Google</div>
                 </div>
                 <div className="metric-card">
-                  <div className="metric-number">24/7</div>
-                  <div className="metric-label">Suporte técnico especializado</div>
+                  <div className="metric-number">1 ano</div>
+                  <div className="metric-label">Domínio e hospedagem inclusos no plano</div>
                 </div>
               </div>
             </div>
@@ -230,34 +225,33 @@ export default function CriacaoDeSitesCuritiba() {
           <div className="text-center reveal">
             <span className="section-tag">FAQ</span>
             <h2 className="section-title">
-              Perguntas Frequentes sobre <span>Criação de Sites em Curitiba</span>
+              Perguntas Frequentes sobre <span>Site para Empresa em Curitiba</span>
             </h2>
           </div>
-
           <div className="faq-container">
             <FAQItem
-              question="Quanto custa criar um site em Curitiba?"
-              answer="O valor varia conforme a complexidade do projeto. Na Pulse Futuro, os planos começam a partir de R$ 350 para sites de uma página, com opções mais completas para empresas que precisam de múltiplas páginas, SEO e integrações."
+              question="Quanto custa um site para empresa em Curitiba?"
+              answer="O investimento varia conforme o porte do projeto — número de páginas, funcionalidades e nível de personalização. Na Pulse Futuro, temos planos a partir de R$ 350 para sites de uma página e opções mais completas para empresas que precisam de múltiplas seções, formulários e integração com redes sociais."
             />
             <FAQItem
-              question="Qual é o prazo de entrega de um site?"
-              answer="O prazo médio é de 3 a 7 dias úteis após o envio das informações e aprovação do briefing. Sites mais complexos podem levar até 15 dias, sempre com acompanhamento próximo durante todo o processo."
+              question="Qual é o prazo de entrega de um site corporativo?"
+              answer="O prazo médio é de 3 a 7 dias úteis após o envio das informações e aprovação do briefing. Projetos mais completos, com várias páginas e funcionalidades específicas, podem levar até 15 dias, sempre com acompanhamento próximo em cada etapa."
+            />
+            <FAQItem
+              question="Um site profissional realmente ajuda a passar mais confiança?"
+              answer="Sim, e de forma significativa. Estudos mostram que mais de 75% dos consumidores julgam a credibilidade de uma empresa pela qualidade do seu site. Uma presença digital bem estruturada transmite seriedade antes mesmo do primeiro contato comercial."
             />
             <FAQItem
               question="O site vai funcionar bem no celular?"
-              answer="Sim. Todos os sites que desenvolvemos são 100% responsivos, ou seja, se adaptam perfeitamente a qualquer dispositivo — celular, tablet ou computador — garantindo a melhor experiência para seus visitantes."
+              answer="Sim. Todos os sites que desenvolvemos são 100% responsivos, adaptando-se perfeitamente a smartphones, tablets e computadores. Isso é fundamental, já que a maioria das pesquisas por empresas locais em Curitiba acontece pelo celular."
             />
             <FAQItem
-              question="O site já vem otimizado para o Google?"
-              answer="Sim. Aplicamos técnicas de SEO desde a estrutura do código, como uso correto de headings, velocidade de carregamento, meta tags e URLs amigáveis, para que seu site tenha as melhores condições de ranquear no Google."
+              question="O site ajuda minha empresa a aparecer no Google?"
+              answer="Sim. Desenvolvemos todos os sites com boas práticas de SEO aplicadas desde a estrutura: headings corretos, URLs amigáveis, meta tags, velocidade de carregamento e código limpo. Isso dá à sua empresa as melhores condições de aparecer nas buscas locais."
             />
             <FAQItem
-              question="Domínio e hospedagem estão inclusos?"
-              answer="Sim. Nossos planos incluem domínio .com.br por 1 ano e hospedagem de alta performance. Você não precisa se preocupar com nada técnico — cuidamos de tudo para você."
-            />
-            <FAQItem
-              question="Por que uma empresa em Curitiba precisa de um site?"
-              answer="Curitiba é uma das cidades mais conectadas do Brasil. Seus clientes pesquisam no Google antes de contratar qualquer serviço. Sem um site profissional, sua empresa fica invisível para essa maioria e perde espaço para concorrentes que já estão online."
+              question="Domínio e hospedagem estão inclusos no plano?"
+              answer="Sim. Nossos planos incluem domínio .com.br por 1 ano e hospedagem de alta performance. Você não precisa contratar nada separado — cuidamos de toda a parte técnica para que você foque no seu negócio."
             />
           </div>
         </div>
@@ -269,27 +263,27 @@ export default function CriacaoDeSitesCuritiba() {
           <div className="cta-box reveal">
             <span className="section-tag">Comece Agora</span>
             <h2 className="cta-title">
-              Pronto para ter um site profissional
+              Sua empresa merece um site
               <br />
               <span style={{ color: 'var(--purple-bright)', textShadow: '0 0 30px rgba(138,43,226,0.6)' }}>
-                em Curitiba?
+                à altura do seu trabalho
               </span>
             </h2>
             <p className="cta-subtitle">
-              Solicite um orçamento gratuito e receba uma proposta personalizada para o seu negócio.
+              Não deixe seus clientes encontrarem a concorrência antes de você. Fale com a Pulse Futuro e tenha um site corporativo profissional no ar em poucos dias.
             </p>
             <div className="cta-buttons">
               <a
-                href="https://wa.me/5541984606633?text=Quero%20criar%20um%20site%20em%20Curitiba!"
+                href="https://wa.me/5541984606633?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
                 className="btn btn-primary btn-lg"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Rocket className="w-5 h-5" />
-                Solicitar Orçamento Gratuito
+                Quero um Site Profissional
               </a>
               <a
-                href="https://wa.me/5541984606633?text=Quero%20criar%20um%20site%20em%20Curitiba!"
+                href="https://wa.me/5541984606633?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
                 className="btn btn-whatsapp btn-lg"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -308,9 +302,9 @@ export default function CriacaoDeSitesCuritiba() {
       <script type="application/ld+json">{JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
-        "serviceType": "Criação de Sites",
-        "name": "Criação de Sites Profissionais em Curitiba",
-        "description": "Criamos sites profissionais em Curitiba para empresas que querem mais presença digital, credibilidade e clientes.",
+        "serviceType": "Criação de Sites para Empresas",
+        "name": "Site para Empresas em Curitiba",
+        "description": "Criamos sites profissionais para empresas em Curitiba que querem mais credibilidade, presença digital e clientes.",
         "areaServed": { "@type": "City", "name": "Curitiba" },
         "provider": { "@type": "Organization", "name": "Pulse Futuro", "url": "https://pulsefuturo.com.br" }
       })}</script>
@@ -320,14 +314,15 @@ export default function CriacaoDeSitesCuritiba() {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Quanto custa criar um site em Curitiba?", "acceptedAnswer": { "@type": "Answer", "text": "O valor varia conforme a complexidade do projeto. Na Pulse Futuro, os planos começam a partir de R$ 350 para sites de uma página, com opções mais completas para empresas que precisam de múltiplas páginas, SEO e integrações." } },
-          { "@type": "Question", "name": "Qual é o prazo de entrega de um site?", "acceptedAnswer": { "@type": "Answer", "text": "O prazo médio é de 3 a 7 dias úteis após o envio das informações e aprovação do briefing. Sites mais complexos podem levar até 15 dias." } },
-          { "@type": "Question", "name": "O site vai funcionar bem no celular?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Todos os sites que desenvolvemos são 100% responsivos, adaptando-se perfeitamente a qualquer dispositivo." } },
-          { "@type": "Question", "name": "O site já vem otimizado para o Google?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Aplicamos técnicas de SEO desde a estrutura do código, como uso correto de headings, velocidade de carregamento, meta tags e URLs amigáveis." } },
-          { "@type": "Question", "name": "Domínio e hospedagem estão inclusos?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Nossos planos incluem domínio .com.br por 1 ano e hospedagem de alta performance." } },
-          { "@type": "Question", "name": "Por que uma empresa em Curitiba precisa de um site?", "acceptedAnswer": { "@type": "Answer", "text": "Curitiba é uma das cidades mais conectadas do Brasil. Seus clientes pesquisam no Google antes de contratar qualquer serviço. Sem um site profissional, sua empresa fica invisível para essa maioria." } }
+          { "@type": "Question", "name": "Quanto custa um site para empresa em Curitiba?", "acceptedAnswer": { "@type": "Answer", "text": "O investimento varia conforme o porte do projeto. Na Pulse Futuro, temos planos a partir de R$ 350 para sites de uma página e opções mais completas para empresas que precisam de múltiplas seções, formulários e integração com redes sociais." } },
+          { "@type": "Question", "name": "Qual é o prazo de entrega de um site corporativo?", "acceptedAnswer": { "@type": "Answer", "text": "O prazo médio é de 3 a 7 dias úteis após o envio das informações e aprovação do briefing. Projetos mais completos podem levar até 15 dias, sempre com acompanhamento próximo em cada etapa." } },
+          { "@type": "Question", "name": "Um site profissional realmente ajuda a passar mais confiança?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Mais de 75% dos consumidores julgam a credibilidade de uma empresa pela qualidade do seu site. Uma presença digital bem estruturada transmite seriedade antes mesmo do primeiro contato comercial." } },
+          { "@type": "Question", "name": "O site vai funcionar bem no celular?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Todos os sites que desenvolvemos são 100% responsivos, adaptando-se perfeitamente a smartphones, tablets e computadores." } },
+          { "@type": "Question", "name": "O site ajuda minha empresa a aparecer no Google?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Desenvolvemos todos os sites com boas práticas de SEO: headings corretos, URLs amigáveis, meta tags, velocidade de carregamento e código limpo para as melhores condições de aparecer nas buscas locais." } },
+          { "@type": "Question", "name": "Domínio e hospedagem estão inclusos no plano?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Nossos planos incluem domínio .com.br por 1 ano e hospedagem de alta performance. Cuidamos de toda a parte técnica para que você foque no seu negócio." } }
         ]
       })}</script>
     </div>
   );
+}  );
 }

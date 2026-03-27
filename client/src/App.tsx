@@ -10,6 +10,9 @@ import AnimatedBackground from "./components/AnimatedBackground";
 import LoadingScreen from "./components/LoadingScreen";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import CriacaoDeSitesCuritiba from "./pages/CriacaoDeSitesCuritiba";
+import LandingPageCuritiba from "./pages/LandingPageCuritiba";
+import SiteParaEmpresaCuritiba from "./pages/SiteParaEmpresaCuritiba";
 
 // Admin imports
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
@@ -117,6 +120,9 @@ function App() {
                 <Toaster />
                 <Switch>
                   <Route path="/" component={Home} />
+                  <Route path="/criacao-de-sites-curitiba" component={CriacaoDeSitesCuritiba} />
+                  <Route path="/landing-page-curitiba" component={LandingPageCuritiba} />
+                  <Route path="/site-para-empresa-curitiba" component={SiteParaEmpresaCuritiba} />
                   <Route path="/404" component={NotFound} />
                   <Route component={NotFound} />
                 </Switch>

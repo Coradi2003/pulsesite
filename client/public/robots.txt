@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /criacao-de-sites-curitiba
+Allow: /landing-page-curitiba
+Allow: /site-para-empresa-curitiba
+Disallow: /admin/
+
+Sitemap: https://pulsefuturo.com.br/sitemap.xml

@@ -37,8 +37,9 @@ export default function Footer() {
             <div>
               <p className="footer-col-title">Serviços</p>
               <ul className="footer-list">
-                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Sites Profissionais</li>
-                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Landing Pages</li>
+                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /><a href="/criacao-de-sites-curitiba">Sites Profissionais</a></li>
+                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /><a href="/landing-page-curitiba">Landing Pages</a></li>
+                <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /><a href="/site-para-empresa-curitiba">Site para Empresas</a></li>
                 <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> SEO Local</li>
                 <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Google Meu Negócio</li>
                 <li><ChevronRight className="w-3.5 h-3.5 text-purple-400" /> Marketing Digital</li>
