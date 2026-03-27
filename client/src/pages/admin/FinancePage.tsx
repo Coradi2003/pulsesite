@@ -92,16 +92,23 @@ export default function FinancePage() {
   return (
     <AdminLayout>
       <div id="admin-finance">
-        <PageHeader title="Finanças" description="Controle de pagamentos e receitas" action={{ label: "Nova Cobrança", onClick: openCreate }} />
+        <PageHeader title="Finanças" description="Controle de pagamentos e receitas" />
 
-        {/* Botão Nova Saída ao lado */}
-        <div className="-mt-12 mb-4 flex justify-end">
+        {/* Botões de ação — ficam no mesmo row */}
+        <div className="-mt-6 mb-6 flex justify-end gap-2">
           <button
             onClick={openExpense}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors text-sm font-medium"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors text-xs font-semibold"
           >
-            <TrendingDown className="w-4 h-4" />
+            <TrendingDown className="w-3.5 h-3.5" />
             Nova Saída
+          </button>
+          <button
+            onClick={openCreate}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white transition-colors text-xs font-semibold shadow-lg shadow-purple-900/30"
+          >
+            <TrendingUp className="w-3.5 h-3.5" />
+            Nova Cobrança
           </button>
         </div>
 
