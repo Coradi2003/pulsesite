@@ -535,9 +535,32 @@ export default function Home() {
           <div className="plans-grid-premium">
             {/* ====== BÁSICO ====== */}
             <div className="pcard pcard-start reveal delay-1">
+              {/* Cosmic Energy Field */}
+              <div className="cosmic-energy-field">
+                <span className="energy-orb" style={{'--x': '15%', '--y': '20%', '--delay': '0s', '--duration': '4s'} as any}></span>
+                <span className="energy-orb" style={{'--x': '85%', '--y': '30%', '--delay': '1s', '--duration': '3.5s'} as any}></span>
+                <span className="energy-orb" style={{'--x': '25%', '--y': '70%', '--delay': '2s', '--duration': '4.2s'} as any}></span>
+                <span className="energy-orb" style={{'--x': '75%', '--y': '80%', '--delay': '0.5s', '--duration': '3.8s'} as any}></span>
+                <span className="energy-orb" style={{'--x': '50%', '--y': '15%', '--delay': '1.5s', '--duration': '3.3s'} as any}></span>
+              </div>
+              
+              {/* Quantum Grid */}
+              <div className="quantum-grid">
+                <div className="grid-line grid-h" style={{'--pos': '25%', '--delay': '0s'} as any}></div>
+                <div className="grid-line grid-h" style={{'--pos': '50%', '--delay': '0.3s'} as any}></div>
+                <div className="grid-line grid-h" style={{'--pos': '75%', '--delay': '0.6s'} as any}></div>
+                <div className="grid-line grid-v" style={{'--pos': '30%', '--delay': '0.2s'} as any}></div>
+                <div className="grid-line grid-v" style={{'--pos': '70%', '--delay': '0.5s'} as any}></div>
+              </div>
+              
+              {/* Rocket Trails */}
               <span className="rocket-trail"></span>
               <span className="rocket-trail"></span>
               <span className="rocket-trail"></span>
+              
+              {/* Holographic Scan */}
+              <div className="holo-scan"></div>
+              
               <div className="pcard-header">
                 <span className="pcard-emoji">🚀</span>
                 <span className="pcard-label-text">Pulse Start</span>
@@ -570,6 +593,38 @@ export default function Home() {
 
             {/* ====== PRO (FEATURED) ====== */}
             <div className="pcard pcard-featured reveal delay-2">
+              {/* Lightning Storm */}
+              <div className="lightning-storm">
+                <div className="lightning-bolt bolt-1"></div>
+                <div className="lightning-bolt bolt-2"></div>
+                <div className="lightning-bolt bolt-3"></div>
+                <div className="lightning-bolt bolt-4"></div>
+              </div>
+              
+              {/* Electric Aura */}
+              <div className="electric-aura">
+                <div className="aura-ring ring-1"></div>
+                <div className="aura-ring ring-2"></div>
+                <div className="aura-ring ring-3"></div>
+              </div>
+              
+              {/* Plasma Field */}
+              <div className="plasma-field">
+                <span className="plasma-particle" style={{'--x': '10%', '--y': '10%', '--delay': '0s'} as any}></span>
+                <span className="plasma-particle" style={{'--x': '90%', '--y': '20%', '--delay': '0.4s'} as any}></span>
+                <span className="plasma-particle" style={{'--x': '20%', '--y': '80%', '--delay': '0.8s'} as any}></span>
+                <span className="plasma-particle" style={{'--x': '80%', '--y': '90%', '--delay': '1.2s'} as any}></span>
+                <span className="plasma-particle" style={{'--x': '50%', '--y': '30%', '--delay': '1.6s'} as any}></span>
+                <span className="plasma-particle" style={{'--x': '30%', '--y': '60%', '--delay': '2s'} as any}></span>
+              </div>
+              
+              {/* Energy Vortex */}
+              <div className="energy-vortex">
+                <div className="vortex-ring" style={{'--size': '100px', '--delay': '0s'} as any}></div>
+                <div className="vortex-ring" style={{'--size': '150px', '--delay': '0.5s'} as any}></div>
+                <div className="vortex-ring" style={{'--size': '200px', '--delay': '1s'} as any}></div>
+              </div>
+              
               <div className="fire-particles">
                 <span className="spark" style={{'--x': '2%', '--y': '0%', '--tx': '30px', '--duration': '1.1s', '--delay': '0s'} as any}></span>
                 <span className="spark" style={{'--x': '15%', '--y': '0%', '--tx': '-20px', '--duration': '1.4s', '--delay': '0.2s'} as any}></span>
@@ -634,6 +689,40 @@ export default function Home() {
 
             {/* ====== ELITE ====== */}
             <div className="pcard pcard-elite reveal delay-3">
+              {/* Inferno Portal */}
+              <div className="inferno-portal">
+                <div className="portal-ring ring-1"></div>
+                <div className="portal-ring ring-2"></div>
+                <div className="portal-ring ring-3"></div>
+                <div className="portal-core"></div>
+              </div>
+              
+              {/* Molten Lava Streams */}
+              <div className="lava-streams">
+                <div className="lava-stream stream-1"></div>
+                <div className="lava-stream stream-2"></div>
+                <div className="lava-stream stream-3"></div>
+                <div className="lava-stream stream-4"></div>
+              </div>
+              
+              {/* Fire Tornado */}
+              <div className="fire-tornado">
+                <div className="tornado-layer layer-1"></div>
+                <div className="tornado-layer layer-2"></div>
+                <div className="tornado-layer layer-3"></div>
+              </div>
+              
+              {/* Volcanic Eruption */}
+              <div className="volcanic-eruption">
+                <span className="magma-particle" style={{'--x': '20%', '--delay': '0s', '--duration': '2s'} as any}></span>
+                <span className="magma-particle" style={{'--x': '40%', '--delay': '0.3s', '--duration': '2.2s'} as any}></span>
+                <span className="magma-particle" style={{'--x': '60%', '--delay': '0.6s', '--duration': '1.8s'} as any}></span>
+                <span className="magma-particle" style={{'--x': '80%', '--delay': '0.9s', '--duration': '2.1s'} as any}></span>
+                <span className="magma-particle" style={{'--x': '30%', '--delay': '1.2s', '--duration': '1.9s'} as any}></span>
+                <span className="magma-particle" style={{'--x': '70%', '--delay': '1.5s', '--duration': '2.3s'} as any}></span>
+              </div>
+              
+              {/* Flame Particles */}
               <span className="flame-particle"></span>
               <span className="flame-particle"></span>
               <span className="flame-particle"></span>
@@ -1290,6 +1379,515 @@ export default function Home() {
           box-shadow: 
             0 0 50px rgba(255, 100, 0, 0.3),
             0 0 80px rgba(255, 150, 0, 0.2);
+        }
+
+        /* ====== SENSATIONAL PRICING CARD ANIMATIONS ====== */
+        
+        /* === PULSE START - COSMIC ENERGY FIELD === */
+        .cosmic-energy-field {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .energy-orb {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background: radial-gradient(circle, #7C3AED, #A855F7);
+          border-radius: 50%;
+          box-shadow: 0 0 20px #7C3AED;
+          animation: energyFloat var(--duration) ease-in-out infinite;
+          animation-delay: var(--delay);
+          left: var(--x);
+          top: var(--y);
+        }
+
+        @keyframes energyFloat {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+            opacity: 0.6;
+          }
+          50% {
+            transform: translateY(-20px) scale(1.2);
+            opacity: 1;
+          }
+        }
+
+        .quantum-grid {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .grid-line {
+          position: absolute;
+          background: linear-gradient(90deg, transparent, #7C3AED, transparent);
+          opacity: 0;
+          animation: gridScan 3s ease-in-out infinite;
+          animation-delay: var(--delay);
+        }
+
+        .grid-h {
+          height: 1px;
+          width: 100%;
+          top: var(--pos);
+        }
+
+        .grid-v {
+          width: 1px;
+          height: 100%;
+          left: var(--pos);
+        }
+
+        @keyframes gridScan {
+          0%, 90%, 100% {
+            opacity: 0;
+          }
+          10%, 80% {
+            opacity: 0.4;
+          }
+        }
+
+        .holo-scan {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #A855F7, transparent);
+          animation: holoScan 4s ease-in-out infinite;
+          z-index: 1;
+        }
+
+        @keyframes holoScan {
+          0% {
+            top: 0;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            top: 100%;
+            opacity: 0;
+          }
+        }
+
+        /* === PULSE PRO - LIGHTNING STORM === */
+        .lightning-storm {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .lightning-bolt {
+          position: absolute;
+          width: 2px;
+          height: 60px;
+          background: linear-gradient(to bottom, #A855F7, #D946EF, transparent);
+          opacity: 0;
+          animation: lightningStrike 2s ease-out infinite;
+          filter: blur(0.5px);
+          box-shadow: 0 0 10px #A855F7;
+        }
+
+        .bolt-1 {
+          top: 10%;
+          left: 20%;
+          animation-delay: 0s;
+        }
+
+        .bolt-2 {
+          top: 30%;
+          right: 25%;
+          animation-delay: 0.5s;
+        }
+
+        .bolt-3 {
+          top: 60%;
+          left: 30%;
+          animation-delay: 1s;
+        }
+
+        .bolt-4 {
+          top: 80%;
+          right: 20%;
+          animation-delay: 1.5s;
+        }
+
+        @keyframes lightningStrike {
+          0%, 95%, 100% {
+            opacity: 0;
+          }
+          5%, 10% {
+            opacity: 1;
+          }
+        }
+
+        .electric-aura {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .aura-ring {
+          position: absolute;
+          border: 1px solid #A855F7;
+          border-radius: 50%;
+          opacity: 0;
+          animation: electricPulse 3s ease-out infinite;
+        }
+
+        .aura-ring.ring-1 {
+          width: 100px;
+          height: 100px;
+          margin: -50px;
+          animation-delay: 0s;
+        }
+
+        .aura-ring.ring-2 {
+          width: 150px;
+          height: 150px;
+          margin: -75px;
+          animation-delay: 0.5s;
+        }
+
+        .aura-ring.ring-3 {
+          width: 200px;
+          height: 200px;
+          margin: -100px;
+          animation-delay: 1s;
+        }
+
+        @keyframes electricPulse {
+          0% {
+            opacity: 0;
+            transform: scale(0.5);
+          }
+          20% {
+            opacity: 0.6;
+          }
+          100% {
+            opacity: 0;
+            transform: scale(1.5);
+          }
+        }
+
+        .plasma-field {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .plasma-particle {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background: radial-gradient(circle, #D946EF, #A855F7);
+          border-radius: 50%;
+          box-shadow: 0 0 15px #D946EF;
+          animation: plasmaFloat 4s ease-in-out infinite;
+          animation-delay: var(--delay);
+          left: var(--x);
+          top: var(--y);
+        }
+
+        @keyframes plasmaFloat {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.7;
+          }
+          25% {
+            transform: translate(10px, -15px) scale(1.3);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(-5px, -25px) scale(0.8);
+            opacity: 0.9;
+          }
+          75% {
+            transform: translate(-10px, -10px) scale(1.1);
+            opacity: 1;
+          }
+        }
+
+        .energy-vortex {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .vortex-ring {
+          position: absolute;
+          border: 2px solid transparent;
+          border-top: 2px solid #A855F7;
+          border-radius: 50%;
+          width: var(--size);
+          height: var(--size);
+          margin-left: calc(var(--size) / -2);
+          margin-top: calc(var(--size) / -2);
+          animation: vortexSpin 3s linear infinite;
+          animation-delay: var(--delay);
+          opacity: 0.6;
+        }
+
+        @keyframes vortexSpin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        /* === PULSE ELITE - INFERNO PORTAL === */
+        .inferno-portal {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .portal-ring {
+          position: absolute;
+          border: 2px solid #FF4500;
+          border-radius: 50%;
+          animation: portalExpand 4s ease-out infinite;
+        }
+
+        .portal-ring.ring-1 {
+          width: 80px;
+          height: 80px;
+          margin: -40px;
+          animation-delay: 0s;
+          border-color: #FF6B00;
+        }
+
+        .portal-ring.ring-2 {
+          width: 120px;
+          height: 120px;
+          margin: -60px;
+          animation-delay: 0.7s;
+          border-color: #FF8500;
+        }
+
+        .portal-ring.ring-3 {
+          width: 160px;
+          height: 160px;
+          margin: -80px;
+          animation-delay: 1.4s;
+          border-color: #FFA500;
+        }
+
+        .portal-core {
+          position: absolute;
+          width: 40px;
+          height: 40px;
+          margin: -20px;
+          background: radial-gradient(circle, #FF4500, #FF6B00, transparent);
+          border-radius: 50%;
+          animation: coreFlicker 2s ease-in-out infinite;
+          filter: blur(2px);
+        }
+
+        @keyframes portalExpand {
+          0% {
+            opacity: 0;
+            transform: scale(0.3);
+          }
+          20% {
+            opacity: 0.8;
+          }
+          100% {
+            opacity: 0;
+            transform: scale(2);
+          }
+        }
+
+        @keyframes coreFlicker {
+          0%, 100% {
+            opacity: 0.8;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2);
+          }
+        }
+
+        .lava-streams {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .lava-stream {
+          position: absolute;
+          width: 3px;
+          height: 40px;
+          background: linear-gradient(to bottom, #FF4500, #FF6B00, transparent);
+          border-radius: 50%;
+          animation: lavaFlow 3s ease-out infinite;
+          filter: blur(1px);
+        }
+
+        .stream-1 {
+          top: 15%;
+          left: 20%;
+          animation-delay: 0s;
+        }
+
+        .stream-2 {
+          top: 25%;
+          right: 25%;
+          animation-delay: 0.8s;
+        }
+
+        .stream-3 {
+          top: 65%;
+          left: 30%;
+          animation-delay: 1.6s;
+        }
+
+        .stream-4 {
+          top: 75%;
+          right: 20%;
+          animation-delay: 2.4s;
+        }
+
+        @keyframes lavaFlow {
+          0% {
+            opacity: 0;
+            transform: translateY(-20px) scale(1);
+          }
+          20% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(60px) scale(0.3);
+          }
+        }
+
+        .fire-tornado {
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 60px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .tornado-layer {
+          position: absolute;
+          border: 2px solid transparent;
+          border-top: 2px solid #FF4500;
+          border-radius: 50%;
+          animation: tornadoSpin 2s linear infinite;
+        }
+
+        .layer-1 {
+          width: 20px;
+          height: 20px;
+          margin: -10px;
+          animation-delay: 0s;
+          border-top-color: #FF4500;
+        }
+
+        .layer-2 {
+          width: 40px;
+          height: 40px;
+          margin: -20px;
+          animation-delay: 0.3s;
+          border-top-color: #FF6B00;
+        }
+
+        .layer-3 {
+          width: 60px;
+          height: 60px;
+          margin: -30px;
+          animation-delay: 0.6s;
+          border-top-color: #FF8500;
+        }
+
+        @keyframes tornadoSpin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        .volcanic-eruption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 100%;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .magma-particle {
+          position: absolute;
+          bottom: 0;
+          left: var(--x);
+          width: 4px;
+          height: 4px;
+          background: radial-gradient(circle, #FF4500, #FF6B00);
+          border-radius: 50%;
+          animation: magmaErupt var(--duration) ease-out infinite;
+          animation-delay: var(--delay);
+          box-shadow: 0 0 10px #FF4500;
+        }
+
+        @keyframes magmaErupt {
+          0% {
+            opacity: 0;
+            transform: translateY(0) scale(1);
+          }
+          20% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-80px) scale(0.3);
+          }
         }
 
         .pcard-featured {
