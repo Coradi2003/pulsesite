@@ -669,6 +669,30 @@ export default function Home() {
         /* ======================== PREMIUM PLANS REDESIGN ======================== */
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
+        .plans-section-premium {
+          padding: 120px 0;
+          background: #05020D;
+          position: relative;
+          overflow: hidden;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center !important;
+          justify-content: center;
+        }
+
+        .plans-container-premium {
+          width: 100%;
+          max-width: 1280px;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          padding-left: 16px;
+          padding-right: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center !important;
+        }
+
         .plans-premium {
           padding: 160px 0 220px;
           background: radial-gradient(circle at 50% 100%, rgba(138,43,226,0.08) 0%, transparent 50%);
@@ -676,8 +700,16 @@ export default function Home() {
         }
 
         .plans-header-premium {
-          max-width: 850px;
-          margin: 0 auto 100px;
+          width: 100%;
+          max-width: 900px;
+          display: flex;
+          flex-direction: column;
+          align-items: center !important;
+          justify-content: center;
+          text-align: center;
+          margin: 0 auto 64px auto !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
         }
 
         .premium-tag {
@@ -685,16 +717,16 @@ export default function Home() {
           font-family: 'Outfit', sans-serif;
           font-size: 0.75rem;
           font-weight: 800;
-          letter-spacing: 0.2em;
-          color: var(--purple-light);
-          background: rgba(138,43,226,0.12);
           color: #A855F7;
           background: rgba(168, 85, 247, 0.1);
           padding: 8px 20px;
           border-radius: 100px;
           letter-spacing: 0.15em;
           border: 1px solid rgba(168, 85, 247, 0.2);
-          margin: 0 auto 20px auto;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          margin-bottom: 20px;
+          text-align: center !important;
         }
 
         .premium-title {
@@ -703,9 +735,13 @@ export default function Home() {
           font-weight: 800;
           color: var(--white);
           line-height: 1.1;
-          margin: 0 auto 18px auto;
           letter-spacing: -0.02em;
-          max-width: 900px;
+          max-width: 800px;
+          width: 100%;
+          text-align: center !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          margin-bottom: 18px;
         }
 
         .premium-title span {
@@ -718,10 +754,12 @@ export default function Home() {
           font-family: 'Inter', sans-serif;
           font-size: 1.15rem;
           color: var(--gray-light);
-          max-width: 760px;
-          margin: 0 auto;
+          max-width: 700px;
+          margin-left: auto !important;
+          margin-right: auto !important;
           opacity: 0.7;
           line-height: 1.6;
+          text-align: center !important;
         }
 
         .plans-grid-premium {
