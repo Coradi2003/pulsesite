@@ -103,6 +103,13 @@ export default function Home() {
         <div className="container">
           <div className="hero-inner">
             <div className="hero-content">
+              {/* Floating particles */}
+              <span className="hero-particle" style={{'--delay': '0s', '--x': '20px', '--y': '-30px'} as any}></span>
+              <span className="hero-particle" style={{'--delay': '0.5s', '--x': '-25px', '--y': '-35px'} as any}></span>
+              <span className="hero-particle" style={{'--delay': '1s', '--x': '30px', '--y': '-40px'} as any}></span>
+              <span className="hero-particle" style={{'--delay': '1.5s', '--x': '-20px', '--y': '-30px'} as any}></span>
+              <span className="hero-particle" style={{'--delay': '2s', '--x': '25px', '--y': '-35px'} as any}></span>
+              
               <div className="hero-badge">
                 <span className="dot"></span>
                 Agência Digital · Curitiba, PR
@@ -1971,11 +1978,36 @@ export default function Home() {
           line-height: 1.1;
           color: var(--white);
           margin-bottom: 24px;
+          animation: titleSlideIn 0.8s ease-out;
+        }
+
+        @keyframes titleSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .landing-page .hero-title .highlight {
           color: var(--purple-bright);
           text-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
+          animation: highlightPulse 3s ease-in-out infinite;
+          display: inline-block;
+        }
+
+        @keyframes highlightPulse {
+          0%, 100% {
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
+          }
+          50% {
+            text-shadow: 
+              0 0 40px rgba(138, 43, 226, 1),
+              0 0 60px rgba(168, 85, 247, 0.8);
+          }
         }
 
         .landing-page .hero-subtitle {
@@ -1984,12 +2016,129 @@ export default function Home() {
           line-height: 1.75;
           margin-bottom: 40px;
           max-width: 520px;
+          animation: subtitleSlideIn 0.8s ease-out 0.2s backwards;
+        }
+
+        @keyframes subtitleSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .landing-page .hero-buttons {
           display: flex;
           flex-wrap: wrap;
           gap: 16px;
+          animation: buttonsSlideIn 0.8s ease-out 0.4s backwards;
+        }
+
+        @keyframes buttonsSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Hero Floating Particles */
+        .landing-page .hero-particle {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: radial-gradient(circle, #A855F7, #7C3AED);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 10px rgba(168, 85, 247, 0.8),
+            0 0 20px rgba(124, 58, 237, 0.6);
+          animation: heroParticleFloat 3s ease-in-out infinite;
+          animation-delay: var(--delay);
+          opacity: 0;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        @keyframes heroParticleFloat {
+          0%, 100% {
+            opacity: 0;
+            transform: translate(0, 0) scale(0.5);
+          }
+          10% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 1;
+            transform: translate(var(--x), var(--y)) scale(1.2);
+          }
+          90% {
+            opacity: 0.5;
+          }
+          100% {
+            opacity: 0;
+            transform: translate(calc(var(--x) * 1.5), calc(var(--y) * 1.5)) scale(0.3);
+          }
+        }
+
+        /* Enhanced Button Animations */
+        .landing-page .hero-buttons .btn {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .landing-page .hero-buttons .btn::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.3);
+          transform: translate(-50%, -50%);
+          transition: width 0.6s, height 0.6s;
+        }
+
+        .landing-page .hero-buttons .btn:hover::after {
+          width: 300px;
+          height: 300px;
+        }
+
+        .landing-page .hero-buttons .btn-primary {
+          animation: buttonGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonGlow {
+          0%, 100% {
+            box-shadow: 0 0 24px var(--purple-glow), 0 4px 20px rgba(138,43,226,0.35);
+          }
+          50% {
+            box-shadow: 
+              0 0 35px var(--purple-glow), 
+              0 4px 25px rgba(138,43,226,0.5),
+              0 0 50px rgba(168, 85, 247, 0.3);
+          }
+        }
+
+        .landing-page .hero-buttons .btn-whatsapp {
+          animation: whatsappPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes whatsappPulse {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);
+          }
+          50% {
+            box-shadow: 
+              0 0 30px rgba(37, 211, 102, 0.6),
+              0 0 50px rgba(37, 211, 102, 0.3);
+          }
         }
 
         .landing-page .hero-visual {
@@ -2114,6 +2263,33 @@ export default function Home() {
           font-weight: 900;
           color: var(--purple-light);
           text-shadow: 0 0 16px rgba(138,43,226,0.5);
+          animation: statPulse 2s ease-in-out infinite;
+          display: inline-block;
+        }
+
+        @keyframes statPulse {
+          0%, 100% {
+            transform: scale(1);
+            text-shadow: 0 0 16px rgba(138,43,226,0.5);
+          }
+          50% {
+            transform: scale(1.05);
+            text-shadow: 
+              0 0 25px rgba(138,43,226,0.8),
+              0 0 40px rgba(168, 85, 247, 0.6);
+          }
+        }
+
+        .landing-page .hero-stat-item:nth-child(1) .hero-stat-number {
+          animation-delay: 0s;
+        }
+
+        .landing-page .hero-stat-item:nth-child(2) .hero-stat-number {
+          animation-delay: 0.3s;
+        }
+
+        .landing-page .hero-stat-item:nth-child(3) .hero-stat-number {
+          animation-delay: 0.6s;
         }
 
         .landing-page .hero-stat-label {
