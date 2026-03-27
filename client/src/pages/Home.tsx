@@ -1289,6 +1289,54 @@ export default function Home() {
           text-shadow: 0 0 15px rgba(255, 138, 0, 0.4);
         }
 
+        /* ====== PULSE PRO (ENERGY) ANIMATIONS ====== */
+        .pcard-featured .pcard-emoji {
+          animation: energyPulse 1.5s ease-in-out infinite;
+          filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.8));
+        }
+
+        @keyframes energyPulse {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+            filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.8));
+          }
+          25% {
+            transform: scale(1.15) rotate(-10deg);
+            filter: drop-shadow(0 0 15px rgba(255, 200, 0, 1)) drop-shadow(0 0 25px rgba(255, 150, 0, 0.6));
+          }
+          50% {
+            transform: scale(1.1) rotate(10deg);
+            filter: drop-shadow(0 0 20px rgba(255, 200, 0, 1)) drop-shadow(0 0 35px rgba(255, 100, 0, 0.8));
+          }
+          75% {
+            transform: scale(1.15) rotate(-5deg);
+            filter: drop-shadow(0 0 15px rgba(255, 200, 0, 1)) drop-shadow(0 0 25px rgba(255, 150, 0, 0.6));
+          }
+        }
+
+        .pcard-featured:hover .pcard-emoji {
+          animation: energyExplosion 0.6s ease-out, energyPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes energyExplosion {
+          0% {
+            transform: scale(1);
+          }
+          30% {
+            transform: scale(1.4) rotate(15deg);
+            filter: 
+              drop-shadow(0 0 30px rgba(255, 200, 0, 1)) 
+              drop-shadow(0 0 50px rgba(255, 150, 0, 1))
+              drop-shadow(0 0 70px rgba(255, 100, 0, 0.8));
+          }
+          60% {
+            transform: scale(0.9) rotate(-10deg);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
         /* Fire Particles */
         .fire-particles {
           position: absolute;
