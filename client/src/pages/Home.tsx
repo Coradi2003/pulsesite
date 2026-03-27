@@ -706,7 +706,7 @@ export default function Home() {
         .plans-header {
           text-align: center;
           max-width: 1000px; /* Aumentado para melhor respiro no desktop */
-          margin: 0 auto 100px; /* Aumentado de 50px para 100px */
+          margin: 0 auto 140px; /* Aumentado de 100px para 140px */
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -735,7 +735,7 @@ export default function Home() {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 40px;
-          padding: 60px 0 20px; /* Aumentado padding-top de 40px para 60px */
+          padding: 100px 0 20px; /* Aumentado padding-top de 60px para 100px */
           align-items: start;
         }
 
@@ -765,7 +765,7 @@ export default function Home() {
         .gcard-pro {
           animation-delay: -2s;
           transform-origin: center;
-          transform: translateY(-20px) scale(1.04);
+          transform: translateY(-10px) scale(1.04); /* Reduzido de -20px para -10px */
           z-index: 2;
           box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(147,51,234,0.15);
         }
