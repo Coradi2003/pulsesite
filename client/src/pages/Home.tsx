@@ -295,6 +295,16 @@ export default function Home() {
 
           <div className="solucao-cards">
             <div className="solucao-card reveal delay-1">
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <div className="card-hologram"></div>
+              <div className="energy-wave"></div>
+              <div className="energy-wave"></div>
+              <div className="energy-wave"></div>
               <div className="card-icon">
                 <MonitorSmartphone className="w-7 h-7" />
               </div>
@@ -312,6 +322,16 @@ export default function Home() {
             </div>
 
             <div className="solucao-card reveal delay-2">
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <div className="card-hologram"></div>
+              <div className="energy-wave"></div>
+              <div className="energy-wave"></div>
+              <div className="energy-wave"></div>
               <div className="card-icon">
                 <Smartphone className="w-7 h-7" />
               </div>
@@ -329,6 +349,16 @@ export default function Home() {
             </div>
 
             <div className="solucao-card reveal delay-3">
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <span className="card-particle"></span>
+              <div className="card-hologram"></div>
+              <div className="energy-wave"></div>
+              <div className="energy-wave"></div>
+              <div className="energy-wave"></div>
               <div className="card-icon">
                 <Target className="w-7 h-7" />
               </div>
@@ -1955,32 +1985,233 @@ export default function Home() {
           border: 1px solid var(--border);
           border-radius: 20px;
           padding: 36px 28px;
-          transition: var(--transition);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           overflow: hidden;
           backdrop-filter: blur(16px);
         }
 
+        /* Animated Gradient Border */
+        .landing-page .solucao-card {
+          background: 
+            linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+            linear-gradient(
+              var(--angle, 0deg),
+              rgba(124, 58, 237, 0.4),
+              rgba(168, 85, 247, 0.6),
+              rgba(217, 70, 239, 0.4),
+              rgba(124, 58, 237, 0.4)
+            ) border-box;
+          animation: borderRotate 4s linear infinite;
+        }
+
+        @keyframes borderRotate {
+          0% { --angle: 0deg; }
+          100% { --angle: 360deg; }
+        }
+
+        @property --angle {
+          syntax: '<angle>';
+          initial-value: 0deg;
+          inherits: false;
+        }
+
+        /* Top Glow Line */
         .landing-page .solucao-card::before {
           content: '';
           position: absolute;
           top: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, var(--purple-bright), transparent);
+          left: -100%;
+          width: 100%;
+          height: 3px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(168, 85, 247, 0.8),
+            rgba(217, 70, 239, 1),
+            rgba(168, 85, 247, 0.8),
+            transparent
+          );
           opacity: 0;
-          transition: var(--transition);
+          transition: all 0.6s ease;
+          filter: blur(2px);
+          box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+        }
+
+        /* Plasma Background Effect */
+        .landing-page .solucao-card::after {
+          content: '';
+          position: absolute;
+          inset: -100%;
+          background: radial-gradient(
+            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(168, 85, 247, 0.15) 0%,
+            rgba(124, 58, 237, 0.08) 25%,
+            transparent 50%
+          );
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .landing-page .solucao-card:hover::after {
+          opacity: 1;
         }
 
         .landing-page .solucao-card:hover {
-          border-color: rgba(138, 43, 226, 0.45);
-          box-shadow: 0 8px 40px rgba(138,43,226,0.15), 0 0 0 1px rgba(138,43,226,0.1);
-          transform: translateY(-6px);
+          border-color: rgba(168, 85, 247, 0.8);
+          box-shadow: 
+            0 0 60px rgba(138, 43, 226, 0.4),
+            0 0 100px rgba(168, 85, 247, 0.2),
+            0 20px 60px rgba(138, 43, 226, 0.3),
+            inset 0 0 80px rgba(138, 43, 226, 0.05);
+          transform: translateY(-12px) scale(1.02);
         }
 
         .landing-page .solucao-card:hover::before {
           opacity: 1;
+          left: 100%;
+          transition: left 0.8s ease;
+        }
+
+        /* Holographic Scan Lines */
+        .landing-page .card-hologram {
+          position: absolute;
+          inset: 0;
+          background: repeating-linear-gradient(
+            0deg,
+            rgba(168, 85, 247, 0.03) 0px,
+            rgba(168, 85, 247, 0.03) 1px,
+            transparent 1px,
+            transparent 2px
+          );
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+          z-index: 1;
+          animation: hologramScan 2s linear infinite;
+        }
+
+        .landing-page .solucao-card:hover .card-hologram {
+          opacity: 1;
+        }
+
+        @keyframes hologramScan {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(20px);
+          }
+        }
+
+        /* Explosive Particles */
+        .landing-page .card-particle {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #D946EF, #A855F7);
+          box-shadow: 
+            0 0 15px #D946EF,
+            0 0 30px #A855F7;
+          opacity: 0;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        .landing-page .solucao-card:hover .card-particle {
+          animation: particleExplode 1.5s ease-out infinite;
+        }
+
+        .landing-page .card-particle:nth-child(1) {
+          top: 50%;
+          left: 50%;
+          animation-delay: 0s;
+        }
+
+        .landing-page .card-particle:nth-child(2) {
+          top: 50%;
+          left: 50%;
+          animation-delay: 0.25s;
+        }
+
+        .landing-page .card-particle:nth-child(3) {
+          top: 50%;
+          left: 50%;
+          animation-delay: 0.5s;
+        }
+
+        .landing-page .card-particle:nth-child(4) {
+          top: 50%;
+          left: 50%;
+          animation-delay: 0.75s;
+        }
+
+        .landing-page .card-particle:nth-child(5) {
+          top: 50%;
+          left: 50%;
+          animation-delay: 1s;
+        }
+
+        .landing-page .card-particle:nth-child(6) {
+          top: 50%;
+          left: 50%;
+          animation-delay: 1.25s;
+        }
+
+        @keyframes particleExplode {
+          0% {
+            transform: translate(0, 0) scale(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            transform: translate(
+              calc(var(--tx, 100px) * cos(var(--angle, 0deg))),
+              calc(var(--ty, 100px) * sin(var(--angle, 0deg)))
+            ) scale(0);
+            opacity: 0;
+          }
+        }
+
+        .landing-page .card-particle:nth-child(1) {
+          --angle: 0deg;
+          --tx: 120px;
+          --ty: 120px;
+        }
+
+        .landing-page .card-particle:nth-child(2) {
+          --angle: 60deg;
+          --tx: 100px;
+          --ty: 100px;
+        }
+
+        .landing-page .card-particle:nth-child(3) {
+          --angle: 120deg;
+          --tx: 110px;
+          --ty: 110px;
+        }
+
+        .landing-page .card-particle:nth-child(4) {
+          --angle: 180deg;
+          --tx: 130px;
+          --ty: 130px;
+        }
+
+        .landing-page .card-particle:nth-child(5) {
+          --angle: 240deg;
+          --tx: 90px;
+          --ty: 90px;
+        }
+
+        .landing-page .card-particle:nth-child(6) {
+          --angle: 300deg;
+          --tx: 115px;
+          --ty: 115px;
         }
 
         .landing-page .card-icon {
@@ -2016,6 +2247,95 @@ export default function Home() {
           opacity: 0.5;
           z-index: -1;
           animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+
+        /* Icon Rotation on Hover */
+        .landing-page .solucao-card:hover .card-icon {
+          animation: iconSpin 0.6s ease-out;
+          box-shadow: 
+            0 0 40px rgba(138, 43, 226, 0.6),
+            0 0 80px rgba(168, 85, 247, 0.4);
+        }
+
+        @keyframes iconSpin {
+          0% {
+            transform: rotate(0deg) scale(1);
+          }
+          50% {
+            transform: rotate(180deg) scale(1.2);
+          }
+          100% {
+            transform: rotate(360deg) scale(1);
+          }
+        }
+
+        /* Title Glow on Hover */
+        .landing-page .solucao-card:hover .card-title {
+          color: #fff;
+          text-shadow: 
+            0 0 20px rgba(168, 85, 247, 0.8),
+            0 0 40px rgba(138, 43, 226, 0.5);
+          animation: titlePulse 0.5s ease-out;
+        }
+
+        @keyframes titlePulse {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+
+        /* Energy Waves Expanding from Center */
+        .landing-page .energy-wave {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          border: 2px solid rgba(168, 85, 247, 0.6);
+          opacity: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .landing-page .solucao-card:hover .energy-wave {
+          animation: waveExpand 1.5s ease-out infinite;
+        }
+
+        .landing-page .energy-wave:nth-child(8) {
+          animation-delay: 0s;
+        }
+
+        .landing-page .energy-wave:nth-child(9) {
+          animation-delay: 0.5s;
+        }
+
+        .landing-page .energy-wave:nth-child(10) {
+          animation-delay: 1s;
+        }
+
+        @keyframes waveExpand {
+          0% {
+            width: 0;
+            height: 0;
+            margin-left: 0;
+            margin-top: 0;
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.8;
+          }
+          100% {
+            width: 400px;
+            height: 400px;
+            margin-left: -200px;
+            margin-top: -200px;
+            opacity: 0;
+            border-width: 1px;
+          }
         }
 
         @keyframes pulseGlow {
