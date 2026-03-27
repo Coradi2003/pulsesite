@@ -100,15 +100,40 @@ export default function Home() {
       </nav>
 
       <section className="hero" id="hero">
+        {/* Matrix Rain Effect */}
+        <div className="matrix-rain">
+          <span style={{'--i': 1} as any}></span>
+          <span style={{'--i': 2} as any}></span>
+          <span style={{'--i': 3} as any}></span>
+          <span style={{'--i': 4} as any}></span>
+          <span style={{'--i': 5} as any}></span>
+          <span style={{'--i': 6} as any}></span>
+          <span style={{'--i': 7} as any}></span>
+          <span style={{'--i': 8} as any}></span>
+          <span style={{'--i': 9} as any}></span>
+          <span style={{'--i': 10} as any}></span>
+        </div>
+        
+        {/* Cyberpunk Grid */}
+        <div className="cyber-grid"></div>
+        
+        {/* Energy Waves */}
+        <div className="energy-wave wave-1"></div>
+        <div className="energy-wave wave-2"></div>
+        <div className="energy-wave wave-3"></div>
+        
         <div className="container">
           <div className="hero-inner">
             <div className="hero-content">
-              {/* Floating particles */}
-              <span className="hero-particle" style={{'--delay': '0s', '--x': '20px', '--y': '-30px'} as any}></span>
-              <span className="hero-particle" style={{'--delay': '0.5s', '--x': '-25px', '--y': '-35px'} as any}></span>
-              <span className="hero-particle" style={{'--delay': '1s', '--x': '30px', '--y': '-40px'} as any}></span>
-              <span className="hero-particle" style={{'--delay': '1.5s', '--x': '-20px', '--y': '-30px'} as any}></span>
-              <span className="hero-particle" style={{'--delay': '2s', '--x': '25px', '--y': '-35px'} as any}></span>
+              {/* Explosion Particles */}
+              <span className="explosion-particle" style={{'--angle': '0deg', '--distance': '150px', '--delay': '0s'} as any}></span>
+              <span className="explosion-particle" style={{'--angle': '45deg', '--distance': '180px', '--delay': '0.1s'} as any}></span>
+              <span className="explosion-particle" style={{'--angle': '90deg', '--distance': '160px', '--delay': '0.2s'} as any}></span>
+              <span className="explosion-particle" style={{'--angle': '135deg', '--distance': '170px', '--delay': '0.3s'} as any}></span>
+              <span className="explosion-particle" style={{'--angle': '180deg', '--distance': '190px', '--delay': '0.4s'} as any}></span>
+              <span className="explosion-particle" style={{'--angle': '225deg', '--distance': '165px', '--delay': '0.5s'} as any}></span>
+              <span className="explosion-particle" style={{'--angle': '270deg', '--distance': '175px', '--delay': '0.6s'} as any}></span>
+              <span className="explosion-particle" style={{'--angle': '315deg', '--distance': '185px', '--delay': '0.7s'} as any}></span>
               
               <div className="hero-badge">
                 <span className="dot"></span>
@@ -1912,6 +1937,143 @@ export default function Home() {
           overflow: hidden;
         }
 
+        /* Matrix Rain Effect */
+        .matrix-rain {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          z-index: 0;
+          opacity: 0.15;
+        }
+
+        .matrix-rain span {
+          position: absolute;
+          top: -100%;
+          width: 2px;
+          height: 100px;
+          background: linear-gradient(transparent, #A855F7, transparent);
+          animation: matrixFall 3s linear infinite;
+          animation-delay: calc(var(--i) * 0.3s);
+          left: calc(var(--i) * 10%);
+          filter: blur(1px);
+        }
+
+        @keyframes matrixFall {
+          0% {
+            top: -100%;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            top: 100%;
+            opacity: 0;
+          }
+        }
+
+        /* Cyberpunk Grid */
+        .cyber-grid {
+          position: absolute;
+          inset: 0;
+          background-image: 
+            linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+          background-size: 50px 50px;
+          animation: gridMove 20s linear infinite;
+          z-index: 0;
+        }
+
+        @keyframes gridMove {
+          0% {
+            transform: perspective(500px) rotateX(60deg) translateY(0);
+          }
+          100% {
+            transform: perspective(500px) rotateX(60deg) translateY(50px);
+          }
+        }
+
+        /* Energy Waves */
+        .energy-wave {
+          position: absolute;
+          width: 200%;
+          height: 200%;
+          border-radius: 40%;
+          z-index: 0;
+        }
+
+        .wave-1 {
+          top: -50%;
+          left: -50%;
+          background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+          animation: waveRotate 15s linear infinite;
+        }
+
+        .wave-2 {
+          top: -50%;
+          left: -50%;
+          background: radial-gradient(circle, rgba(217, 70, 239, 0.1) 0%, transparent 70%);
+          animation: waveRotate 20s linear infinite reverse;
+        }
+
+        .wave-3 {
+          top: -50%;
+          left: -50%;
+          background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
+          animation: waveRotate 25s linear infinite;
+        }
+
+        @keyframes waveRotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        /* Explosion Particles */
+        .explosion-particle {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 8px;
+          height: 8px;
+          background: radial-gradient(circle, #D946EF, #A855F7);
+          border-radius: 50%;
+          box-shadow: 
+            0 0 20px #D946EF,
+            0 0 40px #A855F7,
+            0 0 60px rgba(217, 70, 239, 0.5);
+          animation: particleExplode 2s ease-out infinite;
+          animation-delay: var(--delay);
+          opacity: 0;
+          z-index: 1;
+        }
+
+        @keyframes particleExplode {
+          0% {
+            opacity: 0;
+            transform: 
+              rotate(var(--angle)) 
+              translateX(0) 
+              scale(0);
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: 
+              rotate(var(--angle)) 
+              translateX(var(--distance)) 
+              scale(0);
+          }
+        }
+
         .landing-page .hero::after {
           content: '';
           position: absolute;
@@ -1923,6 +2085,18 @@ export default function Home() {
           background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.16) 0%, transparent 70%);
           pointer-events: none;
           z-index: 0;
+          animation: heroGlowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes heroGlowPulse {
+          0%, 100% {
+            opacity: 0.5;
+            transform: translateX(-50%) scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.1);
+          }
         }
 
         .landing-page .hero-inner {
@@ -1978,35 +2152,57 @@ export default function Home() {
           line-height: 1.1;
           color: var(--white);
           margin-bottom: 24px;
-          animation: titleSlideIn 0.8s ease-out;
+          animation: titleGlitch 5s ease-in-out infinite;
+          position: relative;
         }
 
-        @keyframes titleSlideIn {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
+        @keyframes titleGlitch {
+          0%, 90%, 100% {
+            transform: translate(0, 0);
+            text-shadow: none;
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+          91% {
+            transform: translate(-2px, 2px);
+            text-shadow: 
+              2px 0 #A855F7,
+              -2px 0 #00FFFF;
+          }
+          92% {
+            transform: translate(2px, -2px);
+            text-shadow: 
+              -2px 0 #A855F7,
+              2px 0 #00FFFF;
+          }
+          93% {
+            transform: translate(0, 0);
           }
         }
 
         .landing-page .hero-title .highlight {
           color: var(--purple-bright);
-          text-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
-          animation: highlightPulse 3s ease-in-out infinite;
+          text-shadow: 
+            0 0 30px rgba(138, 43, 226, 0.8),
+            0 0 60px rgba(168, 85, 247, 0.6),
+            0 0 90px rgba(217, 70, 239, 0.4);
+          animation: highlightExplosion 3s ease-in-out infinite;
           display: inline-block;
         }
 
-        @keyframes highlightPulse {
+        @keyframes highlightExplosion {
           0%, 100% {
-            text-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
+            transform: scale(1);
+            text-shadow: 
+              0 0 30px rgba(138, 43, 226, 0.8),
+              0 0 60px rgba(168, 85, 247, 0.6),
+              0 0 90px rgba(217, 70, 239, 0.4);
           }
           50% {
+            transform: scale(1.05);
             text-shadow: 
-              0 0 40px rgba(138, 43, 226, 1),
-              0 0 60px rgba(168, 85, 247, 0.8);
+              0 0 50px rgba(138, 43, 226, 1),
+              0 0 100px rgba(168, 85, 247, 0.8),
+              0 0 150px rgba(217, 70, 239, 0.6),
+              0 0 200px rgba(138, 43, 226, 0.4);
           }
         }
 
@@ -2016,129 +2212,150 @@ export default function Home() {
           line-height: 1.75;
           margin-bottom: 40px;
           max-width: 520px;
-          animation: subtitleSlideIn 0.8s ease-out 0.2s backwards;
-        }
-
-        @keyframes subtitleSlideIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          position: relative;
+          z-index: 1;
         }
 
         .landing-page .hero-buttons {
           display: flex;
           flex-wrap: wrap;
           gap: 16px;
-          animation: buttonsSlideIn 0.8s ease-out 0.4s backwards;
-        }
-
-        @keyframes buttonsSlideIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        /* Hero Floating Particles */
-        .landing-page .hero-particle {
-          position: absolute;
-          width: 4px;
-          height: 4px;
-          background: radial-gradient(circle, #A855F7, #7C3AED);
-          border-radius: 50%;
-          box-shadow: 
-            0 0 10px rgba(168, 85, 247, 0.8),
-            0 0 20px rgba(124, 58, 237, 0.6);
-          animation: heroParticleFloat 3s ease-in-out infinite;
-          animation-delay: var(--delay);
-          opacity: 0;
-          pointer-events: none;
+          position: relative;
           z-index: 1;
         }
 
-        @keyframes heroParticleFloat {
+        /* ===== BOTÃO ROXO — EFEITO PLASMA ===== */
+        .landing-page .hero-buttons .btn-primary {
+          position: relative;
+          overflow: hidden;
+          animation: plasmaPulse 2.5s ease-in-out infinite;
+          z-index: 1;
+        }
+
+        @keyframes plasmaPulse {
           0%, 100% {
-            opacity: 0;
-            transform: translate(0, 0) scale(0.5);
-          }
-          10% {
-            opacity: 1;
+            box-shadow:
+              0 0 20px rgba(138,43,226,0.5),
+              0 0 40px rgba(168,85,247,0.3),
+              0 0 60px rgba(217,70,239,0.2);
           }
           50% {
-            opacity: 1;
-            transform: translate(var(--x), var(--y)) scale(1.2);
+            box-shadow:
+              0 0 30px rgba(138,43,226,0.8),
+              0 0 60px rgba(168,85,247,0.6),
+              0 0 90px rgba(217,70,239,0.4),
+              0 0 120px rgba(138,43,226,0.2);
           }
-          90% {
-            opacity: 0.5;
+        }
+
+        /* Shimmer sweep */
+        .landing-page .hero-buttons .btn-primary::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.25),
+            transparent
+          );
+          animation: shimmerSweep 2.5s ease-in-out infinite;
+          z-index: 2;
+        }
+
+        @keyframes shimmerSweep {
+          0% { left: -100%; }
+          50%, 100% { left: 150%; }
+        }
+
+        /* Ripple on hover */
+        .landing-page .hero-buttons .btn-primary::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.2), transparent 60%);
+          opacity: 0;
+          transition: opacity 0.3s;
+          z-index: 1;
+        }
+
+        .landing-page .hero-buttons .btn-primary:hover::after {
+          opacity: 1;
+        }
+
+        .landing-page .hero-buttons .btn-primary:hover {
+          transform: translateY(-3px) scale(1.03);
+          animation: plasmaBurst 0.4s ease-out;
+        }
+
+        @keyframes plasmaBurst {
+          0% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-5px) scale(1.05); }
+          100% { transform: translateY(-3px) scale(1.03); }
+        }
+
+        /* ===== BOTÃO WHATSAPP — EFEITO PULSO VIVO ===== */
+        .landing-page .hero-buttons .btn-whatsapp {
+          position: relative;
+          overflow: hidden;
+          animation: waPulse 2s ease-in-out infinite;
+          z-index: 1;
+        }
+
+        @keyframes waPulse {
+          0%, 100% {
+            box-shadow:
+              0 0 20px rgba(37,211,102,0.4),
+              0 0 40px rgba(37,211,102,0.2);
+          }
+          50% {
+            box-shadow:
+              0 0 30px rgba(37,211,102,0.7),
+              0 0 60px rgba(37,211,102,0.4),
+              0 0 90px rgba(37,211,102,0.2);
+          }
+        }
+
+        /* Ping rings */
+        .landing-page .hero-buttons .btn-whatsapp::before {
+          content: '';
+          position: absolute;
+          inset: -4px;
+          border-radius: 14px;
+          border: 2px solid rgba(37,211,102,0.5);
+          animation: waPing 2s ease-out infinite;
+          z-index: -1;
+        }
+
+        .landing-page .hero-buttons .btn-whatsapp::after {
+          content: '';
+          position: absolute;
+          inset: -10px;
+          border-radius: 16px;
+          border: 1px solid rgba(37,211,102,0.3);
+          animation: waPing 2s ease-out infinite 0.4s;
+          z-index: -1;
+        }
+
+        @keyframes waPing {
+          0% {
+            opacity: 1;
+            transform: scale(1);
           }
           100% {
             opacity: 0;
-            transform: translate(calc(var(--x) * 1.5), calc(var(--y) * 1.5)) scale(0.3);
+            transform: scale(1.15);
           }
         }
 
-        /* Enhanced Button Animations */
-        .landing-page .hero-buttons .btn {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .landing-page .hero-buttons .btn::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.3);
-          transform: translate(-50%, -50%);
-          transition: width 0.6s, height 0.6s;
-        }
-
-        .landing-page .hero-buttons .btn:hover::after {
-          width: 300px;
-          height: 300px;
-        }
-
-        .landing-page .hero-buttons .btn-primary {
-          animation: buttonGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes buttonGlow {
-          0%, 100% {
-            box-shadow: 0 0 24px var(--purple-glow), 0 4px 20px rgba(138,43,226,0.35);
-          }
-          50% {
-            box-shadow: 
-              0 0 35px var(--purple-glow), 
-              0 4px 25px rgba(138,43,226,0.5),
-              0 0 50px rgba(168, 85, 247, 0.3);
-          }
-        }
-
-        .landing-page .hero-buttons .btn-whatsapp {
-          animation: whatsappPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes whatsappPulse {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);
-          }
-          50% {
-            box-shadow: 
-              0 0 30px rgba(37, 211, 102, 0.6),
-              0 0 50px rgba(37, 211, 102, 0.3);
-          }
+        .landing-page .hero-buttons .btn-whatsapp:hover {
+          transform: translateY(-3px) scale(1.03);
+          box-shadow:
+            0 0 40px rgba(37,211,102,0.8),
+            0 0 80px rgba(37,211,102,0.5);
         }
 
         .landing-page .hero-visual {
