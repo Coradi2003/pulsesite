@@ -7,6 +7,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Cell,
 } from "recharts";
 import { type Finance } from "@/lib/mockData";
 import { useMemo } from "react";
@@ -24,34 +25,51 @@ function formatBRL(value: number) {
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
-  const receita = payload.find((p: any) => p.dataKey === "receita")?.value ?? 0;
-  const gastos  = payload.find((p: any) => p.dataKey === "gastos")?.value ?? 0;
-  const total   = receita + gastos;
-  const receitaPct = total > 0 ? ((receita / total) * 100).toFixed(1) : "0.0";
-  const gastosPct  = total > 0 ? ((gastos  / total) * 100).toFixed(1) : "0.0";
+  const receita  = payload.find((p: any) => p.dataKey === "receita")?.value  ?? 0;
+  const gastos   = payload.find((p: any) => p.dataKey === "gastos")?.value   ?? 0;
+  const pendente = payload.find((p: any) => p.dataKey === "pendente")?.value ?? 0;
+  const total    = receita + gastos + pendente;
+  const pct      = (v: number) => total > 0 ? ((v / total) * 100).toFixed(1) : "0.0";
 
   return (
-    <div className="bg-[#0d0a1a] border border-purple-900/40 rounded-xl p-3 text-xs shadow-xl min-w-[160px]">
+    <div className="bg-[#0d0a1a] border border-purple-900/40 rounded-xl p-3 text-xs shadow-xl min-w-[170px]">
       <p className="text-gray-400 font-semibold mb-2 uppercase tracking-wider">{label}</p>
+
       <div className="flex items-center justify-between gap-4 mb-1">
         <span className="flex items-center gap-1.5 text-emerald-400">
           <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
           Receita
         </span>
-        <span className="text-white font-bold">{formatBRL(receita)} <span className="text-emerald-400/70">({receitaPct}%)</span></span>
+        <span className="text-white font-bold">
+          {formatBRL(receita)} <span className="text-emerald-400/70">({pct(receita)}%)</span>
+        </span>
       </div>
-      <div className="flex items-center justify-between gap-4">
+
+      <div className="flex items-center justify-between gap-4 mb-1">
         <span className="flex items-center gap-1.5 text-red-400">
           <span className="w-2 h-2 rounded-full bg-red-400 inline-block" />
           Gastos
         </span>
-        <span className="text-white font-bold">{formatBRL(gastos)} <span className="text-red-400/70">({gastosPct}%)</span></span>
+        <span className="text-white font-bold">
+          {formatBRL(gastos)} <span className="text-red-400/70">({pct(gastos)}%)</span>
+        </span>
       </div>
+
+      <div className="flex items-center justify-between gap-4">
+        <span className="flex items-center gap-1.5 text-amber-400">
+          <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
+          Pendente
+        </span>
+        <span className="text-white font-bold">
+          {formatBRL(pendente)} <span className="text-amber-400/70">({pct(pendente)}%)</span>
+        </span>
+      </div>
+
       {total > 0 && (
         <div className="mt-2 pt-2 border-t border-purple-900/30 flex justify-between text-gray-400">
           <span>Saldo</span>
-          <span className={receita >= gastos ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
-            {formatBRL(receita - gastos)}
+          <span className={receita >= gastos + pendente ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
+            {formatBRL(receita - gastos - pendente)}
           </span>
         </div>
       )}
@@ -62,7 +80,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export function RevenueChart({ data, loading }: Props) {
   const chartData = useMemo(() => {
     const now = new Date();
-    // Build last 6 months
     const months = Array.from({ length: 6 }, (_, i) => {
       const d = new Date(now.getFullYear(), now.getMonth() - (5 - i), 1);
       return { year: d.getFullYear(), month: d.getMonth(), label: MONTHS[d.getMonth()] };
@@ -74,24 +91,31 @@ export function RevenueChart({ data, loading }: Props) {
         return d.getFullYear() === year && d.getMonth() === month;
       });
 
+      // Receita: paid com amount positivo
       const receita = entries
-        .filter((f) => f.status === "paid")
-        .reduce((s, f) => s + Number(f.amount || 0), 0);
+        .filter((f) => f.status === "paid" && Number(f.amount) > 0)
+        .reduce((s, f) => s + Number(f.amount), 0);
 
+      // Gastos: saídas (amount negativo) + vencidos
       const gastos = entries
-        .filter((f) => f.status === "overdue" || f.status === "pending")
-        .reduce((s, f) => s + Number(f.amount || 0), 0);
+        .filter((f) => Number(f.amount) < 0 || f.status === "overdue")
+        .reduce((s, f) => s + Math.abs(Number(f.amount)), 0);
 
-      return { label, receita, gastos };
+      // Pendente: pending com amount positivo (bolinha amarela separada)
+      const pendente = entries
+        .filter((f) => f.status === "pending" && Number(f.amount) > 0)
+        .reduce((s, f) => s + Number(f.amount), 0);
+
+      return { label, receita, gastos, pendente };
     });
   }, [data]);
 
-  const totalReceita = chartData.reduce((s, d) => s + d.receita, 0);
-  const totalGastos  = chartData.reduce((s, d) => s + d.gastos, 0);
-  const saldo        = totalReceita - totalGastos;
-  const receitaPct   = totalReceita + totalGastos > 0
-    ? ((totalReceita / (totalReceita + totalGastos)) * 100).toFixed(1)
-    : "0.0";
+  const totalReceita  = chartData.reduce((s, d) => s + d.receita,  0);
+  const totalGastos   = chartData.reduce((s, d) => s + d.gastos,   0);
+  const totalPendente = chartData.reduce((s, d) => s + d.pendente, 0);
+  const saldo         = totalReceita - totalGastos - totalPendente;
+  const grandTotal    = totalReceita + totalGastos + totalPendente;
+  const receitaPct    = grandTotal > 0 ? ((totalReceita / grandTotal) * 100).toFixed(1) : "0.0";
 
   return (
     <div className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl shadow-2xl shadow-purple-900/10 p-5">
@@ -122,7 +146,7 @@ export function RevenueChart({ data, loading }: Props) {
         </div>
       ) : (
         <ResponsiveContainer width="100%" height={220}>
-          <BarChart data={chartData} barCategoryGap="30%" barGap={4}>
+          <BarChart data={chartData} barCategoryGap="28%" barGap={3}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(139,92,246,0.08)" vertical={false} />
             <XAxis
               dataKey="label"
@@ -141,14 +165,27 @@ export function RevenueChart({ data, loading }: Props) {
             <Legend
               iconType="circle"
               iconSize={8}
-              formatter={(value) => (
-                <span style={{ color: "#9ca3af", fontSize: 11 }}>
-                  {value === "receita" ? "Receita (pago)" : "Gastos (pendente/vencido)"}
-                </span>
-              )}
+              formatter={(value) => {
+                const map: Record<string, string> = {
+                  receita:  "Receita (pago)",
+                  gastos:   "Gastos (saídas/vencido)",
+                  pendente: "Pendente",
+                };
+                const colors: Record<string, string> = {
+                  receita:  "#10b981",
+                  gastos:   "#ef4444",
+                  pendente: "#f59e0b",
+                };
+                return (
+                  <span style={{ color: colors[value] ?? "#9ca3af", fontSize: 11 }}>
+                    {map[value] ?? value}
+                  </span>
+                );
+              }}
             />
-            <Bar dataKey="receita" fill="#10b981" radius={[4, 4, 0, 0]} maxBarSize={32} />
-            <Bar dataKey="gastos"  fill="#ef4444" radius={[4, 4, 0, 0]} maxBarSize={32} />
+            <Bar dataKey="receita"  fill="#10b981" radius={[4, 4, 0, 0]} maxBarSize={28} />
+            <Bar dataKey="gastos"   fill="#ef4444" radius={[4, 4, 0, 0]} maxBarSize={28} />
+            <Bar dataKey="pendente" fill="#f59e0b" radius={[4, 4, 0, 0]} maxBarSize={28} />
           </BarChart>
         </ResponsiveContainer>
       )}
