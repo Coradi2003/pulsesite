@@ -641,7 +641,7 @@ export default function Home() {
               <div className="pcard-footer">
                 <p className="pcard-note">Nível máximo de personalização</p>
                 <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="btn-premium" target="_blank" rel="noopener noreferrer">
-                  Quero Pulse Elite!
+                  Quero o Pulse Elite!
                 </a>
               </div>
             </div>
