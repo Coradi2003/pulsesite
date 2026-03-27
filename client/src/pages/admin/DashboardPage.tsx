@@ -14,6 +14,7 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { cn } from "@/lib/utils";
 import { StatCard } from "@/components/admin/StatCard";
 import { StatusBadge } from "@/components/admin/StatusBadge";
+import { RevenueChart } from "@/components/admin/RevenueChart";
 import { useClients } from "@/hooks/admin/useClients";
 import { useProjects } from "@/hooks/admin/useProjects";
 import { useFinance } from "@/hooks/admin/useFinance";
@@ -173,6 +174,11 @@ export default function DashboardPage() {
             color="teal"
           />
           <StatCard label="Pagamentos Pendentes" value={fl ? "…" : pendingPayments} icon={Clock} color="amber" />
+        </div>
+
+        {/* Revenue vs Expenses Chart */}
+        <div className="mb-8">
+          <RevenueChart data={finance} loading={fl} />
         </div>
 
         {/* Domains monitoring table */}
