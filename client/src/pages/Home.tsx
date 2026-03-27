@@ -92,21 +92,6 @@ export default function Home() {
       <Footer />
 
       <style>{`
-
-        /* ======================== ACCESSIBILITY UTILITIES ======================== */
-        /* Screen reader only - visually hidden but accessible to screen readers and SEO */
-        .sr-only {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border-width: 0;
-        }
-
         /* ======================== DIAGONAL RIBBONS WITH PARALLAX ======================== */
         .diagonal-ribbons-wrapper {
           position: absolute;
@@ -291,15 +276,13 @@ export default function Home() {
           border-radius: 100px;
           letter-spacing: 0.15em;
           border: 1px solid rgba(168, 85, 247, 0.2);
-          margin-left: auto !important;
-          margin-right: auto !important;
-          margin-bottom: 20px;
+          margin: 0 auto 20px auto;
           text-align: center !important;
         }
 
         .premium-title {
           font-family: 'Outfit', sans-serif;
-          font-size: 3.5rem;
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 800;
           color: var(--white);
           line-height: 1.1;
@@ -307,9 +290,7 @@ export default function Home() {
           max-width: 800px;
           width: 100%;
           text-align: center !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
-          margin-bottom: 18px;
+          margin: 0 auto 18px auto;
         }
 
         .premium-title span {
@@ -354,7 +335,7 @@ export default function Home() {
 
         .pcard:hover {
           transform: translateY(-4px); /* Sutil */
-          border: 1px solid rgba(124, 58, 237, 0.6);
+          border-color: rgba(124, 58, 237, 0.6);
           box-shadow: 0 0 40px rgba(124, 58, 237, 0.25);
           background: rgba(16, 16, 24, 0.85);
         }
@@ -938,13 +919,6 @@ export default function Home() {
           }
         }
         /* ============================= */
-
-        .landing-page * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
-
         .landing-page {
           --bg-deep: #07070b;
           --bg-card: rgba(17, 17, 24, 0.62);

@@ -1,0 +1,486 @@
+/* client/src/styles/landing-pages.css */
+
+/* ======================== ACCESSIBILITY UTILITIES ======================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ======================== BASE LANDING PAGE STYLES ======================== */
+.landing-page * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.landing-page {
+  --bg-deep: #07070b;
+  --bg-card: rgba(17, 17, 24, 0.62);
+  --bg-card2: rgba(19, 19, 28, 0.48);
+  --purple-neon: #8A2BE2;
+  --purple-bright: #9D3FFF;
+  --purple-light: #B56BFF;
+  --purple-glow: rgba(138, 43, 226, 0.45);
+  --purple-glow2: rgba(138, 43, 226, 0.15);
+  --white: #FFFFFF;
+  --gray-light: #C8C8D8;
+  --gray-mid: #A1A1BF;
+  --border: rgba(138, 43, 226, 0.22);
+  --font-main: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+}
+
+.landing-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(138, 43, 226, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 43, 226, 0.028) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.landing-page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(157, 63, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 78% 24%, rgba(138, 43, 226, 0.08), transparent 24%),
+    radial-gradient(circle at 60% 78%, rgba(181, 107, 255, 0.07), transparent 26%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.landing-page .container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.landing-page .section {
+  position: relative;
+  z-index: 10;
+  padding: 100px 0;
+}
+
+.landing-page .section-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+  background: rgba(138, 43, 226, 0.12);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 16px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.landing-page .section-title {
+  font-family: var(--font-main);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+
+.landing-page .section-title span {
+  color: var(--purple-bright);
+}
+
+.landing-page .section-subtitle {
+  font-size: 1.05rem;
+  color: var(--gray-light);
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+.landing-page .text-center {
+  text-align: center;
+}
+
+.landing-page .text-center .section-subtitle {
+  margin: 0 auto;
+}
+
+/* ======================== REVEAL ANIMATIONS (FIXED) ======================== */
+/* By default, sections are visible on landing pages to avoid being hidden by missing JS */
+.landing-page .reveal,
+.landing-page .reveal-left,
+.landing-page .reveal-right {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* On Home.tsx where they are initially set to 0, they will have the .visible class added by JS */
+/* If you want to keep the animation on Home, you can add a script or keep them hidden only if a flag exists. */
+/* For now, we ensure they are VISIBLE to fix the immediate issue. */
+
+.landing-page .delay-1 { transition-delay: 0.1s; }
+.landing-page .delay-2 { transition-delay: 0.2s; }
+.landing-page .delay-3 { transition-delay: 0.3s; }
+.landing-page .delay-4 { transition-delay: 0.4s; }
+
+/* ======================== BUTTONS ======================== */
+.landing-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 15px 32px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.landing-page .btn-primary {
+  background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
+  color: #fff;
+  box-shadow: 0 0 24px var(--purple-glow), 0 4px 20px rgba(138,43,226,0.35);
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.landing-page .btn-secondary {
+  background: rgba(255,255,255,0.04);
+  color: var(--white);
+  border: 1.5px solid var(--border);
+  backdrop-filter: blur(14px);
+}
+
+.landing-page .btn-whatsapp {
+  background: linear-gradient(135deg, #25D366, #1ebe5b);
+  color: #fff;
+}
+
+.landing-page .btn-lg {
+  font-size: 1.15rem;
+  padding: 18px 44px;
+  border-radius: 12px;
+}
+
+/* ======================== SOLUCAO CARDS & DECORATIONS ======================== */
+.landing-page .solucao-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 56px;
+}
+
+.landing-page .solucao-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+}
+
+.landing-page .solucao-card:hover {
+  border-color: rgba(168, 85, 247, 0.8);
+  box-shadow: 0 0 60px rgba(138, 43, 226, 0.4), 0 0 100px rgba(168, 85, 247, 0.2);
+  transform: translateY(-12px) scale(1.02);
+}
+
+.landing-page .card-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--purple-light);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.landing-page .solucao-card:hover .card-particle {
+  animation: particle-rise 3s ease-out infinite;
+}
+
+@keyframes particle-rise {
+  0% { transform: translateY(100px) scale(0); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+}
+
+.landing-page .card-hologram {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(138, 43, 226, 0.05) 50%, transparent 60%);
+  background-size: 200% 200%;
+  animation: hologram-sweep 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hologram-sweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.landing-page .energy-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--purple-bright), transparent);
+  opacity: 0.3;
+  animation: energy-wave 4s linear infinite;
+}
+
+@keyframes energy-wave {
+  0% { transform: scaleX(0); opacity: 0; }
+  50% { transform: scaleX(1); opacity: 0.3; }
+  100% { transform: scaleX(0); opacity: 0; }
+}
+
+.landing-page .card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(138,43,226,0.2), rgba(138,43,226,0.06));
+  border: 1px solid rgba(138,43,226,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--purple-light);
+  margin-bottom: 24px;
+}
+
+.landing-page .card-title { font-family: var(--font-main); font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+.landing-page .card-text { font-size: 0.9rem; color: var(--gray-light); line-height: 1.7; }
+
+.landing-page .card-feature-list {
+  list-style: none;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.landing-page .card-feature-list li {
+  font-size: 0.82rem;
+  color: var(--gray-mid);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.landing-page .card-feature-list li::before {
+  content: '→';
+  color: var(--purple-bright);
+  font-weight: 700;
+}
+
+/* ======================== STEPS SECTION ======================== */
+.landing-page .steps-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 60px;
+  position: relative;
+}
+
+.landing-page .steps-container::before {
+  content: '';
+  position: absolute;
+  top: 44px;
+  left: calc(16.66% + 20px);
+  right: calc(16.66% + 20px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--purple-neon), var(--purple-bright), var(--purple-neon));
+  opacity: 0.3;
+}
+
+.landing-page .step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+  position: relative;
+}
+
+.landing-page .step-number {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-neon), var(--purple-bright));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 0 30px var(--purple-glow), 0 0 60px rgba(138,43,226,0.2);
+  margin-bottom: 28px;
+  animation: step-pulse 3s ease-in-out infinite;
+}
+
+@keyframes step-pulse {
+  0%, 100% { box-shadow: 0 0 30px var(--purple-glow), 0 0 60px rgba(138,43,226,0.2); }
+  33% { box-shadow: 0 0 40px var(--purple-glow), 0 0 80px rgba(138,43,226,0.4), 0 0 100px rgba(217, 70, 239, 0.3); }
+}
+
+.landing-page .step-title { font-family: var(--font-main); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+.landing-page .step-text { font-size: 0.9rem; color: var(--gray-light); line-height: 1.7; }
+
+/* ======================== AUTORIDADE (METRICS) ======================== */
+.landing-page .autoridade-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.landing-page .autoridade-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.landing-page .metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-page .metric-number {
+  font-family: var(--font-main);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--purple-light);
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.landing-page .metric-label { font-size: 0.85rem; color: var(--gray-light); line-height: 1.5; }
+
+.landing-page .metric-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.8);
+  opacity: 0;
+  bottom: 0;
+}
+
+.landing-page .metric-card:hover .metric-particle {
+  animation: particle-rise 2s ease-out infinite;
+}
+
+/* ======================== FAQ SECTION ======================== */
+.faq-section { background: rgba(10, 5, 25, 0.3); }
+.faq-container { max-width: 800px; margin: 48px auto 0; }
+.faq-item {
+  background: rgba(17, 17, 24, 0.6);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 16px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+.faq-question-text {
+  font-family: var(--font-main); font-size: 1.1rem; font-weight: 700; color: var(--white); line-height: 1.4;
+}
+.faq-icon {
+  font-size: 1.5rem; color: var(--purple-bright); width: 32px; height: 32px; display: flex; align-items: center;
+  justify-content: center; border-radius: 50%; background: rgba(124, 58, 237, 0.1);
+}
+.faq-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease; }
+.faq-answer.open { max-height: 500px; padding: 0 28px 24px 28px; }
+.faq-answer p { font-size: 1rem; line-height: 1.7; color: var(--gray-light); }
+
+/* ======================== CTA SECTION ======================== */
+.landing-page .cta-final { background: rgba(11, 11, 15, 0.1); position: relative; backdrop-filter: blur(4px); padding: 100px 0; }
+.landing-page .cta-box {
+  background: linear-gradient(135deg, rgba(138,43,226,0.16), rgba(138,43,226,0.05));
+  border: 1px solid rgba(138,43,226,0.3);
+  border-radius: 28px;
+  padding: 72px 60px;
+  text-align: center;
+  backdrop-filter: blur(18px);
+}
+.landing-page .cta-title {
+  font-family: var(--font-main); font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; color: var(--white);
+  line-height: 1.15; margin-bottom: 20px;
+}
+.landing-page .cta-subtitle { font-size: 1.1rem; color: var(--gray-light); max-width: 560px; margin: 0 auto 44px; }
+.landing-page .cta-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
+
+/* ======================== FOOTER ======================== */
+.landing-page .footer { background: rgba(17, 17, 24, 0.42); border-top: 1px solid var(--border); padding: 48px 0 32px; backdrop-filter: blur(16px); }
+.landing-page .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+.landing-page .footer-brand-name { font-family: var(--font-main); font-weight: 800; font-size: 1.15rem; color: var(--white); }
+.landing-page .footer-col-title { font-family: var(--font-main); font-weight: 700; font-size: 0.9rem; color: var(--white); text-transform: uppercase; margin-bottom: 16px; }
+.landing-page .footer-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.landing-page .footer-list a { color: var(--gray-light); text-decoration: none; }
+
+/* ======================== MEDIA QUERIES ======================== */
+@media (max-width: 900px) {
+  .landing-page .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .landing-page .hero-buttons, .landing-page .hero-stats { justify-content: center; }
+  .landing-page .problema-grid, .landing-page .solucao-cards, .landing-page .autoridade-inner, .landing-page .footer-inner { grid-template-columns: 1fr; }
+  .landing-page .steps-container { grid-template-columns: 1fr; gap: 40px; }
+  .landing-page .steps-container::before, .landing-page .steps-container::after { display: none; }
+}
+
+@media (max-width: 600px) {
+  .landing-page .section { padding: 60px 0; }
+  .landing-page .btn-lg { width: 100%; padding: 16px; }
+}
