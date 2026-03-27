@@ -706,7 +706,7 @@ export default function Home() {
         .plans-header {
           text-align: center;
           max-width: 1000px; /* Aumentado para melhor respiro no desktop */
-          margin: 0 auto 50px;
+          margin: 0 auto 100px; /* Aumentado de 50px para 100px */
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -735,7 +735,7 @@ export default function Home() {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 40px;
-          padding: 40px 0 20px;
+          padding: 60px 0 20px; /* Aumentado padding-top de 40px para 60px */
           align-items: start;
         }
 
