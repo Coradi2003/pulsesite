@@ -453,8 +453,8 @@ export default function Home() {
               
               <div className="pcard-footer">
                 <p className="pcard-note">Pagamento único sem taxas mensais</p>
-                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="btn-premium btn-premium-outline" target="_blank" rel="noopener noreferrer">
-                  Lançar Projeto
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="btn-premium" target="_blank" rel="noopener noreferrer">
+                  Quero o Pulse Start!
                 </a>
               </div>
             </div>
@@ -486,8 +486,8 @@ export default function Home() {
               
               <div className="pcard-footer">
                 <p className="pcard-note">Foco total em resultados e vendas</p>
-                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="btn-premium btn-premium-full" target="_blank" rel="noopener noreferrer">
-                  Dominar o Mercado
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="btn-premium" target="_blank" rel="noopener noreferrer">
+                  Quero o Pulse Pro!
                 </a>
               </div>
             </div>
@@ -518,8 +518,8 @@ export default function Home() {
               
               <div className="pcard-footer">
                 <p className="pcard-note">Nível máximo de personalização</p>
-                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="btn-premium btn-premium-outline" target="_blank" rel="noopener noreferrer">
-                  Falar com Consultor
+                <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="btn-premium" target="_blank" rel="noopener noreferrer">
+                  Quero Pulse Elite!
                 </a>
               </div>
             </div>
@@ -943,28 +943,49 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           width: 100%;
-          padding: 14px; /* Solicitado */
-          border-radius: 12px; /* Solicitado */
+          padding: 16px;
+          border-radius: 14px;
           font-family: 'Outfit', sans-serif;
-          font-weight: 600; /* Solicitado */
-          font-size: 15px; /* Solicitado */
+          font-weight: 700;
+          font-size: 1rem;
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           letter-spacing: 0.02em;
-          background: linear-gradient(90deg, #7C3AED, #A855F7); /* Solicitado */
+          background: linear-gradient(135deg, #7C3AED, #A855F7);
           color: #fff;
+          border: none;
+          box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+          position: relative;
+          overflow: hidden;
         }
 
         .btn-premium:hover {
-          filter: brightness(1.2); /* Solicitado */
-          transform: translateY(-2px); /* Solicitado */
-          box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+          transform: translateY(-4px) scale(1.02);
+          filter: brightness(1.2);
+          box-shadow: 0 12px 25px rgba(124, 58, 237, 0.5);
         }
 
+        .btn-premium::after {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -60%;
+          width: 20%;
+          height: 200%;
+          background: rgba(255, 255, 255, 0.2);
+          transform: rotate(30deg);
+          transition: all 0.6s;
+          opacity: 0;
+        }
+
+        .btn-premium:hover::after {
+          left: 120%;
+          opacity: 1;
+        }
+
+        /* Padronizamos o estilo outline para seguir o roxo pleno solicitado */
         .btn-premium-outline {
-          /* Unificado para o novo padrão solicitado, mas mantendo distinção se necessário */
-          background: rgba(124, 58, 237, 0.1);
-          border: 1px solid rgba(124, 58, 237, 0.4);
+          background: linear-gradient(135deg, #7C3AED, #A855F7);
         }
 
         @media (max-width: 1200px) {
