@@ -461,6 +461,37 @@ export default function Home() {
 
             {/* ====== PRO (FEATURED) ====== */}
             <div className="pcard pcard-featured reveal delay-2">
+              <div className="fire-particles">
+                <span className="spark" style={{'--x': '2%', '--y': '0%', '--tx': '30px', '--duration': '1.1s', '--delay': '0s'} as any}></span>
+                <span className="spark" style={{'--x': '15%', '--y': '0%', '--tx': '-20px', '--duration': '1.4s', '--delay': '0.2s'} as any}></span>
+                <span className="spark" style={{'--x': '30%', '--y': '0%', '--tx': '25px', '--duration': '1.2s', '--delay': '0.4s'} as any}></span>
+                <span className="spark" style={{'--x': '45%', '--y': '0%', '--tx': '-30px', '--duration': '1.6s', '--delay': '0.6s'} as any}></span>
+                <span className="spark" style={{'--x': '60%', '--y': '0%', '--tx': '20px', '--duration': '1.3s', '--delay': '0.8s'} as any}></span>
+                <span className="spark" style={{'--x': '75%', '--y': '0%', '--tx': '-25px', '--duration': '1.5s', '--delay': '1s'} as any}></span>
+                <span className="spark" style={{'--x': '90%', '--y': '0%', '--tx': '15px', '--duration': '1.1s', '--delay': '1.2s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '10%', '--tx': '-10px', '--duration': '1.3s', '--delay': '0.3s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '30%', '--tx': '20px', '--duration': '1.7s', '--delay': '0.7s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '50%', '--tx': '-15px', '--duration': '1.4s', '--delay': '1.1s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '70%', '--tx': '25px', '--duration': '1.2s', '--delay': '1.5s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '90%', '--tx': '-20px', '--duration': '1.6s', '--delay': '1.9s'} as any}></span>
+                <span className="spark" style={{'--x': '2%', '--y': '20%', '--tx': '18px', '--duration': '1.5s', '--delay': '0.1s'} as any}></span>
+                <span className="spark" style={{'--x': '2%', '--y': '40%', '--tx': '-12px', '--duration': '1.8s', '--delay': '0.5s'} as any}></span>
+                <span className="spark" style={{'--x': '2%', '--y': '60%', '--tx': '22px', '--duration': '1.3s', '--delay': '0.9s'} as any}></span>
+                <span className="spark" style={{'--x': '2%', '--y': '80%', '--tx': '-18px', '--duration': '1.6s', '--delay': '1.3s'} as any}></span>
+                <span className="spark" style={{'--x': '8%', '--y': '0%', '--tx': '35px', '--duration': '1.2s', '--delay': '0.4s'} as any}></span>
+                <span className="spark" style={{'--x': '38%', '--y': '0%', '--tx': '-35px', '--duration': '1.4s', '--delay': '0.8s'} as any}></span>
+                <span className="spark" style={{'--x': '68%', '--y': '0%', '--tx': '40px', '--duration': '1.1s', '--delay': '1.2s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '20%', '--tx': '-25px', '--duration': '1.5s', '--delay': '0.1s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '45%', '--tx': '30px', '--duration': '1.3s', '--delay': '0.5s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '75%', '--tx': '-15px', '--duration': '1.7s', '--delay': '0.9s'} as any}></span>
+                <span className="spark" style={{'--x': '2%', '--y': '15%', '--tx': '20px', '--duration': '1.2s', '--delay': '0.2s'} as any}></span>
+                <span className="spark" style={{'--x': '2%', '--y': '55%', '--tx': '-25px', '--duration': '1.6s', '--delay': '0.6s'} as any}></span>
+                <span className="spark" style={{'--x': '50%', '--y': '0%', '--tx': '5px', '--duration': '1s', '--delay': '1.4s'} as any}></span>
+                <span className="spark" style={{'--x': '20%', '--y': '0%', '--tx': '-5px', '--duration': '1.3s', '--delay': '0.2s'} as any}></span>
+                <span className="spark" style={{'--x': '80%', '--y': '0%', '--tx': '10px', '--duration': '1.1s', '--delay': '0.8s'} as any}></span>
+                <span className="spark" style={{'--x': '98%', '--y': '5%', '--tx': '-15px', '--duration': '1.4s', '--delay': '1.3s'} as any}></span>
+                <span className="spark" style={{'--x': '2%', '--y': '95%', '--tx': '15px', '--duration': '1.6s', '--delay': '0.5s'} as any}></span>
+              </div>
               <div className="pcard-header">
                 <span className="pcard-emoji">⚡</span>
                 <span className="pcard-label-text">Pulse Pro</span>
@@ -792,16 +823,62 @@ export default function Home() {
         }
 
         .pcard-featured {
-          transform: scale(1.03); /* Destaque permanente */
-          box-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
-          border-color: rgba(124, 58, 237, 0.4);
+          transform: scale(1.05);
+          box-shadow: 0 0 70px rgba(255, 120, 0, 0.35);
+          border-color: rgba(255, 120, 0, 0.6);
           z-index: 5;
+          position: relative;
+          background: rgba(16, 16, 24, 0.9) !important;
+          backdrop-filter: blur(14px) !important;
         }
 
         .pcard-featured:hover {
-          transform: scale(1.03) translateY(-4px);
-          border-color: rgba(124, 58, 237, 0.8);
-          box-shadow: 0 0 70px rgba(124, 58, 237, 0.4);
+          transform: scale(1.05) translateY(-6px);
+          border-color: rgba(255, 120, 0, 0.8);
+          box-shadow: 0 0 80px rgba(255, 90, 0, 0.45);
+        }
+
+        .pcard-featured .pcard-label-text {
+          color: #FF8A00;
+          text-shadow: 0 0 15px rgba(255, 138, 0, 0.4);
+        }
+
+        /* Fire Particles */
+        .fire-particles {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 0;
+          overflow: visible;
+        }
+
+        .spark {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: #FFD600;
+          box-shadow: 0 0 15px #FF4D00, 0 0 30px #FFD600;
+          opacity: 0;
+          animation: spark-rise var(--duration) infinite ease-out;
+          animation-delay: var(--delay);
+          left: var(--x);
+          bottom: var(--y);
+          filter: blur(0.5px);
+        }
+
+        @keyframes spark-rise {
+          0% {
+            transform: translateY(0) translateX(0) scale(1.5);
+            opacity: 0;
+          }
+          15% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-200px) translateX(var(--tx)) scale(0);
+            opacity: 0;
+          }
         }
 
         .pcard-badge {
