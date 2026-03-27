@@ -73,7 +73,7 @@ export default function Home() {
       <nav className="navbar" id="navbar">
         <div className="container">
           <div className="navbar-inner">
-            <a href="#" className="navbar-logo">
+            <a href="#hero" className="navbar-logo">
               <img src="/logo.png" alt="Pulse Futuro Logo" />
               <span className="navbar-logo-text">
                 Pulse <span>Futuro</span>
