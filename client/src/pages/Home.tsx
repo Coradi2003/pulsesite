@@ -362,6 +362,13 @@ export default function Home() {
           </div>
 
           <div className="steps-container">
+            <span className="energy-particle"></span>
+            <span className="energy-particle"></span>
+            <span className="energy-particle"></span>
+            <span className="energy-particle"></span>
+            <span className="energy-particle"></span>
+            <span className="energy-particle"></span>
+            
             <div className="step-item reveal delay-1">
               <div className="step-number">01</div>
               <h3 className="step-title">Entendemos seu negócio</h3>
@@ -1998,6 +2005,137 @@ export default function Home() {
           height: 1px;
           background: linear-gradient(90deg, var(--purple-neon), var(--purple-bright), var(--purple-neon));
           opacity: 0.3;
+          z-index: 0;
+        }
+
+        /* Animated Energy Overlay */
+        .landing-page .steps-container::after {
+          content: '';
+          position: absolute;
+          top: 43px;
+          left: calc(16.66% + 20px);
+          right: calc(16.66% + 20px);
+          height: 4px;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            transparent 15%,
+            rgba(124, 58, 237, 0.3) 35%,
+            rgba(168, 85, 247, 0.7) 45%,
+            rgba(217, 70, 239, 1) 50%,
+            rgba(168, 85, 247, 0.7) 55%,
+            rgba(124, 58, 237, 0.3) 65%,
+            transparent 85%,
+            transparent 100%
+          );
+          background-size: 200% 100%;
+          background-position: -100% 0;
+          animation: energy-flow 3s ease-in-out infinite;
+          filter: blur(1.5px);
+          box-shadow: 
+            0 0 12px rgba(168, 85, 247, 0.8),
+            0 0 24px rgba(124, 58, 237, 0.5),
+            0 0 36px rgba(217, 70, 239, 0.3);
+          z-index: 0;
+          will-change: background-position;
+          border-radius: 2px;
+        }
+
+        @keyframes energy-flow {
+          0% {
+            background-position: -100% 0;
+            opacity: 0.8;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            background-position: 100% 0;
+            opacity: 0.8;
+          }
+        }
+
+        /* Energy Particles */
+        .landing-page .steps-container {
+          overflow: visible;
+        }
+
+        .landing-page .steps-container .energy-particle {
+          position: absolute;
+          top: 42px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #D946EF, #A855F7);
+          box-shadow: 
+            0 0 10px #D946EF,
+            0 0 20px #A855F7,
+            0 0 30px rgba(217, 70, 239, 0.5);
+          opacity: 0;
+          z-index: 0;
+          will-change: transform, opacity;
+          filter: blur(0.5px);
+        }
+
+        .landing-page .steps-container .energy-particle:nth-child(1) {
+          animation: particle-flow 3s ease-in-out infinite;
+          animation-delay: 0s;
+        }
+
+        .landing-page .steps-container .energy-particle:nth-child(2) {
+          animation: particle-flow 3s ease-in-out infinite;
+          animation-delay: 0.5s;
+        }
+
+        .landing-page .steps-container .energy-particle:nth-child(3) {
+          animation: particle-flow 3s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+
+        .landing-page .steps-container .energy-particle:nth-child(4) {
+          animation: particle-flow 3s ease-in-out infinite;
+          animation-delay: 1.5s;
+        }
+
+        .landing-page .steps-container .energy-particle:nth-child(5) {
+          animation: particle-flow 3s ease-in-out infinite;
+          animation-delay: 2s;
+        }
+
+        .landing-page .steps-container .energy-particle:nth-child(6) {
+          animation: particle-flow 3s ease-in-out infinite;
+          animation-delay: 2.5s;
+        }
+
+        @keyframes particle-flow {
+          0% {
+            left: calc(16.66% + 20px);
+            opacity: 0;
+            transform: translateY(0) scale(0.3);
+          }
+          5% {
+            opacity: 0.6;
+          }
+          15% {
+            opacity: 1;
+            transform: translateY(-3px) scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(3px) scale(1.3);
+          }
+          85% {
+            opacity: 1;
+            transform: translateY(-3px) scale(1);
+          }
+          95% {
+            opacity: 0.6;
+          }
+          100% {
+            left: calc(83.34% - 20px);
+            opacity: 0;
+            transform: translateY(0) scale(0.3);
+          }
         }
 
         .landing-page .step-item {
@@ -2025,6 +2163,31 @@ export default function Home() {
           margin-bottom: 28px;
           position: relative;
           z-index: 1;
+          animation: step-pulse 3s ease-in-out infinite;
+        }
+
+        .landing-page .step-item:nth-child(7) .step-number {
+          animation-delay: 0s;
+        }
+
+        .landing-page .step-item:nth-child(8) .step-number {
+          animation-delay: 1s;
+        }
+
+        .landing-page .step-item:nth-child(9) .step-number {
+          animation-delay: 2s;
+        }
+
+        @keyframes step-pulse {
+          0%, 100% {
+            box-shadow: 0 0 30px var(--purple-glow), 0 0 60px rgba(138,43,226,0.2);
+          }
+          33% {
+            box-shadow: 
+              0 0 40px var(--purple-glow), 
+              0 0 80px rgba(138,43,226,0.4),
+              0 0 100px rgba(217, 70, 239, 0.3);
+          }
         }
 
         .landing-page .step-title {
@@ -2400,6 +2563,8 @@ export default function Home() {
           }
 
           .landing-page .steps-container::before { display: none; }
+          .landing-page .steps-container::after { display: none; }
+          .landing-page .steps-container .energy-particle { display: none; }
 
           .landing-page .autoridade-inner {
             grid-template-columns: 1fr;
