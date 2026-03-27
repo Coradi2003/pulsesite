@@ -324,5 +324,4 @@ export default function SiteParaEmpresaCuritiba() {
       })}</script>
     </div>
   );
-}  );
 }
