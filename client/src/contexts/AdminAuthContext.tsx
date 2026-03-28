@@ -8,11 +8,11 @@ import React, {
 import type { User, Session } from "@supabase/supabase-js";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
-// Mock admin credentials for local preview mode only.
-// These are read from env vars — never hardcoded. Mock mode is only active
-// when Supabase is NOT configured (i.e. local dev without .env).
-const MOCK_EMAIL = import.meta.env.VITE_MOCK_ADMIN_EMAIL as string | undefined;
-const MOCK_PASSWORD = import.meta.env.VITE_MOCK_ADMIN_PASSWORD as string | undefined;
+// Mock admin credentials — SOMENTE em ambiente de desenvolvimento local.
+// Em produção (import.meta.env.PROD === true), essas variáveis são sempre undefined
+// e o mock mode nunca é ativado, independentemente do Supabase estar configurado.
+const MOCK_EMAIL    = import.meta.env.DEV ? (import.meta.env.VITE_MOCK_ADMIN_EMAIL    as string | undefined) : undefined;
+const MOCK_PASSWORD = import.meta.env.DEV ? (import.meta.env.VITE_MOCK_ADMIN_PASSWORD as string | undefined) : undefined;
 
 interface AdminAuthContextValue {
   user: User | null;
@@ -32,7 +32,9 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [mockAuthenticated, setMockAuthenticated] = useState(false);
 
-  const mockMode = !isSupabaseConfigured;
+  // Mock mode: APENAS em DEV e quando Supabase não está configurado.
+  // Em produção, sempre usa Supabase real.
+  const mockMode = import.meta.env.DEV && !isSupabaseConfigured;
 
   useEffect(() => {
     if (mockMode) {

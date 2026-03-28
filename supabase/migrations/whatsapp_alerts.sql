@@ -19,7 +19,7 @@ SELECT cron.schedule(
   '* * * * *',
   $$
   SELECT net.http_post(
-    url := 'https://irbumpbqfvkzlvwdxxpn.supabase.co/functions/v1/site-monitor',
+    url := 'https://<PROJECT-REF>.supabase.co/functions/v1/site-monitor',
     headers := '{"Authorization": "Bearer ' || current_setting('app.supabase_anon_key', true) || '", "Content-Type": "application/json"}'::jsonb,
     body := '{}'::jsonb
   )
@@ -32,7 +32,7 @@ SELECT cron.schedule(
   '0 12 * * *',
   $$
   SELECT net.http_post(
-    url := 'https://irbumpbqfvkzlvwdxxpn.supabase.co/functions/v1/payment-reminder',
+    url := 'https://<PROJECT-REF>.supabase.co/functions/v1/payment-reminder',
     headers := '{"Authorization": "Bearer ' || current_setting('app.supabase_anon_key', true) || '", "Content-Type": "application/json"}'::jsonb,
     body := '{}'::jsonb
   )

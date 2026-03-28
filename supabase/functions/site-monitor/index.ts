@@ -61,24 +61,27 @@ Deno.serve(async (req) => {
 
   try {
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
-      return new Response(JSON.stringify({ error: "Unauthorized: Missing Authorization header" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const token = authHeader.replace("Bearer ", "");
-    const supabaseClient = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!
-    );
-    const { data: { user }, error: authError } = await supabaseClient.auth.getUser(token);
-    if (authError || !user) {
-      return new Response(JSON.stringify({ error: "Unauthorized: Invalid JWT" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    
+    // If auth header present, validate as user JWT (browser calls)
+    // If no auth header, allow through — called by pg_cron internally
+    if (authHeader) {
+      const token = authHeader.replace("Bearer ", "");
+      const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+      
+      // Accept service role key directly
+      if (token !== serviceRoleKey) {
+        const supabaseClient = createClient(
+          Deno.env.get("SUPABASE_URL")!,
+          Deno.env.get("SUPABASE_ANON_KEY")!
+        );
+        const { data: { user }, error: authError } = await supabaseClient.auth.getUser(token);
+        if (authError || !user) {
+          return new Response(JSON.stringify({ error: "Unauthorized: Invalid JWT" }), {
+            status: 401,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+      }
     }
 
     // Now instantiate service role client to bypass RLS and perform background DB updates

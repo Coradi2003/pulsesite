@@ -14,18 +14,43 @@ export default function LoginPage() {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [lockoutTimer, setLockoutTimer] = useState<number>(0);
 
   useEffect(() => {
     if (isAuthenticated) navigate("/admin/dashboard");
   }, [isAuthenticated, navigate]);
 
+  useEffect(() => {
+    if (lockoutTimer > 0) {
+      const timer = setTimeout(() => setLockoutTimer((prev) => prev - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [lockoutTimer]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (lockoutTimer > 0) {
+      setError(`Muitas tentativas. Aguarde ${lockoutTimer}s.`);
+      return;
+    }
     setError(null);
     setLoading(true);
+    
     const { error } = await login(email, password);
-    if (error) setError(error);
-    else navigate("/admin/dashboard");
+    
+    if (error) {
+      setError(error);
+      const attempts = Number(sessionStorage.getItem("login_attempts") || "0") + 1;
+      sessionStorage.setItem("login_attempts", String(attempts));
+      if (attempts >= 5) {
+        setLockoutTimer(30); // 30s lockout for 5+ fails
+      } else if (attempts >= 3) {
+        setLockoutTimer(5); // 5s minor delay
+      }
+    } else {
+      sessionStorage.removeItem("login_attempts");
+      navigate("/admin/dashboard");
+    }
     setLoading(false);
   };
 

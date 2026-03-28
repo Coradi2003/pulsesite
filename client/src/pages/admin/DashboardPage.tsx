@@ -266,13 +266,15 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Diagnostic Footer (Internal Use) */}
-        <div className="mt-12 opacity-10 hover:opacity-100 transition-opacity text-[8px] text-gray-700 flex flex-col gap-1 font-mono">
-          <p>Debug Info (v1.1.2):</p>
-          <p>Supabase Configured: {String(isSupabaseConfigured)}</p>
-          <p>URL: {import.meta.env.VITE_SUPABASE_URL ? "Defined (starts with " + import.meta.env.VITE_SUPABASE_URL.substring(0, 10) + "...)" : "UNDEFINED"}</p>
-          <p>Domains Count: {dashboardAssets.length}</p>
-          <p>Revenue Paid: {formatBRL(monthlyRevenue)}</p>
-        </div>
+        {import.meta.env.DEV && (
+          <div className="mt-12 opacity-10 hover:opacity-100 transition-opacity text-[8px] text-gray-700 flex flex-col gap-1 font-mono">
+            <p>Debug Info (v1.1.2):</p>
+            <p>Supabase Configured: {String(isSupabaseConfigured)}</p>
+            <p>URL: {import.meta.env.VITE_SUPABASE_URL ? "Defined (starts with " + import.meta.env.VITE_SUPABASE_URL.substring(0, 10) + "...)" : "UNDEFINED"}</p>
+            <p>Domains Count: {dashboardAssets.length}</p>
+            <p>Revenue Paid: {formatBRL(monthlyRevenue)}</p>
+          </div>
+        )}
       </div>
     </AdminLayout>
   );

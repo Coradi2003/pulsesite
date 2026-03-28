@@ -2,6 +2,8 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,15 +12,26 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
-  // ── Security: hide server fingerprint ──────────────────────────────────────
+  // ── Security: Rate Limiting & Headers ───────────────────────────────────────
   app.disable("x-powered-by");
 
-  // ── Security: HTTP response headers ───────────────────────────────────────
+  // Basic security headers, CSP is handled by vercel.json for frontend
+  app.use(helmet({
+    contentSecurityPolicy: false,
+    xXssProtection: false, // Deprecated
+  }));
+
+  // Prevent generic enumeration/abuse
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `window`
+    message: "Too many requests from this IP, please try again after 15 minutes",
+    legacyHeaders: false,
+    standardHeaders: true
+  });
+  app.use(limiter);
+
   app.use((_req, res, next) => {
-    res.setHeader("X-Content-Type-Options", "nosniff");
-    res.setHeader("X-Frame-Options", "DENY");
-    res.setHeader("X-XSS-Protection", "1; mode=block");
-    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
     res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
     if (process.env.NODE_ENV === "production") {
       res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
