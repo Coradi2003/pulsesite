@@ -80,8 +80,9 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export function RevenueChart({ data, loading }: Props) {
   const chartData = useMemo(() => {
     const now = new Date();
-    const months = Array.from({ length: 6 }, (_, i) => {
-      const d = new Date(now.getFullYear(), now.getMonth() - (5 - i), 1);
+    // 5 meses passados + mês atual + 1 mês futuro = 7 meses
+    const months = Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1);
       return { year: d.getFullYear(), month: d.getMonth(), label: MONTHS[d.getMonth()] };
     });
 
@@ -122,22 +123,6 @@ export function RevenueChart({ data, loading }: Props) {
 
   return (
     <div className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl shadow-2xl shadow-purple-900/10 p-5">
-      {/* Debug panel — remover depois */}
-      {data.length > 0 && (
-        <details className="mb-3 text-[10px] font-mono text-gray-600 border border-purple-900/20 rounded p-2">
-          <summary className="cursor-pointer text-purple-500">Debug ({data.length} registros)</summary>
-          <div className="mt-2 space-y-0.5 max-h-32 overflow-y-auto">
-            {data.map((f, i) => (
-              <div key={i} className={f.status === "pending" ? "text-amber-400" : f.status === "paid" ? "text-emerald-400" : "text-red-400"}>
-                [{f.status}] R${f.amount} | due: {f.due_date} | desc: {f.description?.slice(0, 20)}
-              </div>
-            ))}
-          </div>
-          <div className="mt-2 text-gray-500">
-            Chart months: {chartData.map(d => `${d.label}(p:${d.pendente})`).join(" | ")}
-          </div>
-        </details>
-      )}
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div>
