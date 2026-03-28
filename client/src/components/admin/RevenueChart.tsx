@@ -87,8 +87,9 @@ export function RevenueChart({ data, loading }: Props) {
 
     return months.map(({ year, month, label }) => {
       const entries = data.filter((f) => {
-        const d = new Date(f.due_date);
-        return d.getFullYear() === year && d.getMonth() === month;
+        // Parse date as local to avoid UTC offset shifting the month
+        const [y, m] = (f.due_date ?? "").split("-").map(Number);
+        return y === year && m - 1 === month;
       });
 
       // Receita: paid com amount positivo
