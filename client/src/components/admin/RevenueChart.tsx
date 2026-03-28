@@ -87,8 +87,10 @@ export function RevenueChart({ data, loading }: Props) {
 
     return months.map(({ year, month, label }) => {
       const entries = data.filter((f) => {
-        // Parse date as local to avoid UTC offset shifting the month
-        const [y, m] = (f.due_date ?? "").split("-").map(Number);
+        const raw = f.due_date ?? "";
+        // Handle both "YYYY-MM-DD" and "YYYY-MM-DDTHH:mm:ss" formats
+        const datePart = raw.includes("T") ? raw.split("T")[0] : raw;
+        const [y, m] = datePart.split("-").map(Number);
         return y === year && m - 1 === month;
       });
 
@@ -120,6 +122,22 @@ export function RevenueChart({ data, loading }: Props) {
 
   return (
     <div className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl shadow-2xl shadow-purple-900/10 p-5">
+      {/* Debug panel — remover depois */}
+      {data.length > 0 && (
+        <details className="mb-3 text-[10px] font-mono text-gray-600 border border-purple-900/20 rounded p-2">
+          <summary className="cursor-pointer text-purple-500">Debug ({data.length} registros)</summary>
+          <div className="mt-2 space-y-0.5 max-h-32 overflow-y-auto">
+            {data.map((f, i) => (
+              <div key={i} className={f.status === "pending" ? "text-amber-400" : f.status === "paid" ? "text-emerald-400" : "text-red-400"}>
+                [{f.status}] R${f.amount} | due: {f.due_date} | desc: {f.description?.slice(0, 20)}
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 text-gray-500">
+            Chart months: {chartData.map(d => `${d.label}(p:${d.pendente})`).join(" | ")}
+          </div>
+        </details>
+      )}
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div>
