@@ -3294,6 +3294,102 @@ export default function Home() {
           }
         }
 
+        @media (max-width: 768px) {
+          /* ── Kill heavy animations that cause jank/bugs on mobile ── */
+
+          /* Fireworks: hide entirely on mobile */
+          .hero-fireworks { display: none; }
+
+          /* Orbital rings & energy particles in CTA: hide */
+          .landing-page .orbital-ring,
+          .landing-page .energy-particle,
+          .landing-page .cosmic-star { display: none; }
+
+          /* Orbit dots around logo: hide */
+          .landing-page .orbit-dot { display: none; }
+
+          /* Hero logo: simplify */
+          .landing-page .hero-logo-wrap::before,
+          .landing-page .hero-logo-wrap::after { display: none; }
+          .landing-page .hero-logo-img {
+            width: 160px;
+            height: 160px;
+            animation: none;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+          }
+
+          /* Solucao cards: remove animated border & particles */
+          .landing-page .solucao-card {
+            animation: none;
+            background: var(--bg-card);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+          }
+          .landing-page .card-particle,
+          .landing-page .card-hologram,
+          .landing-page .energy-wave { display: none; }
+          .landing-page .solucao-card:hover {
+            transform: none;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
+          }
+
+          /* Steps: hide energy particles */
+          .landing-page .steps-container .energy-particle { display: none; }
+          .landing-page .steps-container::after { display: none; }
+
+          /* Metric cards: remove scan/glow animations */
+          .landing-page .metric-card::before,
+          .landing-page .metric-card::after { display: none; }
+          .landing-page .metric-particle { display: none; }
+          .landing-page .metric-number {
+            animation: none;
+            text-shadow: 0 0 16px rgba(138,43,226,0.5);
+          }
+
+          /* Alert box: remove heavy orb filters */
+          .landing-page .alert-box::before,
+          .landing-page .alert-box::after { display: none; }
+          .landing-page .alert-sparkle { display: none; }
+          .landing-page .alert-box:hover { transform: none; }
+
+          /* Plans: remove spark/flame particles */
+          .rocket-trail,
+          .flame-particle,
+          .elite-glow,
+          .fire-particles,
+          .spark { display: none; }
+          .pcard-start .pcard-emoji,
+          .pcard-elite .pcard-emoji { animation: none; }
+          .pcard-featured {
+            transform: none;
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+          }
+          .pcard-featured:hover { transform: translateY(-4px); }
+
+          /* CTA: remove nebula/portal animations */
+          .landing-page .cta-box::before,
+          .landing-page .cta-box::after { display: none; }
+          .landing-page .cta-title { animation: none; }
+
+          /* Stat numbers: no pulse on mobile */
+          .landing-page .hero-stat-number { animation: none; }
+
+          /* Problema icons: no glow animation */
+          .landing-page .problema-icon::before { display: none; }
+
+          /* Buttons: no ping rings on mobile */
+          .landing-page .hero-buttons .btn-whatsapp::before,
+          .landing-page .hero-buttons .btn-whatsapp::after { display: none; }
+
+          /* Backdrop-filter: reduce on mobile for performance */
+          .landing-page .solucao-card,
+          .landing-page .problema-item,
+          .landing-page .alert-box,
+          .landing-page .pcard { backdrop-filter: none; }
+
+          /* Diagonal ribbons: hide on mobile */
+          .diagonal-ribbons-wrapper { display: none; }
+        }
+
         @media (max-width: 600px) {
           .landing-page .section {
             padding: 72px 0;
@@ -3317,6 +3413,24 @@ export default function Home() {
           .landing-page .hero-buttons,
           .landing-page .cta-buttons {
             flex-direction: column;
+          }
+          .landing-page .hero-logo-img {
+            width: 130px;
+            height: 130px;
+          }
+          .landing-page .cta-box {
+            padding: 40px 20px;
+          }
+          .pcard {
+            padding: 48px 24px 40px;
+          }
+        }
+
+        /* Respect user preference for reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .landing-page * {
+            animation: none !important;
+            transition: none !important;
           }
         }
       `}</style>
