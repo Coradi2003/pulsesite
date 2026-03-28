@@ -3241,6 +3241,84 @@ export default function Home() {
             font-size: 0.95rem;
           }
         }
+
+        /* ======================== MAIN RESPONSIVE BREAKPOINTS ======================== */
+
+        @media (max-width: 900px) {
+          .landing-page .hero-inner {
+            grid-template-columns: 1fr;
+            text-align: center;
+          }
+          .landing-page .hero-buttons {
+            justify-content: center;
+          }
+          .landing-page .hero-stats {
+            justify-content: center;
+          }
+          .landing-page .hero-visual {
+            order: -1;
+          }
+          .landing-page .hero-logo-img {
+            width: 180px;
+            height: 180px;
+          }
+          .landing-page .hero-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .landing-page .problema-grid {
+            grid-template-columns: 1fr;
+          }
+          .landing-page .solucao-cards {
+            grid-template-columns: 1fr;
+          }
+          .landing-page .steps-container {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .landing-page .steps-container::before {
+            display: none;
+          }
+          .landing-page .autoridade-inner {
+            grid-template-columns: 1fr;
+          }
+          .landing-page .footer-inner {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+          .landing-page .cta-box {
+            padding: 48px 28px;
+          }
+          .landing-page .navbar-cta .btn-secondary {
+            display: none;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .landing-page .section {
+            padding: 72px 0;
+          }
+          .landing-page .hero-stats {
+            flex-wrap: wrap;
+            gap: 24px;
+          }
+          .landing-page .autoridade-metrics {
+            grid-template-columns: 1fr 1fr;
+          }
+          .landing-page .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+          }
+          .landing-page .btn-lg {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1rem;
+          }
+          .landing-page .hero-buttons,
+          .landing-page .cta-buttons {
+            flex-direction: column;
+          }
+        }
       `}</style>
 
       {/* FAQ Structured Data (JSON-LD) */}
