@@ -121,9 +121,10 @@ Deno.serve(async (req) => {
       if (ping.status === "online" && p.down_since) {
         update.down_since = null;
         update.last_alert_sent = null;
-        await sendWhatsApp(`✅ Site online: *${p.project_name}*`);
+        await sendWhatsApp(`✅ *Site voltou online!*\n\n🌐 *${p.project_name}*\n⏱️ Resposta: ${ping.responseTime}ms`);
       } else if (ping.status === "offline" && !p.down_since) {
         update.down_since = now.toISOString();
+        await sendWhatsApp(`🚨 *Site OFFLINE!*\n\n🌐 *${p.project_name}*\n🔗 ${p.custom_domain || p.vercel_url}\n🕐 ${now.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}`);
       }
       projectUpdates.push(update);
     }
@@ -148,9 +149,10 @@ Deno.serve(async (req) => {
       };
       if (ping.status === "online" && (d as any).down_since) {
         (update as any).down_since = null;
-        await sendWhatsApp(`✅ Domínio online: *${d.domain}*`);
+        await sendWhatsApp(`✅ *Domínio voltou online!*\n\n🌐 *${d.domain}*\n⏱️ Resposta: ${ping.responseTime}ms`);
       } else if (ping.status === "offline" && !(d as any).down_since) {
-        // down_since not tracked on domains table yet
+        (update as any).down_since = now.toISOString();
+        await sendWhatsApp(`🚨 *Domínio OFFLINE!*\n\n🌐 *${d.domain}*\n🕐 ${now.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}`);
       }
       domainUpdates.push(update);
     }

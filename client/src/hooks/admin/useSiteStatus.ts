@@ -16,7 +16,7 @@ interface MonitoredAsset {
   domain?: string;
 }
 
-export function useSiteStatus(assets: MonitoredAsset[], intervalMs = 30000) {
+export function useSiteStatus(assets: MonitoredAsset[], intervalMs = 86400000) {
   const [pingMap, setPingMap] = useState<PingMap>({});
   const [lastChecked, setLastChecked] = useState<Date | null>(null);
   const [checking, setChecking] = useState(false);

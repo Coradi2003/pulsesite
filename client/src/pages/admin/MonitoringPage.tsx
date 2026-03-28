@@ -61,7 +61,7 @@ export default function MonitoringPage() {
   const [refreshing, setRefreshing] = useState(false);
 
   // Real ping system for all projects
-  const { pingMap, statusMap, lastChecked, checkNow } = useSiteStatus(projects as any, 30000);
+  const { pingMap, statusMap, lastChecked, checkNow } = useSiteStatus(projects as any, 86400000);
 
   // Version: 2.0.0 - Real ping + responseTime
   const isRealData = isSupabaseConfigured;
