@@ -180,7 +180,7 @@ export default function BlackEdition() {
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={cinematicRise}
               className="w-full flex flex-col items-center"
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-40 text-center tracking-tighter">
+              <h2 className="text-4xl md:text-5xl font-light mb-80 text-center tracking-tighter">
                 O Custo da Autoridade.
               </h2>
               
@@ -228,7 +228,7 @@ export default function BlackEdition() {
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }} variants={cinematicRise}
             >
-              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-64 mix-blend-difference">
+              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-[240px] mix-blend-difference">
                 A concorrência <br/><span className="text-gradient-white">acabou de voltar no tempo.</span>
               </h2>
               
