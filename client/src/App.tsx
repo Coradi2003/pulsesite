@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import CriacaoDeSitesCuritiba from "./pages/CriacaoDeSitesCuritiba";
 import LandingPageCuritiba from "./pages/LandingPageCuritiba";
 import SiteParaEmpresaCuritiba from "./pages/SiteParaEmpresaCuritiba";
+import BlackEdition from "./pages/BlackEdition";
 
 // Admin imports
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
@@ -109,6 +110,11 @@ function App() {
             <Route path="/admin/:rest*">
               <Toaster />
               <AdminRouter />
+            </Route>
+
+            {/* Black Edition: completely isolated premium routing */}
+            <Route path="/black">
+              <BlackEdition />
             </Route>
 
             {/* Marketing: full shell */}
