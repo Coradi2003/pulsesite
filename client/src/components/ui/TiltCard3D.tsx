@@ -78,7 +78,7 @@ export default function TiltCard3D({ children, className = '', featured = false 
       
       {/* Content wrapper pushed forward in 3D Z-plane for true parallax holography */}
       <div 
-        className="w-full h-full p-10 backdrop-blur-3xl relative z-10"
+        className="w-full h-full p-10 backdrop-blur-3xl relative z-10 flex flex-col"
         style={{ transform: 'translateZ(60px)' }}
       >
         {children}
