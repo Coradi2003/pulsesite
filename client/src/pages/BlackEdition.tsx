@@ -180,14 +180,14 @@ export default function BlackEdition() {
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={cinematicRise}
               className="w-full flex flex-col items-center"
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-80 text-center tracking-tighter">
+              <h2 className="text-4xl md:text-5xl font-light mb-32 text-center tracking-tighter">
                 O Custo da Autoridade.
               </h2>
               
               <div className="flex flex-col md:flex-row gap-8 max-w-6xl w-full">
                 
                 {/* 3D TILT CARD 1 */}
-                <TiltCard3D className="flex-1 min-h-[500px] flex flex-col">
+                <TiltCard3D className="flex-1 min-h-[600px] flex flex-col h-full">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-[var(--be-text-darker)] font-bold">Base Cinematográfica</div>
                   <div className="text-4xl font-light mb-10 tracking-tighter">R$ 5.500</div>
                   <div className="flex flex-col gap-5 text-sm font-light text-[var(--be-text-muted)] flex-grow mb-16">
@@ -202,7 +202,7 @@ export default function BlackEdition() {
                 </TiltCard3D>
 
                 {/* 3D TILT CARD 2 - ELITE */}
-                <TiltCard3D featured={true} className="flex-1 min-h-[500px] flex flex-col">
+                <TiltCard3D featured={true} className="flex-1 min-h-[600px] flex flex-col h-full">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-white drop-shadow-[0_0_10px_rgba(255,255,255,1)] font-bold">Operação Elite</div>
                   <div className="text-5xl font-light mb-10 tracking-tighter">R$ 9.800</div>
                   <div className="flex flex-col gap-5 text-sm font-light text-white flex-grow mb-16">
@@ -228,7 +228,7 @@ export default function BlackEdition() {
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }} variants={cinematicRise}
             >
-              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-[240px] mix-blend-difference">
+              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-40 mix-blend-difference">
                 A concorrência <br/><span className="text-gradient-white">acabou de voltar no tempo.</span>
               </h2>
               

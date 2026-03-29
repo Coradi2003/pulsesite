@@ -55,7 +55,7 @@ export default function TiltCard3D({ children, className = '', featured = false 
         rotateY,
       }}
       className={`relative rounded-3xl overflow-hidden group perspective-1000 ${
-        featured ? 'border-[rgba(255,255,255,0.4)] shadow-[0_30px_100px_rgba(255,255,255,0.06)] scale-105' : 'border-[rgba(255,255,255,0.05)] bg-[rgba(255,255,255,0.01)]'
+        featured ? 'border-[rgba(255,255,255,0.4)] shadow-[0_30px_100px_rgba(255,255,255,0.06)]' : 'border-[rgba(255,255,255,0.05)] bg-[rgba(255,255,255,0.01)]'
       } ${className}`}
     >
       {/* 
