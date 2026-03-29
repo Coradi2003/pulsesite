@@ -179,3 +179,37 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Holy Shit Video Mask Utility */
+.black-edition .be-video-mask {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  color: #000;
+  background-color: #000;
+  margin: 0;
+  line-height: 1;
+}
+
+.black-edition .be-video-mask video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.black-edition .be-video-mask h1,
+.black-edition .be-video-mask span.text-mask {
+  position: relative;
+  z-index: 10;
+  background: #000;
+  color: #fff;
+  mix-blend-mode: multiply;
+  margin: 0;
+  padding: 0;
+}
