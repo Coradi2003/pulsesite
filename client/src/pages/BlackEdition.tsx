@@ -113,7 +113,7 @@ export default function BlackEdition() {
           <section className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden z-10">
             <div className="text-center w-full max-w-[1400px]">
               
-              <div className="relative w-full aspect-video md:aspect-[21/9] flex items-center justify-center">
+              <div className="relative w-full aspect-[4/5] md:aspect-[21/9] flex items-center justify-center">
                 <svg className="w-full h-full pointer-events-none select-none overflow-visible">
                   <defs>
                     <mask id="heroTextMask">
@@ -138,7 +138,7 @@ export default function BlackEdition() {
               
               <motion.p 
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 1 }}
-                className="mt-12 text-lg md:text-2xl text-[var(--be-text-muted)] max-w-3xl mx-auto font-light leading-relaxed mix-blend-difference"
+                className="mt-8 md:mt-12 text-base md:text-2xl text-[var(--be-text-muted)] max-w-3xl mx-auto font-light leading-relaxed mix-blend-difference px-4"
               >
                 Nós não construímos "sites". Construímos engenharias de super-percepção de valor. 
                 O padrão <strong>Black</strong> garante que a concorrência se torne matemática e visualmente irrelevante.
@@ -184,10 +184,10 @@ export default function BlackEdition() {
                 O Custo da Autoridade.
               </h2>
               
-              <div className="flex flex-col md:flex-row items-stretch gap-8 max-w-6xl w-full">
+              <div className="flex flex-col md:flex-row items-stretch gap-12 md:gap-8 max-w-6xl w-full">
                 
                 {/* 3D TILT CARD 1 */}
-                <TiltCard3D className="flex-1 h-[600px]">
+                <TiltCard3D className="flex-1 h-auto py-12 md:py-0 md:h-[600px]">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-[var(--be-text-darker)] font-bold">Base Cinematográfica</div>
                   <div className="text-4xl font-light mb-10 tracking-tighter">R$ 5.500</div>
                   <div className="flex flex-col gap-5 text-sm font-light text-[var(--be-text-muted)] flex-grow mb-16">
@@ -202,7 +202,7 @@ export default function BlackEdition() {
                 </TiltCard3D>
 
                 {/* 3D TILT CARD 2 - ELITE */}
-                <TiltCard3D featured={true} className="flex-1 h-[600px]">
+                <TiltCard3D featured={true} className="flex-1 h-auto py-12 md:py-0 md:h-[600px]">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-white drop-shadow-[0_0_10px_rgba(255,255,255,1)] font-bold">Operação Elite</div>
                   <div className="text-5xl font-light mb-10 tracking-tighter">R$ 9.800</div>
                   <div className="flex flex-col gap-5 text-sm font-light text-white flex-grow mb-16">
@@ -228,7 +228,7 @@ export default function BlackEdition() {
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }} variants={cinematicRise}
             >
-              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-40 mix-blend-difference">
+              <h2 className="text-4xl md:text-8xl font-light tracking-tighter mb-20 md:mb-40 mix-blend-difference">
                 A concorrência <br/><span className="text-gradient-white">acabou de voltar no tempo.</span>
               </h2>
               

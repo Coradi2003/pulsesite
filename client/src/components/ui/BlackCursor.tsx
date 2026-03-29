@@ -5,6 +5,7 @@ import useMousePosition from '../../hooks/useMousePosition';
 export default function BlackCursor() {
   const { x, y } = useMousePosition();
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
   // Smooth springs for tracking
   const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
@@ -12,9 +13,16 @@ export default function BlackCursor() {
   const cursorY = useSpring(y, springConfig);
 
   useEffect(() => {
+    // Detect touch device once
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      setIsTouch(true);
+    }
+    
     cursorX.set(x - (isHovering ? 20 : 8));
     cursorY.set(y - (isHovering ? 20 : 8));
   }, [x, y, cursorX, cursorY, isHovering]);
+
+  if (isTouch) return null;
 
   useEffect(() => {
     const handleMouseOver = (e: MouseEvent) => {

@@ -83,9 +83,14 @@
 
 /* Base Sections */
 .black-edition .be-section {
-  padding: 10rem 0;
+  padding: 5rem 1.5rem;
   position: relative;
   z-index: 10;
+}
+@media (min-width: 768px) {
+  .black-edition .be-section {
+    padding: 10rem 0;
+  }
 }
 
 /* Buttons (Resetting base for MagneticButton wrapper) */
@@ -161,7 +166,7 @@
 
 /* High Contrast Title Utility */
 .black-edition .be-massive-title {
-  font-size: 5rem;
+  font-size: clamp(3rem, 12vw, 5rem);
   font-weight: 300;
   letter-spacing: -0.06em;
   line-height: 1;
