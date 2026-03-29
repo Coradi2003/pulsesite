@@ -1,311 +1,194 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Target, Zap, Shield, ArrowRight, Check, Diamond } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Target, Zap, Shield, ArrowRight } from 'lucide-react';
 import '../styles/black-edition.css';
+import BlackCursor from '../components/ui/BlackCursor';
+import MagneticButton from '../components/ui/MagneticButton';
 
 // WhatsApp Navigation
 const WHATSAPP_NUMBER = '5541984606633';
 const getWhatsAppLink = (message: string) => 
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-// Framer Motion Variants for Staggered Cinematic Text Reveals
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
-  },
-};
-
-const fadeUpVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } 
-  },
-};
-
 export default function BlackEdition() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const yBg = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  // Minimalist scroll listener for precise styling
+  // Setup smooth scroll tracking for the entire page
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Spring physics for scroll smoothing
+  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 100 });
+
+  // ---------------------------------------------------------------------------------
+  // HERO PARALLAX & FADE LOGIC (The "Apple" Effect)
+  // Section 1: 0 to 0.25 progress
+  // ---------------------------------------------------------------------------------
+  const heroLogoOpacity = useTransform(smoothProgress, [0, 0.05, 0.15], [0, 1, 0]);
+  const heroLogoScale = useTransform(smoothProgress, [0, 0.15], [0.8, 1.2]);
+  
+  const heroTextOpacity = useTransform(smoothProgress, [0.12, 0.18, 0.25], [0, 1, 0]);
+  const heroTextY = useTransform(smoothProgress, [0.12, 0.25], [50, -50]);
+  
+  // ---------------------------------------------------------------------------------
+  // SVG LINE "THE PULSE" LOGIC
+  // ---------------------------------------------------------------------------------
+  const svgDrawLength = useTransform(smoothProgress, [0.15, 0.8], [0, 1]);
+
+  // Ensure body background is pure black over the entire lifecycle
   useEffect(() => {
     document.body.style.background = '#000000';
-    
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       document.body.style.background = '';
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div className="black-edition">
-      {/* Background Ambient Layers (Pure Cinema) */}
+    <div className="black-edition" ref={containerRef} style={{ height: '500vh' }}>
+      {/* Immersive Environment Elements */}
+      <BlackCursor />
       <div className="be-noise"></div>
       <div className="be-ambient-glow"></div>
 
-      {/* Dynamic Nav */}
-      <nav className={`be-nav ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="be-container be-nav-inner">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="flex items-center gap-3"
-          >
-            <img src="/pulseblack.png" alt="Pulse Black Oficial" width={110} style={{ objectFit: 'contain' }} />
-          </motion.div>
-          <motion.a 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            href={getWhatsAppLink("Olá! Gostaria de ter acesso ao portfólio Pulse Black.")} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="be-nav-btn"
-          >
-            Falar com Especialista
-          </motion.a>
+      {/* Persistent Nav - simple fade in */}
+      <motion.nav 
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
+        className="fixed top-0 left-0 w-full z-50 p-6 mix-blend-difference"
+      >
+        <div className="flex justify-between items-center max-w-7xl mx-auto">
+          <div className="text-xs uppercase tracking-widest font-bold">Pulse Futuro</div>
+          <MagneticButton href={getWhatsAppLink("Gostaria de agendar uma reunião sobre Projetos Black.")} className="text-xs uppercase tracking-widest font-bold magnetic-trigger">
+            Agendar Reunião
+          </MagneticButton>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Cinematic Hero */}
-      <section className="be-section flex items-center" style={{ minHeight: '100vh', padding: '0' }}>
+      {/* SVG Canvas for "The Pulse" Line */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+        <svg className="w-full h-full" preserveAspectRatio="none">
+          <motion.path 
+            d="M 50% 0 L 50% 30% C 50% 40%, 20% 45%, 20% 55% C 20% 65%, 80% 70%, 80% 80% C 80% 90%, 50% 95%, 50% 100%" 
+            fill="transparent"
+            stroke="rgba(255,255,255,0.15)"
+            strokeWidth="2"
+            style={{ pathLength: svgDrawLength }}
+          />
+        </svg>
+      </div>
+
+      {/* ========================================================= */}
+      {/* HERO SCROLL-JACKING SECTION (Sticky) */}
+      {/* ========================================================= */}
+      <div className="be-sticky-frame">
+        
+        {/* Step 1: Logo Rise */}
         <motion.div 
-          style={{ y: yBg }} 
-          className="be-container text-center relative z-10"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          style={{ opacity: heroLogoOpacity, scale: heroLogoScale }}
+          className="absolute inset-0 flex items-center justify-center flex-col"
         >
-          <motion.span variants={itemVariants} className="be-super-title">
-            Bem-vindo à Experiência Black
-          </motion.span>
-          <motion.h1 variants={itemVariants} className="be-heading text-gradient-white">
-            Você acaba de entrar no nível <br className="hidden md:block" />
-            mais alto da <span style={{ fontFamily: 'inherit' }}>Pulse Futuro.</span>
-          </motion.h1>
-          <motion.p variants={itemVariants} className="be-subheading mb-12">
-            Aqui, marcas comuns ficam para trás. A <strong>Pulse Black</strong> é a nossa
-            assinatura máxima de exclusividade, reservada para projetos que exigem imposição,
-            cinematografia e engenharia absoluta de conversão.
-          </motion.p>
-          <motion.div variants={itemVariants} className="flex flex-col md:flex-row justify-center items-center gap-6">
-            <a href="#solucoes" className="be-btn-primary">
-              Descubra a Atmosfera <ArrowRight className="w-5 h-5" />
-            </a>
-          </motion.div>
+          <img src="/pulseblack.png" alt="Pulse Black" style={{ width: 'clamp(200px, 40vw, 400px)', filter: 'drop-shadow(0 0 50px rgba(255,255,255,0.05))' }} />
         </motion.div>
-      </section>
 
-      {/* Brand Moment - Official Pulse Black Spotlight */}
-      <section className="be-section" style={{ padding: '6rem 0', borderTop: '1px solid rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.02)', background: 'rgba(255,255,255,0.005)' }}>
-        <div className="be-container">
-          <motion.div 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUpVariants}
-            className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto"
-          >
-            <img src="/pulseblack.png" alt="Selo Pulse Black Oficial" width={220} className="mb-8 opacity-90" style={{ filter: 'drop-shadow(0 0 40px rgba(255,255,255,0.05))' }} />
-            <p className="text-xl md:text-2xl font-light text-[var(--be-text-white)]" style={{ lineHeight: '1.4' }}>
-              A identidade <strong>Pulse Black</strong> é o selo de garantia de que sua empresa
-              operará com o máximo de requinte tecnológico disponível no mercado nacional.
-              Desenhado para quem não aceita ser apenas mais uma opção.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+        {/* Step 2: The Monolithic Statement */}
+        <motion.div 
+          style={{ opacity: heroTextOpacity, y: heroTextY }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
+        >
+          <div className="text-sm uppercase tracking-[0.3em] text-[var(--be-text-darker)] mb-6">Você acaba de entrar no nível mais alto</div>
+          <h1 className="be-massive-title text-gradient-white">
+            A PRESENÇA <br/> DEFINITIVA.
+          </h1>
+          <p className="mt-8 text-xl text-[var(--be-text-muted)] max-w-2xl mx-auto font-light leading-relaxed">
+            Nós não construímos apenas sites. Nós construímos engenharias de percepção de valor. 
+            O padrão <strong>Black</strong> é reservado para líderes de mercado que exigem o absoluto e recusam ser comparados por preço.
+          </p>
+        </motion.div>
 
-      {/* Philosophy / Features (Physics Cards) */}
-      <section id="solucoes" className="be-section">
-        <div className="be-container">
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}
-            className="text-center mb-20 max-w-3xl mx-auto"
-          >
-            <motion.span variants={itemVariants} className="be-super-title">Arquitetura de Conversão</motion.span>
-            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-light mb-6 text-gradient-white">A anatomia de um site irrecusável.</motion.h2>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}
-              whileHover={{ y: -5, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="be-card-glass"
-            >
-              <Target className="w-8 h-8 mb-6 opacity-60" />
-              <h3 className="text-2xl font-medium mb-4">Composição Cinematográfica</h3>
-              <p className="leading-relaxed">
-                Cada elemento respira. Utilizamos os mais pesados princípios de UX/UI escandinavo
-                e dark-mode nativo para focar a visão do seu cliente no botão de compra.
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}
-              whileHover={{ y: -5, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
-              className="be-card-glass"
-            >
-              <Zap className="w-8 h-8 mb-6 opacity-60" />
-              <h3 className="text-2xl font-medium mb-4">Mecânica de Fluidos</h3>
-              <p className="leading-relaxed">
-                As animações não gritam, elas guiam. Movimentação vetorial calculada para 
-                apresentar seus serviços como uma experiência imersiva, sem travar o carregamento.
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}
-              whileHover={{ y: -5, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.2 }}
-              className="be-card-glass"
-            >
-              <Shield className="w-8 h-8 mb-6 opacity-60" />
-              <h3 className="text-2xl font-medium mb-4">Presença Monolítica</h3>
-              <p className="leading-relaxed">
-                Sua marca parecerá intocável. Um design luxuoso elimina objeções de preço
-                imediatamente, forçando seu mercado a respeitar o seu valor.
-              </p>
-            </motion.div>
+        {/* Step 3: Mechanics Intro (Opacities mapped from progress 0.25 to 0.45) */}
+        <motion.div 
+          style={{ 
+            opacity: useTransform(smoothProgress, [0.25, 0.35, 0.45], [0, 1, 0]),
+            scale: useTransform(smoothProgress, [0.25, 0.35], [0.9, 1])
+          }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-8 max-w-7xl mx-auto w-full">
+            <div className="text-center group">
+              <Target className="w-12 h-12 mx-auto mb-6 text-white opacity-40 transition-opacity duration-500 group-hover:opacity-100" strokeWidth={1} />
+              <h3 className="text-xl mb-3 font-medium">Arquitetura Vetorial</h3>
+              <p className="text-[var(--be-text-darker)] text-sm">Cada pixel posicionado matematicamente para induzir fluidez visual e foco microscópico no CTA.</p>
+            </div>
+            <div className="text-center group">
+              <Zap className="w-12 h-12 mx-auto mb-6 text-white opacity-40 transition-opacity duration-500 group-hover:opacity-100" strokeWidth={1} />
+              <h3 className="text-xl mb-3 font-medium">Mecânica Invisível</h3>
+              <p className="text-[var(--be-text-darker)] text-sm">Motion Design com bibliotecas de física avançada. O site se comporta como uma aplicação nativa ultra-rápida.</p>
+            </div>
+            <div className="text-center group">
+              <Shield className="w-12 h-12 mx-auto mb-6 text-white opacity-40 transition-opacity duration-500 group-hover:opacity-100" strokeWidth={1} />
+              <h3 className="text-xl mb-3 font-medium">Impenetrabilidade</h3>
+              <p className="text-[var(--be-text-darker)] text-sm">Construção monolítica. A percepção de luxo e solidez eleva sua autoridade, tornando a concorrência irrelevante.</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
 
-      {/* Elite Pricing / Plans */}
-      <section className="be-section">
-        <div className="be-container">
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}
-            className="text-center mb-20 max-w-3xl mx-auto"
-          >
-            <motion.span variants={itemVariants} className="be-super-title">Investimento Estratégico</motion.span>
-            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-light mb-6 text-gradient-white">A Categoria Especial.</motion.h2>
-          </motion.div>
-
-          <div className="be-pricing-grid">
-            {/* Ouro */}
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}
-              whileHover={{ y: -5, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="be-card-glass flex flex-col"
-            >
-              <h3 className="text-xl text-[var(--be-text-muted)] font-light mb-2">Assinatura Premium</h3>
-              <div className="text-4xl font-medium mb-8">R$ 5.500</div>
-              
-              <ul className="be-feature-list flex-grow">
-                <li><span>Páginas de Alta Conversão</span> <Check className="w-4 h-4" /></li>
-                <li><span>Design Pulse Black (Base)</span> <Check className="w-4 h-4" /></li>
-                <li><span>Animações Fluídas</span> <Check className="w-4 h-4" /></li>
-                <li><span>Aprovação Google Speed</span> <Check className="w-4 h-4" /></li>
-              </ul>
-              
-              <a href={getWhatsAppLink("Olá! Tenho interesse no pacote Premium (Black) de R$5.500.")} target="_blank" rel="noopener noreferrer" className="be-btn-secondary w-full">
-                Solicitar Premium
-              </a>
-            </motion.div>
-
-            {/* Elite / Featured */}
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}
-              whileHover={{ y: -5, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
-              className="be-card-glass flex flex-col relative"
-              style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.1)' }}
-            >
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-              
-              <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-xl font-light">Assinatura Elite</h3>
-                <span className="text-[0.65rem] uppercase tracking-widest px-3 py-1 bg-white text-black rounded-full font-bold">Recomendado</span>
+        {/* Step 4: Pricing Concept (Opacities mapped from progress 0.45 to 0.65) */}
+        <motion.div 
+          style={{ 
+            opacity: useTransform(smoothProgress, [0.45, 0.55, 0.65], [0, 1, 0]),
+            y: useTransform(smoothProgress, [0.45, 0.55], [100, 0])
+          }}
+          className="absolute inset-0 flex flex-col items-center justify-center w-full px-4"
+        >
+           <h2 className="text-4xl md:text-5xl font-light mb-16 text-center">O Custo do Absoluto.</h2>
+           
+           <div className="flex flex-col md:flex-row gap-6 max-w-5xl w-full">
+              {/* Card 1 */}
+              <div className="flex-1 p-10 rounded-2xl border border-[rgba(255,255,255,0.05)] bg-[rgba(255,255,255,0.01)] backdrop-blur-xl">
+                <div className="text-xs uppercase tracking-[0.2em] mb-4 text-[var(--be-text-darker)]">Corporate Base</div>
+                <div className="text-4xl font-light mb-8">R$ 5.500</div>
+                <div className="flex flex-col gap-4 text-sm text-[var(--be-text-muted)]">
+                  <div className="flex justify-between border-b border-[rgba(255,255,255,0.05)] pb-3"><span>Cinematografia Básica</span></div>
+                  <div className="flex justify-between border-b border-[rgba(255,255,255,0.05)] pb-3"><span>Ux Copywriting</span></div>
+                  <div className="flex justify-between border-b border-[rgba(255,255,255,0.05)] pb-3"><span>Alta Conversão Mobile</span></div>
+                </div>
               </div>
-              <div className="text-5xl font-medium mb-8">R$ 9.800</div>
-              
-              <ul className="be-feature-list flex-grow">
-                <li className="text-white font-medium"><span>Presença Corporativa Absoluta</span> <Diamond className="w-4 h-4" /></li>
-                <li><span>Direção de Arte Exclusiva</span> <Check className="w-4 h-4" /></li>
-                <li><span>Cinematografia Avançada</span> <Check className="w-4 h-4" /></li>
-                <li><span>SEO Institucional Profundo</span> <Check className="w-4 h-4" /></li>
-                <li><span>Arquitetura de Banco de Dados</span> <Check className="w-4 h-4" /></li>
-              </ul>
-              
-              <a href={getWhatsAppLink("Olá! Preciso da apresentação do formato Elite (Black) de R$9.800.")} target="_blank" rel="noopener noreferrer" className="be-btn-primary w-full">
-                Ascender ao Pleno
-              </a>
-            </motion.div>
 
-            {/* Bespoke */}
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants}
-              whileHover={{ y: -5, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.2 }}
-              className="be-card-glass flex flex-col"
-            >
-              <h3 className="text-xl text-[var(--be-text-muted)] font-light mb-2">Engenharia Sob Medida</h3>
-              <div className="text-4xl font-medium mb-8">R$ 18k+</div>
-              
-              <ul className="be-feature-list flex-grow">
-                <li><span>Sistemas e Plataformas Web</span> <Check className="w-4 h-4" /></li>
-                <li><span>Dashboards Administrativos</span> <Check className="w-4 h-4" /></li>
-                <li><span>Integração de APIs / ERP</span> <Check className="w-4 h-4" /></li>
-                <li><span>UX Research & Strategy</span> <Check className="w-4 h-4" /></li>
-              </ul>
-              
-              <a href={getWhatsAppLink("Gostaria de agendar briefing com os Engenheiros da Pulse Black para um projeto complexo.")} target="_blank" rel="noopener noreferrer" className="be-btn-secondary w-full">
-                Agendar Reunião Técnica
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+              {/* Card 2 ELITE */}
+              <div className="flex-1 p-10 rounded-2xl border border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.03)] backdrop-blur-xl scale-105 shadow-[0_0_100px_rgba(255,255,255,0.02)]">
+                <div className="text-xs uppercase tracking-[0.2em] mb-4 text-white font-bold">Investimento Elite</div>
+                <div className="text-5xl font-light mb-8">R$ 9.800</div>
+                <div className="flex flex-col gap-4 text-sm text-[var(--be-text-white)]">
+                  <div className="flex justify-between border-b border-[rgba(255,255,255,0.1)] pb-3"><span>Presença Corporativa Absoluta</span></div>
+                  <div className="flex justify-between border-b border-[rgba(255,255,255,0.1)] pb-3"><span>Scroll-Jacking & Física (Framer)</span></div>
+                  <div className="flex justify-between border-b border-[rgba(255,255,255,0.1)] pb-3"><span>SEO Institucional Profundo</span></div>
+                  <div className="flex justify-between border-b border-[rgba(255,255,255,0.1)] pb-3"><span>Direção de Arte Exclusiva</span></div>
+                </div>
+              </div>
+           </div>
+        </motion.div>
 
-      {/* Dramatic Final CTA */}
-      <section className="be-section border-t border-[rgba(255,255,255,0.03)] flex items-center justify-center text-center" style={{ minHeight: '80vh', background: 'radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 60%)' }}>
-        <div className="be-container">
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-150px" }} variants={containerVariants}
-            className="max-w-4xl mx-auto"
-          >
-            <motion.h2 variants={itemVariants} className="text-5xl md:text-7xl font-light mb-8 text-gradient-white">
-              Sua marca merece<br/>o topo do mundo.
-            </motion.h2>
-            <motion.div variants={itemVariants}>
-              <a href={getWhatsAppLink("Estou pronto para revolucionar minha presença digital com a Pulse Black!")} target="_blank" rel="noopener noreferrer" className="be-btn-primary px-12 py-5 text-lg">
-                Iniciar Transformação 
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+        {/* Step 5: The Magnetic Final CTA (Opacities mapped from progress 0.65 to 1.0) */}
+        <motion.div 
+          style={{ 
+            opacity: useTransform(smoothProgress, [0.65, 0.8], [0, 1]),
+            scale: useTransform(smoothProgress, [0.65, 0.8], [1.2, 1])
+          }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-auto z-50 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.5)_0%,rgba(0,0,0,1)_100%)]"
+        >
+          <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-12">
+            A concorrência <br/><span className="text-gradient-white">tornou-se irrelevante.</span>
+          </h2>
+          
+          <MagneticButton href={getWhatsAppLink("Estou pronto para a Presença Definitiva. Quero um projeto Pulse Black.")} className="be-btn-primary magnetic-trigger shadow-[0_0_50px_rgba(255,255,255,0.1)]">
+            Ascender ao Black <ArrowRight className="ml-2 w-4 h-4" />
+          </MagneticButton>
 
-      {/* Minimal Footer */}
-      <footer className="py-10 border-t border-[rgba(255,255,255,0.04)] text-center">
-        <div className="be-container flex flex-col md:flex-row justify-between items-center text-sm text-[var(--be-text-darker)]">
-          <img src="/pulseblack.png" alt="Pulse Black" width={90} className="mb-4 md:mb-0 opacity-60" />
-          <p>© {new Date().getFullYear()} Edição Exclusiva. Pulse Futuro Agência Digital.</p>
-        </div>
-      </footer>
+          <img src="/pulseblack.png" alt="Pulse Black Footer" className="absolute bottom-12 w-24 opacity-30" />
+        </motion.div>
+
+      </div>
     </div>
   );
 }
