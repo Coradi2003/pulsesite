@@ -1,4 +1,4 @@
-import { MonitorSmartphone, Smartphone, Target } from 'lucide-react';
+import { MonitorSmartphone, Smartphone, Target } from "lucide-react";
 
 export default function SolucaoSection() {
   return (
@@ -10,8 +10,8 @@ export default function SolucaoSection() {
             Sites modernos e estratégicos <span>para seu negócio</span>
           </h2>
           <p className="section-subtitle">
-            Desenvolvemos sites profissionais e estratégicos para comércios locais que querem
-            crescer no digital com resultados reais.
+            Desenvolvemos sites profissionais e estratégicos para comércios
+            locais que querem crescer no digital com resultados reais.
           </p>
         </div>
 
@@ -32,8 +32,8 @@ export default function SolucaoSection() {
             </div>
             <h3 className="card-title">Site Profissional e Moderno</h3>
             <p className="card-text">
-              Design exclusivo, alinhado à identidade da sua marca, com visual premium que
-              impressiona e gera confiança imediata.
+              Design exclusivo, alinhado à identidade da sua marca, com visual
+              premium que impressiona e gera confiança imediata.
             </p>
             <ul className="card-feature-list">
               <li>Design personalizado para sua marca</li>
@@ -59,8 +59,8 @@ export default function SolucaoSection() {
             </div>
             <h3 className="card-title">Otimizado para Celular</h3>
             <p className="card-text">
-              Mais de 80% dos acessos são pelo smartphone. Seu site será perfeito em qualquer
-              tela, garantindo a melhor experiência.
+              Mais de 80% dos acessos são pelo smartphone. Seu site será
+              perfeito em qualquer tela, garantindo a melhor experiência.
             </p>
             <ul className="card-feature-list">
               <li>100% responsivo e adaptável</li>
@@ -86,8 +86,9 @@ export default function SolucaoSection() {
             </div>
             <h3 className="card-title">Pensado para Gerar Contatos</h3>
             <p className="card-text">
-              Estrutura estratégica com calls-to-action inteligentes, formulários e integração
-              com WhatsApp para converter visitantes em clientes.
+              Estrutura estratégica com calls-to-action inteligentes,
+              formulários e integração com WhatsApp para converter visitantes em
+              clientes.
             </p>
             <ul className="card-feature-list">
               <li>Botões de ação estratégicos</li>

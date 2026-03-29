@@ -11,7 +11,11 @@ import {
 // ─── Hook: all Vercel projects + user info ──────────────────────────────────
 export function useVercel() {
   const [projects, setProjects] = useState<VercelProject[]>([]);
-  const [user, setUser] = useState<{ name: string; username: string; email: string } | null>(null);
+  const [user, setUser] = useState<{
+    name: string;
+    username: string;
+    email: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -23,7 +27,10 @@ export function useVercel() {
     try {
       setLoading(true);
       setError(null);
-      const [p, u] = await Promise.all([fetchVercelProjects(), fetchVercelUser()]);
+      const [p, u] = await Promise.all([
+        fetchVercelProjects(),
+        fetchVercelUser(),
+      ]);
       setProjects(p);
       setUser(u);
     } catch (e: unknown) {
@@ -37,7 +44,14 @@ export function useVercel() {
     load();
   }, [load]);
 
-  return { projects, user, loading, error, configured: isVercelConfigured, refetch: load };
+  return {
+    projects,
+    user,
+    loading,
+    error,
+    configured: isVercelConfigured,
+    refetch: load,
+  };
 }
 
 // ─── Hook: deployments for a specific project ───────────────────────────────

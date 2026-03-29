@@ -74,13 +74,22 @@ export function StatCard({
       )}
     >
       <div className="flex items-center justify-between">
-        <span className="text-gray-400 text-xs md:text-sm font-medium">{label}</span>
-        <div className={cn("w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center", c.bg)}>
+        <span className="text-gray-400 text-xs md:text-sm font-medium">
+          {label}
+        </span>
+        <div
+          className={cn(
+            "w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center",
+            c.bg
+          )}
+        >
           <Icon className={cn("w-3.5 h-3.5 md:w-4.5 md:h-4.5", c.icon)} />
         </div>
       </div>
       <div className="flex items-end justify-between">
-        <span className="text-white text-xl md:text-3xl font-bold tracking-tight">{value}</span>
+        <span className="text-white text-xl md:text-3xl font-bold tracking-tight">
+          {value}
+        </span>
         {trend && (
           <span
             className={cn(

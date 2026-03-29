@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -11,7 +11,15 @@ interface MagneticButtonProps {
   style?: React.CSSProperties;
 }
 
-export default function MagneticButton({ children, className = '', onClick, href, target, rel, style }: MagneticButtonProps) {
+export default function MagneticButton({
+  children,
+  className = "",
+  onClick,
+  href,
+  target,
+  rel,
+  style,
+}: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -34,7 +42,7 @@ export default function MagneticButton({ children, className = '', onClick, href
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       animate={{ x: position.x, y: position.y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.8 }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.8 }}
       className={`relative inline-flex items-center justify-center cursor-pointer ${className}`}
       style={style}
     >
@@ -44,7 +52,13 @@ export default function MagneticButton({ children, className = '', onClick, href
 
   if (href) {
     return (
-      <a href={href} target={target} rel={rel} onClick={onClick} style={{ textDecoration: 'none' }}>
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        onClick={onClick}
+        style={{ textDecoration: "none" }}
+      >
         {Content}
       </a>
     );

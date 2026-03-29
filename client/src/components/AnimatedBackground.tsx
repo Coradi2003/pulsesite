@@ -230,7 +230,13 @@ export default function AnimatedBackground() {
       ctx.restore();
     }
 
-    function drawWireRing(cx: number, cy: number, radius: number, rotation: number, alpha: number) {
+    function drawWireRing(
+      cx: number,
+      cy: number,
+      radius: number,
+      rotation: number,
+      alpha: number
+    ) {
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(rotation);
@@ -262,7 +268,13 @@ export default function AnimatedBackground() {
       ctx.restore();
     }
 
-    function drawWireSphere(cx: number, cy: number, radius: number, rotation: number, alpha: number) {
+    function drawWireSphere(
+      cx: number,
+      cy: number,
+      radius: number,
+      rotation: number,
+      alpha: number
+    ) {
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(rotation);
@@ -327,7 +339,12 @@ export default function AnimatedBackground() {
         glow.addColorStop(0, `rgba(132, 56, 255, ${orb.alpha * 0.14})`);
         glow.addColorStop(1, "rgba(132, 56, 255, 0)");
         ctx.fillStyle = glow;
-        ctx.fillRect(x - orb.radius * 1.8, y - orb.radius * 1.8, orb.radius * 3.6, orb.radius * 3.6);
+        ctx.fillRect(
+          x - orb.radius * 1.8,
+          y - orb.radius * 1.8,
+          orb.radius * 3.6,
+          orb.radius * 3.6
+        );
 
         if (orb.type === "ring") {
           drawWireRing(x, y, orb.radius, orb.rotation, orb.alpha);

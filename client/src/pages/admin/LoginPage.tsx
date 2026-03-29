@@ -22,7 +22,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (lockoutTimer > 0) {
-      const timer = setTimeout(() => setLockoutTimer((prev) => prev - 1), 1000);
+      const timer = setTimeout(() => setLockoutTimer(prev => prev - 1), 1000);
       return () => clearTimeout(timer);
     }
   }, [lockoutTimer]);
@@ -35,12 +35,13 @@ export default function LoginPage() {
     }
     setError(null);
     setLoading(true);
-    
+
     const { error } = await login(email, password);
-    
+
     if (error) {
       setError(error);
-      const attempts = Number(sessionStorage.getItem("login_attempts") || "0") + 1;
+      const attempts =
+        Number(sessionStorage.getItem("login_attempts") || "0") + 1;
       sessionStorage.setItem("login_attempts", String(attempts));
       if (attempts >= 5) {
         setLockoutTimer(30); // 30s lockout for 5+ fails
@@ -80,11 +81,11 @@ export default function LoginPage() {
 
         {/* Card */}
         <div className="bg-[#0d0a1a]/90 backdrop-blur border border-purple-900/30 rounded-2xl p-7 shadow-2xl shadow-black/40">
-
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-gray-400 text-xs font-medium mb-1.5 block">E-mail</label>
+              <label className="text-gray-400 text-xs font-medium mb-1.5 block">
+                E-mail
+              </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                 <Input
@@ -92,7 +93,7 @@ export default function LoginPage() {
                   type="email"
                   placeholder="seu@email.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   required
                   className="pl-9 bg-white/5 border-purple-900/40 text-white placeholder:text-gray-600 focus:border-purple-500/60 h-10"
                 />
@@ -100,7 +101,9 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="text-gray-400 text-xs font-medium mb-1.5 block">Senha</label>
+              <label className="text-gray-400 text-xs font-medium mb-1.5 block">
+                Senha
+              </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                 <Input
@@ -108,7 +111,7 @@ export default function LoginPage() {
                   type={showPass ? "text" : "password"}
                   placeholder="••••••••"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                   required
                   className="pl-9 pr-9 bg-white/5 border-purple-900/40 text-white placeholder:text-gray-600 focus:border-purple-500/60 h-10"
                 />
@@ -117,7 +120,11 @@ export default function LoginPage() {
                   onClick={() => setShowPass(!showPass)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
                 >
-                  {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPass ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>

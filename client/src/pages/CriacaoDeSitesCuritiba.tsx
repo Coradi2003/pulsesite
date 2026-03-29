@@ -1,22 +1,37 @@
-import { useEffect, useState } from 'react';
-import { Rocket } from 'lucide-react';
-import Footer from '../components/Footer';
+import { useEffect, useState } from "react";
+import { Rocket } from "lucide-react";
+import Footer from "../components/Footer";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className={className} fill="currentColor">
-    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 512l149.5-39.2c32.8 18 69.4 27.5 106.6 27.5h.1c122.3 0 221.9-99.5 221.9-222 0-59.3-23.1-115-65-156.9zM224 457.1c-33 0-65.4-8.9-94-25.7l-6.7-4-69.8 18.3L72 376.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.9 83-184.9 184.9-184.9 50.1 0 97.2 19.5 132.6 54.9C392.2 176 411.7 223.1 411.7 274c0 101.9-83 184.9-184.9 184.9zM324.9 308.2c-5.5-2.8-32.8-16.2-37.9-18.1-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18.1-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.1-3.6 2.1-3.5 7.4-14.1 2.3-4.6 1.2-8.8-.2-11.6-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    className={className}
+    fill="currentColor"
+  >
+    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 512l149.5-39.2c32.8 18 69.4 27.5 106.6 27.5h.1c122.3 0 221.9-99.5 221.9-222 0-59.3-23.1-115-65-156.9zM224 457.1c-33 0-65.4-8.9-94-25.7l-6.7-4-69.8 18.3L72 376.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.9 83-184.9 184.9-184.9 50.1 0 97.2 19.5 132.6 54.9C392.2 176 411.7 223.1 411.7 274c0 101.9-83 184.9-184.9 184.9zM324.9 308.2c-5.5-2.8-32.8-16.2-37.9-18.1-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18.1-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.1-3.6 2.1-3.5 7.4-14.1 2.3-4.6 1.2-8.8-.2-11.6-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
   </svg>
 );
 
-const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
+const FAQItem = ({
+  question,
+  answer,
+}: {
+  question: string;
+  answer: string;
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="faq-item reveal">
-      <button className={`faq-question ${open ? 'active' : ''}`} onClick={() => setOpen(!open)} aria-expanded={open}>
+      <button
+        className={`faq-question ${open ? "active" : ""}`}
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
         <h3 className="faq-question-text">{question}</h3>
-        <span className="faq-icon">{open ? '−' : '+'}</span>
+        <span className="faq-icon">{open ? "−" : "+"}</span>
       </button>
-      <div className={`faq-answer ${open ? 'open' : ''}`}>
+      <div className={`faq-answer ${open ? "open" : ""}`}>
         <p>{answer}</p>
       </div>
     </div>
@@ -26,29 +41,35 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 export default function CriacaoDeSitesCuritiba() {
   useEffect(() => {
     // Title
-    document.title = 'Criação de Sites em Curitiba | Pulse Futuro';
+    document.title = "Criação de Sites em Curitiba | Pulse Futuro";
 
     // Meta description
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
       document.head.appendChild(metaDesc);
     }
-    metaDesc.setAttribute('content', 'Criamos sites profissionais em Curitiba para empresas que querem mais presença digital, credibilidade e clientes. Solicite um orçamento.');
+    metaDesc.setAttribute(
+      "content",
+      "Criamos sites profissionais em Curitiba para empresas que querem mais presença digital, credibilidade e clientes. Solicite um orçamento."
+    );
 
     // Canonical
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://pulsefuturo.com.br/criacao-de-sites-curitiba');
+    canonical.setAttribute(
+      "href",
+      "https://pulsefuturo.com.br/criacao-de-sites-curitiba"
+    );
 
     // Cleanup on unmount
     return () => {
-      document.title = 'Pulse Futuro';
+      document.title = "Pulse Futuro";
       canonical?.remove();
     };
   }, []);
@@ -67,11 +88,14 @@ export default function CriacaoDeSitesCuritiba() {
               <h1 className="hero-title">
                 Criação de Sites em Curitiba
                 <br />
-                <span className="highlight">para Empresas que Querem Crescer</span>
+                <span className="highlight">
+                  para Empresas que Querem Crescer
+                </span>
               </h1>
               <p className="hero-subtitle">
-                Desenvolvemos sites profissionais e modernos para empresas de Curitiba que 
-                buscam aumentar sua presença digital, gerar mais leads e conquistar novos clientes online.
+                Desenvolvemos sites profissionais e modernos para empresas de
+                Curitiba que buscam aumentar sua presença digital, gerar mais
+                leads e conquistar novos clientes online.
               </p>
               <div className="hero-buttons">
                 <a href="#contato" className="btn btn-primary btn-lg">
@@ -97,10 +121,15 @@ export default function CriacaoDeSitesCuritiba() {
       <section className="section" id="intro">
         <div className="container">
           <div className="text-center reveal">
-            <p className="section-subtitle" style={{ maxWidth: '700px', margin: '0 auto' }}>
-              A criação de sites em Curitiba é fundamental para empresas que desejam se destacar no mercado digital. 
-              Nossa agência desenvolve soluções web personalizadas que combinam design moderno, funcionalidade avançada 
-              e estratégias de SEO para garantir que sua empresa seja encontrada pelos clientes certos.
+            <p
+              className="section-subtitle"
+              style={{ maxWidth: "700px", margin: "0 auto" }}
+            >
+              A criação de sites em Curitiba é fundamental para empresas que
+              desejam se destacar no mercado digital. Nossa agência desenvolve
+              soluções web personalizadas que combinam design moderno,
+              funcionalidade avançada e estratégias de SEO para garantir que sua
+              empresa seja encontrada pelos clientes certos.
             </p>
           </div>
         </div>
@@ -120,24 +149,26 @@ export default function CriacaoDeSitesCuritiba() {
             <div className="solucao-card reveal delay-1">
               <h3 className="card-title">Credibilidade e Confiança</h3>
               <p className="card-text">
-                Um site profissional transmite seriedade e confiança aos seus clientes, 
-                aumentando as chances de conversão e fidelização.
+                Um site profissional transmite seriedade e confiança aos seus
+                clientes, aumentando as chances de conversão e fidelização.
               </p>
             </div>
 
             <div className="solucao-card reveal delay-2">
               <h3 className="card-title">Geração de Leads 24/7</h3>
               <p className="card-text">
-                Seu site trabalha para você mesmo quando você está dormindo, 
-                captando leads e gerando oportunidades de negócio constantemente.
+                Seu site trabalha para você mesmo quando você está dormindo,
+                captando leads e gerando oportunidades de negócio
+                constantemente.
               </p>
             </div>
 
             <div className="solucao-card reveal delay-3">
               <h3 className="card-title">Visibilidade no Google</h3>
               <p className="card-text">
-                Sites otimizados aparecem nas primeiras posições do Google, 
-                aumentando sua visibilidade e atraindo mais clientes qualificados.
+                Sites otimizados aparecem nas primeiras posições do Google,
+                aumentando sua visibilidade e atraindo mais clientes
+                qualificados.
               </p>
             </div>
           </div>
@@ -159,7 +190,7 @@ export default function CriacaoDeSitesCuritiba() {
               <div className="step-number">01</div>
               <h3 className="step-title">Análise e Planejamento</h3>
               <p className="step-text">
-                Analisamos seu negócio, concorrência e público-alvo para criar 
+                Analisamos seu negócio, concorrência e público-alvo para criar
                 uma estratégia digital personalizada e eficaz.
               </p>
             </div>
@@ -168,7 +199,7 @@ export default function CriacaoDeSitesCuritiba() {
               <div className="step-number">02</div>
               <h3 className="step-title">Design e Desenvolvimento</h3>
               <p className="step-text">
-                Criamos um design moderno e responsivo, desenvolvendo todas as 
+                Criamos um design moderno e responsivo, desenvolvendo todas as
                 funcionalidades necessárias para seu sucesso online.
               </p>
             </div>
@@ -177,7 +208,7 @@ export default function CriacaoDeSitesCuritiba() {
               <div className="step-number">03</div>
               <h3 className="step-title">Otimização e Entrega</h3>
               <p className="step-text">
-                Otimizamos seu site para SEO e velocidade, realizamos testes 
+                Otimizamos seu site para SEO e velocidade, realizamos testes
                 completos e colocamos tudo no ar com suporte total.
               </p>
             </div>
@@ -195,8 +226,9 @@ export default function CriacaoDeSitesCuritiba() {
                 Por que escolher a <span>Pulse Futuro</span>
               </h2>
               <p className="section-subtitle">
-                Somos especialistas em criação de sites em Curitiba, oferecendo soluções 
-                completas que combinam tecnologia avançada, design premium e resultados comprovados.
+                Somos especialistas em criação de sites em Curitiba, oferecendo
+                soluções completas que combinam tecnologia avançada, design
+                premium e resultados comprovados.
               </p>
             </div>
 
@@ -204,19 +236,27 @@ export default function CriacaoDeSitesCuritiba() {
               <div className="autoridade-metrics">
                 <div className="metric-card">
                   <div className="metric-number">3-7</div>
-                  <div className="metric-label">Dias para entrega do seu site completo</div>
+                  <div className="metric-label">
+                    Dias para entrega do seu site completo
+                  </div>
                 </div>
                 <div className="metric-card">
                   <div className="metric-number">100%</div>
-                  <div className="metric-label">Sites responsivos e otimizados para mobile</div>
+                  <div className="metric-label">
+                    Sites responsivos e otimizados para mobile
+                  </div>
                 </div>
                 <div className="metric-card">
                   <div className="metric-number">SEO</div>
-                  <div className="metric-label">Otimização inclusa para Google</div>
+                  <div className="metric-label">
+                    Otimização inclusa para Google
+                  </div>
                 </div>
                 <div className="metric-card">
                   <div className="metric-number">24/7</div>
-                  <div className="metric-label">Suporte técnico especializado</div>
+                  <div className="metric-label">
+                    Suporte técnico especializado
+                  </div>
                 </div>
               </div>
             </div>
@@ -230,7 +270,8 @@ export default function CriacaoDeSitesCuritiba() {
           <div className="text-center reveal">
             <span className="section-tag">FAQ</span>
             <h2 className="section-title">
-              Perguntas Frequentes sobre <span>Criação de Sites em Curitiba</span>
+              Perguntas Frequentes sobre{" "}
+              <span>Criação de Sites em Curitiba</span>
             </h2>
           </div>
 
@@ -271,12 +312,18 @@ export default function CriacaoDeSitesCuritiba() {
             <h2 className="cta-title">
               Pronto para ter um site profissional
               <br />
-              <span style={{ color: 'var(--purple-bright)', textShadow: '0 0 30px rgba(138,43,226,0.6)' }}>
+              <span
+                style={{
+                  color: "var(--purple-bright)",
+                  textShadow: "0 0 30px rgba(138,43,226,0.6)",
+                }}
+              >
                 em Curitiba?
               </span>
             </h2>
             <p className="cta-subtitle">
-              Solicite um orçamento gratuito e receba uma proposta personalizada para o seu negócio.
+              Solicite um orçamento gratuito e receba uma proposta personalizada
+              para o seu negócio.
             </p>
             <div className="cta-buttons">
               <a
@@ -305,29 +352,80 @@ export default function CriacaoDeSitesCuritiba() {
       <Footer />
 
       {/* Service Schema */}
-      <script type="application/ld+json">{JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "serviceType": "Criação de Sites",
-        "name": "Criação de Sites Profissionais em Curitiba",
-        "description": "Criamos sites profissionais em Curitiba para empresas que querem mais presença digital, credibilidade e clientes.",
-        "areaServed": { "@type": "City", "name": "Curitiba" },
-        "provider": { "@type": "Organization", "name": "Pulse Futuro", "url": "https://pulsefuturo.com.br" }
-      })}</script>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Criação de Sites",
+          name: "Criação de Sites Profissionais em Curitiba",
+          description:
+            "Criamos sites profissionais em Curitiba para empresas que querem mais presença digital, credibilidade e clientes.",
+          areaServed: { "@type": "City", name: "Curitiba" },
+          provider: {
+            "@type": "Organization",
+            name: "Pulse Futuro",
+            url: "https://pulsefuturo.com.br",
+          },
+        })}
+      </script>
 
       {/* FAQ Schema */}
-      <script type="application/ld+json">{JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": "Quanto custa criar um site em Curitiba?", "acceptedAnswer": { "@type": "Answer", "text": "O valor varia conforme a complexidade do projeto. Na Pulse Futuro, os planos começam a partir de R$ 350 para sites de uma página, com opções mais completas para empresas que precisam de múltiplas páginas, SEO e integrações." } },
-          { "@type": "Question", "name": "Qual é o prazo de entrega de um site?", "acceptedAnswer": { "@type": "Answer", "text": "O prazo médio é de 3 a 7 dias úteis após o envio das informações e aprovação do briefing. Sites mais complexos podem levar até 15 dias." } },
-          { "@type": "Question", "name": "O site vai funcionar bem no celular?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Todos os sites que desenvolvemos são 100% responsivos, adaptando-se perfeitamente a qualquer dispositivo." } },
-          { "@type": "Question", "name": "O site já vem otimizado para o Google?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Aplicamos técnicas de SEO desde a estrutura do código, como uso correto de headings, velocidade de carregamento, meta tags e URLs amigáveis." } },
-          { "@type": "Question", "name": "Domínio e hospedagem estão inclusos?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Nossos planos incluem domínio .com.br por 1 ano e hospedagem de alta performance." } },
-          { "@type": "Question", "name": "Por que uma empresa em Curitiba precisa de um site?", "acceptedAnswer": { "@type": "Answer", "text": "Curitiba é uma das cidades mais conectadas do Brasil. Seus clientes pesquisam no Google antes de contratar qualquer serviço. Sem um site profissional, sua empresa fica invisível para essa maioria." } }
-        ]
-      })}</script>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Quanto custa criar um site em Curitiba?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "O valor varia conforme a complexidade do projeto. Na Pulse Futuro, os planos começam a partir de R$ 350 para sites de uma página, com opções mais completas para empresas que precisam de múltiplas páginas, SEO e integrações.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Qual é o prazo de entrega de um site?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "O prazo médio é de 3 a 7 dias úteis após o envio das informações e aprovação do briefing. Sites mais complexos podem levar até 15 dias.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "O site vai funcionar bem no celular?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Sim. Todos os sites que desenvolvemos são 100% responsivos, adaptando-se perfeitamente a qualquer dispositivo.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "O site já vem otimizado para o Google?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Sim. Aplicamos técnicas de SEO desde a estrutura do código, como uso correto de headings, velocidade de carregamento, meta tags e URLs amigáveis.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Domínio e hospedagem estão inclusos?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Sim. Nossos planos incluem domínio .com.br por 1 ano e hospedagem de alta performance.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Por que uma empresa em Curitiba precisa de um site?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Curitiba é uma das cidades mais conectadas do Brasil. Seus clientes pesquisam no Google antes de contratar qualquer serviço. Sem um site profissional, sua empresa fica invisível para essa maioria.",
+              },
+            },
+          ],
+        })}
+      </script>
     </div>
   );
 }

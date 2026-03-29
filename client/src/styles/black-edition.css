@@ -8,11 +8,11 @@
   --be-bg-pure: #000000;
   --be-bg-surface: #040404;
   --be-bg-card: #09090b;
-  
+
   --be-text-white: #ffffff;
   --be-text-muted: #a1a1aa;
   --be-text-darker: #71717a;
-  
+
   --be-border: rgba(255, 255, 255, 0.4);
   --be-border-hover: rgba(255, 255, 255, 0.8);
 
@@ -24,7 +24,7 @@
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  
+
   /* Hide cursor for custom magnetic cursor */
   cursor: none !important;
 }
@@ -34,8 +34,8 @@
   display: none;
 }
 .black-edition {
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Override all child cursors to none so the custom cursor works cleanly */
@@ -50,7 +50,7 @@
 .black-edition h4 {
   color: var(--be-text-white);
   line-height: 1.05;
-  font-weight: 300; 
+  font-weight: 300;
   letter-spacing: -0.05em;
 }
 
@@ -159,7 +159,11 @@
   left: 0;
   right: 0;
   height: 100vh;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.02) 0%,
+    transparent 60%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -178,7 +182,11 @@
 }
 
 .black-edition .text-gradient-white {
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.3) 100%);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -1,13 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  RefreshCw, ExternalLink, GitBranch, Clock, CheckCircle2,
-  XCircle, Loader2, Zap, ChevronDown, ChevronUp
+  RefreshCw,
+  ExternalLink,
+  GitBranch,
+  Clock,
+  CheckCircle2,
+  XCircle,
+  Loader2,
+  Zap,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { useVercel, useVercelDeployments } from "@/hooks/admin/useVercel";
-import { deployStateBadge, formatDeployAge, type VercelProject } from "@/lib/vercel";
+import {
+  deployStateBadge,
+  formatDeployAge,
+  type VercelProject,
+} from "@/lib/vercel";
 import { cn } from "@/lib/utils";
 
 // ─── Deploy state dot ────────────────────────────────────────────────────────
@@ -20,13 +32,23 @@ function StateDot({ state }: { state: string }) {
     QUEUED: "bg-yellow-400",
     CANCELED: "bg-gray-500",
   };
-  return <span className={cn("w-2 h-2 rounded-full flex-shrink-0", map[state] ?? "bg-gray-500")} />;
+  return (
+    <span
+      className={cn(
+        "w-2 h-2 rounded-full flex-shrink-0",
+        map[state] ?? "bg-gray-500"
+      )}
+    />
+  );
 }
 
 // ─── Per-project deployments panel ───────────────────────────────────────────
 function DeployPanel({ project }: { project: VercelProject }) {
   const [open, setOpen] = useState(false);
-  const { deployments, loading } = useVercelDeployments(open ? project.id : null, 5);
+  const { deployments, loading } = useVercelDeployments(
+    open ? project.id : null,
+    5
+  );
   const badge = deployStateBadge;
 
   // last deploy from latestDeployments (already in project data)
@@ -49,7 +71,8 @@ function DeployPanel({ project }: { project: VercelProject }) {
         <div className="flex-1 min-w-0">
           <p className="text-white font-medium text-sm">{project.name}</p>
           <p className="text-gray-500 text-xs mt-0.5">
-            {project.framework ?? "—"} · atualizado {formatDeployAge(project.updatedAt)} atrás
+            {project.framework ?? "—"} · atualizado{" "}
+            {formatDeployAge(project.updatedAt)} atrás
           </p>
         </div>
 
@@ -57,16 +80,25 @@ function DeployPanel({ project }: { project: VercelProject }) {
         {latest && (
           <div className="flex items-center gap-2 mr-3">
             <StateDot state={(latest.readyState || latest.state) as any} />
-            <span className={cn(
-              "text-xs font-medium",
-              (latest.readyState || latest.state) === "READY" ? "text-emerald-400" :
-              (latest.readyState || latest.state) === "ERROR" ? "text-red-400" :
-              ["BUILDING", "INITIALIZING"].includes((latest.readyState || latest.state) ?? "") ? "text-blue-400" :
-              "text-gray-400"
-            )}>
+            <span
+              className={cn(
+                "text-xs font-medium",
+                (latest.readyState || latest.state) === "READY"
+                  ? "text-emerald-400"
+                  : (latest.readyState || latest.state) === "ERROR"
+                    ? "text-red-400"
+                    : ["BUILDING", "INITIALIZING"].includes(
+                          (latest.readyState || latest.state) ?? ""
+                        )
+                      ? "text-blue-400"
+                      : "text-gray-400"
+              )}
+            >
               {badge((latest.readyState || latest.state) as any).label}
             </span>
-            <span className="text-gray-600 text-xs">{formatDeployAge(latest.createdAt)} atrás</span>
+            <span className="text-gray-600 text-xs">
+              {formatDeployAge(latest.createdAt)} atrás
+            </span>
           </div>
         )}
 
@@ -74,12 +106,16 @@ function DeployPanel({ project }: { project: VercelProject }) {
           href={`https://vercel.com/${project.name}`}
           target="_blank"
           rel="noreferrer"
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
           className="text-gray-600 hover:text-purple-400 transition-colors mr-2"
         >
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
-        {open ? <ChevronUp className="w-4 h-4 text-gray-600" /> : <ChevronDown className="w-4 h-4 text-gray-600" />}
+        {open ? (
+          <ChevronUp className="w-4 h-4 text-gray-600" />
+        ) : (
+          <ChevronDown className="w-4 h-4 text-gray-600" />
+        )}
       </button>
 
       {/* Deployments list */}
@@ -93,30 +129,44 @@ function DeployPanel({ project }: { project: VercelProject }) {
           >
             {loading ? (
               <div className="flex items-center gap-2 px-5 py-4 text-gray-500 text-sm">
-                <Loader2 className="w-4 h-4 animate-spin" /> Carregando deployments…
+                <Loader2 className="w-4 h-4 animate-spin" /> Carregando
+                deployments…
               </div>
             ) : deployments.length === 0 ? (
-              <p className="px-5 py-4 text-gray-600 text-sm">Nenhum deploy encontrado.</p>
+              <p className="px-5 py-4 text-gray-600 text-sm">
+                Nenhum deploy encontrado.
+              </p>
             ) : (
               <div className="divide-y divide-purple-900/10">
-                {deployments.map((d) => (
-                  <div key={d.uid} className="flex items-center gap-3 px-5 py-3 hover:bg-white/[0.015] transition-colors">
+                {deployments.map(d => (
+                  <div
+                    key={d.uid}
+                    className="flex items-center gap-3 px-5 py-3 hover:bg-white/[0.015] transition-colors"
+                  >
                     <StateDot state={(d.readyState || d.state) as any} />
                     <div className="flex-1 min-w-0">
                       <p className="text-gray-300 text-xs font-medium truncate">
                         {d.meta?.githubCommitMessage ?? d.url}
                       </p>
                       <p className="text-gray-600 text-xs mt-0.5">
-                        {d.meta?.githubCommitRef ?? "production"} · {formatDeployAge(d.createdAt)} atrás
+                        {d.meta?.githubCommitRef ?? "production"} ·{" "}
+                        {formatDeployAge(d.createdAt)} atrás
                       </p>
                     </div>
-                    <span className={cn(
-                      "text-xs px-2 py-0.5 rounded-full font-medium",
-                      d.state === "READY" || d.readyState === "READY" ? "bg-emerald-500/10 text-emerald-400" :
-                      d.state === "ERROR" || d.readyState === "ERROR" ? "bg-red-500/10 text-red-400" :
-                      ["BUILDING", "INITIALIZING"].includes(d.state || d.readyState || "") ? "bg-blue-500/10 text-blue-400" :
-                      "bg-white/5 text-gray-500"
-                    )}>
+                    <span
+                      className={cn(
+                        "text-xs px-2 py-0.5 rounded-full font-medium",
+                        d.state === "READY" || d.readyState === "READY"
+                          ? "bg-emerald-500/10 text-emerald-400"
+                          : d.state === "ERROR" || d.readyState === "ERROR"
+                            ? "bg-red-500/10 text-red-400"
+                            : ["BUILDING", "INITIALIZING"].includes(
+                                  d.state || d.readyState || ""
+                                )
+                              ? "bg-blue-500/10 text-blue-400"
+                              : "bg-white/5 text-gray-500"
+                      )}
+                    >
                       {badge((d.readyState || d.state) as any).label}
                     </span>
                     <a
@@ -143,13 +193,21 @@ export default function VercelPage() {
   const { projects, user, loading, error, configured, refetch } = useVercel();
 
   const readyProjects = projects.filter(
-    (p) => (p.latestDeployments?.[0]?.readyState || p.latestDeployments?.[0]?.state) === "READY"
+    p =>
+      (p.latestDeployments?.[0]?.readyState ||
+        p.latestDeployments?.[0]?.state) === "READY"
   ).length;
   const errorProjects = projects.filter(
-    (p) => (p.latestDeployments?.[0]?.readyState || p.latestDeployments?.[0]?.state) === "ERROR"
+    p =>
+      (p.latestDeployments?.[0]?.readyState ||
+        p.latestDeployments?.[0]?.state) === "ERROR"
   ).length;
-  const buildingProjects = projects.filter(
-    (p) => ["BUILDING", "INITIALIZING", "QUEUED"].includes((p.latestDeployments?.[0]?.readyState || p.latestDeployments?.[0]?.state) ?? "")
+  const buildingProjects = projects.filter(p =>
+    ["BUILDING", "INITIALIZING", "QUEUED"].includes(
+      (p.latestDeployments?.[0]?.readyState ||
+        p.latestDeployments?.[0]?.state) ??
+        ""
+    )
   ).length;
 
   if (!configured) {
@@ -157,8 +215,13 @@ export default function VercelPage() {
       <AdminLayout>
         <div className="flex flex-col items-center justify-center py-24 text-center">
           <Zap className="w-10 h-10 text-gray-600 mb-4" />
-          <h2 className="text-white font-semibold mb-2">Vercel não configurado</h2>
-          <p className="text-gray-500 text-sm">Adicione <code className="text-purple-400">VITE_VERCEL_TOKEN</code> ao seu <code className="text-purple-400">.env</code></p>
+          <h2 className="text-white font-semibold mb-2">
+            Vercel não configurado
+          </h2>
+          <p className="text-gray-500 text-sm">
+            Adicione <code className="text-purple-400">VITE_VERCEL_TOKEN</code>{" "}
+            ao seu <code className="text-purple-400">.env</code>
+          </p>
         </div>
       </AdminLayout>
     );
@@ -167,7 +230,10 @@ export default function VercelPage() {
   return (
     <AdminLayout>
       <div id="admin-vercel">
-        <PageHeader title="Controle Vercel" description="Projetos, deploys e builds em tempo real" />
+        <PageHeader
+          title="Controle Vercel"
+          description="Projetos, deploys e builds em tempo real"
+        />
 
         {/* Connected user + summary */}
         <div className="flex flex-wrap items-center gap-4 mb-6 px-5 py-3 bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl">
@@ -175,7 +241,10 @@ export default function VercelPage() {
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
               <span className="text-gray-200 text-sm">
-                Conectado como <span className="text-purple-400 font-medium">{user.name || user.username}</span>
+                Conectado como{" "}
+                <span className="text-purple-400 font-medium">
+                  {user.name || user.username}
+                </span>
               </span>
             </div>
           ) : loading ? (
@@ -230,7 +299,10 @@ export default function VercelPage() {
         {loading ? (
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl p-5 animate-pulse">
+              <div
+                key={i}
+                className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl p-5 animate-pulse"
+              >
                 <div className="flex items-center gap-4">
                   <div className="w-8 h-8 rounded-lg bg-white/5" />
                   <div className="flex-1 space-y-2">
@@ -244,7 +316,12 @@ export default function VercelPage() {
         ) : (
           <div className="space-y-3">
             {projects.map((p, i) => (
-              <motion.div key={p.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04 }}
+              >
                 <DeployPanel project={p} />
               </motion.div>
             ))}
