@@ -41,6 +41,26 @@ export default function BlackEdition() {
   const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 100 });
   
   const svgDrawLength = useTransform(smoothProgress, [0, 1], [0, 1]);
+  
+  // Infinite Zoom Intro Transforms
+  const logoScale = useTransform(scrollYProgress, [0, 0.15], [1, 25]);
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0]);
+  const introBlur = useTransform(scrollYProgress, [0, 0.15], [0, 20]);
+
+  // Horizontal Abyss Transforms (Clamped to mid-page)
+  const abyssX = useTransform(scrollYProgress, [0.3, 0.6], ["0%", "-66.66%"]);
+  
+  // Liquid Metal Displacement frequency animation
+  const [filterFreq, setFilterFreq] = useState(0.02);
+  useEffect(() => {
+    let frame: number;
+    const animate = (t: number) => {
+      setFilterFreq(0.02 + Math.sin(t / 1000) * 0.005);
+      frame = requestAnimationFrame(animate);
+    };
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   useEffect(() => {
     document.body.style.background = '#000000';
@@ -97,14 +117,26 @@ export default function BlackEdition() {
       {booted && (
         <>
           {/* ========================================================= */}
-          {/* SEC 1: THE SILENT LOGO */}
+          {/* SEC 1: THE SILENT LOGO - INFINITE ZOOM PORTAL */}
           {/* ========================================================= */}
-          <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden z-10">
-            <motion.div 
-              initial="hidden" animate="visible" variants={cinematicFadeIn}
-            >
-              <img src="/pulseblack.png" alt="Pulse Black" className="w-[80vw] max-w-[400px]" style={{ filter: 'drop-shadow(0 0 50px rgba(255,255,255,0.05))' }} />
-            </motion.div>
+          <section className="relative w-full h-[150vh] z-20 pointer-events-none">
+            <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+              <motion.div 
+                style={{ 
+                  scale: logoScale, 
+                  opacity: logoOpacity,
+                  filter: `blur(${introBlur}px)`
+                }}
+                className="relative"
+              >
+                <img 
+                  src="/pulseblack.png" 
+                  alt="Pulse Black Portal" 
+                  className="w-[80vw] max-w-[400px]" 
+                  style={{ filter: 'drop-shadow(0 0 50px rgba(255,255,255,0.1))' }} 
+                />
+              </motion.div>
+            </div>
           </section>
 
           {/* ========================================================= */}
@@ -116,6 +148,10 @@ export default function BlackEdition() {
               <div className="relative w-full aspect-[4/5] md:aspect-[21/9] flex items-center justify-center">
                 <svg className="w-full h-full pointer-events-none select-none overflow-visible">
                   <defs>
+                    <filter id="liquidFilter">
+                      <feTurbulence type="fractalNoise" baseFrequency={filterFreq} numOctaves="2" result="noise" />
+                      <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+                    </filter>
                     <mask id="heroTextMask">
                       <rect width="100%" height="100%" fill="black" />
                       <text x="50%" y="40%" textAnchor="middle" fill="white" fontWeight="900" style={{ fontSize: 'min(15vw, 150px)', fontFamily: 'Outfit, sans-serif' }}>PRESENÇA</text>
@@ -124,7 +160,7 @@ export default function BlackEdition() {
                   </defs>
                   
                   <foreignObject x="0" y="0" width="100%" height="100%" mask="url(#heroTextMask)">
-                    <div className="w-full h-full relative overflow-hidden">
+                    <div className="w-full h-full relative overflow-hidden" style={{ filter: 'url(#liquidFilter)' }}>
                       <video autoPlay loop muted playsInline className="absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover grayscale brightness-150 contrast-125">
                         <source src="/fundo-roxo.mp4" type="video/mp4" />
                       </video>
@@ -149,7 +185,7 @@ export default function BlackEdition() {
           {/* ========================================================= */}
           {/* SEC 3: MECHANICS */}
           {/* ========================================================= */}
-          <section className="relative w-full min-h-screen flex items-center justify-center px-4 overflow-hidden z-10 py-20">
+          <section className="relative w-full min-h-screen flex items-center justify-center px-4 overflow-hidden z-20 py-20">
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={cinematicFadeIn}
               className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 max-w-7xl mx-auto w-full"
@@ -173,11 +209,61 @@ export default function BlackEdition() {
           </section>
 
           {/* ========================================================= */}
+          {/* SEC 3.5: THE HORIZONTAL ABYSS (CINEMATIC SHOWCASE) */}
+          {/* ========================================================= */}
+          <section className="relative h-[300vh] z-10">
+            <div className="sticky top-0 h-screen w-full overflow-hidden">
+              <motion.div 
+                style={{ x: abyssX }}
+                className="flex h-full w-[300%]"
+              >
+                {/* Slide 1 - Engineering */}
+                <div className="w-screen h-full relative flex items-center justify-center p-12">
+                  <div className="absolute inset-0 z-0">
+                    <img src="/be-asset-1.png" className="w-full h-full object-cover opacity-40 brightness-50" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
+                  </div>
+                  <div className="relative z-10 text-center max-w-4xl">
+                    <h2 className="text-6xl md:text-9xl font-light mb-8 tracking-tighter uppercase italic">Engenharia</h2>
+                    <p className="text-xl md:text-3xl font-extralight text-[var(--be-text-muted)] tracking-widest uppercase">Percepção de Valor Absoluto</p>
+                  </div>
+                </div>
+
+                {/* Slide 2 - Authority */}
+                <div className="w-screen h-full relative flex items-center justify-center p-12">
+                  <div className="absolute inset-0 z-0">
+                    <img src="/be-asset-2.png" className="w-full h-full object-cover opacity-40 brightness-50" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
+                  </div>
+                  <div className="relative z-10 text-center max-w-4xl">
+                    <h2 className="text-6xl md:text-9xl font-light mb-8 tracking-tighter uppercase italic">Autoridade</h2>
+                    <p className="text-xl md:text-3xl font-extralight text-[var(--be-text-muted)] tracking-widest uppercase">O Monopólio da Narrativa</p>
+                  </div>
+                </div>
+
+                {/* Slide 3 - Results */}
+                <div className="w-screen h-full relative flex items-center justify-center p-12">
+                  <div className="absolute inset-0 z-0 bg-black">
+                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
+                  </div>
+                  <div className="relative z-10 text-center max-w-4xl">
+                    <h2 className="text-6xl md:text-9xl font-light mb-8 tracking-tighter uppercase italic">O Padrão</h2>
+                    <p className="text-xl md:text-3xl font-extralight text-[var(--be-text-muted)] tracking-widest uppercase">A Elite do Mercado Global</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ========================================================= */}
           {/* SEC 4: ELITE PRICING (HOLY SHIT FACTOR: TILT CARDS) */}
           {/* ========================================================= */}
-          <section className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden z-10 py-20">
+          <section className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden z-20 py-20">
             <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={cinematicRise}
+              initial={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
+              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
               className="w-full flex flex-col items-center"
             >
               <h2 className="text-4xl md:text-5xl font-light mb-32 text-center tracking-tighter">
@@ -224,9 +310,12 @@ export default function BlackEdition() {
           {/* ========================================================= */}
           {/* SEC 5: FINAL CTA */}
           {/* ========================================================= */}
-          <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden z-10 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_0%,rgba(0,0,0,1)_100%)] border-t border-[rgba(255,255,255,0.02)]">
+          <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden z-20 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_0%,rgba(0,0,0,1)_100%)] border-t border-[rgba(255,255,255,0.02)]">
             <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }} variants={cinematicRise}
+              initial={{ opacity: 0, y: 100, filter: 'blur(30px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
             >
               <h2 className="text-4xl md:text-8xl font-light tracking-tighter mb-20 md:mb-40 mix-blend-difference">
                 A concorrência <br/><span className="text-gradient-white">acabou de voltar no tempo.</span>
