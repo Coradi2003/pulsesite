@@ -89,24 +89,6 @@
   z-index: 10;
 }
 
-/* Sticky Scroll-Jacking Layout Configs */
-.black-edition .be-scroll-timeline {
-  position: relative;
-  width: 100%;
-  /* Height is set dynamically in React (e.g., 300vh) */
-}
-
-.black-edition .be-sticky-frame {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Buttons (Resetting base for MagneticButton wrapper) */
 .black-edition .be-btn-primary {
   display: inline-flex;
