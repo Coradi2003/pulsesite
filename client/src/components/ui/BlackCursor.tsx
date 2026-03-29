@@ -7,20 +7,27 @@ export default function BlackCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
 
-  // Smooth springs for tracking
+  // Smooth springs for tracking (declared at top level - REQUIRED)
   const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
+  const trailConfig = { damping: 40, stiffness: 50, mass: 1 };
+  
   const cursorX = useSpring(x, springConfig);
   const cursorY = useSpring(y, springConfig);
+  const trailX = useSpring(x - 100, trailConfig);
+  const trailY = useSpring(y - 100, trailConfig);
 
   useEffect(() => {
     // Detect touch device once
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      setIsTouch(true);
+    if (typeof window !== 'undefined') {
+      const touchCapable = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      if (touchCapable) setIsTouch(true);
     }
     
     cursorX.set(x - (isHovering ? 20 : 8));
     cursorY.set(y - (isHovering ? 20 : 8));
-  }, [x, y, cursorX, cursorY, isHovering]);
+    trailX.set(x - 100);
+    trailY.set(y - 100);
+  }, [x, y, cursorX, cursorY, trailX, trailY, isHovering]);
 
   useEffect(() => {
     const handleMouseOver = (e: MouseEvent) => {
@@ -42,11 +49,11 @@ export default function BlackCursor() {
     return () => window.removeEventListener('mouseover', handleMouseOver);
   }, []);
 
+  // Rules of Hooks: This return must come AFTER all useEffect/useSpring calls
   if (isTouch) return null;
 
   return (
     <>
-      {/* Primary Dot */}
       <motion.div
         className="fixed top-0 left-0 rounded-full w-4 h-4 pointer-events-none z-[9999] mix-blend-difference"
         style={{
@@ -58,12 +65,11 @@ export default function BlackCursor() {
         }}
         transition={{ scale: { type: "spring", stiffness: 300, damping: 20 } }}
       />
-      {/* Trailing Soft Glow */}
       <motion.div
         className="fixed top-0 left-0 rounded-full w-[200px] h-[200px] pointer-events-none z-[0]"
         style={{
-          x: useSpring(x - 100, { damping: 40, stiffness: 50, mass: 1 }),
-          y: useSpring(y - 100, { damping: 40, stiffness: 50, mass: 1 }),
+          x: trailX,
+          y: trailY,
           background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%)',
         }}
       />
