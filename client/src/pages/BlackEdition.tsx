@@ -184,10 +184,10 @@ export default function BlackEdition() {
                 O Custo da Autoridade.
               </h2>
               
-              <div className="flex flex-col md:flex-row gap-8 max-w-6xl w-full">
+              <div className="flex flex-col md:flex-row items-stretch gap-8 max-w-6xl w-full">
                 
                 {/* 3D TILT CARD 1 */}
-                <TiltCard3D className="flex-1 min-h-[600px] flex flex-col h-full">
+                <TiltCard3D className="flex-1 h-[600px]">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-[var(--be-text-darker)] font-bold">Base Cinematográfica</div>
                   <div className="text-4xl font-light mb-10 tracking-tighter">R$ 5.500</div>
                   <div className="flex flex-col gap-5 text-sm font-light text-[var(--be-text-muted)] flex-grow mb-16">
@@ -196,13 +196,13 @@ export default function BlackEdition() {
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.05)] pb-3"><span>Tracking Google & Meta</span></div>
                   </div>
                   
-                  <MagneticButton href={getWhatsAppLink("Olá! Tenho interesse na Base Cinematográfica (Black) de R$5.500.")} className="be-btn-secondary w-full magnetic-trigger text-center justify-center">
+                  <MagneticButton href={getWhatsAppLink("Olá! Tenho interesse na Base Cinematográfica (Black) de R$5.500.")} className="be-btn-secondary w-full magnetic-trigger text-center justify-center mt-auto">
                     Solicitar Acesso
                   </MagneticButton>
                 </TiltCard3D>
 
                 {/* 3D TILT CARD 2 - ELITE */}
-                <TiltCard3D featured={true} className="flex-1 min-h-[600px] flex flex-col h-full">
+                <TiltCard3D featured={true} className="flex-1 h-[600px]">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-white drop-shadow-[0_0_10px_rgba(255,255,255,1)] font-bold">Operação Elite</div>
                   <div className="text-5xl font-light mb-10 tracking-tighter">R$ 9.800</div>
                   <div className="flex flex-col gap-5 text-sm font-light text-white flex-grow mb-16">
@@ -212,7 +212,7 @@ export default function BlackEdition() {
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.15)] pb-3"><span>Diretor de Arte Exclusivo</span></div>
                   </div>
 
-                  <MagneticButton href={getWhatsAppLink("Olá! Exijo a Operação Elite (Black) de R$9.800 para dominar meu mercado.")} className="be-btn-secondary w-full magnetic-trigger text-center justify-center">
+                  <MagneticButton href={getWhatsAppLink("Olá! Exijo a Operação Elite (Black) de R$9.800 para dominar meu mercado.")} className="be-btn-secondary w-full magnetic-trigger text-center justify-center mt-auto">
                     Ascender ao Elite
                   </MagneticButton>
                 </TiltCard3D>
