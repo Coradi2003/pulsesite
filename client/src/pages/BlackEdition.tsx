@@ -61,7 +61,7 @@ export default function BlackEdition() {
       <motion.div 
         className="fixed top-0 left-0 right-0 h-[100vh] pointer-events-none z-0"
         style={{
-          background: "radial-gradient(circle at 50% 50%, rgba(120,40,220,0.03) 0%, transparent 60%)",
+          background: "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 60%)",
           scale: useTransform(smoothProgress, [0, 1], [1, 2])
         }}
       />
@@ -192,23 +192,31 @@ export default function BlackEdition() {
                 <TiltCard3D className="flex-1 min-h-[500px] flex flex-col">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-[var(--be-text-darker)] font-bold">Base Cinematográfica</div>
                   <div className="text-4xl font-light mb-10 tracking-tighter">R$ 5.500</div>
-                  <div className="flex flex-col gap-5 text-sm font-light text-[var(--be-text-muted)] flex-grow">
+                  <div className="flex flex-col gap-5 text-sm font-light text-[var(--be-text-muted)] flex-grow mb-16">
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.05)] pb-3 text-white"><span>Landing Page Premium</span></div>
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.05)] pb-3"><span>Ux Copywriting Agressivo</span></div>
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.05)] pb-3"><span>Tracking Google & Meta</span></div>
                   </div>
+                  
+                  <MagneticButton href={getWhatsAppLink("Olá! Tenho interesse na Base Cinematográfica (Black) de R$5.500.")} className="be-btn-secondary w-full magnetic-trigger text-center justify-center">
+                    Solicitar Acesso
+                  </MagneticButton>
                 </TiltCard3D>
 
                 {/* 3D TILT CARD 2 - ELITE */}
                 <TiltCard3D featured={true} className="flex-1 min-h-[500px] flex flex-col">
                   <div className="text-xs uppercase tracking-[0.3em] mb-4 text-white drop-shadow-[0_0_10px_rgba(255,255,255,1)] font-bold">Operação Elite</div>
                   <div className="text-5xl font-light mb-10 tracking-tighter">R$ 9.800</div>
-                  <div className="flex flex-col gap-5 text-sm font-light text-white flex-grow">
+                  <div className="flex flex-col gap-5 text-sm font-light text-white flex-grow mb-16">
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.15)] pb-3"><span>O Padrão Bilionário (Completo)</span></div>
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.15)] pb-3"><span>Interatividade WebGL e 3D Motion</span></div>
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.15)] pb-3"><span>Desenvolvimento Monolítico Customizado</span></div>
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.15)] pb-3"><span>Diretor de Arte Exclusivo</span></div>
                   </div>
+
+                  <MagneticButton href={getWhatsAppLink("Olá! Exijo a Operação Elite (Black) de R$9.800 para dominar meu mercado.")} className="be-btn-primary w-full magnetic-trigger text-center justify-center">
+                    Ascender ao Elite
+                  </MagneticButton>
                 </TiltCard3D>
 
               </div>
@@ -222,7 +230,7 @@ export default function BlackEdition() {
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }} variants={cinematicRise}
             >
-              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-12 mix-blend-difference">
+              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-24 mix-blend-difference">
                 A concorrência <br/><span className="text-gradient-white">acabou de voltar no tempo.</span>
               </h2>
               

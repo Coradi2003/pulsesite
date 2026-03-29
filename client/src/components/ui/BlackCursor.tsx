@@ -56,7 +56,7 @@ export default function BlackCursor() {
         style={{
           x: useSpring(x - 100, { damping: 40, stiffness: 50, mass: 1 }),
           y: useSpring(y - 100, { damping: 40, stiffness: 50, mass: 1 }),
-          background: 'radial-gradient(circle, rgba(168, 85, 247, 0.05) 0%, transparent 60%)',
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%)',
         }}
       />
     </>
