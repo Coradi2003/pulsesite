@@ -22,8 +22,6 @@ export default function BlackCursor() {
     cursorY.set(y - (isHovering ? 20 : 8));
   }, [x, y, cursorX, cursorY, isHovering]);
 
-  if (isTouch) return null;
-
   useEffect(() => {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -43,6 +41,8 @@ export default function BlackCursor() {
     window.addEventListener('mouseover', handleMouseOver);
     return () => window.removeEventListener('mouseover', handleMouseOver);
   }, []);
+
+  if (isTouch) return null;
 
   return (
     <>
