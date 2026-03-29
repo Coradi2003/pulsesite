@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
-import useMousePosition from '../../hooks/useMousePosition';
+import React, { useEffect, useState } from "react";
+import { motion, useSpring } from "framer-motion";
+import useMousePosition from "../../hooks/useMousePosition";
 
 export default function BlackCursor() {
   const { x, y } = useMousePosition();
@@ -10,7 +10,7 @@ export default function BlackCursor() {
   // Smooth springs for tracking (declared at top level - REQUIRED)
   const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
   const trailConfig = { damping: 40, stiffness: 50, mass: 1 };
-  
+
   const cursorX = useSpring(x, springConfig);
   const cursorY = useSpring(y, springConfig);
   const trailX = useSpring(x - 100, trailConfig);
@@ -18,11 +18,12 @@ export default function BlackCursor() {
 
   useEffect(() => {
     // Detect touch device once
-    if (typeof window !== 'undefined') {
-      const touchCapable = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (typeof window !== "undefined") {
+      const touchCapable =
+        "ontouchstart" in window || navigator.maxTouchPoints > 0;
       if (touchCapable) setIsTouch(true);
     }
-    
+
     cursorX.set(x - (isHovering ? 20 : 8));
     cursorY.set(y - (isHovering ? 20 : 8));
     trailX.set(x - 100);
@@ -33,11 +34,11 @@ export default function BlackCursor() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
-        target.tagName.toLowerCase() === 'a' ||
-        target.tagName.toLowerCase() === 'button' ||
-        target.closest('a') ||
-        target.closest('button') ||
-        target.classList.contains('magnetic-trigger')
+        target.tagName.toLowerCase() === "a" ||
+        target.tagName.toLowerCase() === "button" ||
+        target.closest("a") ||
+        target.closest("button") ||
+        target.classList.contains("magnetic-trigger")
       ) {
         setIsHovering(true);
       } else {
@@ -45,8 +46,8 @@ export default function BlackCursor() {
       }
     };
 
-    window.addEventListener('mouseover', handleMouseOver);
-    return () => window.removeEventListener('mouseover', handleMouseOver);
+    window.addEventListener("mouseover", handleMouseOver);
+    return () => window.removeEventListener("mouseover", handleMouseOver);
   }, []);
 
   // Rules of Hooks: This return must come AFTER all useEffect/useSpring calls
@@ -59,7 +60,7 @@ export default function BlackCursor() {
         style={{
           x: cursorX,
           y: cursorY,
-          backgroundColor: '#ffffff',
+          backgroundColor: "#ffffff",
           scale: isHovering ? 2.5 : 1,
           opacity: isHovering ? 0.3 : 1,
         }}
@@ -70,7 +71,8 @@ export default function BlackCursor() {
         style={{
           x: trailX,
           y: trailY,
-          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%)',
+          background:
+            "radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%)",
         }}
       />
     </>

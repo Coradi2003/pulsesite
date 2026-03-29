@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
+import { Analytics } from "@vercel/analytics/react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CustomCursor from "./components/CustomCursor";
 import AnimatedBackground from "./components/AnimatedBackground";
@@ -57,28 +58,44 @@ function AdminRouter() {
       <Switch>
         <Route path="/admin/login" component={LoginPage} />
         <Route path="/admin/dashboard">
-          <ProtectedRoute><DashboardPage /></ProtectedRoute>
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
         </Route>
         <Route path="/admin/clients">
-          <ProtectedRoute><ClientsPage /></ProtectedRoute>
+          <ProtectedRoute>
+            <ClientsPage />
+          </ProtectedRoute>
         </Route>
         <Route path="/admin/projects">
-          <ProtectedRoute><ProjectsPage /></ProtectedRoute>
+          <ProtectedRoute>
+            <ProjectsPage />
+          </ProtectedRoute>
         </Route>
         <Route path="/admin/finance">
-          <ProtectedRoute><FinancePage /></ProtectedRoute>
+          <ProtectedRoute>
+            <FinancePage />
+          </ProtectedRoute>
         </Route>
         <Route path="/admin/domains">
-          <ProtectedRoute><DomainsPage /></ProtectedRoute>
+          <ProtectedRoute>
+            <DomainsPage />
+          </ProtectedRoute>
         </Route>
         <Route path="/admin/vercel">
-          <ProtectedRoute><VercelPage /></ProtectedRoute>
+          <ProtectedRoute>
+            <VercelPage />
+          </ProtectedRoute>
         </Route>
         <Route path="/admin/monitoring">
-          <ProtectedRoute><MonitoringPage /></ProtectedRoute>
+          <ProtectedRoute>
+            <MonitoringPage />
+          </ProtectedRoute>
         </Route>
         <Route path="/admin/settings">
-          <ProtectedRoute><SettingsPage /></ProtectedRoute>
+          <ProtectedRoute>
+            <SettingsPage />
+          </ProtectedRoute>
         </Route>
       </Switch>
     </AdminAuthProvider>
@@ -126,15 +143,25 @@ function App() {
                 <Toaster />
                 <Switch>
                   <Route path="/" component={Home} />
-                  <Route path="/criacao-de-sites-curitiba" component={CriacaoDeSitesCuritiba} />
-                  <Route path="/landing-page-curitiba" component={LandingPageCuritiba} />
-                  <Route path="/site-para-empresa-curitiba" component={SiteParaEmpresaCuritiba} />
+                  <Route
+                    path="/criacao-de-sites-curitiba"
+                    component={CriacaoDeSitesCuritiba}
+                  />
+                  <Route
+                    path="/landing-page-curitiba"
+                    component={LandingPageCuritiba}
+                  />
+                  <Route
+                    path="/site-para-empresa-curitiba"
+                    component={SiteParaEmpresaCuritiba}
+                  />
                   <Route path="/404" component={NotFound} />
                   <Route component={NotFound} />
                 </Switch>
               </div>
             </Route>
           </Switch>
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

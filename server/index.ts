@@ -16,25 +16,34 @@ async function startServer() {
   app.disable("x-powered-by");
 
   // Basic security headers, CSP is handled by vercel.json for frontend
-  app.use(helmet({
-    contentSecurityPolicy: false,
-    xXssProtection: false, // Deprecated
-  }));
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+      xXssProtection: false, // Deprecated
+    })
+  );
 
   // Prevent generic enumeration/abuse
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // Limit each IP to 100 requests per `window`
-    message: "Too many requests from this IP, please try again after 15 minutes",
+    message:
+      "Too many requests from this IP, please try again after 15 minutes",
     legacyHeaders: false,
-    standardHeaders: true
+    standardHeaders: true,
   });
   app.use(limiter);
 
   app.use((_req, res, next) => {
-    res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+    res.setHeader(
+      "Permissions-Policy",
+      "camera=(), microphone=(), geolocation=(), payment=()"
+    );
     if (process.env.NODE_ENV === "production") {
-      res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+      res.setHeader(
+        "Strict-Transport-Security",
+        "max-age=63072000; includeSubDomains; preload"
+      );
     }
     next();
   });

@@ -11,8 +11,12 @@ import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 // Mock admin credentials — SOMENTE em ambiente de desenvolvimento local.
 // Em produção (import.meta.env.PROD === true), essas variáveis são sempre undefined
 // e o mock mode nunca é ativado, independentemente do Supabase estar configurado.
-const MOCK_EMAIL    = import.meta.env.DEV ? (import.meta.env.VITE_MOCK_ADMIN_EMAIL    as string | undefined) : undefined;
-const MOCK_PASSWORD = import.meta.env.DEV ? (import.meta.env.VITE_MOCK_ADMIN_PASSWORD as string | undefined) : undefined;
+const MOCK_EMAIL = import.meta.env.DEV
+  ? (import.meta.env.VITE_MOCK_ADMIN_EMAIL as string | undefined)
+  : undefined;
+const MOCK_PASSWORD = import.meta.env.DEV
+  ? (import.meta.env.VITE_MOCK_ADMIN_PASSWORD as string | undefined)
+  : undefined;
 
 interface AdminAuthContextValue {
   user: User | null;
@@ -65,9 +69,17 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   }, [mockMode]);
 
   const login = useCallback(
-    async (email: string, password: string): Promise<{ error: string | null }> => {
+    async (
+      email: string,
+      password: string
+    ): Promise<{ error: string | null }> => {
       if (mockMode) {
-        if (MOCK_EMAIL && MOCK_PASSWORD && email === MOCK_EMAIL && password === MOCK_PASSWORD) {
+        if (
+          MOCK_EMAIL &&
+          MOCK_PASSWORD &&
+          email === MOCK_EMAIL &&
+          password === MOCK_PASSWORD
+        ) {
           setMockAuthenticated(true);
           sessionStorage.setItem("admin_mock_auth", "true");
           return { error: null };
@@ -75,7 +87,10 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
         return { error: "Credenciais inválidas." };
       }
 
-      const { error } = await supabase!.auth.signInWithPassword({ email, password });
+      const { error } = await supabase!.auth.signInWithPassword({
+        email,
+        password,
+      });
       if (error) return { error: error.message };
       return { error: null };
     },
@@ -95,7 +110,15 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AdminAuthContext.Provider
-      value={{ user, session, loading, isAuthenticated, mockMode, login, logout }}
+      value={{
+        user,
+        session,
+        loading,
+        isAuthenticated,
+        mockMode,
+        login,
+        logout,
+      }}
     >
       {children}
     </AdminAuthContext.Provider>
@@ -104,6 +127,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
 
 export function useAdminAuth() {
   const ctx = useContext(AdminAuthContext);
-  if (!ctx) throw new Error("useAdminAuth must be used inside AdminAuthProvider");
+  if (!ctx)
+    throw new Error("useAdminAuth must be used inside AdminAuthProvider");
   return ctx;
 }

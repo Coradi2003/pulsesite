@@ -18,7 +18,7 @@ async function sendWhatsApp(message: string) {
   console.log("WhatsApp sent:", res.status, await res.text());
 }
 
-Deno.serve(async (_req) => {
+Deno.serve(async _req => {
   try {
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
@@ -38,25 +38,37 @@ Deno.serve(async (_req) => {
 
     if (error) throw error;
     if (!entries || entries.length === 0) {
-      return new Response(JSON.stringify({ ok: true, reminders: 0 }), { status: 200 });
+      return new Response(JSON.stringify({ ok: true, reminders: 0 }), {
+        status: 200,
+      });
     }
 
     for (const entry of entries) {
       const clientName = (entry.clients as any)?.name ?? "Cliente";
-      const amount = Number(entry.amount).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-      const dueDate = new Date(entry.due_date + "T12:00:00").toLocaleDateString("pt-BR");
+      const amount = Number(entry.amount).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+      const dueDate = new Date(entry.due_date + "T12:00:00").toLocaleDateString(
+        "pt-BR"
+      );
 
       await sendWhatsApp(
         `📅 *Pulse Futuro* — Vencimento em 5 dias!\n\n👤 *Cliente:* ${clientName}\n📋 *Serviço:* ${entry.description}\n💰 *Valor:* ${amount}\n📆 *Vence em:* ${dueDate}\n\nLembre-se de enviar o boleto/link de pagamento!`
       );
     }
 
-    return new Response(JSON.stringify({ ok: true, reminders: entries.length }), {
-      headers: { "Content-Type": "application/json" },
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ ok: true, reminders: entries.length }),
+      {
+        headers: { "Content-Type": "application/json" },
+        status: 200,
+      }
+    );
   } catch (err) {
     console.error("payment-reminder error:", err);
-    return new Response(JSON.stringify({ error: String(err) }), { status: 500 });
+    return new Response(JSON.stringify({ error: String(err) }), {
+      status: 500,
+    });
   }
 });

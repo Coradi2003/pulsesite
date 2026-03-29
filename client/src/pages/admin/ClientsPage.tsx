@@ -11,7 +11,12 @@ import { Input } from "@/components/ui/input";
 
 const STATUS_OPTIONS: ClientStatus[] = ["active", "paused", "canceled"];
 const EMPTY: Omit<Client, "id" | "created_at"> = {
-  name: "", company: "", phone: "", email: "", status: "active", notes: "",
+  name: "",
+  company: "",
+  phone: "",
+  email: "",
+  status: "active",
+  notes: "",
 };
 
 export default function ClientsPage() {
@@ -24,7 +29,7 @@ export default function ClientsPage() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const filtered = clients.filter(
-    (c) =>
+    c =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.company.toLowerCase().includes(search.toLowerCase())
   );
@@ -37,7 +42,14 @@ export default function ClientsPage() {
 
   const openEdit = (c: Client) => {
     setEditing(c);
-    setForm({ name: c.name, company: c.company, phone: c.phone, email: c.email, status: c.status, notes: c.notes });
+    setForm({
+      name: c.name,
+      company: c.company,
+      phone: c.phone,
+      email: c.email,
+      status: c.status,
+      notes: c.notes,
+    });
     setModalOpen(true);
   };
 
@@ -72,7 +84,7 @@ export default function ClientsPage() {
           <Input
             placeholder="Buscar clientes..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={e => setSearch(e.target.value)}
             className="pl-9 bg-white/5 border-purple-900/40 text-white placeholder:text-gray-600 h-9"
           />
         </div>
@@ -83,8 +95,13 @@ export default function ClientsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-purple-900/20">
-                  {["Nome", "Empresa", "Telefone", "Status", ""].map((h) => (
-                    <th key={h} className="px-5 py-3 text-left text-gray-500 text-xs font-medium">{h}</th>
+                  {["Nome", "Empresa", "Telefone", "Status", ""].map(h => (
+                    <th
+                      key={h}
+                      className="px-5 py-3 text-left text-gray-500 text-xs font-medium"
+                    >
+                      {h}
+                    </th>
                   ))}
                 </tr>
               </thead>
@@ -99,15 +116,19 @@ export default function ClientsPage() {
                         ))}
                       </tr>
                     ))
-                  : filtered.map((c) => (
+                  : filtered.map(c => (
                       <motion.tr
                         key={c.id}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="hover:bg-white/[0.02] transition-colors group"
                       >
-                        <td className="px-5 py-3.5 text-gray-200 font-medium">{c.name}</td>
-                        <td className="px-5 py-3.5 text-gray-400">{c.company}</td>
+                        <td className="px-5 py-3.5 text-gray-200 font-medium">
+                          {c.name}
+                        </td>
+                        <td className="px-5 py-3.5 text-gray-400">
+                          {c.company}
+                        </td>
                         <td className="px-5 py-3.5 text-gray-400">{c.phone}</td>
                         <td className="px-5 py-3.5">
                           <StatusBadge status={c.status} />
@@ -152,46 +173,72 @@ export default function ClientsPage() {
               className="w-full max-w-md bg-[#0d0a1a] border border-purple-900/30 rounded-2xl p-6 shadow-2xl"
             >
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-white font-semibold">{editing ? "Editar Cliente" : "Novo Cliente"}</h2>
-                <button onClick={() => setModalOpen(false)} className="text-gray-500 hover:text-gray-300 transition-colors">
+                <h2 className="text-white font-semibold">
+                  {editing ? "Editar Cliente" : "Novo Cliente"}
+                </h2>
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-300 transition-colors"
+                >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="space-y-4">
-                {(["name", "company", "phone"] as const).map((field) => (
+                {(["name", "company", "phone"] as const).map(field => (
                   <div key={field}>
                     <label className="text-gray-400 text-xs font-medium mb-1.5 block capitalize">
-                      {field === "name" ? "Nome" : field === "company" ? "Empresa" : "Telefone"}
+                      {field === "name"
+                        ? "Nome"
+                        : field === "company"
+                          ? "Empresa"
+                          : "Telefone"}
                     </label>
                     <Input
                       value={form[field]}
-                      onChange={(e) => setForm((f) => ({ ...f, [field]: e.target.value }))}
+                      onChange={e =>
+                        setForm(f => ({ ...f, [field]: e.target.value }))
+                      }
                       className="bg-white/5 border-purple-900/40 text-white h-9"
                     />
                   </div>
                 ))}
 
                 <div>
-                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">Status</label>
+                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">
+                    Status
+                  </label>
                   <select
                     value={form.status}
-                    onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as ClientStatus }))}
+                    onChange={e =>
+                      setForm(f => ({
+                        ...f,
+                        status: e.target.value as ClientStatus,
+                      }))
+                    }
                     className="w-full h-9 px-3 rounded-lg bg-white/5 border border-purple-900/40 text-white text-sm focus:outline-none focus:border-purple-500/60"
                   >
-                    {STATUS_OPTIONS.map((s) => (
+                    {STATUS_OPTIONS.map(s => (
                       <option key={s} value={s} className="bg-[#0d0a1a]">
-                        {s === "active" ? "Ativo" : s === "paused" ? "Pausado" : "Cancelado"}
+                        {s === "active"
+                          ? "Ativo"
+                          : s === "paused"
+                            ? "Pausado"
+                            : "Cancelado"}
                       </option>
                     ))}
                   </select>
                 </div>
 
                 <div>
-                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">Notas</label>
+                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">
+                    Notas
+                  </label>
                   <textarea
                     value={form.notes}
-                    onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
+                    onChange={e =>
+                      setForm(f => ({ ...f, notes: e.target.value }))
+                    }
                     rows={3}
                     className="w-full px-3 py-2 rounded-lg bg-white/5 border border-purple-900/40 text-white text-sm focus:outline-none focus:border-purple-500/60 resize-none"
                   />
@@ -199,10 +246,18 @@ export default function ClientsPage() {
               </div>
 
               <div className="flex gap-3 mt-6">
-                <Button variant="outline" onClick={() => setModalOpen(false)} className="flex-1 border-purple-900/40 text-gray-400 hover:text-white h-9">
+                <Button
+                  variant="outline"
+                  onClick={() => setModalOpen(false)}
+                  className="flex-1 border-purple-900/40 text-gray-400 hover:text-white h-9"
+                >
                   Cancelar
                 </Button>
-                <Button onClick={handleSave} disabled={saving} className="flex-1 bg-purple-600 hover:bg-purple-500 text-white h-9">
+                <Button
+                  onClick={handleSave}
+                  disabled={saving}
+                  className="flex-1 bg-purple-600 hover:bg-purple-500 text-white h-9"
+                >
                   {saving ? "Salvando…" : editing ? "Salvar" : "Criar"}
                 </Button>
               </div>
@@ -226,13 +281,24 @@ export default function ClientsPage() {
               exit={{ scale: 0.95 }}
               className="w-full max-w-sm bg-[#0d0a1a] border border-red-500/20 rounded-2xl p-6 shadow-2xl"
             >
-              <h2 className="text-white font-semibold mb-2">Confirmar exclusão</h2>
-              <p className="text-gray-400 text-sm mb-5">Deseja excluir este cliente? Esta ação não pode ser desfeita.</p>
+              <h2 className="text-white font-semibold mb-2">
+                Confirmar exclusão
+              </h2>
+              <p className="text-gray-400 text-sm mb-5">
+                Deseja excluir este cliente? Esta ação não pode ser desfeita.
+              </p>
               <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setDeleteId(null)} className="flex-1 border-purple-900/40 text-gray-400 h-9">
+                <Button
+                  variant="outline"
+                  onClick={() => setDeleteId(null)}
+                  className="flex-1 border-purple-900/40 text-gray-400 h-9"
+                >
                   Cancelar
                 </Button>
-                <Button onClick={() => handleDelete(deleteId)} className="flex-1 bg-red-600 hover:bg-red-500 text-white h-9">
+                <Button
+                  onClick={() => handleDelete(deleteId)}
+                  className="flex-1 bg-red-600 hover:bg-red-500 text-white h-9"
+                >
                   Excluir
                 </Button>
               </div>

@@ -11,13 +11,15 @@ export default function AutoridadeSection() {
               <span>para crescer online</span>
             </h2>
             <p className="section-subtitle">
-              No mundo conectado de hoje, seu site é a primeira impressão que os clientes têm da
-              sua empresa. Uma presença digital profissional não é mais um diferencial — é uma
-              necessidade para qualquer negócio que queira crescer.
+              No mundo conectado de hoje, seu site é a primeira impressão que os
+              clientes têm da sua empresa. Uma presença digital profissional não
+              é mais um diferencial — é uma necessidade para qualquer negócio
+              que queira crescer.
             </p>
             <blockquote className="autoridade-quote">
-              "Empresas com site profissional geram até 3 vezes mais contatos e têm percepção de
-              valor significativamente maior pelos consumidores digitais."
+              "Empresas com site profissional geram até 3 vezes mais contatos e
+              têm percepção de valor significativamente maior pelos consumidores
+              digitais."
             </blockquote>
           </div>
 
@@ -55,7 +57,9 @@ export default function AutoridadeSection() {
                 <span className="metric-particle"></span>
                 <span className="metric-particle"></span>
                 <div className="metric-number">3h</div>
-                <div className="metric-label">Tempo médio para seu site entrar no ar</div>
+                <div className="metric-label">
+                  Tempo médio para seu site entrar no ar
+                </div>
               </div>
             </div>
           </div>

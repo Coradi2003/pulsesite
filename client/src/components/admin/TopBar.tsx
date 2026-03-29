@@ -19,21 +19,26 @@ export function TopBar({ onMenuClick }: { onMenuClick: () => void }) {
   const title = routeLabels[location] ?? "Admin";
 
   return (
-    <header className="h-16 border-b border-purple-900/30 flex items-center justify-between px-4 md:px-6 sticky top-0 z-30"
+    <header
+      className="h-16 border-b border-purple-900/30 flex items-center justify-between px-4 md:px-6 sticky top-0 z-30"
       style={{ background: "rgba(7,5,15,0.95)", backdropFilter: "blur(10px)" }}
     >
       <div className="flex items-center gap-4">
-        <button 
+        <button
           onClick={onMenuClick}
           className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg"
         >
           <Menu className="w-5 h-5" />
         </button>
-        
+
         <div className="flex flex-col leading-none">
-          <h1 className="text-white font-semibold text-sm md:text-base">{title}</h1>
+          <h1 className="text-white font-semibold text-sm md:text-base">
+            {title}
+          </h1>
           {mockMode && (
-            <span className="text-[10px] md:text-xs text-amber-400/80 font-medium">Modo Demo</span>
+            <span className="text-[10px] md:text-xs text-amber-400/80 font-medium">
+              Modo Demo
+            </span>
           )}
         </div>
       </div>
@@ -48,7 +53,7 @@ export function TopBar({ onMenuClick }: { onMenuClick: () => void }) {
             <User className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
           </div>
           <span className="text-gray-300 text-[10px] md:text-xs font-medium max-w-[80px] md:max-w-[140px] truncate">
-            {user?.email?.split('@')[0] ?? "admin"}
+            {user?.email?.split("@")[0] ?? "admin"}
           </span>
         </div>
 

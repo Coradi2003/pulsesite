@@ -25,16 +25,24 @@ const navItems = [
   { href: "/admin/settings", label: "Configurações", icon: Settings },
 ];
 
-export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function Sidebar({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
   const [location] = useLocation();
 
   const sidebarContent = (
-    <aside 
+    <aside
       className={cn(
         "fixed inset-y-0 left-0 w-64 z-50 flex flex-col border-r border-purple-900/30 transition-transform duration-300 lg:translate-x-0",
         open ? "translate-x-0" : "-translate-x-full"
       )}
-      style={{ background: "linear-gradient(180deg, #0d0a1a 0%, #080614 100%)" }}
+      style={{
+        background: "linear-gradient(180deg, #0d0a1a 0%, #080614 100%)",
+      }}
     >
       {/* Logo & Close */}
       <div className="flex items-center justify-between px-6 h-16 border-b border-purple-900/30">
@@ -43,11 +51,13 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
             <Zap className="w-4 h-4 text-white" />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="text-white font-semibold text-sm tracking-wide">Pulse Futuro</span>
+            <span className="text-white font-semibold text-sm tracking-wide">
+              Pulse Futuro
+            </span>
             <span className="text-purple-400 text-xs font-medium">Admin</span>
           </div>
         </div>
-        <button 
+        <button
           onClick={onClose}
           className="lg:hidden p-1.5 text-gray-500 hover:text-white transition-colors"
         >
@@ -58,9 +68,17 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
         {navItems.map(({ href, label, icon: Icon }) => {
-          const active = location === href || (href !== "/admin/dashboard" && location.startsWith(href));
+          const active =
+            location === href ||
+            (href !== "/admin/dashboard" && location.startsWith(href));
           return (
-            <Link key={href} href={href} onClick={() => { if(window.innerWidth < 1024) onClose(); }}>
+            <Link
+              key={href}
+              href={href}
+              onClick={() => {
+                if (window.innerWidth < 1024) onClose();
+              }}
+            >
               <motion.div
                 whileHover={{ x: 2 }}
                 className={cn(
@@ -76,7 +94,14 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
                     className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-purple-400 rounded-full"
                   />
                 )}
-                <Icon className={cn("w-4 h-4 flex-shrink-0", active ? "text-purple-400" : "text-gray-500 group-hover:text-gray-300")} />
+                <Icon
+                  className={cn(
+                    "w-4 h-4 flex-shrink-0",
+                    active
+                      ? "text-purple-400"
+                      : "text-gray-500 group-hover:text-gray-300"
+                  )}
+                />
                 <span className="flex-1">{label}</span>
                 {active && <ChevronRight className="w-3 h-3 text-purple-500" />}
               </motion.div>

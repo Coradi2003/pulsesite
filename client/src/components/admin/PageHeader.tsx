@@ -23,9 +23,13 @@ export function PageHeader({ title, description, action }: PageHeaderProps) {
       className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 md:mb-8"
     >
       <div className="flex-1 min-w-0">
-        <h2 className="text-xl md:text-2xl font-bold text-white truncate">{title}</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-white truncate">
+          {title}
+        </h2>
         {description && (
-          <p className="text-xs md:text-sm text-gray-400 mt-1 line-clamp-2">{description}</p>
+          <p className="text-xs md:text-sm text-gray-400 mt-1 line-clamp-2">
+            {description}
+          </p>
         )}
       </div>
       {action && (

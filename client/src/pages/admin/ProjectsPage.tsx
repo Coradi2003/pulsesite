@@ -39,7 +39,13 @@ function timeAgo(dateStr: string | null) {
 
 export default function ProjectsPage() {
   const [, navigate] = useLocation();
-  const { data: projects, loading: loadingProjects, create, update, remove } = useProjects();
+  const {
+    data: projects,
+    loading: loadingProjects,
+    create,
+    update,
+    remove,
+  } = useProjects();
   const { data: clients } = useClients();
   const { statusMap, lastChecked, checkNow } = useSiteStatus(projects);
   const { projects: vercelProjects, loading: loadingVercel } = useVercel();
@@ -51,7 +57,7 @@ export default function ProjectsPage() {
 
   const loading = loadingProjects || loadingVercel;
 
-  const clientMap = Object.fromEntries(clients.map((c) => [c.id, c.name]));
+  const clientMap = Object.fromEntries(clients.map(c => [c.id, c.name]));
 
   const openCreate = () => {
     setEditing(null);
@@ -78,14 +84,16 @@ export default function ProjectsPage() {
       <div id="admin-projects">
         <PageHeader
           title="Projetos"
-          description={`${projects.length} projetos · ${projects.filter((p) => (statusMap[p.id] ?? p.status) === "online").length} online`}
+          description={`${projects.length} projetos · ${projects.filter(p => (statusMap[p.id] ?? p.status) === "online").length} online`}
           action={{ label: "Novo Projeto", onClick: openCreate }}
         />
 
         <div className="bg-[#0d0a1a]/80 border border-purple-900/30 rounded-xl overflow-hidden">
           <div className="flex items-center justify-between px-5 py-3 border-b border-purple-900/20">
             <span className="text-gray-400 text-xs">
-              {lastChecked ? `Verificado ${timeAgo(lastChecked.toISOString())}` : "Verificando…"}
+              {lastChecked
+                ? `Verificado ${timeAgo(lastChecked.toISOString())}`
+                : "Verificando…"}
             </span>
             <div className="flex items-center gap-3">
               <button
@@ -108,63 +116,115 @@ export default function ProjectsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-purple-900/20">
-                  {["Projeto", "Cliente", "Vercel URL", "Domínio", "Status", "Último ping", ""].map((h) => (
-                    <th key={h} className="px-5 py-3 text-left text-gray-500 text-xs font-medium">{h}</th>
+                  {[
+                    "Projeto",
+                    "Cliente",
+                    "Vercel URL",
+                    "Domínio",
+                    "Status",
+                    "Último ping",
+                    "",
+                  ].map(h => (
+                    <th
+                      key={h}
+                      className="px-5 py-3 text-left text-gray-500 text-xs font-medium"
+                    >
+                      {h}
+                    </th>
                   ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-purple-900/10">
                 {loading
                   ? Array.from({ length: 4 }).map((_, i) => (
-                      <tr key={i}>{Array.from({ length: 7 }).map((_, j) => (
-                        <td key={j} className="px-5 py-4"><div className="h-3 bg-white/5 rounded animate-pulse w-20" /></td>
-                      ))}</tr>
+                      <tr key={i}>
+                        {Array.from({ length: 7 }).map((_, j) => (
+                          <td key={j} className="px-5 py-4">
+                            <div className="h-3 bg-white/5 rounded animate-pulse w-20" />
+                          </td>
+                        ))}
+                      </tr>
                     ))
-                  : projects.map((p) => {
+                  : projects.map(p => {
                       const live = statusMap[p.id];
-                      const display = live === "checking" ? p.status : live ?? p.status;
-                      const vp = vercelProjects.find(v => v.name === p.vercel_project_name);
+                      const display =
+                        live === "checking" ? p.status : (live ?? p.status);
+                      const vp = vercelProjects.find(
+                        v => v.name === p.vercel_project_name
+                      );
                       const latest = vp?.latestDeployments?.[0];
-                      const vStatus = latest ? deployStateBadge(latest.state) : null;
+                      const vStatus = latest
+                        ? deployStateBadge(latest.state)
+                        : null;
 
                       return (
-                        <motion.tr key={p.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hover:bg-white/[0.02] transition-colors group">
-                          <td className="px-5 py-3.5 text-gray-200 font-medium">{p.project_name}</td>
-                          <td className="px-5 py-3.5 text-gray-400">{clientMap[p.client_id] ?? "—"}</td>
+                        <motion.tr
+                          key={p.id}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="hover:bg-white/[0.02] transition-colors group"
+                        >
+                          <td className="px-5 py-3.5 text-gray-200 font-medium">
+                            {p.project_name}
+                          </td>
+                          <td className="px-5 py-3.5 text-gray-400">
+                            {clientMap[p.client_id] ?? "—"}
+                          </td>
                           <td className="px-5 py-3.5">
                             <div className="flex flex-col gap-1">
-                              <a href={p.vercel_url} target="_blank" rel="noreferrer" 
-                                className="text-blue-400 hover:text-blue-300 flex items-center gap-1 text-xs transition-colors">
+                              <a
+                                href={p.vercel_url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-400 hover:text-blue-300 flex items-center gap-1 text-xs transition-colors"
+                              >
                                 <ExternalLink className="w-3 h-3" />
                                 Vercel
                               </a>
                               {vStatus && (
-                                <span className={cn(
-                                  "text-[10px] font-medium px-1.5 py-0.5 rounded-full w-fit",
-                                  vStatus.color === "emerald" ? "bg-emerald-500/10 text-emerald-400" :
-                                  vStatus.color === "red" ? "bg-red-500/10 text-red-400" :
-                                  vStatus.color === "blue" ? "bg-blue-500/10 text-blue-400 animate-pulse" :
-                                  "bg-white/5 text-gray-500"
-                                )}>
+                                <span
+                                  className={cn(
+                                    "text-[10px] font-medium px-1.5 py-0.5 rounded-full w-fit",
+                                    vStatus.color === "emerald"
+                                      ? "bg-emerald-500/10 text-emerald-400"
+                                      : vStatus.color === "red"
+                                        ? "bg-red-500/10 text-red-400"
+                                        : vStatus.color === "blue"
+                                          ? "bg-blue-500/10 text-blue-400 animate-pulse"
+                                          : "bg-white/5 text-gray-500"
+                                  )}
+                                >
                                   {vStatus.label}
                                 </span>
                               )}
                             </div>
                           </td>
-                          <td className="px-5 py-3.5 text-gray-400 text-xs">{p.custom_domain}</td>
+                          <td className="px-5 py-3.5 text-gray-400 text-xs">
+                            {p.custom_domain}
+                          </td>
                           <td className="px-5 py-3.5">
                             <div className="flex items-center gap-2">
                               <StatusBadge status={display as ProjectStatus} />
-                              {live === "checking" && <div className="w-3 h-3 border border-purple-400 border-t-transparent rounded-full animate-spin" />}
+                              {live === "checking" && (
+                                <div className="w-3 h-3 border border-purple-400 border-t-transparent rounded-full animate-spin" />
+                              )}
                             </div>
                           </td>
-                          <td className="px-5 py-3.5 text-gray-500 text-xs">{timeAgo(p.last_ping)}</td>
+                          <td className="px-5 py-3.5 text-gray-500 text-xs">
+                            {timeAgo(p.last_ping)}
+                          </td>
                           <td className="px-5 py-3.5">
                             <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <button onClick={() => openEdit(p)} className="p-1.5 text-gray-500 hover:text-purple-400 hover:bg-purple-400/10 rounded transition-colors">
+                              <button
+                                onClick={() => openEdit(p)}
+                                className="p-1.5 text-gray-500 hover:text-purple-400 hover:bg-purple-400/10 rounded transition-colors"
+                              >
                                 <Edit2 className="w-3.5 h-3.5" />
                               </button>
-                              <button onClick={() => setDeleteId(p.id)} className="p-1.5 text-gray-500 hover:text-red-400 hover:bg-red-400/10 rounded transition-colors">
+                              <button
+                                onClick={() => setDeleteId(p.id)}
+                                className="p-1.5 text-gray-500 hover:text-red-400 hover:bg-red-400/10 rounded transition-colors"
+                              >
                                 <Trash2 className="w-3.5 h-3.5" />
                               </button>
                             </div>
@@ -181,41 +241,107 @@ export default function ProjectsPage() {
       {/* Modal */}
       <AnimatePresence>
         {modalOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}
-              className="w-full max-w-md bg-[#0d0a1a] border border-purple-900/30 rounded-2xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="w-full max-w-md bg-[#0d0a1a] border border-purple-900/30 rounded-2xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto"
+            >
               <div className="flex items-center justify-between mb-5">
-                <h2 className="text-white font-semibold">{editing ? "Editar Projeto" : "Novo Projeto"}</h2>
-                <button onClick={() => setModalOpen(false)} className="text-gray-500 hover:text-gray-300"><X className="w-4 h-4" /></button>
+                <h2 className="text-white font-semibold">
+                  {editing ? "Editar Projeto" : "Novo Projeto"}
+                </h2>
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-300"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">Cliente</label>
-                  <select value={form.client_id} onChange={(e) => setForm((f) => ({ ...f, client_id: e.target.value }))}
-                    className="w-full h-9 px-3 rounded-lg bg-white/5 border border-purple-900/40 text-white text-sm focus:outline-none focus:border-purple-500/60">
-                    {clients.map((c) => <option key={c.id} value={c.id} className="bg-[#0d0a1a]">{c.name}</option>)}
+                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">
+                    Cliente
+                  </label>
+                  <select
+                    value={form.client_id}
+                    onChange={e =>
+                      setForm(f => ({ ...f, client_id: e.target.value }))
+                    }
+                    className="w-full h-9 px-3 rounded-lg bg-white/5 border border-purple-900/40 text-white text-sm focus:outline-none focus:border-purple-500/60"
+                  >
+                    {clients.map(c => (
+                      <option key={c.id} value={c.id} className="bg-[#0d0a1a]">
+                        {c.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
-                {([["project_name","Nome do Projeto"],["vercel_project_name","Vercel Project Name"],["vercel_url","Vercel URL"],["custom_domain","Domínio Custom"]] as const).map(([field, label]) => (
+                {(
+                  [
+                    ["project_name", "Nome do Projeto"],
+                    ["vercel_project_name", "Vercel Project Name"],
+                    ["vercel_url", "Vercel URL"],
+                    ["custom_domain", "Domínio Custom"],
+                  ] as const
+                ).map(([field, label]) => (
                   <div key={field}>
-                    <label className="text-gray-400 text-xs font-medium mb-1.5 block">{label}</label>
-                    <Input value={(form as any)[field] ?? ""} onChange={(e) => setForm((f) => ({ ...f, [field]: e.target.value }))}
-                      className="bg-white/5 border-purple-900/40 text-white h-9" />
+                    <label className="text-gray-400 text-xs font-medium mb-1.5 block">
+                      {label}
+                    </label>
+                    <Input
+                      value={(form as any)[field] ?? ""}
+                      onChange={e =>
+                        setForm(f => ({ ...f, [field]: e.target.value }))
+                      }
+                      className="bg-white/5 border-purple-900/40 text-white h-9"
+                    />
                   </div>
                 ))}
                 <div>
-                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">Status</label>
-                  <select value={form.status} onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as ProjectStatus }))}
-                    className="w-full h-9 px-3 rounded-lg bg-white/5 border border-purple-900/40 text-white text-sm focus:outline-none focus:border-purple-500/60">
-                    <option value="online" className="bg-[#0d0a1a]">Online</option>
-                    <option value="offline" className="bg-[#0d0a1a]">Offline</option>
+                  <label className="text-gray-400 text-xs font-medium mb-1.5 block">
+                    Status
+                  </label>
+                  <select
+                    value={form.status}
+                    onChange={e =>
+                      setForm(f => ({
+                        ...f,
+                        status: e.target.value as ProjectStatus,
+                      }))
+                    }
+                    className="w-full h-9 px-3 rounded-lg bg-white/5 border border-purple-900/40 text-white text-sm focus:outline-none focus:border-purple-500/60"
+                  >
+                    <option value="online" className="bg-[#0d0a1a]">
+                      Online
+                    </option>
+                    <option value="offline" className="bg-[#0d0a1a]">
+                      Offline
+                    </option>
                   </select>
                 </div>
               </div>
               <div className="flex gap-3 mt-6">
-                <Button variant="outline" onClick={() => setModalOpen(false)} className="flex-1 border-purple-900/40 text-gray-400 hover:text-white h-9">Cancelar</Button>
-                <Button onClick={handleSave} disabled={saving} className="flex-1 bg-purple-600 hover:bg-purple-500 text-white h-9">{saving ? "Salvando…" : editing ? "Salvar" : "Criar"}</Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setModalOpen(false)}
+                  className="flex-1 border-purple-900/40 text-gray-400 hover:text-white h-9"
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  onClick={handleSave}
+                  disabled={saving}
+                  className="flex-1 bg-purple-600 hover:bg-purple-500 text-white h-9"
+                >
+                  {saving ? "Salvando…" : editing ? "Salvar" : "Criar"}
+                </Button>
               </div>
             </motion.div>
           </motion.div>
@@ -224,15 +350,41 @@ export default function ProjectsPage() {
 
       <AnimatePresence>
         {deleteId && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}
-              className="w-full max-w-sm bg-[#0d0a1a] border border-red-500/20 rounded-2xl p-6">
-              <h2 className="text-white font-semibold mb-2">Confirmar exclusão</h2>
-              <p className="text-gray-400 text-sm mb-5">Deseja excluir este projeto?</p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="w-full max-w-sm bg-[#0d0a1a] border border-red-500/20 rounded-2xl p-6"
+            >
+              <h2 className="text-white font-semibold mb-2">
+                Confirmar exclusão
+              </h2>
+              <p className="text-gray-400 text-sm mb-5">
+                Deseja excluir este projeto?
+              </p>
               <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setDeleteId(null)} className="flex-1 border-purple-900/40 h-9">Cancelar</Button>
-                <Button onClick={() => { remove(deleteId); setDeleteId(null); }} className="flex-1 bg-red-600 hover:bg-red-500 text-white h-9">Excluir</Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setDeleteId(null)}
+                  className="flex-1 border-purple-900/40 h-9"
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  onClick={() => {
+                    remove(deleteId);
+                    setDeleteId(null);
+                  }}
+                  className="flex-1 bg-red-600 hover:bg-red-500 text-white h-9"
+                >
+                  Excluir
+                </Button>
               </div>
             </motion.div>
           </motion.div>

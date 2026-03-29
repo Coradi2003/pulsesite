@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -6,19 +6,21 @@ export default function CustomCursor() {
 
   useEffect(() => {
     // Media query to check for desktop and non-touch
-    const mq = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
+    const mq = window.matchMedia(
+      "(min-width: 1024px) and (hover: hover) and (pointer: fine)"
+    );
     setIsDesktop(mq.matches);
 
     const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   useEffect(() => {
     if (!isDesktop || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     let w = window.innerWidth;
@@ -32,7 +34,7 @@ export default function CustomCursor() {
       canvas.width = w;
       canvas.height = h;
     };
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
 
     const mouse = { x: w / 2, y: h / 2 };
     const pos = { x: w / 2, y: h / 2 }; // lerped position for the glow & trail
@@ -53,21 +55,21 @@ export default function CustomCursor() {
     const onMouseDown = () => (isClicking = true);
     const onMouseUp = () => (isClicking = false);
 
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
-    window.addEventListener('mousedown', onMouseDown, { passive: true });
-    window.addEventListener('mouseup', onMouseUp, { passive: true });
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mousedown", onMouseDown, { passive: true });
+    window.addEventListener("mouseup", onMouseUp, { passive: true });
 
     // Interactive elements hover detection globally
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target) return;
       if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
-        target.closest('a') ||
-        target.closest('button') ||
+        target.tagName === "A" ||
+        target.tagName === "BUTTON" ||
+        target.closest("a") ||
+        target.closest("button") ||
         target.closest('[role="button"]') ||
-        window.getComputedStyle(target).cursor === 'pointer'
+        window.getComputedStyle(target).cursor === "pointer"
       ) {
         isHovering = true;
       }
@@ -75,17 +77,17 @@ export default function CustomCursor() {
     const handleMouseOut = () => {
       isHovering = false;
     };
-    
+
     // Use capture phase for faster detection
-    window.addEventListener('mouseover', handleMouseOver, true);
-    window.addEventListener('mouseout', handleMouseOut, true);
+    window.addEventListener("mouseover", handleMouseOver, true);
+    window.addEventListener("mouseout", handleMouseOut, true);
 
     let rafId: number;
     let lastTime = performance.now();
 
     const loop = (time: number) => {
       // Delta time smoothing for consistent speed across refresh rates
-      const dt = Math.min((time - lastTime) / 16.66, 2); 
+      const dt = Math.min((time - lastTime) / 16.66, 2);
       lastTime = time;
 
       ctx.clearRect(0, 0, w, h);
@@ -133,9 +135,23 @@ export default function CustomCursor() {
       currentGlow += (targetGlow - currentGlow) * (0.15 * dt);
 
       // Draw Ambient Glow
-      const gradient = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, currentGlow);
-      gradient.addColorStop(0, isClicking ? 'rgba(216, 180, 254, 0.4)' : isHovering ? 'rgba(168, 85, 247, 0.25)' : 'rgba(192, 132, 252, 0.15)');
-      gradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
+      const gradient = ctx.createRadialGradient(
+        pos.x,
+        pos.y,
+        0,
+        pos.x,
+        pos.y,
+        currentGlow
+      );
+      gradient.addColorStop(
+        0,
+        isClicking
+          ? "rgba(216, 180, 254, 0.4)"
+          : isHovering
+            ? "rgba(168, 85, 247, 0.25)"
+            : "rgba(192, 132, 252, 0.15)"
+      );
+      gradient.addColorStop(1, "rgba(168, 85, 247, 0)");
 
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, currentGlow, 0, Math.PI * 2);
@@ -145,20 +161,22 @@ export default function CustomCursor() {
       // Draw outline ring around the glow center
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, currentRadius, 0, Math.PI * 2);
-      ctx.strokeStyle = isHovering ? 'rgba(216, 180, 254, 0.7)' : 'rgba(168, 85, 247, 0.5)';
+      ctx.strokeStyle = isHovering
+        ? "rgba(216, 180, 254, 0.7)"
+        : "rgba(168, 85, 247, 0.5)";
       ctx.lineWidth = isHovering ? 1.5 : 1;
       ctx.stroke();
 
       // Draw central core dot (fast moving)
       ctx.beginPath();
       ctx.arc(corePos.x, corePos.y, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = "#ffffff";
       ctx.fill();
 
       // Inner subtle glow for core
       ctx.beginPath();
       ctx.arc(corePos.x, corePos.y, 8, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
       ctx.fill();
 
       rafId = requestAnimationFrame(loop);
@@ -167,12 +185,12 @@ export default function CustomCursor() {
     rafId = requestAnimationFrame(loop);
 
     return () => {
-      window.removeEventListener('resize', onResize);
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mousedown', onMouseDown);
-      window.removeEventListener('mouseup', onMouseUp);
-      window.removeEventListener('mouseover', handleMouseOver, true);
-      window.removeEventListener('mouseout', handleMouseOut, true);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("mouseover", handleMouseOver, true);
+      window.removeEventListener("mouseout", handleMouseOut, true);
       cancelAnimationFrame(rafId);
     };
   }, [isDesktop]);
@@ -184,12 +202,12 @@ export default function CustomCursor() {
       <canvas
         ref={canvasRef}
         style={{
-          position: 'fixed',
+          position: "fixed",
           top: 0,
           left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
+          width: "100vw",
+          height: "100vh",
+          pointerEvents: "none",
           zIndex: 99999,
         }}
       />

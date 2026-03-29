@@ -1,71 +1,75 @@
-import { useEffect } from 'react';
-import CTASection from '../components/CTASection';
-import PlansSection from '../components/PlansSection';
-import Footer from '../components/Footer';
-import ComoFuncionaSection from '../components/ComoFuncionaSection';
-import AutoridadeSection from '../components/AutoridadeSection';
-import SolucaoSection from '../components/SolucaoSection';
-import ProblemaSection from '../components/ProblemaSection';
-import HeroSection from '../components/HeroSection';
-import FAQSection from '../components/FAQSection';
+import { useEffect } from "react";
+import CTASection from "../components/CTASection";
+import PlansSection from "../components/PlansSection";
+import Footer from "../components/Footer";
+import ComoFuncionaSection from "../components/ComoFuncionaSection";
+import AutoridadeSection from "../components/AutoridadeSection";
+import SolucaoSection from "../components/SolucaoSection";
+import ProblemaSection from "../components/ProblemaSection";
+import HeroSection from "../components/HeroSection";
+import FAQSection from "../components/FAQSection";
 
 export default function Home() {
   useEffect(() => {
-    const navbar = document.getElementById('navbar');
+    const navbar = document.getElementById("navbar");
 
     const handleScroll = () => {
       if (window.scrollY > 60) {
-        navbar?.classList.add('scrolled');
+        navbar?.classList.add("scrolled");
       } else {
-        navbar?.classList.remove('scrolled');
+        navbar?.classList.remove("scrolled");
       }
 
       // Parallax effect for diagonal ribbons
-      const ribbonTop = document.querySelector('.ribbon-top') as HTMLElement;
-      const ribbonBottom = document.querySelector('.ribbon-bottom') as HTMLElement;
-      
+      const ribbonTop = document.querySelector(".ribbon-top") as HTMLElement;
+      const ribbonBottom = document.querySelector(
+        ".ribbon-bottom"
+      ) as HTMLElement;
+
       if (ribbonTop && ribbonBottom) {
         const scrollY = window.scrollY;
         const parallaxSpeed = 0.1; // Suavizado para movimento sutil
-        
+
         ribbonTop.style.transform = `rotate(4deg) translateX(${scrollY * parallaxSpeed}px)`;
         ribbonBottom.style.transform = `rotate(-4deg) translateX(${-scrollY * parallaxSpeed}px)`;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealElements = document.querySelectorAll(
+      ".reveal, .reveal-left, .reveal-right"
+    );
     const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add("visible");
           }
         });
       },
       {
         threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px',
+        rootMargin: "0px 0px -40px 0px",
       }
     );
 
-    revealElements.forEach((el) => revealObserver.observe(el));
+    revealElements.forEach(el => revealObserver.observe(el));
 
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", e => {
         const target = document.querySelector(
-          (anchor as HTMLAnchorElement).getAttribute('href') || ''
+          (anchor as HTMLAnchorElement).getAttribute("href") || ""
         );
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
     });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
       revealObserver.disconnect();
     };
   }, []);
@@ -3440,56 +3444,56 @@ export default function Home() {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          "mainEntity": [
+          mainEntity: [
             {
               "@type": "Question",
-              "name": "Quanto custa criar um site em Curitiba?",
-              "acceptedAnswer": {
+              name: "Quanto custa criar um site em Curitiba?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "O valor de um site pode variar de acordo com a complexidade do projeto. Na Pulse Futuro, temos planos a partir de R$ 350, ideais para empresas que querem começar com um site profissional."
-              }
+                text: "O valor de um site pode variar de acordo com a complexidade do projeto. Na Pulse Futuro, temos planos a partir de R$ 350, ideais para empresas que querem começar com um site profissional.",
+              },
             },
             {
               "@type": "Question",
-              "name": "Em quanto tempo meu site fica pronto?",
-              "acceptedAnswer": {
+              name: "Em quanto tempo meu site fica pronto?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "O prazo médio de entrega é de 3 a 7 dias, dependendo do tipo de site e das informações enviadas."
-              }
+                text: "O prazo médio de entrega é de 3 a 7 dias, dependendo do tipo de site e das informações enviadas.",
+              },
             },
             {
               "@type": "Question",
-              "name": "O site já vem otimizado para o Google?",
-              "acceptedAnswer": {
+              name: "O site já vem otimizado para o Google?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "Sim. Todos os sites são entregues com técnicas de SEO aplicadas, como estrutura correta e carregamento rápido."
-              }
+                text: "Sim. Todos os sites são entregues com técnicas de SEO aplicadas, como estrutura correta e carregamento rápido.",
+              },
             },
             {
               "@type": "Question",
-              "name": "Vocês fazem landing pages também?",
-              "acceptedAnswer": {
+              name: "Vocês fazem landing pages também?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "Sim. Criamos landing pages focadas em conversão para gerar contatos e vendas."
-              }
+                text: "Sim. Criamos landing pages focadas em conversão para gerar contatos e vendas.",
+              },
             },
             {
               "@type": "Question",
-              "name": "O site funciona no celular?",
-              "acceptedAnswer": {
+              name: "O site funciona no celular?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "Sim. Todos os nossos sites são totalmente responsivos e funcionam perfeitamente em celulares."
-              }
+                text: "Sim. Todos os nossos sites são totalmente responsivos e funcionam perfeitamente em celulares.",
+              },
             },
             {
               "@type": "Question",
-              "name": "Ter um site realmente traz clientes?",
-              "acceptedAnswer": {
+              name: "Ter um site realmente traz clientes?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "Sim. Um site aumenta sua credibilidade e permite que sua empresa seja encontrada no Google."
-              }
-            }
-          ]
+                text: "Sim. Um site aumenta sua credibilidade e permite que sua empresa seja encontrada no Google.",
+              },
+            },
+          ],
         })}
       </script>
     </div>
