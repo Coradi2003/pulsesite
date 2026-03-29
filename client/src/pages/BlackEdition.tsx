@@ -113,26 +113,27 @@ export default function BlackEdition() {
           <section className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden z-10">
             <div className="text-center w-full max-w-[1400px]">
               
-              <div className="be-video-mask">
-                <video autoPlay loop muted playsInline>
-                  <source src="/fundo-roxo.mp4" type="video/mp4" />
-                </video>
-                <div className="be-text-mask-wrapper flex flex-col items-center">
-                  <motion.h1 
-                    initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-light tracking-tighter m-0 leading-none bg-transparent mix-blend-normal"
-                    style={{ fontSize: 'clamp(5rem, 15vw, 15rem)' }}
-                  >
-                    PRESENÇA
-                  </motion.h1>
-                  <motion.h1 
-                    initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-light tracking-widest m-0 leading-none bg-transparent mix-blend-normal"
-                    style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}
-                  >
-                    DEFINITIVA.
-                  </motion.h1>
-                </div>
+              <div className="relative w-full aspect-video md:aspect-[21/9] flex items-center justify-center">
+                <svg className="w-full h-full pointer-events-none select-none overflow-visible">
+                  <defs>
+                    <mask id="heroTextMask">
+                      <rect width="100%" height="100%" fill="black" />
+                      <text x="50%" y="40%" textAnchor="middle" fill="white" fontWeight="900" style={{ fontSize: 'min(15vw, 150px)', fontFamily: 'Outfit, sans-serif' }}>PRESENÇA</text>
+                      <text x="50%" y="80%" textAnchor="middle" fill="white" fontWeight="900" style={{ fontSize: 'min(10vw, 100px)', fontFamily: 'Outfit, sans-serif' }}>DEFINITIVA.</text>
+                    </mask>
+                  </defs>
+                  
+                  <foreignObject x="0" y="0" width="100%" height="100%" mask="url(#heroTextMask)">
+                    <div className="w-full h-full relative overflow-hidden">
+                      <video autoPlay loop muted playsInline className="absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover grayscale brightness-150 contrast-125">
+                        <source src="/fundo-roxo.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                  </foreignObject>
+                </svg>
+                
+                {/* Floating Glows to add depth around the mask */}
+                <div className="absolute inset-0 pointer-events-none bg-radial-gradient from-white/5 to-transparent blur-3xl z-[-1]" />
               </div>
               
               <motion.p 
