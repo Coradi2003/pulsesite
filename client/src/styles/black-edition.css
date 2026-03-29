@@ -185,10 +185,11 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
-  color: #000;
-  background-color: #000;
   margin: 0;
   line-height: 1;
+  mix-blend-mode: screen;
+  background: transparent;
+  isolation: isolate;
 }
 
 .black-edition .be-video-mask video {
@@ -204,6 +205,7 @@
   filter: grayscale(100%) brightness(1.8) contrast(1.5);
 }
 
+.black-edition .be-video-mask .be-text-mask-wrapper,
 .black-edition .be-video-mask h1,
 .black-edition .be-video-mask span.text-mask {
   position: relative;

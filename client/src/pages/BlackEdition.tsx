@@ -113,29 +113,26 @@ export default function BlackEdition() {
           <section className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden z-10">
             <div className="text-center w-full max-w-[1400px]">
               
-              <div className="be-video-mask w-full">
+              <div className="be-video-mask">
                 <video autoPlay loop muted playsInline>
                   <source src="/fundo-roxo.mp4" type="video/mp4" />
                 </video>
-                <motion.h1 
-                  initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-light tracking-tighter m-0 leading-none"
-                  style={{ fontSize: 'clamp(5rem, 15vw, 15rem)' }}
-                >
-                  PRESENÇA
-                </motion.h1>
-              </div>
-              <div className="be-video-mask w-full">
-                <video autoPlay loop muted playsInline>
-                  <source src="/fundo-roxo.mp4" type="video/mp4" />
-                </video>
-                <motion.h1 
-                  initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-light tracking-widest m-0 leading-none"
-                  style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}
-                >
-                  DEFINITIVA.
-                </motion.h1>
+                <div className="be-text-mask-wrapper flex flex-col items-center">
+                  <motion.h1 
+                    initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="font-light tracking-tighter m-0 leading-none bg-transparent mix-blend-normal"
+                    style={{ fontSize: 'clamp(5rem, 15vw, 15rem)' }}
+                  >
+                    PRESENÇA
+                  </motion.h1>
+                  <motion.h1 
+                    initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="font-light tracking-widest m-0 leading-none bg-transparent mix-blend-normal"
+                    style={{ fontSize: 'clamp(3rem, 10vw, 10rem)' }}
+                  >
+                    DEFINITIVA.
+                  </motion.h1>
+                </div>
               </div>
               
               <motion.p 
@@ -182,8 +179,8 @@ export default function BlackEdition() {
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} variants={cinematicRise}
               className="w-full flex flex-col items-center"
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-20 text-center tracking-tighter">
-                O Custo da Autoritade.
+              <h2 className="text-4xl md:text-5xl font-light mb-40 text-center tracking-tighter">
+                O Custo da Autoridade.
               </h2>
               
               <div className="flex flex-col md:flex-row gap-8 max-w-6xl w-full">
@@ -214,7 +211,7 @@ export default function BlackEdition() {
                     <div className="flex justify-between border-b border-[rgba(255,255,255,0.15)] pb-3"><span>Diretor de Arte Exclusivo</span></div>
                   </div>
 
-                  <MagneticButton href={getWhatsAppLink("Olá! Exijo a Operação Elite (Black) de R$9.800 para dominar meu mercado.")} className="be-btn-primary w-full magnetic-trigger text-center justify-center">
+                  <MagneticButton href={getWhatsAppLink("Olá! Exijo a Operação Elite (Black) de R$9.800 para dominar meu mercado.")} className="be-btn-secondary w-full magnetic-trigger text-center justify-center">
                     Ascender ao Elite
                   </MagneticButton>
                 </TiltCard3D>
@@ -230,7 +227,7 @@ export default function BlackEdition() {
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }} variants={cinematicRise}
             >
-              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-24 mix-blend-difference">
+              <h2 className="text-5xl md:text-8xl font-light tracking-tighter mb-64 mix-blend-difference">
                 A concorrência <br/><span className="text-gradient-white">acabou de voltar no tempo.</span>
               </h2>
               
