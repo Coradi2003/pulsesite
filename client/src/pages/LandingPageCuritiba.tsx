@@ -44,7 +44,7 @@ export default function LandingPageCuritiba() {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://pulsefuturo.com.br/landing-page-curitiba');
+    canonical.setAttribute('href', 'https://www.pulsefuturo.com.br/landing-page-curitiba');
 
     return () => {
       document.title = 'Pulse Futuro';
