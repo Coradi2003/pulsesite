@@ -5,4 +5,4 @@ Allow: /landing-page-curitiba
 Allow: /site-para-empresa-curitiba
 Disallow: /admin/
 
-Sitemap: https://www.pulsefuturo.com.br/sitemap.xml
+Sitemap: https://pulsefuturo.com.br/sitemap.xml
