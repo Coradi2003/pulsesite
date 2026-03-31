@@ -44,7 +44,7 @@ export default function SiteParaEmpresaCuritiba() {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://www.pulsefuturo.com.br/site-para-empresa-curitiba');
+    canonical.setAttribute('href', 'https://pulsefuturo.com.br/site-para-empresa-curitiba');
 
     return () => {
       document.title = 'Pulse Futuro';

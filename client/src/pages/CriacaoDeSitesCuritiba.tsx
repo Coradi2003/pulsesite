@@ -44,7 +44,7 @@ export default function CriacaoDeSitesCuritiba() {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://www.pulsefuturo.com.br/criacao-de-sites-curitiba');
+    canonical.setAttribute('href', 'https://pulsefuturo.com.br/criacao-de-sites-curitiba');
 
     // Cleanup on unmount
     return () => {

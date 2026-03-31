@@ -4,12 +4,6 @@
   ],
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "pulsefuturo.com.br" }],
-      "destination": "https://www.pulsefuturo.com.br/:path*",
-      "permanent": true
-    },
-    {
       "source": "/",
       "has": [{ "type": "host", "value": "admin.pulsefuturo.com.br" }],
       "destination": "/admin/login",
