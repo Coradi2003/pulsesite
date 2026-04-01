@@ -19,8 +19,8 @@ export default function HeroSection() {
               </span>
             </a>
             <div className="navbar-cta">
-              <a href="#planos" className="btn btn-secondary btn-nav" style={{ padding: '10px 18px', fontSize: '0.9rem' }}>
-                💰 Planos
+              <a href="/black" className="btn btn-secondary btn-nav" style={{ padding: '10px 18px', fontSize: '0.9rem' }}>
+                ⚫ Pulse Black
               </a>
               <a
                 href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
