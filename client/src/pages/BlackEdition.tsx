@@ -73,6 +73,9 @@ export default function BlackEdition() {
           className="fixed top-0 left-0 w-full z-[100] p-6 mix-blend-difference pointer-events-none"
         >
           <div className="flex justify-between items-center max-w-[1400px] mx-auto pointer-events-auto">
+            <a href="/" className="text-xs uppercase tracking-widest font-bold opacity-50 hover:opacity-100 transition-opacity">
+              ← Voltar ao site
+            </a>
             <div className="text-xs uppercase tracking-widest font-bold">Pulse Futuro</div>
             <MagneticButton href={getWhatsAppLink("Gostaria de agendar uma consultoria C-Level para Projetos Black.")} className="text-xs uppercase tracking-widest font-bold magnetic-trigger">
               Acesso Restrito
