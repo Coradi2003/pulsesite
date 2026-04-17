@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
+import { Analytics } from "@vercel/analytics/react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CustomCursor from "./components/CustomCursor";
 import AnimatedBackground from "./components/AnimatedBackground";
@@ -135,6 +136,7 @@ function App() {
               </div>
             </Route>
           </Switch>
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
