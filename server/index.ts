@@ -12,24 +12,14 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
-  // ── Security: Rate Limiting & Headers ───────────────────────────────────────
+  // ── Security: Headers ────────────────────────────────────────────────────────
   app.disable("x-powered-by");
 
-  // Basic security headers, CSP is handled by vercel.json for frontend
+  // Basic security headers; CSP is handled by vercel.json for the frontend
   app.use(helmet({
     contentSecurityPolicy: false,
-    xXssProtection: false, // Deprecated
+    xXssProtection: false, // Deprecated header
   }));
-
-  // Prevent generic enumeration/abuse
-  const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per `window`
-    message: "Too many requests from this IP, please try again after 15 minutes",
-    legacyHeaders: false,
-    standardHeaders: true
-  });
-  app.use(limiter);
 
   app.use((_req, res, next) => {
     res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
@@ -38,6 +28,17 @@ async function startServer() {
     }
     next();
   });
+
+  // ── Security: Rate Limiting (API routes only) ────────────────────────────────
+  // Scoped to /api/* so that static assets and SPA routes are never throttled.
+  const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15-minute window
+    max: 500,                  // 500 requests per IP per window
+    message: { error: "Too many requests. Please try again in 15 minutes." },
+    legacyHeaders: false,
+    standardHeaders: true,     // Return RateLimit-* headers (RFC 6585 draft)
+  });
+  app.use("/api", apiLimiter);
 
   // Serve static files from dist/public in production
   const staticPath =
