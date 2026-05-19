@@ -79,7 +79,7 @@ export default function SiteParaEmpresaCuritiba() {
                   Quero um Site Profissional
                 </a>
                 <a
-                  href="https://wa.me/5541984606633?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
+                  href="https://wa.me/5541984253194?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
                   className="btn btn-whatsapp btn-lg"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -274,7 +274,7 @@ export default function SiteParaEmpresaCuritiba() {
             </p>
             <div className="cta-buttons">
               <a
-                href="https://wa.me/5541984606633?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
+                href="https://wa.me/5541984253194?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
                 className="btn btn-primary btn-lg"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -283,7 +283,7 @@ export default function SiteParaEmpresaCuritiba() {
                 Quero um Site Profissional
               </a>
               <a
-                href="https://wa.me/5541984606633?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
+                href="https://wa.me/5541984253194?text=Quero%20um%20site%20para%20minha%20empresa%20em%20Curitiba!"
                 className="btn btn-whatsapp btn-lg"
                 target="_blank"
                 rel="noopener noreferrer"

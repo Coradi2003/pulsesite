@@ -23,7 +23,7 @@ export default function Footer() {
                 Transformamos negócios locais em referências digitais.
               </p>
               <a
-                href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
+                href="https://wa.me/5541984253194?text=Quero%20meu%20site%20profissional!"
                 className="btn btn-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -60,11 +60,11 @@ export default function Footer() {
                 <li>
                   <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
                   <a
-                    href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
+                    href="https://wa.me/5541984253194?text=Quero%20meu%20site%20profissional!"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    (41) 98460-6633
+                    (41) 98425-3194
                   </a>
                 </li>
                 <li>
@@ -93,7 +93,7 @@ export default function Footer() {
       </footer>
 
       <a
-        href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
+        href="https://wa.me/5541984253194?text=Quero%20meu%20site%20profissional!"
         className="whatsapp-float"
         target="_blank"
         rel="noopener noreferrer"

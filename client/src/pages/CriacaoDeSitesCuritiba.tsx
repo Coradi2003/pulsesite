@@ -79,7 +79,7 @@ export default function CriacaoDeSitesCuritiba() {
                   Solicitar Orçamento Gratuito
                 </a>
                 <a
-                  href="https://wa.me/5541984606633?text=Quero%20criar%20um%20site%20em%20Curitiba!"
+                  href="https://wa.me/5541984253194?text=Quero%20criar%20um%20site%20em%20Curitiba!"
                   className="btn btn-whatsapp btn-lg"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -280,7 +280,7 @@ export default function CriacaoDeSitesCuritiba() {
             </p>
             <div className="cta-buttons">
               <a
-                href="https://wa.me/5541984606633?text=Quero%20criar%20um%20site%20em%20Curitiba!"
+                href="https://wa.me/5541984253194?text=Quero%20criar%20um%20site%20em%20Curitiba!"
                 className="btn btn-primary btn-lg"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -289,7 +289,7 @@ export default function CriacaoDeSitesCuritiba() {
                 Solicitar Orçamento Gratuito
               </a>
               <a
-                href="https://wa.me/5541984606633?text=Quero%20criar%20um%20site%20em%20Curitiba!"
+                href="https://wa.me/5541984253194?text=Quero%20criar%20um%20site%20em%20Curitiba!"
                 className="btn btn-whatsapp btn-lg"
                 target="_blank"
                 rel="noopener noreferrer"

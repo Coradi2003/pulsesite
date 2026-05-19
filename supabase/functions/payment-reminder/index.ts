@@ -4,7 +4,7 @@
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const CALLMEBOT_PHONE = "5541984606633";
+const CALLMEBOT_PHONE = "5541984253194";
 const CALLMEBOT_APIKEY = Deno.env.get("CALLMEBOT_APIKEY") ?? "";
 
 async function sendWhatsApp(message: string) {

@@ -9,7 +9,7 @@ import BlackBootLoader from '../components/ui/BlackBootLoader';
 import TiltCard3D from '../components/ui/TiltCard3D';
 
 // WhatsApp Navigation
-const WHATSAPP_NUMBER = '5541984606633';
+const WHATSAPP_NUMBER = '5541984253194';
 const getWhatsAppLink = (message: string) => 
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 

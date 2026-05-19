@@ -23,7 +23,7 @@ export default function HeroSection() {
                 ⚫ Pulse Black
               </a>
               <a
-                href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
+                href="https://wa.me/5541984253194?text=Quero%20meu%20site%20profissional!"
                 className="btn btn-secondary"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -88,7 +88,7 @@ export default function HeroSection() {
                   Quero meu site profissional
                 </a>
                 <a
-                  href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
+                  href="https://wa.me/5541984253194?text=Quero%20meu%20site%20profissional!"
                   className="btn btn-whatsapp btn-lg"
                   target="_blank"
                   rel="noopener noreferrer"

@@ -41,7 +41,7 @@ export default function PlansSection() {
             
             <div className="pcard-footer">
               <p className="pcard-note">Pagamento único sem taxas mensais</p>
-              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Start!" className="btn-premium" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5541984253194?text=Quero%20o%20plano%20Pulse%20Start!" className="btn-premium" target="_blank" rel="noopener noreferrer">
                 Quero o Pulse Start!
               </a>
             </div>
@@ -74,7 +74,7 @@ export default function PlansSection() {
             
             <div className="pcard-footer">
               <p className="pcard-note">Foco total em resultados e vendas</p>
-              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Pro!" className="btn-premium" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5541984253194?text=Quero%20o%20plano%20Pulse%20Pro!" className="btn-premium" target="_blank" rel="noopener noreferrer">
                 Quero o Pulse Pro!
               </a>
             </div>
@@ -106,7 +106,7 @@ export default function PlansSection() {
             
             <div className="pcard-footer">
               <p className="pcard-note">Nível máximo de personalização</p>
-              <a href="https://wa.me/5541984606633?text=Quero%20o%20plano%20Pulse%20Elite!" className="btn-premium" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5541984253194?text=Quero%20o%20plano%20Pulse%20Elite!" className="btn-premium" target="_blank" rel="noopener noreferrer">
                 Quero o Pulse Elite!
               </a>
             </div>

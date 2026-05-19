@@ -50,7 +50,7 @@ export default function CTASection() {
           </p>
           <div className="cta-buttons">
             <a
-              href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
+              href="https://wa.me/5541984253194?text=Quero%20meu%20site%20profissional!"
               className="btn btn-primary btn-lg"
               target="_blank"
               rel="noopener noreferrer"
@@ -59,7 +59,7 @@ export default function CTASection() {
               Receber orçamento grátis
             </a>
             <a
-              href="https://wa.me/5541984606633?text=Quero%20meu%20site%20profissional!"
+              href="https://wa.me/5541984253194?text=Quero%20meu%20site%20profissional!"
               className="btn btn-whatsapp btn-lg"
               target="_blank"
               rel="noopener noreferrer"
