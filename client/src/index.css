@@ -1,0 +1,198 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/landing-pages.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* 🔥 DARK BASE GLOBAL */
+
+:root {
+  --radius: 0.65rem;
+
+  --background: #05010a;
+  --foreground: #ffffff;
+
+  --primary: #8a2be2;
+  --primary-foreground: #ffffff;
+
+  --secondary: rgba(138, 43, 226, 0.1);
+  --secondary-foreground: #ffffff;
+
+  --muted: rgba(138, 43, 226, 0.08);
+  --muted-foreground: #c8c8d8;
+
+  --accent: rgba(138, 43, 226, 0.1);
+  --accent-foreground: #ffffff;
+
+  --card: rgba(17, 17, 24, 0.7);
+  --card-foreground: #ffffff;
+
+  --popover: rgba(17, 17, 24, 0.7);
+  --popover-foreground: #ffffff;
+
+  --border: rgba(138, 43, 226, 0.2);
+  --input: rgba(138, 43, 226, 0.2);
+  --ring: rgba(138, 43, 226, 0.5);
+}
+
+/* (mantém compatibilidade com dark class) */
+.dark {
+  --background: #05010a;
+  --foreground: #ffffff;
+}
+
+/* ===== FIX FONT AWESOME ===== */
+.fa, .fas, .fa-solid, .fab, .far {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto !important;
+  line-height: 1 !important;
+}
+.fas, .fa-solid {
+  font-weight: 900 !important;
+}
+.fab {
+  font-family: "Font Awesome 6 Brands" !important;
+}
+
+/* ===== BASE ===== */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background: #05010a;
+  }
+
+  body {
+    @apply text-foreground;
+  }
+
+  html, body {
+    background-color: #05010a !important;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+/* ===== LAYOUT ===== */
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+}
+
+/* ===== BACKGROUND FUTURISTA ===== */
+
+.sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+  animation: float 12s ease-in-out infinite;
+}
+
+.sphere-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #a855f7, transparent 70%);
+  top: 10%;
+  left: 10%;
+}
+
+.sphere-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #9333ea, transparent 70%);
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+.sphere-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #c084fc, transparent 70%);
+  top: 50%;
+  left: 60%;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-40px) translateX(20px);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+}
