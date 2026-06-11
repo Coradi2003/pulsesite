@@ -74,11 +74,7 @@ export default function HeroSection() {
                 Agência Digital · Curitiba, PR
               </div>
               <div className="hero-title">
-<<<<<<< HEAD
-                Seu negócio ainda (Teste)
-=======
                 Seu negócio ainda
->>>>>>> f53ad8650a6a275c3d79de5117c7350a24615678
                 <br />
                 <span className="highlight">não tem site?</span>
               </div>
